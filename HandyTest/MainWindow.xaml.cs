@@ -1,17 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+using System.Collections.ObjectModel;
+using HandyTest.BL;
 
 namespace HandyTest
 {
@@ -20,6 +10,9 @@ namespace HandyTest
     /// </summary>
     public partial class MainWindow : Window
     {
+
+        ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -44,5 +37,20 @@ namespace HandyTest
                 this.DragMove();
         }
 
+        private void UpdateProjectsList(object sender, ExceptionRoutedEventArgs e)
+        {
+        }
+
+        private void ProjectsListDataGrid_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
+        {
+            projectsListDataGrid.ItemsSource = ProjectsList;
+            ProjectsList.Add(new ProjectList("test"));
+        }
+
+        private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
+        {         
+            projectsListDataGrid.ItemsSource = ProjectsList;
+            ProjectsList.Add(new ProjectList("test"));
+        }
     }
 }
