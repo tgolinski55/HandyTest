@@ -5,8 +5,30 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HandyTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        <Label Content="Hello world!" FontSize="50" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Background="Transparent"
+        Title="MainWindow" Height="450" Width="800"
+        ResizeMode="CanResizeWithGrip">
+    
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        
+        <!--Upper ribbon-->
+        <Label Grid.Row="0" Grid.ColumnSpan="3" Background="Gray"/>
+        
+        <!--Lower ribbon-->
+        <Label Grid.Row="2" Grid.ColumnSpan="3" Background="Gray"/>
+        
     </Grid>
+    
 </Window>

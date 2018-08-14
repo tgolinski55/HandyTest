@@ -1,0 +1,15 @@
+C:\Projects\HandyTest\HandyTest\bin\Debug\HandyTest.exe.config
+C:\Projects\HandyTest\HandyTest\bin\Debug\HandyTest.exe
+C:\Projects\HandyTest\HandyTest\bin\Debug\HandyTest.pdb
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.csprojAssemblyReference.cache
+C:\Projects\HandyTest\HandyTest\obj\Debug\MainWindow.g.cs
+C:\Projects\HandyTest\HandyTest\obj\Debug\App.g.cs
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest_MarkupCompile.cache
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest_MarkupCompile.lref
+C:\Projects\HandyTest\HandyTest\obj\Debug\MainWindow.baml
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.g.resources
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.Properties.Resources.resources
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.csproj.GenerateResource.cache
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.csproj.CoreCompileInputs.cache
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.exe
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.pdb
