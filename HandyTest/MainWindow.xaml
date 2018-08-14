@@ -115,7 +115,7 @@
             </Button>
             <!--Lower ribbon-->
             <Label Content="@Tomasz Goliński" FontSize="15" Grid.Row="2" Grid.ColumnSpan="3" Background="Gray" Foreground="WhiteSmoke"/>
-
+            <Label Content="Copyright, 08/2018" Grid.Row="2" Grid.Column="2" Foreground="WhiteSmoke"/>
         </Grid>
     </Border>
 </Window>
