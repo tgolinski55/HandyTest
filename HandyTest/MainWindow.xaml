@@ -10,25 +10,112 @@
         Background="Transparent"
         Title="MainWindow" Height="450" Width="800"
         ResizeMode="CanResizeWithGrip">
-    
-    <Grid Background="White">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="30"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-            <ColumnDefinition/>
-        </Grid.ColumnDefinitions>
-        
-        <!--Upper ribbon-->
-        <Label Grid.Row="0" Grid.ColumnSpan="3" Background="Gray"/>
-        
-        <!--Lower ribbon-->
-        <Label Grid.Row="2" Grid.ColumnSpan="3" Background="Gray"/>
-        
-    </Grid>
-    
+
+
+    <Window.Resources>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </Trigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter>
+                                </ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <Style x:Key="TransparentStyle2" TargetType="{x:Type Button}">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Gray"/>
+                                        </Trigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter>
+                                </ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" Executed="CloseCommandHandler"/>
+        <CommandBinding Command="{x:Static SystemCommands.MinimizeWindowCommand}" Executed="MinimizeCommandHandler"/>
+        <CommandBinding Command="{x:Static SystemCommands.MaximizeWindowCommand}" Executed="MaximizeCommandHandler"/>
+    </Window.CommandBindings>
+
+    <Border BorderBrush="Gray" BorderThickness="2">
+        <Grid Background="White">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--Upper ribbon-->
+            <Label Grid.Row="0" Grid.ColumnSpan="3" Background="Gray" MouseDown="Window_MouseDown"/>
+            <Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="⨯" Foreground="WhiteSmoke" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25"  Margin="0,-10"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,30,0" BorderThickness="0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MaximizeWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="o" Foreground="WhiteSmoke" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0,-10"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="-" Foreground="WhiteSmoke" VerticalContentAlignment="Center" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="25" Margin="0,-10"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <!--Lower ribbon-->
+            <Label Grid.Row="2" Grid.ColumnSpan="3" Background="Gray"/>
+
+        </Grid>
+    </Border>
 </Window>

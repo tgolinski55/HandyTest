@@ -24,5 +24,25 @@ namespace HandyTest
         {
             InitializeComponent();
         }
+
+        // Toolbar and drag window
+        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.CloseWindow(this);
+        }
+        private void MinimizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.MinimizeWindow(this);
+        }
+        private void MaximizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
+        {
+            SystemCommands.MaximizeWindow(this);
+        }
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.ChangedButton == MouseButton.Left)
+                this.DragMove();
+        }
+
     }
 }
