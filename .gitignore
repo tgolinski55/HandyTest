@@ -1,0 +1,6 @@
+DesignTimeBuild
+HandyTest
+bin
+Debug
+/HandyTest/bin/Debug/HandyTest.exe.config
+/HandyTest/bin/Debug/*.config
