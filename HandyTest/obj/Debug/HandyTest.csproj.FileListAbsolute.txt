@@ -12,3 +12,4 @@ C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.csproj.GenerateResource.cach
 C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.csproj.CoreCompileInputs.cache
 C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.exe
 C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.pdb
+C:\Projects\HandyTest\HandyTest\obj\Debug\HandyTest.csprojAssemblyReference.cache
