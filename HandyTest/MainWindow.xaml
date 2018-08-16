@@ -5,8 +5,166 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:HandyTest"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        WindowStyle="None"
+        AllowsTransparency="True"
+        Title="MainWindow" Height="450" Width="800"
+        MinHeight="300"
+        MinWidth="400"
+        ResizeMode="CanResizeWithGrip" FontFamily="Leelawadee UI Semilight"
+        >
+    
+
+    <Window.Resources>
+        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+            <Setter Property="HorizontalAlignment" Value="Right"/>
+            <Setter Property="Template">
+
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Red"/>
+                                        </Trigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter>
+                                </ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+
+        </Style>
+
+        <Style x:Key="TransparentStyle2" TargetType="{x:Type Button}">
+
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border>
+                            <Border.Style>
+                                <Style TargetType="{x:Type Border}">
+
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="Background" Value="Gray"/>
+                                        </Trigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </Border.Style>
+                            <Grid Background="Transparent">
+                                <ContentPresenter>
+                                </ContentPresenter>
+                            </Grid>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" Executed="CloseCommandHandler"/>
+        <CommandBinding Command="{x:Static SystemCommands.MinimizeWindowCommand}" Executed="MinimizeCommandHandler"/>
+        <CommandBinding Command="{x:Static SystemCommands.MaximizeWindowCommand}" Executed="MaximizeCommandHandler"/>
+    </Window.CommandBindings>
+
+    <Border BorderBrush="#232526" BorderThickness="1">
+        <Grid Background="#434343">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <!--Upper ribbon-->
+            <Label Grid.Row="0" Grid.ColumnSpan="3" Content="HandyTest" FontSize="15" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Background="#232526" MouseDown="Window_MouseDown"/>
+            <Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,30,0" BorderThickness="0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MaximizeWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="&#128470;" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="🗕"  HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <!--Lower ribbon-->
+            <Label Content="@Tomasz Goliński" FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>
+
+            
+            <!--Projects list-->
+
+            <DataGrid Name="projectsListDataGrid"
+                      Grid.Row="1"
+                      BorderThickness="0"
+                      Background="Transparent"
+                      Padding="5"
+                      FontWeight="ExtraBold"
+                      
+                      AutoGenerateColumns="False"
+                      CanUserResizeColumns="False"
+                      CanUserDeleteRows="False"
+                      CanUserSortColumns="False"
+                      
+                      HeadersVisibility="Column"
+                      HorizontalScrollBarVisibility="Disabled"
+                      VerticalScrollBarVisibility="Disabled"
+                      
+                      Loaded="ProjectsListDataGrid_Loaded"
+                      >
+                <!--Styles-->
+                <DataGrid.Resources>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="BorderBrush" Value="Black"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
+                        <Setter Property="FontSize" Value="15"/>
+                    </Style>
+
+                    <!--TODO cell style-->
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="Padding" Value="5"/>
+                        <Setter Property="IsEditing" Value="False"/>
+                        <Setter Property="Background" Value="Transparent"/>
+                        <Setter Property="FontSize" Value="13"/>
+                    </Style>
+                </DataGrid.Resources>
+                
+                <DataGrid.Columns>
+                    <DataGridHyperlinkColumn Header="Projects" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+                </DataGrid.Columns>
+            </DataGrid>
+            <Button Name="tempButton" Grid.Row="1" Grid.Column="1" Click="ProjectsListDataGrid_Loaded"/>
+
+        </Grid>
+    </Border>
 </Window>
