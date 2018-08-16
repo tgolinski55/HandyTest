@@ -6,10 +6,9 @@ using System.Threading.Tasks;
 
 namespace HandyTest.BL
 {
-    class ProjectList
+    public class ProjectList
     {
         public string Name { get; set; }
-
         public ProjectList(string name)
         {
             this.Name = name;

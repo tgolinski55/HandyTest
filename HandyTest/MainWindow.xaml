@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
-        Title="MainWindow" Height="450" Width="800"
+        Title="HandyTest" Height="450" Width="800"
         MinHeight="300"
-        MinWidth="400"
-        ResizeMode="CanResizeWithGrip" FontFamily="Leelawadee UI Semilight"
+        MinWidth="400"  
+        ResizeMode="CanResizeWithGrip" FontFamily="Segoe UI Semilight"
         >
     
 
@@ -93,7 +93,8 @@
             </Grid.ColumnDefinitions>
 
             <!--Upper ribbon-->
-            <Label Grid.Row="0" Grid.ColumnSpan="3" Content="HandyTest" FontSize="15" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Background="#232526" MouseDown="Window_MouseDown"/>
+            <Label Grid.Row="0" Grid.ColumnSpan="3"  FontSize="15" Content="HandyTest" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Background="#232526" MouseDown="Window_MouseDown"/>
+
             <Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
                 <Button.Content>
                     <StackPanel>
@@ -116,55 +117,114 @@
                 </Button.Content>
             </Button>
             <!--Lower ribbon-->
-            <Label Content="@Tomasz Goliński" FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>
+            <Label Content="ver. 1.0.0.1" FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>
 
+
+            <!--Separator-->
+            <Label Grid.Row="1" BorderBrush="WhiteSmoke" BorderThickness="0,0,1,0" Background="Transparent" IsEnabled="False" Margin="0,5" />
             
             <!--Projects list-->
-
+            <!--TODO connect to db-->
             <DataGrid Name="projectsListDataGrid"
                       Grid.Row="1"
                       BorderThickness="0"
                       Background="Transparent"
                       Padding="5"
-                      FontWeight="ExtraBold"
+                      Margin="0,20,0,40"
                       
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"
                       CanUserDeleteRows="False"
                       CanUserSortColumns="False"
+                      SelectionMode="Single"
                       
                       HeadersVisibility="Column"
                       HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Disabled"
+                      SelectionChanged="projectsListDataGrid_SelectionChanged"
                       
                       Loaded="ProjectsListDataGrid_Loaded"
+                      SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
+                      ItemsSource="{Binding ProjecsList}"
                       >
                 <!--Styles-->
                 <DataGrid.Resources>
                     <Style TargetType="{x:Type DataGridColumnHeader}">
                         <Setter Property="Background" Value="LightGray"/>
+                        <Setter Property="Foreground" Value="Black"/>
                         <Setter Property="Padding" Value="5"/>
-                        <Setter Property="BorderBrush" Value="Black"/>
-                        <Setter Property="BorderThickness" Value="0,0,1,0"/>
-                        <Setter Property="FontSize" Value="15"/>
+                        <Setter Property="BorderThickness" Value="0,0,1,2"/>
+                        <Setter Property="FontSize" Value="20"/>
                     </Style>
 
                     <!--TODO cell style-->
                     <Style TargetType="{x:Type DataGridCell}">
-                        <Setter Property="BorderThickness" Value="0"/>
+                        <Setter Property="BorderThickness" Value="0,0,0,0"/>
                         <Setter Property="Padding" Value="5"/>
                         <Setter Property="IsEditing" Value="False"/>
-                        <Setter Property="Background" Value="Transparent"/>
-                        <Setter Property="FontSize" Value="13"/>
+                        <Setter Property="Foreground" Value="Black" />
+                        <Setter Property="FontSize" Value="15"/>
                     </Style>
                 </DataGrid.Resources>
                 
                 <DataGrid.Columns>
-                    <DataGridHyperlinkColumn Header="Projects" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Projects" Binding="{Binding Name}" Width="*" IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
-            <Button Name="tempButton" Grid.Row="1" Grid.Column="1" Click="ProjectsListDataGrid_Loaded"/>
+            <Button Name="createNewProjectBtn" Grid.Row="1" Grid.Column="0"
+                    Height="30" Width="90"
+                    Content="Create New" FontSize="15"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="5"
+                    Click="ProjectsListDataGrid_Loaded"/>
+            
+            <Button Name="makeActiveProjectBtn" Grid.Row="1" Grid.Column="0"
+                    Height="30" Width="90"
+                    Content="Make Active" FontSize="15"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Left"
+                    Margin="5"
+                    Click="makeActiveProjectBtn_Click"/>
 
+
+            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Button Grid.Row="1"
+                        Margin="10">
+                    <TextBlock Text="Manual test" FontSize="20"/>
+                </Button>
+                <TextBlock x:Name="activeProjectTxtBlock" 
+                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                       Text="Project_name" FontSize="30" Foreground="WhiteSmoke" FontStyle="Italic"
+                       TextAlignment="Center"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Stretch" 
+                       />
+                <Button Grid.Row="1" Grid.Column="1"
+                        Margin="10">
+                    <TextBlock Text="Create report" FontSize="20"/>
+                </Button>
+                <Button Grid.Row="2" Grid.Column="1"   
+                        Margin="10">
+                    <TextBlock  Text="Log" FontSize="20"/>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="2"                
+                        Margin="10">
+                    <TextBlock  Text="Automatic test" FontSize="20"/>
+                </Button>
+
+            </Grid>
         </Grid>
     </Border>
 </Window>

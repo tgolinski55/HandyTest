@@ -2,6 +2,10 @@
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using HandyTest.BL;
+using HandyTest.Properties;
+using System.IO;
+using System.Web;
+using System.Collections.Generic;
 
 namespace HandyTest
 {
@@ -11,7 +15,8 @@ namespace HandyTest
     public partial class MainWindow : Window
     {
 
-        ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
+        public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
+        
 
         public MainWindow()
         {
@@ -41,16 +46,25 @@ namespace HandyTest
         {
         }
 
-        private void ProjectsListDataGrid_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-            projectsListDataGrid.ItemsSource = ProjectsList;
-            ProjectsList.Add(new ProjectList("test"));
-        }
-
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
         {         
             projectsListDataGrid.ItemsSource = ProjectsList;
-            ProjectsList.Add(new ProjectList("test"));
+            ProjectsList.Add(new ProjectList("Hello World!"));          
+            ProjectsList.Add(new ProjectList("Hello World2!"));          
+            ProjectsList.Add(new ProjectList("Hello World3!"));          
+        }
+
+        private void makeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var data in projectsListDataGrid.SelectedItems)
+            {
+                ProjectList myData = data as ProjectList;
+                activeProjectTxtBlock.Text = myData.Name;
+            }
+        }
+
+        private void projectsListDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
+        {
         }
     }
 }
