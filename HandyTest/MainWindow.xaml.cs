@@ -2,6 +2,9 @@
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using HandyTest.BL;
+using HandyTest.Properties;
+using System.IO;
+using System.Web;
 
 namespace HandyTest
 {
@@ -11,7 +14,8 @@ namespace HandyTest
     public partial class MainWindow : Window
     {
 
-        ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
+        public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
+        
 
         public MainWindow()
         {
@@ -41,16 +45,10 @@ namespace HandyTest
         {
         }
 
-        private void ProjectsListDataGrid_SourceUpdated(object sender, System.Windows.Data.DataTransferEventArgs e)
-        {
-            projectsListDataGrid.ItemsSource = ProjectsList;
-            ProjectsList.Add(new ProjectList("test"));
-        }
-
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
         {         
             projectsListDataGrid.ItemsSource = ProjectsList;
-            ProjectsList.Add(new ProjectList("test"));
+            ProjectsList.Add(new ProjectList("Hello World!"));          
         }
     }
 }
