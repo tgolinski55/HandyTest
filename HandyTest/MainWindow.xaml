@@ -198,20 +198,21 @@
                     </Style>
 
                     <!--TODO cell style-->
-                    <!--<Style TargetType="{x:Type DataGridCell}">
+                    <Style TargetType="{x:Type DataGridCell}">
                         <Setter Property="BorderThickness" Value="0"/>
                         <Setter Property="Padding" Value="5"/>
                         <Setter Property="IsEditing" Value="False"/>
                         <Setter Property="Foreground" Value="Black" />
                         <Setter Property="Background" Value="WhiteSmoke" />
                         <Setter Property="FontSize" Value="15"/>
-                    </Style>-->
+                    </Style>
                 </DataGrid.Resources>
                 
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Projects" Binding="{Binding Name}" Width="*" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}"/>
                 </DataGrid.Columns>
             </DataGrid>
+                
             <Button Name="createNewProjectBtn" Grid.Row="1" Grid.Column="0"
                     Height="30" Width="90"
                     Content="Create New" FontSize="15"
@@ -249,7 +250,7 @@
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel>
                         <Image Source="Resources/icons8-test-zaliczony-100.png" MaxHeight="70"/>
-                        <TextBlock Text="Manual test" FontSize="20"/>
+                        <TextBlock Text="Manual test" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
 
                 </Button>
@@ -267,7 +268,7 @@
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel>
                         <Image Source="Resources/icons8-otwórz-dokument-100.png" MaxHeight="70"/>
-                        <TextBlock Text="Create report" FontSize="20"/>
+                        <TextBlock Text="Create report" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
                     
                 </Button>
@@ -288,7 +289,7 @@
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel>
                         <Image Source="Resources/icons8-automatyczny-100.png" MaxHeight="70"/>
-                        <TextBlock Text="Automatic test" FontSize="20"/>
+                        <TextBlock Text="Automatic test" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
