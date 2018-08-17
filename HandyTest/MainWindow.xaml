@@ -156,7 +156,7 @@
                 </Button.Content>
             </Button>
             <!--Lower ribbon-->
-            <Label Content="ver. 1.0.0.1" FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>
+            <Label Content="ver. 1.0.0.2" FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>
 
 
             <!--Separator-->
