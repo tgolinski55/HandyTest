@@ -100,5 +100,17 @@
   <ItemGroup>
     <Resource Include="Resources\muka3_wM3_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8-test-zaliczony-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8-otwórz-dokument-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8-automatyczny-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\icons8-log-100.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

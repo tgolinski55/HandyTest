@@ -16,11 +16,12 @@ namespace HandyTest
     {
 
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
-        
+
 
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         // Toolbar and drag window
@@ -42,29 +43,26 @@ namespace HandyTest
                 this.DragMove();
         }
 
-        private void UpdateProjectsList(object sender, ExceptionRoutedEventArgs e)
+        private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
+            projectsListDataGrid.ItemsSource = ProjectsList;
+            ProjectsList.Add(new ProjectList("Die World!"));
         }
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
-        {         
+        {
             projectsListDataGrid.ItemsSource = ProjectsList;
-            ProjectsList.Add(new ProjectList("Hello World!"));          
-            ProjectsList.Add(new ProjectList("Hello World2!"));          
-            ProjectsList.Add(new ProjectList("Hello World3!"));          
+            ProjectsList.Add(new ProjectList("Hello World!"));
+            activeProjectTxtBlock.Text = ProjectsList[0].Name;
         }
 
-        private void makeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
+        private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
         {
             foreach (var data in projectsListDataGrid.SelectedItems)
             {
                 ProjectList myData = data as ProjectList;
                 activeProjectTxtBlock.Text = myData.Name;
             }
-        }
-
-        private void projectsListDataGrid_SelectionChanged(object sender, System.Windows.Controls.SelectionChangedEventArgs e)
-        {
         }
     }
 }
