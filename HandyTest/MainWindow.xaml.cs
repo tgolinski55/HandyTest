@@ -6,6 +6,7 @@ using HandyTest.Properties;
 using System.IO;
 using System.Web;
 using System.Collections.Generic;
+using System.Text;
 
 namespace HandyTest
 {
@@ -16,7 +17,7 @@ namespace HandyTest
     {
 
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
-
+        SaveProjectList saveProject = new SaveProjectList();
 
         public MainWindow()
         {
@@ -46,7 +47,7 @@ namespace HandyTest
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
             projectsListDataGrid.ItemsSource = ProjectsList;
-            ProjectsList.Add(new ProjectList("Die World!"));
+            ProjectsList.Add(new ProjectList("Pls don't Die World!"));
         }
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
