@@ -8,11 +8,11 @@
         WindowStyle="None"
         AllowsTransparency="True"
         Title="HandyTest" Height="450" Width="800"
-        MinHeight="400"
+        MinHeight="420"
         MinWidth="700"  
         ResizeMode="CanResizeWithGrip"
         >
-    
+
 
     <Window.Resources>
         <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
@@ -20,7 +20,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                         <Border>
+                        <Border>
                             <Border.Style>
                                 <Style TargetType="{x:Type Border}">
                                     <Style.Triggers>
@@ -34,7 +34,7 @@
                                 <ContentPresenter>
                                 </ContentPresenter>
                             </Grid>
-                         </Border>
+                        </Border>
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
@@ -103,7 +103,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Padding" Value="5"/>
@@ -153,9 +153,9 @@
         <CommandBinding Command="{x:Static SystemCommands.MaximizeWindowCommand}" Executed="MaximizeCommandHandler"/>
     </Window.CommandBindings>
 
-    
+
     <!--Colors-->
-    
+
     <Border BorderBrush="#232526" BorderThickness="1">
         <Grid Background="WhiteSmoke">
             <Grid.RowDefinitions>
@@ -164,13 +164,19 @@
                 <RowDefinition Height="30"/>
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition/>
+                <ColumnDefinition MaxWidth="400"/>
                 <ColumnDefinition/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
 
             <!--Upper ribbon-->
-            <Label Grid.Row="0" Grid.ColumnSpan="3"  FontSize="15" Content="HandyTest" Foreground="WhiteSmoke" HorizontalContentAlignment="Center" Background="#232526" MouseDown="Window_MouseDown"/>
+            <Label Grid.Row="0" Grid.ColumnSpan="3"
+                   FontSize="15" Content="HandyTest"
+                   Foreground="WhiteSmoke" Background="#232526"
+                   HorizontalContentAlignment="Center"
+                   
+                   MouseDoubleClick="Label_MouseDoubleClick"
+                   MouseDown="Window_MouseDown"/>
 
             <Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
                 <Button.Content>
@@ -199,7 +205,7 @@
 
             <!--Separator-->
             <Label Grid.Row="1" BorderBrush="#D4791C" BorderThickness="0,0,1,0" Background="Transparent" IsEnabled="False" Margin="0,5" />
-            
+
             <!--Projects list-->
             <!--TODO connect to db-->
             <Label Grid.Row="1" Content="Projects"
@@ -227,7 +233,7 @@
                       HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Disabled"
                       
-                      MouseDoubleClick="projectsListDataGrid_MouseDoubleClick"
+                      MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
                       Loaded="ProjectsListDataGrid_Loaded"
                       SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
                       ItemsSource="{Binding ProjecsList}"
@@ -244,7 +250,7 @@
                     Content="Create New"
                     
                     Click="UpdateProjectsList"/>
-            
+
             <Button Name="makeActiveProjectBtn" Grid.Row="1" Grid.Column="0"
                     Style="{StaticResource FunctionalButtonStyle}"
                     Content="Make Active"
@@ -293,7 +299,7 @@
                         <Image Source="Resources/icons8-otwórz-dokument-100.png" MaxHeight="70"/>
                         <TextBlock Text="Create report" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
-                    
+
                 </Button>
                 <Button Grid.Row="2" Grid.Column="1"   
                         Margin="10"
@@ -315,6 +321,67 @@
                         <TextBlock Text="Automatic test" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
+
+                <Popup Name="createNewProjectPopUp" Placement="Center" IsOpen="False" Width="Auto" Height="Auto">
+                    <Border BorderBrush="#232526" BorderThickness="1">
+
+                        <StackPanel Height="200" Width="400" Background="WhiteSmoke" Orientation="Vertical">
+
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="120"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.ColumnSpan="2" Grid.Row="0"
+                                   Content="Create new project" FontSize="15"
+                                   Background="#232526" Foreground="WhiteSmoke"
+                                   HorizontalContentAlignment="Center"
+                                   />
+                                <Button Style="{StaticResource TransparentStyle}" Grid.Column="1" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Click="Close_PopUp">
+                                    <Button.Content>
+                                        <StackPanel>
+                                            <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
+
+                                <Label Grid.Row="1" Grid.Column="0" Content="Name:" FontSize="15" Padding="5" Margin="5"/>
+                                <TextBox Name="newProjectName" Grid.Row="1" Grid.Column="1" FontSize="15" BorderBrush="Black" BorderThickness="1" Background="Transparent"
+                                     Padding="5" ToolTip="Enter project name" Margin="5"
+                                         AcceptsTab="True"
+                                         AllowDrop="True"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                     MaxLines="1" MaxLength="100"/>
+
+                                <Label Grid.Row="2" Grid.Column="0" Content="Description:" FontSize="15" Padding="5" Margin="5"/>
+
+
+                                <TextBox Name="newProjectDescription" Grid.Row="2" Grid.Column="1" 
+                                         FontSize="15" BorderBrush="Black" BorderThickness="1" Background="Transparent"
+                                         Padding="5" Margin="5"
+                                         ToolTip="Enter description"
+                                         MaxLength="1000" MinLines="4"
+                                         
+                                         AcceptsTab="True"
+                                         AllowDrop="True"
+                                         AcceptsReturn="True"
+                                         TextWrapping="Wrap"
+                                             
+                                         ScrollViewer.VerticalScrollBarVisibility="Auto"
+                                         ScrollViewer.HorizontalScrollBarVisibility="Disabled"   
+                                         />
+                            </Grid>
+
+                        </StackPanel>
+
+                    </Border>
+                </Popup>
 
             </Grid>
         </Grid>

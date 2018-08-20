@@ -23,6 +23,7 @@ namespace HandyTest
         {
             InitializeComponent();
 
+
         }
 
         // Toolbar and drag window
@@ -32,43 +33,56 @@ namespace HandyTest
         }
         private void MinimizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            SystemCommands.MinimizeWindow(this);
+            //SystemCommands.MinimizeWindow(this);
+
         }
         private void MaximizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
 
-            SystemCommands.MaximizeWindow(this);
-            WindowStyle = WindowStyle.None;
-            ResizeMode = ResizeMode.NoResize;
+            //SystemCommands.MaximizeWindow(this);
+
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+                WindowStyle = WindowStyle.None;
+                ResizeMode = ResizeMode.CanResizeWithGrip;
+            }
+            else
+            {
+                WindowStyle = WindowStyle.None;
+                ResizeMode = ResizeMode.NoResize;
+                WindowState = WindowState.Maximized;
+            }
 
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
-                this.DragMove();
+                DragMove();
         }
 
-        private bool _inStateChange;
 
-        protected override void OnStateChanged(EventArgs e)
+        //TODO finish popup dragmove
+        void pop_MouseMove(object sender, MouseEventArgs e)
         {
-            if (WindowState == WindowState.Maximized && !_inStateChange)
+            
+            if (e.LeftButton == MouseButtonState.Pressed)
             {
-                _inStateChange = true;
-                WindowState = WindowState.Normal;
-                WindowStyle = WindowStyle.None;
-                WindowState = WindowState.Maximized;
-                ResizeMode = ResizeMode.NoResize;
-                _inStateChange = false;
-            }
-            base.OnStateChanged(e);
-        }
+                createNewProjectPopUp.MouseMove += new MouseEventHandler(pop_MouseMove);
+                createNewProjectPopUp.PlacementRectangle = new Rect(new Point(e.GetPosition(this).X,
+                    e.GetPosition(this).Y), new Point(200, 200));
 
+            }
+        }
 
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
-            projectsListDataGrid.ItemsSource = ProjectsList;
-            ProjectsList.Add(new ProjectList("Die World!"));
+            //projectsListDataGrid.ItemsSource = ProjectsList;
+            //ProjectsList.Add(new ProjectList("Die World!"));
+
+            createNewProjectPopUp.IsOpen = true;
+            newProjectName.Text = "";
+            newProjectDescription.Text = "";
 
         }
 
@@ -88,13 +102,34 @@ namespace HandyTest
             }
         }
 
-        private void projectsListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void ProjectsListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             foreach (var data in projectsListDataGrid.SelectedItems)
             {
                 ProjectList myData = data as ProjectList;
                 activeProjectTxtBlock.Text = myData.Name;
             }
+        }
+
+        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+                WindowStyle = WindowStyle.None;
+                ResizeMode = ResizeMode.CanResizeWithGrip;
+            }
+            else
+            {
+                WindowStyle = WindowStyle.None;
+                ResizeMode = ResizeMode.NoResize;
+                WindowState = WindowState.Maximized;
+            }
+        }
+
+        private void Close_PopUp (object sender, RoutedEventArgs e)
+        {
+            createNewProjectPopUp.IsOpen = false;
         }
     }
 }
