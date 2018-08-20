@@ -6,6 +6,7 @@ using HandyTest.Properties;
 using System.IO;
 using System.Web;
 using System.Collections.Generic;
+using System;
 
 namespace HandyTest
 {
@@ -35,7 +36,11 @@ namespace HandyTest
         }
         private void MaximizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
+
             SystemCommands.MaximizeWindow(this);
+            WindowStyle = WindowStyle.None;
+            ResizeMode = ResizeMode.NoResize;
+
         }
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
@@ -43,10 +48,28 @@ namespace HandyTest
                 this.DragMove();
         }
 
+        private bool _inStateChange;
+
+        protected override void OnStateChanged(EventArgs e)
+        {
+            if (WindowState == WindowState.Maximized && !_inStateChange)
+            {
+                _inStateChange = true;
+                WindowState = WindowState.Normal;
+                WindowStyle = WindowStyle.None;
+                WindowState = WindowState.Maximized;
+                ResizeMode = ResizeMode.NoResize;
+                _inStateChange = false;
+            }
+            base.OnStateChanged(e);
+        }
+
+
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
             projectsListDataGrid.ItemsSource = ProjectsList;
             ProjectsList.Add(new ProjectList("Die World!"));
+
         }
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -57,6 +80,15 @@ namespace HandyTest
         }
 
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            foreach (var data in projectsListDataGrid.SelectedItems)
+            {
+                ProjectList myData = data as ProjectList;
+                activeProjectTxtBlock.Text = myData.Name;
+            }
+        }
+
+        private void projectsListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             foreach (var data in projectsListDataGrid.SelectedItems)
             {
