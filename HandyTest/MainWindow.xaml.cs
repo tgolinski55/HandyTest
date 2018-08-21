@@ -83,8 +83,9 @@ namespace HandyTest
         {
             if (newProjectName.Text.Length != 0)
             {
+                var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
                 projectsListDataGrid.ItemsSource = ProjectsList;
-                ProjectsList.Add(new ProjectList(newProjectName.Text));
+                ProjectsList.Add(new ProjectList(newProjectName.Text, currentDate));
                 string path = @"../../Projects/";
                 string pathToProject = Path.Combine(path, newProjectName.Text);
                 Directory.CreateDirectory(pathToProject);
@@ -103,9 +104,10 @@ namespace HandyTest
         {            
             string path = @"..//../Projects/";
             var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
+            var Date = Directory.GetCreationTime(path);
             foreach (var o in AllFiles)
             {
-                 ProjectsList.Add(new ProjectList(o));
+                 ProjectsList.Add(new ProjectList(o, DateTime.UtcNow.ToString("dd-MM-yyyy")));
             }
             projectsListDataGrid.ItemsSource = ProjectsList;
             activeProjectTxtBlock.Text = ProjectsList[0].Name;

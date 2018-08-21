@@ -9,9 +9,11 @@ namespace HandyTest.BL
     public class ProjectList
     {
         public string Name { get; set; }
-        public ProjectList(string name)
+        public string Date { get; set; }
+        public ProjectList(string name, string date)
         {
             this.Name = name;
+            this.Date = date;
         }
     }
 }
