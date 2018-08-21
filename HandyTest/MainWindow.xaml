@@ -81,8 +81,10 @@
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="true">
                     <Setter Property="Foreground" Value="#D4791C" />
+                    <Setter Property="Opacity" Value="0.7"/>
                 </Trigger>
             </Style.Triggers>
+            
         </Style>
 
 
@@ -153,11 +155,8 @@
         <CommandBinding Command="{x:Static SystemCommands.MaximizeWindowCommand}" Executed="MaximizeCommandHandler"/>
     </Window.CommandBindings>
 
-
-    <!--Colors-->
-
     <Border BorderBrush="#232526" BorderThickness="1">
-        <Grid Background="WhiteSmoke">
+        <Grid Name="wholeGrid" Background="WhiteSmoke">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="*"/>
@@ -216,7 +215,7 @@
             <DataGrid Name="projectsListDataGrid"
                       Grid.Row="1"
                       BorderThickness="0"
-                      BorderBrush="Black"
+                      BorderBrush="#D4791C"
                       Background="Transparent"
                       Padding="5"
                       GridLinesVisibility="None"
@@ -234,14 +233,21 @@
                       VerticalScrollBarVisibility="Disabled"
                       
                       MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
-                      Loaded="ProjectsListDataGrid_Loaded"
                       SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
                       ItemsSource="{Binding ProjecsList}"
                       >
 
 
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Name}" Width="*" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}"/>
+                    <DataGridTextColumn Binding="{Binding Name}" Width="*" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                <Setter Property="Padding" Value="5,2"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -249,7 +255,7 @@
                     Style="{StaticResource FunctionalButtonStyle}"
                     Content="Create New"
                     
-                    Click="UpdateProjectsList"/>
+                    Click="CreateNewProjectBtn_Click"/>
 
             <Button Name="makeActiveProjectBtn" Grid.Row="1" Grid.Column="0"
                     Style="{StaticResource FunctionalButtonStyle}"
@@ -284,12 +290,16 @@
 
                 </Button>
                 <TextBlock x:Name="activeProjectTxtBlock" 
-                    Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
-                       FontSize="30" Foreground="Black" FontStyle="Italic"
-                       TextAlignment="Center"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Stretch" 
+                           Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
+                           FontSize="40" Foreground="Black" FontStyle="Italic"
+                           Padding="10"
+                           Margin="10"
+                           TextAlignment="Center"
+                           TextTrimming="CharacterEllipsis"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Stretch" 
                        />
+
                 <Button Grid.Row="1" Grid.Column="1"
                         Margin="10"
                         Style="{StaticResource ImageButtonStyle}"
@@ -325,13 +335,14 @@
                 <Popup Name="createNewProjectPopUp" Placement="Center" IsOpen="False" Width="Auto" Height="Auto">
                     <Border BorderBrush="#232526" BorderThickness="1">
 
-                        <StackPanel Height="200" Width="400" Background="WhiteSmoke" Orientation="Vertical">
+                        <StackPanel Width="400" Background="WhiteSmoke" Orientation="Vertical">
 
                             <Grid>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="30"/>
                                     <RowDefinition/>
                                     <RowDefinition Height="120"/>
+                                    <RowDefinition Height="*"/>
                                 </Grid.RowDefinitions>
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="100"/>
@@ -353,9 +364,9 @@
                                 <Label Grid.Row="1" Grid.Column="0" Content="Name:" FontSize="15" Padding="5" Margin="5"/>
                                 <TextBox Name="newProjectName" Grid.Row="1" Grid.Column="1" FontSize="15" BorderBrush="Black" BorderThickness="1" Background="Transparent"
                                      Padding="5" ToolTip="Enter project name" Margin="5"
-                                         AcceptsTab="True"
+                                         AcceptsTab="False"
                                          AllowDrop="True"
-                                         AcceptsReturn="True"
+                                         AcceptsReturn="False"
                                          TextWrapping="Wrap"
                                      MaxLines="1" MaxLength="100"/>
 
@@ -376,6 +387,10 @@
                                          ScrollViewer.VerticalScrollBarVisibility="Auto"
                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"   
                                          />
+
+                                <Button Grid.Row="3" Grid.Column="1" Content="Create" Style="{StaticResource FunctionalButtonStyle}" Margin="5,10,5,5" Click="UpdateProjectsList"/>
+                                <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Style="{StaticResource FunctionalButtonStyle}" Margin="5,10,5,5"
+                                        HorizontalAlignment="Left" Click="Close_PopUp"/>
                             </Grid>
 
                         </StackPanel>

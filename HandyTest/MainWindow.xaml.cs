@@ -7,6 +7,7 @@ using System.IO;
 using System.Web;
 using System.Collections.Generic;
 using System;
+using System.Windows.Media;
 
 namespace HandyTest
 {
@@ -22,7 +23,6 @@ namespace HandyTest
         public MainWindow()
         {
             InitializeComponent();
-
 
         }
 
@@ -61,29 +61,18 @@ namespace HandyTest
                 DragMove();
         }
 
-
-        //TODO finish popup dragmove
-        void pop_MouseMove(object sender, MouseEventArgs e)
-        {
-            
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                createNewProjectPopUp.MouseMove += new MouseEventHandler(pop_MouseMove);
-                createNewProjectPopUp.PlacementRectangle = new Rect(new Point(e.GetPosition(this).X,
-                    e.GetPosition(this).Y), new Point(200, 200));
-
-            }
-        }
-
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
-            //projectsListDataGrid.ItemsSource = ProjectsList;
-            //ProjectsList.Add(new ProjectList("Die World!"));
-
-            createNewProjectPopUp.IsOpen = true;
-            newProjectName.Text = "";
-            newProjectDescription.Text = "";
-
+            if (newProjectName.Text.Length != 0)
+            {    
+                projectsListDataGrid.ItemsSource = ProjectsList;
+                ProjectsList.Add(new ProjectList(newProjectName.Text));
+                Close_PopUp(sender, e);
+            }
+            else
+            {
+                Close_PopUp(sender, e);
+            }
         }
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
@@ -127,9 +116,20 @@ namespace HandyTest
             }
         }
 
-        private void Close_PopUp (object sender, RoutedEventArgs e)
+        private void Close_PopUp(object sender, RoutedEventArgs e)
         {
             createNewProjectPopUp.IsOpen = false;
+            wholeGrid.IsEnabled = true;
+            wholeGrid.Opacity = 1;
+        }
+
+        private void CreateNewProjectBtn_Click(object sender, RoutedEventArgs e)
+        {
+            createNewProjectPopUp.IsOpen = true;
+            newProjectName.Text = "";
+            newProjectDescription.Text = "";
+            wholeGrid.IsEnabled = false;
+            wholeGrid.Opacity = 0.7;
         }
     }
 }
