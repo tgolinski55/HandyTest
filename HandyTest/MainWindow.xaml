@@ -283,7 +283,7 @@
                         Background="Transparent"
                         BorderThickness="0"
                         Style="{StaticResource ImageButtonStyle}"
-                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                        VerticalAlignment="Center" HorizontalAlignment="Right">
                     <StackPanel>
                         <Image Source="Resources/icons8-test-zaliczony-100.png" MaxHeight="70"/>
                         <TextBlock Text="Manual test" FontSize="20" TextAlignment="Center"/>
@@ -316,7 +316,7 @@
                         Margin="10"
                         Style="{StaticResource ImageButtonStyle}"
                         Background="Transparent" BorderThickness="0"
-                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                        VerticalAlignment="Top" HorizontalAlignment="Center">
                     <StackPanel>
                         <Image Source="Resources/icons8-log-100.png" MaxHeight="70"/>
                         <TextBlock Text="Log" FontSize="20" TextAlignment="Center"/>
@@ -326,7 +326,7 @@
                         Margin="10"
                         Style="{StaticResource ImageButtonStyle}"
                         Background="Transparent" BorderThickness="0"
-                        VerticalAlignment="Center" HorizontalAlignment="Center">
+                        VerticalAlignment="Center" HorizontalAlignment="Left">
                     <StackPanel>
                         <Image Source="Resources/icons8-automatyczny-100.png" MaxHeight="70"/>
                         <TextBlock Text="Automatic test" FontSize="20" TextAlignment="Center"/>

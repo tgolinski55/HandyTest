@@ -8,6 +8,7 @@ using System.Web;
 using System.Collections.Generic;
 using System;
 using System.Windows.Media;
+using System.Linq;
 
 namespace HandyTest
 {
@@ -33,7 +34,7 @@ namespace HandyTest
         }
         private void MinimizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            //SystemCommands.MinimizeWindow(this);
+            SystemCommands.MinimizeWindow(this);
 
         }
         private void MaximizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
@@ -55,6 +56,23 @@ namespace HandyTest
             }
 
         }
+
+        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (WindowState == WindowState.Maximized)
+            {
+                WindowState = WindowState.Normal;
+                WindowStyle = WindowStyle.None;
+                ResizeMode = ResizeMode.CanResizeWithGrip;
+            }
+            else
+            {
+                WindowStyle = WindowStyle.None;
+                ResizeMode = ResizeMode.NoResize;
+                WindowState = WindowState.Maximized;
+            }
+        }
+
         private void Window_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)
@@ -67,11 +85,12 @@ namespace HandyTest
             {
                 projectsListDataGrid.ItemsSource = ProjectsList;
                 ProjectsList.Add(new ProjectList(newProjectName.Text));
-                //TODO create new dir with projectName
                 string path = @"../../Projects/";
                 string pathToProject = Path.Combine(path, newProjectName.Text);
                 Directory.CreateDirectory(pathToProject);
-                File.Create(pathToProject + "/test.txt");
+                Directory.CreateDirectory(pathToProject + "/Manual Test");
+                Directory.CreateDirectory(pathToProject + "/Automatic Test");
+                File.Create(pathToProject + "/Report.docx");
                 Close_PopUp(sender, e);
             }
             else
@@ -81,17 +100,15 @@ namespace HandyTest
         }
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
-        {
-            if (ProjectsList.Count == 0)
+        {            
+            string path = @"..//../Projects/";
+            var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
+            foreach (var o in AllFiles)
             {
-                activeProjectTxtBlock.Text = "<Choose project>";
+                 ProjectsList.Add(new ProjectList(o));
             }
-            else
-            {
-                projectsListDataGrid.ItemsSource = ProjectsList;
-                ProjectsList.Add(new ProjectList("Hello World!"));
-                activeProjectTxtBlock.Text = ProjectsList[0].Name;
-            }
+            projectsListDataGrid.ItemsSource = ProjectsList;
+            activeProjectTxtBlock.Text = ProjectsList[0].Name;
         }
 
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
@@ -109,22 +126,6 @@ namespace HandyTest
             {
                 ProjectList myData = data as ProjectList;
                 activeProjectTxtBlock.Text = myData.Name;
-            }
-        }
-
-        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-                WindowStyle = WindowStyle.None;
-                ResizeMode = ResizeMode.CanResizeWithGrip;
-            }
-            else
-            {
-                WindowStyle = WindowStyle.None;
-                ResizeMode = ResizeMode.NoResize;
-                WindowState = WindowState.Maximized;
             }
         }
 
