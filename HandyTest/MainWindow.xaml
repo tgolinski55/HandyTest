@@ -232,6 +232,7 @@
                       HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Disabled"
                       
+                      Loaded="ProjectsListDataGrid_Loaded"
                       MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
                       SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
                       ItemsSource="{Binding ProjecsList}"

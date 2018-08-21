@@ -64,9 +64,14 @@ namespace HandyTest
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
             if (newProjectName.Text.Length != 0)
-            {    
+            {
                 projectsListDataGrid.ItemsSource = ProjectsList;
                 ProjectsList.Add(new ProjectList(newProjectName.Text));
+                //TODO create new dir with projectName
+                string path = @"../../Projects/";
+                string pathToProject = Path.Combine(path, newProjectName.Text);
+                Directory.CreateDirectory(pathToProject);
+                File.Create(pathToProject + "/test.txt");
                 Close_PopUp(sender, e);
             }
             else
@@ -77,9 +82,16 @@ namespace HandyTest
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            projectsListDataGrid.ItemsSource = ProjectsList;
-            ProjectsList.Add(new ProjectList("Hello World!"));
-            activeProjectTxtBlock.Text = ProjectsList[0].Name;
+            if (ProjectsList.Count == 0)
+            {
+                activeProjectTxtBlock.Text = "<Choose project>";
+            }
+            else
+            {
+                projectsListDataGrid.ItemsSource = ProjectsList;
+                ProjectsList.Add(new ProjectList("Hello World!"));
+                activeProjectTxtBlock.Text = ProjectsList[0].Name;
+            }
         }
 
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
