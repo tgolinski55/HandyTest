@@ -85,7 +85,7 @@
                     <Setter Property="Opacity" Value="0.7"/>
                 </Trigger>
             </Style.Triggers>
-            
+
         </Style>
 
 
@@ -144,7 +144,7 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-        
+
         <CollectionViewSource x:Key="cvs" Source="{Binding ProjecsList}">
             <CollectionViewSource.SortDescriptions>
                 <scm:SortDescription PropertyName="Date" Direction="Ascending"/>
@@ -273,7 +273,6 @@
             <Button Name="createNewProjectBtn" Grid.Row="1" Grid.Column="0"
                     Style="{StaticResource FunctionalButtonStyle}"
                     Content="Create New"
-                    
                     Click="CreateNewProjectBtn_Click"/>
 
             <Button Name="makeActiveProjectBtn" Grid.Row="1" Grid.Column="0"
@@ -284,7 +283,7 @@
                     Click="MakeActiveProjectBtn_Click"/>
 
 
-            <Grid Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2">
+            <Grid Name="selectProjectGrid" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
@@ -295,6 +294,10 @@
                     <RowDefinition/>
                     <RowDefinition/>
                 </Grid.RowDefinitions>
+
+                <Label Name="selectProjectLabel" Grid.ColumnSpan="3" Grid.RowSpan="3" Background="Black" Opacity="0.6" HorizontalContentAlignment="Center">
+                    <TextBlock Text="Select Project" FontSize="50" TextAlignment="Center" Foreground="WhiteSmoke" Margin="0, 50" FontStyle="Italic"/>
+                </Label>
 
                 <Button Grid.Row="1"
                         Margin="10"

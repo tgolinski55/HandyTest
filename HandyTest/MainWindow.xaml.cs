@@ -29,6 +29,7 @@ namespace HandyTest
         {
             InitializeComponent();
             Loaded += ProjectsListDataGrid_Loaded;
+
         }
 
         // Toolbar and drag window
@@ -56,8 +57,6 @@ namespace HandyTest
                 ResizeMode = ResizeMode.NoResize;
                 WindowState = WindowState.Maximized;
             }
-            //SystemCommands.MaximizeWindow(this);
-
         }
 
         private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -84,8 +83,8 @@ namespace HandyTest
 
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
-                var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
-            if (newProjectName.Text.Length != 0 && ProjectsList.Contains(new ProjectList(newProjectName.Text, currentDate)))
+            var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
+            if (newProjectName.Text.Length != 0 && !ProjectsList.Any(p => p.Name == newProjectName.Text))
             {
                 projectsListDataGrid.ItemsSource = ProjectsList;
                 ProjectsList.Add(new ProjectList(newProjectName.Text, currentDate));
@@ -117,7 +116,6 @@ namespace HandyTest
                 }
             }
             SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
-            activeProjectTxtBlock.Text = ProjectsList[0].Name;
         }
 
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
@@ -127,8 +125,9 @@ namespace HandyTest
                 ProjectList myData = data as ProjectList;
                 activeProjectTxtBlock.Text = myData.Name;
                 activeProjectTxtBlock.ToolTip = myData.Name;
-
             }
+            selectProjectGrid.IsEnabled = true;
+            selectProjectLabel.Visibility = Visibility.Hidden;
         }
 
         void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Ascending)
@@ -152,6 +151,9 @@ namespace HandyTest
                 activeProjectTxtBlock.Text = myData.Name;
                 activeProjectTxtBlock.ToolTip = myData.Name;
             }
+
+            selectProjectGrid.IsEnabled = true;
+            selectProjectLabel.Visibility = Visibility.Hidden;
         }
 
         private void Close_PopUp(object sender, RoutedEventArgs e)
