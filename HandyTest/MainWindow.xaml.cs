@@ -84,9 +84,9 @@ namespace HandyTest
 
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
-            if (newProjectName.Text.Length != 0)
-            {
                 var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
+            if (newProjectName.Text.Length != 0 && ProjectsList.Contains(new ProjectList(newProjectName.Text, currentDate)))
+            {
                 projectsListDataGrid.ItemsSource = ProjectsList;
                 ProjectsList.Add(new ProjectList(newProjectName.Text, currentDate));
                 string path = @"../../Projects/";
@@ -118,7 +118,6 @@ namespace HandyTest
             }
             SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
             activeProjectTxtBlock.Text = ProjectsList[0].Name;
-
         }
 
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
