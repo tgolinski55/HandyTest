@@ -104,10 +104,10 @@ namespace HandyTest
         {            
             string path = @"..//../Projects/";
             var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
-            var Date = Directory.GetCreationTime(path);
+            var Date = Directory.GetCreationTime(path).ToString("dd-MM-yyyy");
             foreach (var o in AllFiles)
             {
-                 ProjectsList.Add(new ProjectList(o, DateTime.UtcNow.ToString("dd-MM-yyyy")));
+                 ProjectsList.Add(new ProjectList(o, Date));
             }
             projectsListDataGrid.ItemsSource = ProjectsList;
             activeProjectTxtBlock.Text = ProjectsList[0].Name;
