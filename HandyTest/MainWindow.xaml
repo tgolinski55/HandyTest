@@ -232,10 +232,9 @@
                       HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Disabled"
                       
-                      Loaded="ProjectsListDataGrid_Loaded"
+                      
                       MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
                       SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
-                      ItemsSource="{Binding ProjecsList}"
                       >
 
 
@@ -254,6 +253,8 @@
                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
                                 <Setter Property="HorizontalAlignment" Value="Right"/>
                                 <Setter Property="Padding" Value="5,2"/>
+                                <Setter Property="FontStyle" Value="Italic"/>
+                                <Setter Property="FontSize" Value="13"/>
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
@@ -388,7 +389,7 @@
                                          ToolTip="Enter description"
                                          MaxLength="1000" MinLines="4"
                                          
-                                         AcceptsTab="True"
+                                         AcceptsTab="False"
                                          AllowDrop="True"
                                          AcceptsReturn="True"
                                          TextWrapping="Wrap"

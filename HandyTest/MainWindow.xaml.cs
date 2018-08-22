@@ -24,7 +24,7 @@ namespace HandyTest
         public MainWindow()
         {
             InitializeComponent();
-
+            Loaded += ProjectsListDataGrid_Loaded;
         }
 
         // Toolbar and drag window
@@ -40,8 +40,6 @@ namespace HandyTest
         private void MaximizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
 
-            //SystemCommands.MaximizeWindow(this);
-
             if (WindowState == WindowState.Maximized)
             {
                 WindowState = WindowState.Normal;
@@ -54,6 +52,7 @@ namespace HandyTest
                 ResizeMode = ResizeMode.NoResize;
                 WindowState = WindowState.Maximized;
             }
+            //SystemCommands.MaximizeWindow(this);
 
         }
 
@@ -101,16 +100,21 @@ namespace HandyTest
         }
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {
             string path = @"..//../Projects/";
             var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
-            var Date = Directory.GetCreationTime(path).ToString("dd-MM-yyyy");
             foreach (var o in AllFiles)
             {
-                 ProjectsList.Add(new ProjectList(o, Date));
+                var item = new ProjectList(o, Directory.GetCreationTime(path + o).ToString("dd-MM-yyyy"));
+                if(!ProjectsList.Contains(item))
+                {
+                    ProjectsList.Add(item);
+                    projectsListDataGrid.ItemsSource = ProjectsList;
+                }
             }
-            projectsListDataGrid.ItemsSource = ProjectsList;
+            
             activeProjectTxtBlock.Text = ProjectsList[0].Name;
+
         }
 
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
