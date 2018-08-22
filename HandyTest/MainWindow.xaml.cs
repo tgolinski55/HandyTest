@@ -9,6 +9,10 @@ using System.Collections.Generic;
 using System;
 using System.Windows.Media;
 using System.Linq;
+using System.Data;
+using System.ComponentModel;
+using System.Windows.Data;
+using System.Windows.Controls;
 
 namespace HandyTest
 {
@@ -106,13 +110,13 @@ namespace HandyTest
             foreach (var o in AllFiles)
             {
                 var item = new ProjectList(o, Directory.GetCreationTime(path + o).ToString("dd-MM-yyyy"));
-                if(!ProjectsList.Contains(item))
+                if (!ProjectsList.Contains(item))
                 {
                     ProjectsList.Add(item);
                     projectsListDataGrid.ItemsSource = ProjectsList;
                 }
             }
-            
+            SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
             activeProjectTxtBlock.Text = ProjectsList[0].Name;
 
         }
@@ -123,7 +127,22 @@ namespace HandyTest
             {
                 ProjectList myData = data as ProjectList;
                 activeProjectTxtBlock.Text = myData.Name;
+                activeProjectTxtBlock.ToolTip = myData.Name;
+
             }
+        }
+
+        void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Ascending)
+        {
+            var column = projectsListDataGrid.Columns[columnIndex];
+            projectsListDataGrid.Items.SortDescriptions.Clear();
+            projectsListDataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, sortDirection));
+            foreach (var col in projectsListDataGrid.Columns)
+            {
+                col.SortDirection = null;
+            }
+            column.SortDirection = sortDirection;
+            projectsListDataGrid.Items.Refresh();
         }
 
         private void ProjectsListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -132,6 +151,7 @@ namespace HandyTest
             {
                 ProjectList myData = data as ProjectList;
                 activeProjectTxtBlock.Text = myData.Name;
+                activeProjectTxtBlock.ToolTip = myData.Name;
             }
         }
 

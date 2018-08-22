@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
         xmlns:local="clr-namespace:HandyTest"
         mc:Ignorable="d"
         WindowStyle="None"
@@ -143,11 +144,19 @@
                 </Trigger>
             </Style.Triggers>
         </Style>
-
+        
+        <CollectionViewSource x:Key="cvs" Source="{Binding ProjecsList}">
+            <CollectionViewSource.SortDescriptions>
+                <scm:SortDescription PropertyName="Date" Direction="Ascending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
 
 
         <ImageBrush x:Key="MyResource"  ImageSource="Resources/icons8-test-zaliczony-100.png"/>
+
     </Window.Resources>
+
+
 
     <Window.CommandBindings>
         <CommandBinding Command="{x:Static SystemCommands.CloseWindowCommand}" Executed="CloseCommandHandler"/>
@@ -221,7 +230,7 @@
                       GridLinesVisibility="None"
                       Margin="0,40,0,40"
                       CellStyle="{StaticResource MyDataGridCell}"
-                      
+                                  
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"
                       CanUserDeleteRows="False"
@@ -232,7 +241,7 @@
                       HorizontalScrollBarVisibility="Disabled"
                       VerticalScrollBarVisibility="Disabled"
                       
-                      
+                      IsSynchronizedWithCurrentItem="True"
                       MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
                       SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
                       >
