@@ -107,6 +107,17 @@
             </Style.Triggers>
         </Style>
 
+        <Style x:Key="deleteBtnGridCell" TargetType="DataGridCell">
+            <Setter Property="Background" Value="WhiteSmoke"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Column.Header, RelativeSource={RelativeSource Self}}">
+                    <Setter Property="IsHitTestVisible" Value="False"/>
+                    
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
         <Style TargetType="{x:Type DataGridColumnHeader}">
             <Setter Property="Foreground" Value="Black"/>
             <Setter Property="Padding" Value="5"/>
@@ -146,11 +157,14 @@
         </Style>
 
         <Style x:Key="DeleteButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#D4791C"/>
+
+            <Setter Property="Foreground" Value="WhiteSmoke"/>
+            <Setter Property="Background" Value="{DynamicResource MyResource}"/>
             <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Height" Value="19"/>
+            <Setter Property="Width" Value="17"/>
             <Setter Property="FontWeight" Value="SemiBold"/>
             <Setter Property="Cursor" Value="Hand"/>
-
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type Button}">
@@ -162,7 +176,7 @@
             </Setter>
             <Style.Triggers>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#DF964C"/>
+                    <Setter Property="Opacity" Value="0.6"/>
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -286,13 +300,14 @@
                                 <Setter Property="Padding" Value="5,2"/>
                                 <Setter Property="FontStyle" Value="Italic"/>
                                 <Setter Property="FontSize" Value="13"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
                             </Style>
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
-                    <DataGridTemplateColumn>
+                    <DataGridTemplateColumn CellStyle="{StaticResource deleteBtnGridCell}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Background="{StaticResource MyResource}" Style="{StaticResource DeleteButtonStyle}"/>
+                                <Button Style="{StaticResource DeleteButtonStyle}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
