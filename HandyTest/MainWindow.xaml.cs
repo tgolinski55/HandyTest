@@ -13,6 +13,8 @@ using System.Data;
 using System.ComponentModel;
 using System.Windows.Data;
 using System.Windows.Controls;
+using System.Windows.Navigation;
+using HandyTest.Pages;
 
 namespace HandyTest
 {
@@ -95,6 +97,8 @@ namespace HandyTest
                 Directory.CreateDirectory(pathToProject + "/Automatic Test");
                 File.Create(pathToProject + "/Report.docx");
                 Close_PopUp(sender, e);
+
+                SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
             }
             else
             {
@@ -170,6 +174,31 @@ namespace HandyTest
             newProjectDescription.Text = "";
             wholeGrid.IsEnabled = false;
             wholeGrid.Opacity = 0.7;
+        }
+
+        void OpenManualTest(object sender, RoutedEventArgs e)
+        {
+            this.Content = new ManualTestView();
+        }
+
+        private void DeleteProjectBtn(object sender, RoutedEventArgs e)
+        {
+            var selectedItem = (ProjectList)projectsListDataGrid.SelectedItem;
+            ProjectList currentCell = (ProjectList)projectsListDataGrid.CurrentCell.Item;
+            string item = currentCell.Name;
+            string path = @"..//../Projects/" + item;
+            if (selectedItem != null)
+            {
+                if (item == activeProjectTxtBlock.Text)
+                {
+                    activeProjectTxtBlock.Text = "";
+                    selectProjectGrid.IsEnabled = false;
+                    selectProjectLabel.Visibility = Visibility.Visible;
+                }
+
+                Directory.Delete(path, true);
+                ProjectsList.Remove(selectedItem);
+            }
         }
     }
 }

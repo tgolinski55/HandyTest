@@ -16,180 +16,13 @@
 
 
     <Window.Resources>
-        <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border>
-                            <Border.Style>
-                                <Style TargetType="{x:Type Border}">
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="Red"/>
-                                        </Trigger>
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <Grid Background="Transparent">
-                                <ContentPresenter>
-                                </ContentPresenter>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-
-        </Style>
-
-        <Style x:Key="TransparentStyle2" TargetType="{x:Type Button}">
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border>
-                            <Border.Style>
-                                <Style TargetType="{x:Type Border}">
-
-                                    <Style.Triggers>
-                                        <Trigger Property="IsMouseOver" Value="True">
-                                            <Setter Property="Background" Value="Gray"/>
-                                        </Trigger>
-
-                                    </Style.Triggers>
-                                </Style>
-                            </Border.Style>
-                            <Grid Background="Transparent">
-                                <ContentPresenter>
-                                </ContentPresenter>
-                            </Grid>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-        <Style x:Key="ImageButtonStyle" TargetType="Button">
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <ContentPresenter />
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Foreground" Value="Black" />
-            <Setter Property="Cursor" Value="Hand" />
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="true">
-                    <Setter Property="Foreground" Value="#D4791C" />
-                    <Setter Property="Opacity" Value="0.7"/>
-                </Trigger>
-            </Style.Triggers>
-
-        </Style>
-
-
-        <Style x:Key="MyDataGridCell" TargetType="DataGridCell">
-            <Setter Property="Background" Value="White"/>
-            <Setter Property="VerticalContentAlignment" Value="Center"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Style.Triggers>
-                <Trigger Property="IsSelected" Value="True">
-                    <Setter Property="Background" Value="Gray"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-                <Trigger Property="IsSelected" Value="False">
-                    <Setter Property="Background" Value="WhiteSmoke"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="deleteBtnGridCell" TargetType="DataGridCell">
-            <Setter Property="Background" Value="WhiteSmoke"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Style.Triggers>
-                <DataTrigger Binding="{Binding Column.Header, RelativeSource={RelativeSource Self}}">
-                    <Setter Property="IsHitTestVisible" Value="False"/>
-                    
-                </DataTrigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="{x:Type DataGridColumnHeader}">
-            <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Padding" Value="5"/>
-            <Setter Property="BorderThickness" Value="0,0,0,2"/>
-            <Setter Property="BorderBrush" Value="#D4791C"/>
-            <Setter Property="FontSize" Value="20"/>
-            <Setter Property="HorizontalContentAlignment" Value="Center"/>
-        </Style>
-
-        <Style x:Key="FunctionalButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#D4791C"/>
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
-            <Setter Property="Height" Value="30"/>
-            <Setter Property="Width" Value="90"/>
-            <Setter Property="VerticalAlignment" Value="Bottom"/>
-            <Setter Property="HorizontalAlignment" Value="Right"/>
-            <Setter Property="Margin" Value="5"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="FontSize" Value="15"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Cursor" Value="Hand"/>
-
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#DF964C"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="DeleteButtonStyle" TargetType="Button">
-
-            <Setter Property="Foreground" Value="WhiteSmoke"/>
-            <Setter Property="Background" Value="{DynamicResource MyResource}"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Height" Value="19"/>
-            <Setter Property="Width" Value="17"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="{x:Type Button}">
-                        <Border Background="{TemplateBinding Background}">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Opacity" Value="0.6"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-        
         <CollectionViewSource x:Key="cvs" Source="{Binding ProjecsList}">
             <CollectionViewSource.SortDescriptions>
                 <scm:SortDescription PropertyName="Date" Direction="Ascending"/>
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
-
-
-        <ImageBrush x:Key="MyResource"  ImageSource="Resources/icons8-kosz-100.png"/>
-
+        
+        <ImageBrush x:Key="DeleteButtonIcon"  ImageSource="Resources/Icons/icons8-kosz-100.png"/>
     </Window.Resources>
 
 
@@ -278,11 +111,9 @@
                       VerticalScrollBarVisibility="Disabled"
                       
                       IsSynchronizedWithCurrentItem="True"
-                      MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
                       SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
                       >
-
-
+                
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Width="*" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}">
                         <DataGridTextColumn.ElementStyle>
@@ -294,6 +125,7 @@
                         </DataGridTextColumn.ElementStyle>
                     </DataGridTextColumn>
                     <DataGridTextColumn Binding="{Binding Date}" Width="100" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}">
+                       
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
                                 <Setter Property="HorizontalAlignment" Value="Right"/>
@@ -307,7 +139,10 @@
                     <DataGridTemplateColumn CellStyle="{StaticResource deleteBtnGridCell}">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Style="{StaticResource DeleteButtonStyle}"/>
+                                <Button Style="{StaticResource DeleteButtonStyle}" Visibility="{Binding IsSelected,
+                                 RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, 
+                                 Converter={StaticResource BooleanToVisibilityConverter}}"
+                                        Click="DeleteProjectBtn"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -346,7 +181,7 @@
                             <GradientStop Color="SlateGray" Offset="0.9"/>
                         </RadialGradientBrush>
                     </Label.Background>
-                    <TextBlock Text="Select Project" FontSize="50" TextAlignment="Center" Background="Black" Foreground="WhiteSmoke" Margin="0, 50" FontStyle="Italic" FontWeight="Light" Padding="5"/>
+                    <TextBlock Text="First you need to select project" FontSize="40" TextAlignment="Center" Background="Black" Foreground="WhiteSmoke" Margin="0, 50" FontStyle="Italic" FontWeight="Light" Padding="5"/>
                 </Label>
 
                 <Button Grid.Row="1"
@@ -354,9 +189,10 @@
                         Background="Transparent"
                         BorderThickness="0"
                         Style="{StaticResource ImageButtonStyle}"
-                        VerticalAlignment="Center" HorizontalAlignment="Right">
+                        VerticalAlignment="Center" HorizontalAlignment="Right"
+                        Click="OpenManualTest">
                     <StackPanel>
-                        <Image Source="Resources/icons8-test-zaliczony-100.png" MaxHeight="70"/>
+                        <Image Source="Resources/Icons/icons8-test-zaliczony-100.png" MaxHeight="70"/>
                         <TextBlock Text="Manual test" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
 
@@ -378,7 +214,7 @@
                         Background="Transparent" BorderThickness="0"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
                     <StackPanel>
-                        <Image Source="Resources/icons8-otwórz-dokument-100.png" MaxHeight="70"/>
+                        <Image Source="Resources/Icons/icons8-otwórz-dokument-100.png" MaxHeight="70"/>
                         <TextBlock Text="Create report" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
 
@@ -389,7 +225,7 @@
                         Background="Transparent" BorderThickness="0"
                         VerticalAlignment="Top" HorizontalAlignment="Center">
                     <StackPanel>
-                        <Image Source="Resources/icons8-log-100.png" MaxHeight="70"/>
+                        <Image Source="Resources/Icons/icons8-log-100.png" MaxHeight="70"/>
                         <TextBlock Text="Log" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
@@ -399,11 +235,13 @@
                         Background="Transparent" BorderThickness="0"
                         VerticalAlignment="Center" HorizontalAlignment="Left">
                     <StackPanel>
-                        <Image Source="Resources/icons8-automatyczny-100.png" MaxHeight="70"/>
+                        <Image Source="Resources/Icons/icons8-automatyczny-100.png" MaxHeight="70"/>
                         <TextBlock Text="Automatic test" FontSize="20" TextAlignment="Center"/>
                     </StackPanel>
                 </Button>
 
+                
+                <!--Create new project pop-up-->
                 <Popup Name="createNewProjectPopUp" Placement="Center" IsOpen="False" Width="Auto" Height="Auto">
                     <Border BorderBrush="#232526" BorderThickness="1">
 
@@ -469,7 +307,6 @@
 
                     </Border>
                 </Popup>
-
             </Grid>
         </Grid>
     </Border>
