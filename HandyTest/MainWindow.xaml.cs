@@ -31,18 +31,17 @@ namespace HandyTest
         {
             InitializeComponent();
             Loaded += ProjectsListDataGrid_Loaded;
-
         }
 
         // Toolbar and drag window
         private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
-            SystemCommands.CloseWindow(this);
+            Application.Current.Shutdown();
         }
+
         private void MinimizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
             SystemCommands.MinimizeWindow(this);
-
         }
         private void MaximizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
         {
@@ -77,10 +76,10 @@ namespace HandyTest
             }
         }
 
-        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        private void WindowDragMove(object sender, MouseButtonEventArgs e)
         {
-            if (e.ChangedButton == MouseButton.Left)
-                DragMove();
+            WindowSettings set = new WindowSettings();
+            set.Window_MouseDown(sender, e);
         }
 
         private void UpdateProjectsList(object sender, RoutedEventArgs e)

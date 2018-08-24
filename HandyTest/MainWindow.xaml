@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        xmlns:local="clr-namespace:HandyTest"
+        xmlns:local="clr-namespace:HandyTest.BL"
         mc:Ignorable="d"
         WindowStyle="None"
         AllowsTransparency="True"
@@ -53,7 +53,7 @@
                    HorizontalContentAlignment="Center"
                    
                    MouseDoubleClick="Label_MouseDoubleClick"
-                   MouseDown="Window_MouseDown"/>
+                   MouseDown="WindowDragMove"/>
 
             <Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
                 <Button.Content>
@@ -84,7 +84,6 @@
             <Label Grid.Row="1" BorderBrush="#D4791C" BorderThickness="0,0,1,0" Background="Transparent" IsEnabled="False" Margin="0,5" />
 
             <!--Projects list-->
-            <!--TODO connect to db-->
             <Label Grid.Row="1" Content="Projects"
                    Padding="5"
                    FontSize="25"
@@ -181,7 +180,7 @@
                             <GradientStop Color="SlateGray" Offset="0.9"/>
                         </RadialGradientBrush>
                     </Label.Background>
-                    <TextBlock Text="First you need to select project" FontSize="40" TextAlignment="Center" Background="Black" Foreground="WhiteSmoke" Margin="0, 50" FontStyle="Italic" FontWeight="Light" Padding="5"/>
+                    <TextBlock Text="First you need to select project" FontSize="40" TextAlignment="Center" Background="Black" Foreground="WhiteSmoke" Margin="0, 50" FontStyle="Italic" FontWeight="Light" Padding="5" TextTrimming="CharacterEllipsis"/>
                 </Label>
 
                 <Button Grid.Row="1"

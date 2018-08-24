@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HandyTest.BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,13 @@ namespace HandyTest.Pages
         public ManualTestView()
         {
             InitializeComponent();
+        }
+
+        
+        private void WindowDragMove(object sender, MouseButtonEventArgs e)
+        {
+            WindowSettings set = new WindowSettings();
+            set.Window_MouseDown(sender, e);
         }
     }
 }

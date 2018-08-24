@@ -3,12 +3,61 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:HandyTest"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ManualTestView">
 
+ 
     <Grid Background="WhiteSmoke">
-        <TextBlock Text="HELLO" FontSize="150" TextAlignment="Center"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <!--Upper ribbon-->
+        <Label Grid.Row="0" Grid.ColumnSpan="3"
+                   FontSize="15" Content="HandyTest"
+                   Foreground="WhiteSmoke" Background="#232526"
+                   HorizontalContentAlignment="Center"
+                    
+               MouseDown="WindowDragMove"
+                   
+                  />
+        <Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
+            <Button.Content>
+                <StackPanel>
+                    <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,30,0" BorderThickness="0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MaximizeWindowCommand}">
+            <Button.Content>
+                <StackPanel>
+                    <Label Content="&#128470;" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
+            <Button.Content>
+                <StackPanel>
+                    <Label Content="🗕"  HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <Button Style="{StaticResource TransparentStyle2}" FontSize="30" Grid.Column="0" HorizontalAlignment="Left" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
+            <Button.Content>
+                <StackPanel>
+                    <Image Source="../Resources/Icons/icons8-wstecz-100.png"/>
+                </StackPanel>
+            </Button.Content>
+        </Button>
+        <!--Lower ribbon-->
+        <Label FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>
+
     </Grid>
 </Page>
