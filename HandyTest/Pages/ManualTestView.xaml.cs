@@ -19,7 +19,7 @@ namespace HandyTest.Pages
     /// <summary>
     /// Interaction logic for ManualTestView.xaml
     /// </summary>
-    public partial class ManualTestView : Page
+    public partial class ManualTestView : UserControl
     {
         public ManualTestView()
         {
