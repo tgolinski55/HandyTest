@@ -2,81 +2,29 @@
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using HandyTest.BL;
-using HandyTest.Properties;
 using System.IO;
-using System.Web;
-using System.Collections.Generic;
 using System;
-using System.Windows.Media;
 using System.Linq;
 using System.Data;
 using System.ComponentModel;
-using System.Windows.Data;
 using System.Windows.Controls;
-using System.Windows.Navigation;
 using HandyTest.Pages;
+using System.Windows.Navigation;
 
-namespace HandyTest
+namespace HandyTest.Pages
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Interaction logic for HomeView.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomeView : UserControl
     {
-
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
 
 
-        public MainWindow()
+        public HomeView()
         {
             InitializeComponent();
             Loaded += ProjectsListDataGrid_Loaded;
-
-            PageNavigator.pageSwitcher = this;
-            PageNavigator.Switch(new HomeView());
-        }
-
-        // Toolbar and drag window
-        private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
-        private void MinimizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-            SystemCommands.MinimizeWindow(this);
-        }
-        private void MaximizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        {
-
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-                WindowStyle = WindowStyle.None;
-                ResizeMode = ResizeMode.CanResizeWithGrip;
-            }
-            else
-            {
-                WindowStyle = WindowStyle.None;
-                ResizeMode = ResizeMode.NoResize;
-                WindowState = WindowState.Maximized;
-            }
-        }
-
-        private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (WindowState == WindowState.Maximized)
-            {
-                WindowState = WindowState.Normal;
-                WindowStyle = WindowStyle.None;
-                ResizeMode = ResizeMode.CanResizeWithGrip;
-            }
-            else
-            {
-                WindowStyle = WindowStyle.None;
-                ResizeMode = ResizeMode.NoResize;
-                WindowState = WindowState.Maximized;
-            }
         }
 
         private void WindowDragMove(object sender, MouseButtonEventArgs e)
@@ -126,14 +74,17 @@ namespace HandyTest
 
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
         {
-            foreach (var data in projectsListDataGrid.SelectedItems)
+            if (projectsListDataGrid.SelectedItem != null)
             {
-                ProjectList myData = data as ProjectList;
-                activeProjectTxtBlock.Text = myData.Name;
-                activeProjectTxtBlock.ToolTip = myData.Name;
+                foreach (var data in projectsListDataGrid.SelectedItems)
+                {
+                    ProjectList myData = data as ProjectList;
+                    activeProjectTxtBlock.Text = myData.Name;
+                    activeProjectTxtBlock.ToolTip = myData.Name;
+                }
+                selectProjectGrid.IsEnabled = true;
+                selectProjectLabel.Visibility = Visibility.Hidden;
             }
-            selectProjectGrid.IsEnabled = true;
-            selectProjectLabel.Visibility = Visibility.Hidden;
         }
 
         void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Ascending)
@@ -180,8 +131,10 @@ namespace HandyTest
 
         void OpenManualTest(object sender, RoutedEventArgs e)
         {
-            this.Content = new ManualTestView();
+            PageNavigator.Switch(new ManualTestView());
         }
+
+
 
         private void DeleteProjectBtn(object sender, RoutedEventArgs e)
         {
@@ -202,11 +155,6 @@ namespace HandyTest
                 ProjectsList.Remove(selectedItem);
             }
         }
-
-        public void Navigate(UserControl nextPage)
-        {
-            this.Content = nextPage;
-        }
-
     }
 }
+

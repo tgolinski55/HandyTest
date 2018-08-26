@@ -34,7 +34,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\muka3_wM3_icon.ico</ApplicationIcon>
+    <ApplicationIcon>
+    </ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -65,14 +66,46 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BL\PageNavigator.cs" />
     <Compile Include="BL\ProjectList.cs" />
     <Compile Include="BL\SaveProjectList.cs" />
+    <Compile Include="BL\WindowSettings.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\HomeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Pages\ManualTestView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Converters\BoolToVisibilityConverter.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\ButtonStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\DataGridStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Styles\HeaderStyle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pages\HomeView.xaml.cs">
+      <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\ManualTestView.xaml.cs">
+      <DependentUpon>ManualTestView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -99,19 +132,25 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\muka3_wM3_icon.ico" />
+    <Resource Include="Resources\Icons\muka3_wM3_icon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\icons8-test-zaliczony-100.png" />
+    <Resource Include="Resources\Icons\icons8-test-zaliczony-100.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\icons8-otwórz-dokument-100.png" />
+    <Resource Include="Resources\Icons\icons8-otwórz-dokument-100.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\icons8-automatyczny-100.png" />
+    <Resource Include="Resources\Icons\icons8-automatyczny-100.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\icons8-log-100.png" />
+    <Resource Include="Resources\Icons\icons8-log-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-kosz-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-wstecz-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
