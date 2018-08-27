@@ -6,11 +6,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Navigation;
 using HandyTest;
 
 namespace HandyTest.BL
 {
-    public class WindowSettings : Window
+    public class WindowSettings : NavigationWindow
     {
         public void Window_MouseDown(object sender, MouseEventArgs mouseEventArgs)
         {
@@ -35,6 +36,22 @@ namespace HandyTest.BL
                     window.DragMove();
                 }
             }
+        }
+        public void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (this.WindowState == WindowState.Maximized)
+            {
+                this.WindowState = WindowState.Normal;
+                this.WindowStyle = WindowStyle.None;
+                this.ResizeMode = ResizeMode.CanResizeWithGrip;
+            }
+            else
+            {
+                this.WindowStyle = WindowStyle.None;
+                this.ResizeMode = ResizeMode.NoResize;
+                this.WindowState = WindowState.Maximized;
+            }
+            WindowState = WindowState.Maximized;
         }
 
     }

@@ -1,6 +1,7 @@
 ﻿using HandyTest.BL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,13 @@ namespace HandyTest.Pages
         {
             WindowSettings set = new WindowSettings();
             set.Window_MouseDown(sender, e);
+        }
+
+        private void PreviousWindowBtn(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.Switch(new HomeView());
+            var mainWindow = new HomeView();
+            mainWindow.ReloadDataGrid();
         }
     }
 }

@@ -20,7 +20,7 @@ namespace HandyTest.Pages
     {
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
 
-
+        WindowSettings set = new WindowSettings();
         public HomeView()
         {
             InitializeComponent();
@@ -29,8 +29,12 @@ namespace HandyTest.Pages
 
         private void WindowDragMove(object sender, MouseButtonEventArgs e)
         {
-            WindowSettings set = new WindowSettings();
+            
             set.Window_MouseDown(sender, e);
+        }
+        private void WindowDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            set.Label_MouseDoubleClick(sender, e);
         }
 
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
@@ -56,6 +60,12 @@ namespace HandyTest.Pages
             }
         }
 
+        public void ReloadDataGrid()
+        {
+            SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
+        }
+
+
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
             string path = @"..//../Projects/";
@@ -70,10 +80,12 @@ namespace HandyTest.Pages
                 }
             }
             SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
+
         }
 
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
         {
+
             if (projectsListDataGrid.SelectedItem != null)
             {
                 foreach (var data in projectsListDataGrid.SelectedItems)
@@ -87,7 +99,7 @@ namespace HandyTest.Pages
             }
         }
 
-        void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Ascending)
+        public void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Ascending)
         {
             var column = projectsListDataGrid.Columns[columnIndex];
             projectsListDataGrid.Items.SortDescriptions.Clear();
@@ -98,6 +110,13 @@ namespace HandyTest.Pages
             }
             column.SortDirection = sortDirection;
             projectsListDataGrid.Items.Refresh();
+
+            if (projectsListDataGrid.Items.Count > 0)
+            {
+                projectsListDataGrid.SelectedIndex = 0;
+                
+                MakeActiveProjectBtn_Click(makeActiveProjectBtn, new RoutedEventArgs() );
+            }
         }
 
         private void ProjectsListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -155,6 +174,8 @@ namespace HandyTest.Pages
                 ProjectsList.Remove(selectedItem);
             }
         }
+
+      
     }
 }
 

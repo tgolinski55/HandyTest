@@ -19,61 +19,62 @@
     </UserControl.Resources>
 
     <Border BorderBrush="#232526" BorderThickness="1">
-            <Grid Name="wholeGrid" Background="WhiteSmoke">
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="30"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="30"/>
-                </Grid.RowDefinitions>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition MaxWidth="400"/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
+        <Grid Name="wholeGrid" Background="WhiteSmoke">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MaxWidth="400"/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
 
-                <!--Upper ribbon-->
-                <Label Grid.Row="0" Grid.ColumnSpan="3"
+            <!--Upper ribbon-->
+            <Label Grid.Row="0" Grid.ColumnSpan="3"
                    FontSize="15" Content="HandyTest"
                    Foreground="WhiteSmoke" Background="#232526"
                    HorizontalContentAlignment="Center"
                    
-                   MouseDown="WindowDragMove"/>
+                   MouseDown="WindowDragMove"
+                       MouseDoubleClick="WindowDoubleClick"/>
 
-                <Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
-                    <Button.Content>
-                        <StackPanel>
-                            <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,30,0" BorderThickness="0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MaximizeWindowCommand}">
-                    <Button.Content>
-                        <StackPanel>
-                            <Label Content="&#128470;" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
-                    <Button.Content>
-                        <StackPanel>
-                            <Label Content="🗕"  HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
-                        </StackPanel>
-                    </Button.Content>
-                </Button>
-                <!--Lower ribbon-->
-                <Label Content="Ver. 1.0.1.1" FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>
+            <Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,30,0" BorderThickness="0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MaximizeWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="&#128470;" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
+                <Button.Content>
+                    <StackPanel>
+                        <Label Content="🗕"  HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
+                    </StackPanel>
+                </Button.Content>
+            </Button>
+            <!--Lower ribbon-->
+            <Label Content="Ver. 1.0.1.1" FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>
 
 
-                <!--Separator-->
-                <Label Grid.Row="1" BorderBrush="#D4791C" BorderThickness="0,0,1,0" Background="Transparent" IsEnabled="False" Margin="0,5" />
+            <!--Separator-->
+            <Label Grid.Row="1" BorderBrush="#D4791C" BorderThickness="0,0,1,0" Background="Transparent" IsEnabled="False" Margin="0,5" />
 
-                <!--Projects list-->
-                <Label Grid.Row="1" Content="Projects"
+            <!--Projects list-->
+            <Label Grid.Row="1" Content="Projects"
                    Padding="5"
                    FontSize="25"
                    Margin="0,10"
                    HorizontalAlignment="Center"/>
-                <DataGrid Name="projectsListDataGrid"
+            <DataGrid Name="projectsListDataGrid"
                       Grid.Row="1"
                       BorderThickness="0"
                       BorderBrush="#D4791C"
@@ -94,50 +95,49 @@
                       VerticalScrollBarVisibility="Disabled"
                       
                       IsSynchronizedWithCurrentItem="True"
-                      SelectedItem="{Binding SelectedProject, Mode=TwoWay}"
                       >
 
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Binding="{Binding Name}" Width="*" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}">
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                    <Setter Property="TextWrapping" Value="NoWrap" />
-                                    <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
-                                    <Setter Property="Padding" Value="5,2"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTextColumn Binding="{Binding Date}" Width="100" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Width="*" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis"/>
+                                <Setter Property="Padding" Value="5,2"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn Binding="{Binding Date}" Width="100" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}">
 
-                            <DataGridTextColumn.ElementStyle>
-                                <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
-                                    <Setter Property="HorizontalAlignment" Value="Right"/>
-                                    <Setter Property="Padding" Value="5,2"/>
-                                    <Setter Property="FontStyle" Value="Italic"/>
-                                    <Setter Property="FontSize" Value="13"/>
-                                    <Setter Property="Cursor" Value="Arrow"/>
-                                </Style>
-                            </DataGridTextColumn.ElementStyle>
-                        </DataGridTextColumn>
-                        <DataGridTemplateColumn CellStyle="{StaticResource deleteBtnGridCell}">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Style="{StaticResource DeleteButtonStyle}" Visibility="{Binding IsSelected,
+                        <DataGridTextColumn.ElementStyle>
+                            <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
+                                <Setter Property="HorizontalAlignment" Value="Right"/>
+                                <Setter Property="Padding" Value="5,2"/>
+                                <Setter Property="FontStyle" Value="Italic"/>
+                                <Setter Property="FontSize" Value="13"/>
+                                <Setter Property="Cursor" Value="Arrow"/>
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTemplateColumn CellStyle="{StaticResource deleteBtnGridCell}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Style="{StaticResource DeleteButtonStyle}" Visibility="{Binding IsSelected,
                                  RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, 
                                  Converter={StaticResource BooleanToVisibilityConverter}}"
                                         Click="DeleteProjectBtn"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
 
-                <Button Name="createNewProjectBtn" Grid.Row="1" Grid.Column="0"
+            <Button Name="createNewProjectBtn" Grid.Row="1" Grid.Column="0"
                     Style="{StaticResource FunctionalButtonStyle}"
                     Content="Create New"
                     Click="CreateNewProjectBtn_Click"/>
 
-                <Button Name="makeActiveProjectBtn" Grid.Row="1" Grid.Column="0"
+            <Button Name="makeActiveProjectBtn" Grid.Row="1" Grid.Column="0"
                     Style="{StaticResource FunctionalButtonStyle}"
                     Content="Make Active"
                     HorizontalAlignment="Left"
@@ -145,42 +145,42 @@
                     Click="MakeActiveProjectBtn_Click"/>
 
 
-                <Grid Name="selectProjectGrid" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                        <ColumnDefinition/>
-                    </Grid.ColumnDefinitions>
-                    <Grid.RowDefinitions>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                        <RowDefinition/>
-                    </Grid.RowDefinitions>
+            <Grid Name="selectProjectGrid" Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="2" IsEnabled="False">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-                    <Label Name="selectProjectLabel" Grid.ColumnSpan="3" Grid.RowSpan="3" Opacity="0.6" HorizontalContentAlignment="Stretch">
-                        <Label.Background>
-                            <RadialGradientBrush RadiusX="2" RadiusY="1">
-                                <GradientStop Color="Black" Offset="0"/>
-                                <GradientStop Color="SlateGray" Offset="0.9"/>
-                            </RadialGradientBrush>
-                        </Label.Background>
-                        <TextBlock Text="First you need to select project" FontSize="40" TextAlignment="Center" Background="Black" Foreground="WhiteSmoke" Margin="0, 50" FontStyle="Italic" FontWeight="Light" Padding="5" TextTrimming="CharacterEllipsis"/>
-                    </Label>
+                <Label Name="selectProjectLabel" Grid.ColumnSpan="3" Grid.RowSpan="3" Opacity="0.6" HorizontalContentAlignment="Stretch" Margin="5" BorderThickness="1" BorderBrush="Black">
+                    <Label.Background>
+                        <RadialGradientBrush RadiusX="2" RadiusY="1">
+                            <GradientStop Color="Black" Offset="0"/>
+                            <GradientStop Color="SlateGray" Offset="0.9"/>
+                        </RadialGradientBrush>
+                    </Label.Background>
+                    <TextBlock Text="First you need to select project" FontSize="40" TextAlignment="Center" Background="Black" Foreground="WhiteSmoke" Margin="0, 50" FontStyle="Italic" FontWeight="Light" Padding="5" TextTrimming="CharacterEllipsis"/>
+                </Label>
 
-                    <Button Grid.Row="1"
+                <Button Grid.Row="1"
                         Margin="10"
                         Background="Transparent"
                         BorderThickness="0"
                         Style="{StaticResource ImageButtonStyle}"
                         VerticalAlignment="Center" HorizontalAlignment="Right"
                         Click="OpenManualTest">
-                        <StackPanel>
-                            <Image Source="../Resources/Icons/icons8-test-zaliczony-100.png" MaxHeight="70"/>
-                            <TextBlock Text="Manual test" FontSize="20" TextAlignment="Center"/>
-                        </StackPanel>
+                    <StackPanel>
+                        <Image Source="../Resources/Icons/icons8-test-zaliczony-100.png" MaxHeight="70"/>
+                        <TextBlock Text="Manual test" FontSize="20" TextAlignment="Center"/>
+                    </StackPanel>
 
-                    </Button>
-                    <TextBlock x:Name="activeProjectTxtBlock" 
+                </Button>
+                <TextBlock x:Name="activeProjectTxtBlock" 
                            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="3"
                            FontSize="40" Foreground="Black" FontStyle="Italic"
                            Padding="10"
@@ -191,71 +191,71 @@
                            HorizontalAlignment="Stretch" 
                        />
 
-                    <Button Grid.Row="1" Grid.Column="1"
+                <Button Grid.Row="1" Grid.Column="1"
                         Margin="10"
                         Style="{StaticResource ImageButtonStyle}"
                         Background="Transparent" BorderThickness="0"
                         VerticalAlignment="Center" HorizontalAlignment="Center">
-                        <StackPanel>
-                            <Image Source="../Resources/Icons/icons8-otwórz-dokument-100.png" MaxHeight="70"/>
-                            <TextBlock Text="Create report" FontSize="20" TextAlignment="Center"/>
-                        </StackPanel>
+                    <StackPanel>
+                        <Image Source="../Resources/Icons/icons8-otwórz-dokument-100.png" MaxHeight="70"/>
+                        <TextBlock Text="Create report" FontSize="20" TextAlignment="Center"/>
+                    </StackPanel>
 
-                    </Button>
-                    <Button Grid.Row="2" Grid.Column="1"   
+                </Button>
+                <Button Grid.Row="2" Grid.Column="1"   
                         Margin="10"
                         Style="{StaticResource ImageButtonStyle}"
                         Background="Transparent" BorderThickness="0"
                         VerticalAlignment="Top" HorizontalAlignment="Center">
-                        <StackPanel>
-                            <Image Source="../Resources/Icons/icons8-log-100.png" MaxHeight="70"/>
-                            <TextBlock Text="Log" FontSize="20" TextAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
-                    <Button Grid.Row="1" Grid.Column="2"                
+                    <StackPanel>
+                        <Image Source="../Resources/Icons/icons8-log-100.png" MaxHeight="70"/>
+                        <TextBlock Text="Log" FontSize="20" TextAlignment="Center"/>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="1" Grid.Column="2"                
                         Margin="10"
                         Style="{StaticResource ImageButtonStyle}"
                         Background="Transparent" BorderThickness="0"
                         VerticalAlignment="Center" HorizontalAlignment="Left">
-                        <StackPanel>
-                            <Image Source="../Resources/Icons/icons8-automatyczny-100.png" MaxHeight="70"/>
-                            <TextBlock Text="Automatic test" FontSize="20" TextAlignment="Center"/>
-                        </StackPanel>
-                    </Button>
+                    <StackPanel>
+                        <Image Source="../Resources/Icons/icons8-automatyczny-100.png" MaxHeight="70"/>
+                        <TextBlock Text="Automatic test" FontSize="20" TextAlignment="Center"/>
+                    </StackPanel>
+                </Button>
 
 
-                    <!--Create new project pop-up-->
-                    <Popup Name="createNewProjectPopUp" Placement="Center" IsOpen="False" Width="Auto" Height="Auto">
-                        <Border BorderBrush="#232526" BorderThickness="1">
+                <!--Create new project pop-up-->
+                <Popup Name="createNewProjectPopUp" Placement="Center" IsOpen="False" Width="Auto" Height="Auto">
+                    <Border BorderBrush="#232526" BorderThickness="1">
 
-                            <StackPanel Width="400" Background="WhiteSmoke" Orientation="Vertical">
+                        <StackPanel Width="400" Background="WhiteSmoke" Orientation="Vertical">
 
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="30"/>
-                                        <RowDefinition/>
-                                        <RowDefinition Height="120"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="100"/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
-                                    <Label Grid.ColumnSpan="2" Grid.Row="0"
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="30"/>
+                                    <RowDefinition/>
+                                    <RowDefinition Height="120"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.ColumnSpan="2" Grid.Row="0"
                                    Content="Create new project" FontSize="15"
                                    Background="#232526" Foreground="WhiteSmoke"
                                    HorizontalContentAlignment="Center"
                                    />
-                                    <Button Style="{StaticResource TransparentStyle}" Grid.Column="1" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Click="Close_PopUp">
-                                        <Button.Content>
-                                            <StackPanel>
-                                                <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
-                                            </StackPanel>
-                                        </Button.Content>
-                                    </Button>
+                                <Button Style="{StaticResource TransparentStyle}" Grid.Column="1" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Click="Close_PopUp">
+                                    <Button.Content>
+                                        <StackPanel>
+                                            <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
+                                        </StackPanel>
+                                    </Button.Content>
+                                </Button>
 
-                                    <Label Grid.Row="1" Grid.Column="0" Content="Name:" FontSize="15" Padding="5" Margin="5"/>
-                                    <TextBox Name="newProjectName" Grid.Row="1" Grid.Column="1" FontSize="15" BorderBrush="Black" BorderThickness="1" Background="Transparent"
+                                <Label Grid.Row="1" Grid.Column="0" Content="Name:" FontSize="15" Padding="5" Margin="5"/>
+                                <TextBox Name="newProjectName" Grid.Row="1" Grid.Column="1" FontSize="15" BorderBrush="Black" BorderThickness="1" Background="Transparent"
                                      Padding="5" ToolTip="Enter project name" Margin="5"
                                          AcceptsTab="False"
                                          AllowDrop="True"
@@ -263,10 +263,10 @@
                                          TextWrapping="Wrap"
                                      MaxLines="1" MaxLength="100"/>
 
-                                    <Label Grid.Row="2" Grid.Column="0" Content="Description:" FontSize="15" Padding="5" Margin="5"/>
+                                <Label Grid.Row="2" Grid.Column="0" Content="Description:" FontSize="15" Padding="5" Margin="5"/>
 
 
-                                    <TextBox Name="newProjectDescription" Grid.Row="2" Grid.Column="1" 
+                                <TextBox Name="newProjectDescription" Grid.Row="2" Grid.Column="1" 
                                          FontSize="15" BorderBrush="Black" BorderThickness="1" Background="Transparent"
                                          Padding="5" Margin="5"
                                          ToolTip="Enter description"
@@ -281,16 +281,16 @@
                                          ScrollViewer.HorizontalScrollBarVisibility="Disabled"   
                                          />
 
-                                    <Button Grid.Row="3" Grid.Column="1" Content="Create" Style="{StaticResource FunctionalButtonStyle}" Margin="5,10,5,5" Click="UpdateProjectsList"/>
-                                    <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Style="{StaticResource FunctionalButtonStyle}" Margin="5,10,5,5"
+                                <Button Grid.Row="3" Grid.Column="1" Content="Create" Style="{StaticResource FunctionalButtonStyle}" Margin="5,10,5,5" Click="UpdateProjectsList"/>
+                                <Button Grid.Row="3" Grid.Column="1" Content="Cancel" Style="{StaticResource FunctionalButtonStyle}" Margin="5,10,5,5"
                                         HorizontalAlignment="Left" Click="Close_PopUp"/>
-                                </Grid>
+                            </Grid>
 
-                            </StackPanel>
+                        </StackPanel>
 
-                        </Border>
-                    </Popup>
-                </Grid>
+                    </Border>
+                </Popup>
             </Grid>
-        </Border>
+        </Grid>
+    </Border>
 </UserControl>
