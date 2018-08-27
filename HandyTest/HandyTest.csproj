@@ -34,8 +34,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>
-    </ApplicationIcon>
+    <ApplicationIcon>Resources\Icons\muka2_aEv_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -66,6 +65,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BL\ManualTestOptions.cs" />
     <Compile Include="BL\PageNavigator.cs" />
     <Compile Include="BL\ProjectList.cs" />
     <Compile Include="BL\SaveProjectList.cs" />
@@ -151,6 +151,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\icons8-wstecz-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-back-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\muka2_aEv_icon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

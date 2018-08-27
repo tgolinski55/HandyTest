@@ -31,6 +31,17 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="selectionIndicator" TargetType="DataGridCell">
+        <Setter Property="Background" Value="WhiteSmoke"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding Column.Header, RelativeSource={RelativeSource Self}}">
+                <Setter Property="IsHitTestVisible" Value="False"/>
+            </DataTrigger>
+
+        </Style.Triggers>
+    </Style>
+
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Padding" Value="5"/>
@@ -40,4 +51,8 @@
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>
 
+    <Style x:Key="textBlockOnDataGrid" TargetType="{x:Type TextBlock}">
+
+    </Style>
+    
 </ResourceDictionary>
