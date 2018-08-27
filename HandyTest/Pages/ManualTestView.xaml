@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
              Name="window"
@@ -164,27 +165,48 @@
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Row="0" Content="What should be generated?" FontSize="15" HorizontalContentAlignment="Center"/>
-                <GroupBox Grid.Row="1" Header="Choose options" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderThickness="2" BorderBrush="#D4791C">
+                <GroupBox Grid.Row="1" Grid.RowSpan="2" Header="Choose options" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderThickness="2" BorderBrush="#D4791C">
                     <StackPanel HorizontalAlignment="Stretch">
-                        
-                        <CheckBox x:Name="numbersRbtn" Content="Numbers" Margin="3"/>
-                        <CheckBox x:Name="lettersRbtn" Content="Letters" Margin="3"/>
-                        <CheckBox x:Name="specialCharsRbtn" Content="Special characters" Margin="3"/>
-                        <CheckBox x:Name="charsRbtn" Content="Sample chars" Margin="3"/>
+                        <CheckBox x:Name="numbersRbtn" Content="Numbers" Margin="3" FontSize="14"/>
+                        <CheckBox x:Name="lettersRbtn" Content="Letters" Margin="3" FontSize="14"/>
+                        <CheckBox x:Name="specialCharsRbtn" Content="Special characters" Margin="3" FontSize="14"/>
+                        <CheckBox x:Name="charsRbtn" Content="Sample chars" Margin="3" FontSize="14"/>
                         <TextBox IsEnabled="{Binding ElementName=charsRbtn,Path=IsChecked}" Margin="3" Height="20"
                                  AcceptsReturn="False"
                                  AcceptsTab="False"
                                  AllowDrop="True"
-                                 MaxLength="100"/>
+                                 MaxLength="100"
+                                 FontSize="14"/>
+                        <Label Content="Length:" FontSize="14" Margin="3,10,3,0"/>
+
+                        <wpfTool:IntegerUpDown Name="lengthValue"
+                                               FontSize="14" Margin="3"
+                                               Maximum="100000" Minimum="0"
+                                               Watermark="Enter length"
+                                               DefaultValue="0"
+                                               AllowSpin="True"
+                                               ShowButtonSpinner="True"
+                                               ClipValueToMinMax="True"
+                                               OpacityMask="Black"
+                                               />
                     </StackPanel>
                 </GroupBox>
 
                 <Button Grid.Row="2" Style="{StaticResource FunctionalButtonStyle}" 
                         Content="Copy" Width="70" Click="TextGenerator"/>
                 <Button Grid.Row="2" Style="{StaticResource FunctionalButtonStyle}" 
-                        Content="Preview" HorizontalAlignment="Left" Width="70"/>
-
-                <TextBlock x:Name="generateTxtBlk" Grid.Row="1" Grid.Column="1"/>
+                        
+                        Content="Preview" HorizontalAlignment="Left" Width="70" />
+                <ScrollViewer Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" VerticalScrollBarVisibility="Visible" Margin="10,10,10,40">
+                    <TextBlock x:Name="generateTxtBlk" Grid.Row="1" Grid.Column="1" TextWrapping="Wrap"
+                           ScrollViewer.VerticalScrollBarVisibility="Auto"
+                           ScrollViewer.CanContentScroll="True"
+                              />
+                </ScrollViewer>
+                <StackPanel  Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <Label  Grid.Row="2" Grid.Column="1" VerticalAlignment="Bottom" Foreground="Gray"
+                             Content="{Binding ElementName=generateTxtBlk,Path=Text.Length}" FontSize="14"/>
+                </StackPanel>
             </Grid>
 
 

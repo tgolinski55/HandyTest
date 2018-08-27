@@ -2,16 +2,6 @@
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using HandyTest.BL;
-using HandyTest.Properties;
-using System.IO;
-using System.Web;
-using System.Collections.Generic;
-using System;
-using System.Windows.Media;
-using System.Linq;
-using System.Data;
-using System.ComponentModel;
-using System.Windows.Data;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using HandyTest.Pages;
@@ -30,7 +20,6 @@ namespace HandyTest
         public MainWindow()
         {
             InitializeComponent();
-
 
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
