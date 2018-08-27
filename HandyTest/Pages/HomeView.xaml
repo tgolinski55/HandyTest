@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:HandyTest.Pages"
       xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
       mc:Ignorable="d"
-      d:DesignHeight="450" d:DesignWidth="800">
+      d:DesignHeight="450" d:DesignWidth="800"
+             >
 
     <UserControl.Resources>
         <CollectionViewSource x:Key="cvs" Source="{Binding ProjecsList}">
@@ -98,6 +99,15 @@
                       >
 
                 <DataGrid.Columns>
+                    <DataGridTemplateColumn CellStyle="{StaticResource selectionIndicator}" MaxWidth="4">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label Background="#DF964C" Width="4" HorizontalAlignment="Left" Visibility="{Binding IsSelected,
+                                 RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, 
+                                 Converter={StaticResource BooleanToVisibilityConverter}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Binding="{Binding Name}" Width="*" IsReadOnly="True" CellStyle="{StaticResource MyDataGridCell}">
                         <DataGridTextColumn.ElementStyle>
                             <Style TargetType="{x:Type TextBlock}" BasedOn="{StaticResource {x:Type TextBlock}}">
@@ -125,7 +135,7 @@
                                 <Button Style="{StaticResource DeleteButtonStyle}" Visibility="{Binding IsSelected,
                                  RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, 
                                  Converter={StaticResource BooleanToVisibilityConverter}}"
-                                        Click="DeleteProjectBtn"/>
+                                        Click="DeleteProjectBtn" ToolTip="Delete"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

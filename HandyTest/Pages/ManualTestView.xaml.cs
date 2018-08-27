@@ -1,6 +1,7 @@
 ﻿using HandyTest.BL;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -22,9 +23,12 @@ namespace HandyTest.Pages
     /// </summary>
     public partial class ManualTestView : UserControl
     {
+        ObservableCollection<ManualTestOptions> ManualTestOpt = new ObservableCollection<ManualTestOptions>();
         public ManualTestView()
         {
             InitializeComponent();
+            Loaded += ManualTestDataGrid_Loaded;
+            manualTestDataGrid.SelectedIndex = 0;
         }
 
         
@@ -39,6 +43,38 @@ namespace HandyTest.Pages
             PageNavigator.Switch(new HomeView());
             var mainWindow = new HomeView();
             mainWindow.ReloadDataGrid();
+        }
+
+        private void ManualTestDataGrid_Loaded(object sender, RoutedEventArgs e)
+        {
+            manualTestDataGrid.ItemsSource = ManualTestOpt;
+            ManualTestOpt.Add(new ManualTestOptions("File checker"));
+            ManualTestOpt.Add(new ManualTestOptions("Generate text"));
+            ManualTestOpt.Add(new ManualTestOptions("Auto-Clicker"));
+
+        }
+
+
+        private void FileChecker(object sender, TextChangedEventArgs e)
+        {
+            if (txtToCheck.Text != txtToCheck2.Text)
+            {
+                resultLabel.Content = "Files are different!";
+                resultLabel.Foreground = Brushes.Red;
+            }
+            else
+            {
+                resultLabel.Content = "Files are the same";
+                resultLabel.Foreground = Brushes.Green;
+            }
+        }
+
+        private void ChangeFunction(object sender, SelectionChangedEventArgs e)
+        {
+            if (manualTestDataGrid.SelectedIndex == 0)
+            {
+                fileChecker.Visibility = Visibility.Visible;
+            }
         }
     }
 }

@@ -175,7 +175,6 @@ namespace HandyTest.Pages
             }
         }
 
-      
     }
 }
 
