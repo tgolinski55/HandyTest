@@ -29,7 +29,7 @@ namespace HandyTest.Pages
 
         private void WindowDragMove(object sender, MouseButtonEventArgs e)
         {
-            
+
             set.Window_MouseDown(sender, e);
         }
         private void WindowDoubleClick(object sender, MouseButtonEventArgs e)
@@ -52,7 +52,7 @@ namespace HandyTest.Pages
                 File.Create(pathToProject + "/Report.docx");
                 Close_PopUp(sender, e);
 
-                SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
+                SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
             }
             else
             {
@@ -62,7 +62,7 @@ namespace HandyTest.Pages
 
         public void ReloadDataGrid()
         {
-            SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
+            SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
         }
 
 
@@ -79,7 +79,7 @@ namespace HandyTest.Pages
                     projectsListDataGrid.ItemsSource = ProjectsList;
                 }
             }
-            SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Descending);
+            SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
 
         }
 
@@ -101,21 +101,21 @@ namespace HandyTest.Pages
 
         public void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Ascending)
         {
-            var column = projectsListDataGrid.Columns[columnIndex];
-            projectsListDataGrid.Items.SortDescriptions.Clear();
-            projectsListDataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, sortDirection));
-            foreach (var col in projectsListDataGrid.Columns)
-            {
-                col.SortDirection = null;
-            }
-            column.SortDirection = sortDirection;
-            projectsListDataGrid.Items.Refresh();
-
             if (projectsListDataGrid.Items.Count > 0)
             {
+                var column = projectsListDataGrid.Columns[columnIndex];
+                projectsListDataGrid.Items.SortDescriptions.Clear();
+                projectsListDataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, sortDirection));
+                foreach (var col in projectsListDataGrid.Columns)
+                {
+                    col.SortDirection = null;
+                }
+                column.SortDirection = sortDirection;
+                projectsListDataGrid.Items.Refresh();
+
                 projectsListDataGrid.SelectedIndex = 0;
-                
-                MakeActiveProjectBtn_Click(makeActiveProjectBtn, new RoutedEventArgs() );
+
+                MakeActiveProjectBtn_Click(makeActiveProjectBtn, new RoutedEventArgs());
             }
         }
 
@@ -175,6 +175,10 @@ namespace HandyTest.Pages
             }
         }
 
+        private void projectsListDataGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
+        }
     }
 }
 
