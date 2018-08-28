@@ -114,6 +114,11 @@ namespace HandyTest.Pages
                 foreach (var s in specialChar)
                     charsTab.Add(s);
             }
+            if (charsRbtn.IsChecked == true)
+            {
+                foreach (var c in charsSample.Text)
+                    charsTab.Add(c.ToString());
+            }
             var shuffleTab = charsTab.OrderBy(a => Guid.NewGuid()).ToList();
             
             if (lengthValue.Value != null && lengthValue.Value<100000)
@@ -124,6 +129,23 @@ namespace HandyTest.Pages
                     generateTxtBlk.Text += (string)shuffleTab[randomValue];
                 }
             }
+            Clipboard.SetText(generateTxtBlk.Text);
+        }
+
+        private void ClearTxtBlk(object sender, RoutedEventArgs e)
+        {
+            if(generateTxtBlk.Text.Length > 0)
+            generateTxtBlk.Text = "";
+        }
+
+        private void TooglePreview(object sender, RoutedEventArgs e)
+        {
+            if (previewResult.Visibility == Visibility.Visible)
+            {
+                previewResult.Visibility = Visibility.Hidden;
+            }
+            else
+                previewResult.Visibility = Visibility.Visible;
         }
     }
 }
