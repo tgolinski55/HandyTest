@@ -21,8 +21,6 @@ namespace HandyTest.Pages
             InitializeComponent();
             Loaded += ManualTestDataGrid_Loaded;
             manualTestDataGrid.SelectedIndex = 0;
-
-
         }
 
 

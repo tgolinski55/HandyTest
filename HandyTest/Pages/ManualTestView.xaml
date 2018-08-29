@@ -4,9 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-      Height="450" Width="800"
-             Name="window"
-             
+             xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d"
+      d:DesignHeight="450" d:DesignWidth="800"
+             Name="window"            
              FontWeight="Light"
       >
 
@@ -181,7 +182,7 @@
                                  />
                     <Label Content="Length:" FontSize="14" Margin="3,10,3,0"/>
 
-                    <wpfTool:IntegerUpDown Name="lengthValue"
+                    <!--<wpfTool:IntegerUpDown Name="lengthValue"
                                                FontSize="14" Margin="3"
                                                Maximum="100000" Minimum="0"
                                                Watermark="Enter length"
@@ -190,7 +191,9 @@
                                                ShowButtonSpinner="True"
                                                ClipValueToMinMax="True"
                                                OpacityMask="Black"
-                                               />
+                                               />-->
+                    <Controls:NumericUpDown Name="lengthValue"
+                                               FontSize="14" Margin="3"/>
                 </StackPanel>
             </GroupBox>
 
