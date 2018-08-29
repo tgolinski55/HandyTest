@@ -13,7 +13,7 @@
 
     <Grid Background="WhiteSmoke"  Name="rowH">
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -30,7 +30,6 @@
                MouseDown="WindowDragMove"
                    
                   />-->
-        <Label Grid.Column="1" Content="This will be current project name." FontSize="25" FontWeight="Light"/>
         <!--<Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
             <Button.Content>
                 <StackPanel>
@@ -53,12 +52,8 @@
             </Button.Content>
         </Button>
         -->
-        <Button Style="{StaticResource TransparentStyle2}" FontSize="30" Grid.Column="0" HorizontalAlignment="Left" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Click="PreviousWindowBtn">
-            <Button.Content>
-                <StackPanel>
-                    <Image Source="../Resources/Icons/icons8-wstecz-100.png"/>
-                </StackPanel>
-            </Button.Content>
+        <Button HorizontalAlignment="Left" Width="30" Padding="0" Style="{StaticResource TransparentStyle2}" Click="PreviousWindowBtn">
+            <Image Source="../Resources/Icons/icons8-wstecz-100.png"/>
         </Button>
         <!--Lower ribbon-->
         <!--<Label FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>-->
@@ -71,12 +66,10 @@
                    HorizontalAlignment="Left"/>
         <DataGrid Name="manualTestDataGrid"
                       Grid.Row="1"
-                      BorderThickness="0"
-                      BorderBrush="#D4791C"
                       Background="Transparent"
                       Padding="5"
                       GridLinesVisibility="None"
-                      Margin="0,23,0,40"
+                      Margin="0,25,0,40"
                                   
                       AutoGenerateColumns="False"
                       CanUserResizeColumns="False"
@@ -166,8 +159,7 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="2*"/>
             </Grid.ColumnDefinitions>
-            <Label Grid.Row="0" Content="What should be generated?" FontSize="15" HorizontalContentAlignment="Center"/>
-            <GroupBox Grid.Row="1" Grid.RowSpan="2" Header="Choose options" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderThickness="2" BorderBrush="#D4791C">
+            <GroupBox Grid.Row="0" Grid.RowSpan="3" Header="What should be generated?" FontSize="15" HorizontalAlignment="Stretch" VerticalAlignment="Top" BorderThickness="2" BorderBrush="#D4791C" Style="{x:Null}">
                 <StackPanel HorizontalAlignment="Stretch">
                     <CheckBox x:Name="numbersRbtn" Content="Numbers" Margin="3" FontSize="14"/>
                     <CheckBox x:Name="lettersRbtn" Content="Letters" Margin="3" FontSize="14"/>
@@ -179,8 +171,10 @@
                                  AllowDrop="True"
                                  MaxLength="100"
                                  FontSize="14"
+                             Controls:TextBoxHelper.Watermark="Enter chars"
+                             Controls:TextBoxHelper.ClearTextButton="True"
                                  />
-                    <Label Content="Length:" FontSize="14" Margin="3,10,3,0"/>
+                    <Label Content="Length" FontSize="14" Margin="3,10,3,0"/>
 
                     <!--<wpfTool:IntegerUpDown Name="lengthValue"
                                                FontSize="14" Margin="3"
@@ -193,7 +187,10 @@
                                                OpacityMask="Black"
                                                />-->
                     <Controls:NumericUpDown Name="lengthValue"
-                                               FontSize="14" Margin="3"/>
+                                               FontSize="14" Margin="3"
+                                            Height="14" Width="Auto"
+                                            Controls:TextBoxHelper.Watermark="Enter length"
+                                            Controls:TextBoxHelper.WatermarkAlignment="Left"/>
                 </StackPanel>
             </GroupBox>
 
@@ -206,13 +203,14 @@
                         ToolTip="Toogle preview ON/OFF"
                         Click="TooglePreview"/>
 
-            <Border Name="previewResult" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" BorderThickness="2" BorderBrush="#D4791C" Margin="10,5,0,5">
+            <Border Name="previewResult" Grid.Row="0" Grid.Column="1" Grid.RowSpan="3" BorderThickness="2" BorderBrush="#D4791C" Margin="10,5,0,5" Visibility="Hidden">
                 <ScrollViewer VerticalScrollBarVisibility="Visible" Margin="10,10,10,40" BorderThickness="1" BorderBrush="#D4791C">
                     <TextBlock x:Name="generateTxtBlk"                             
                                TextWrapping="Wrap"
                                    
                            ScrollViewer.VerticalScrollBarVisibility="Auto"
                            ScrollViewer.CanContentScroll="True"
+                               Controls:TextBoxHelper.ClearTextButton="True"
                               />
                 </ScrollViewer>
             </Border>

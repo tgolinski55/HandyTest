@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using HandyTest.Pages;
 using System.Windows.Navigation;
+using MahApps.Metro.Controls;
 
 namespace HandyTest.Pages
 {
@@ -20,7 +21,7 @@ namespace HandyTest.Pages
     {
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
 
-        WindowSettings set = new WindowSettings();
+        BL.WindowSettings set = new BL.WindowSettings();
         public HomeView()
         {
             InitializeComponent();

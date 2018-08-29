@@ -7,7 +7,8 @@
       xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              
       xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-      mc:Ignorable="d"
+             xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d"
       d:DesignHeight="450" d:DesignWidth="800"
              FontWeight="Light"
              
@@ -68,13 +69,13 @@
 
 
         <!--Separator-->
-        <Label Grid.Row="1" BorderBrush="#D4791C" BorderThickness="0,0,1,0" Background="Transparent" IsEnabled="False" Margin="0,5" />
+        <!--<Label Grid.Row="1" BorderBrush="#D4791C" BorderThickness="0,0,1,0" Background="Transparent" IsEnabled="False" Margin="0,5" />-->
 
         <!--Projects list-->
         <Label Grid.Row="1" Content="Projects"
                    Padding="5"
                    FontSize="25"
-                   Margin="0,0,0,10"
+                   Margin="0,30,0,10"
                    HorizontalAlignment="Left"/>
         <DataGrid Name="projectsListDataGrid"
                       Grid.Row="1"
@@ -83,7 +84,7 @@
                       Background="Transparent"
                       Padding="5"
                       GridLinesVisibility="None"
-                      Margin="0,23,0,40"
+                      Margin="0,55,0,40"
                       CellStyle="{StaticResource MyDataGridCell}"
                                   
                       AutoGenerateColumns="False"

@@ -9,10 +9,12 @@
         <Setter Property="BorderBrush" Value="Transparent"/>
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Foreground" Value="Gray"/>
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="Gray"/>
-                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="Foreground" Value="Black"/>
+                <Setter Property="FontWeight" Value="Normal"/>
             </Trigger>
             <Trigger Property="IsSelected" Value="False">
                 <Setter Property="Background" Value="WhiteSmoke"/>
@@ -46,7 +48,7 @@
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderThickness" Value="0,0,0,2"/>
-        <Setter Property="BorderBrush" Value="#D4791C"/>
+        <Setter Property="BorderBrush" Value="#DF964C"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
     </Style>

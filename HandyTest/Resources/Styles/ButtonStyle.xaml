@@ -23,7 +23,7 @@
     </Style>
 
     <!--Buttons with theme styling-->
-    <Style x:Key="FunctionalButtonStyle" TargetType="Button">
+    <Style x:Key="FunctionalButtonStyle" TargetType="Button" BasedOn="{StaticResource {x:Type Button}}">
         <Setter Property="Background" Value="#D4791C"/>
         <Setter Property="Foreground" Value="WhiteSmoke"/>
         <Setter Property="Height" Value="30"/>

@@ -204,5 +204,17 @@
   <ItemGroup>
     <Resource Include="Resources\Entypo-license.txt" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Black\handytest_icon_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\White\handytest_icon_white.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Black\handytest2_icon_black.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\White\handytest2_icon_white.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
