@@ -216,5 +216,11 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\White\handytest2_icon_white.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-warning.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-warning-red.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

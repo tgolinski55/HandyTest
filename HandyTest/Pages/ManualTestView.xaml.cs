@@ -95,7 +95,7 @@ namespace HandyTest.Pages
         {
             var charsTab = new List<string>();
             var numbers = new List<string> { "1", "2", "3", "4", "5", "6", "7", "8", "9", "0" };
-            var letter = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z" };
+            var letter = new List<string> { "a", "b", "c", " ", " ", " ", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "w", "x", "y", "z", " " };
             var specialChar = new List<string> { "!", "@", "#", "$", "%", "^", "&", "*", "(", ")", "{", "}", "[", "]", ",", ".", ";", ":", "|", "\\", "~" };
             if (numbersRbtn.IsChecked == true)
             {
@@ -118,32 +118,48 @@ namespace HandyTest.Pages
                     charsTab.Add(c.ToString());
             }
             var shuffleTab = charsTab.OrderBy(a => Guid.NewGuid()).ToList();
-            
-            if (lengthValue.Value != null && lengthValue.Value<100000)
+
+            if (charsRbtn.IsChecked == true || numbersRbtn.IsChecked == true || specialCharsRbtn.IsChecked == true || lettersRbtn.IsChecked == true)
             {
-                for (int i = 0; i < lengthValue.Value; i++)
+
+                if (lengthValue.Value != null && lengthValue.Value <= 100000)
                 {
-                    int randomValue = randomizeCharTab.Next(shuffleTab.Count);
-                    generateTxtBlk.Text += (string)shuffleTab[randomValue];
+                    for (int i = 0; i < lengthValue.Value; i++)
+                    {
+                        int randomValue = randomizeCharTab.Next(shuffleTab.Count);
+                        if (generateTxtBlk.Text.Length < 100000)
+                            generateTxtBlk.Text += (string)shuffleTab[randomValue];
+                    }
                 }
+               
             }
-            Clipboard.SetText(generateTxtBlk.Text);
         }
 
         private void ClearTxtBlk(object sender, RoutedEventArgs e)
         {
-            if(generateTxtBlk.Text.Length > 0)
-            generateTxtBlk.Text = "";
+            if (generateTxtBlk.Text.Length > 0)
+                generateTxtBlk.Text = "";
         }
 
-        private void TooglePreview(object sender, RoutedEventArgs e)
+        private void CopyToClipboard(object sender, RoutedEventArgs e)
         {
-            if (previewResult.Visibility == Visibility.Visible)
-            {
-                previewResult.Visibility = Visibility.Hidden;
-            }
+            Clipboard.SetText(generateTxtBlk.Text);
+        }
+
+        private void WarningTextSize(object sender, RoutedPropertyChangedEventArgs<double?> e)
+        {
+            if (lengthValue.Value >= 5000)
+                warningTextGen.Visibility = Visibility.Visible;
             else
-                previewResult.Visibility = Visibility.Visible;
+                warningTextGen.Visibility = Visibility.Hidden;
+        }
+
+        private void ErrorTextSize(object sender, SizeChangedEventArgs e)
+        {
+            if (generateTxtBlk.Text.Length >= 100000)
+                errorTextGen.Visibility = Visibility.Visible;
+            else
+                errorTextGen.Visibility = Visibility.Hidden;
         }
     }
 }

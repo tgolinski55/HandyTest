@@ -1,28 +1,45 @@
-﻿<controls:MetroWindow x:Class="HandyTest.MainWindow"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-                     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
-        xmlns:local="clr-namespace:HandyTest.BL"
-                      ShowTitleBar="True"
-                      ShowIconOnTitleBar="True"
-                      ShowInTaskbar="True"
-                      IgnoreTaskbarOnMaximize="True"
-                      Icon="Resources/Icons/Black/handytest2_icon_black.png"
-                      TitleAlignment="Center"
-        Title="HandyTest" Height="450" Width="800"
-        MinHeight="420"
-        MinWidth="700" 
-        >
+﻿<controls:MetroWindow
+    x:Class="HandyTest.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:Behaviours="clr-namespace:MahApps.Metro.Behaviours;assembly=MahApps.Metro"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+    xmlns:local="clr-namespace:HandyTest.BL"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+    Title="HandyTest"
+    Width="800"
+    Height="450"
+    MinWidth="700"
+    MinHeight="420"
+    BorderBrush="#232526"
+    GlowBrush="#232526"
+    Icon="Resources/Icons/White/handytest2_icon_white.png"
+    IgnoreTaskbarOnMaximize="False"
+    ShowIconOnTitleBar="True"
+    ShowInTaskbar="True"
+    ShowTitleBar="True"
+    TitleAlignment="Center"
+    TitleCaps="False"
+    WindowTitleBrush="#232526">
+    <i:Interaction.Behaviors>
+        <Behaviours:BorderlessWindowBehavior />
+    </i:Interaction.Behaviors>
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
-            <Button>
+            <Button
+                Width="20"
+                Margin="0"
+                Padding="0"
+                Foreground="White"
+                Style="{StaticResource ImageButtonStyle}">
                 <StackPanel Orientation="Horizontal">
-                    <Rectangle Width="20"
-                   Height="20"
-                   Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
+                    <Rectangle
+                        Width="20"
+                        Height="20"
+                        Fill="{Binding RelativeSource={RelativeSource AncestorType=Button}, Path=Foreground}">
                         <Rectangle.OpacityMask>
                             <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_settings}" />
                         </Rectangle.OpacityMask>

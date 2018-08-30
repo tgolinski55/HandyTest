@@ -3,6 +3,7 @@
                     xmlns:local="clr-namespace:HandyTest.Styles">
 
     <Style x:Key="TransparentStyle" TargetType="{x:Type Button}">
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -29,7 +30,7 @@
     </Style>
 
     <Style x:Key="TransparentStyle2" TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
-
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
