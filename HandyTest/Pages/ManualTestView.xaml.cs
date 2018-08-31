@@ -197,7 +197,7 @@ namespace HandyTest.Pages
             if (Clipboard.ContainsImage())
             {
                 // ImageUIElement.Source = Clipboard.GetImage(); // does not work
-                testImg.Source = Clipboard.GetImage();
+                //testImg.Source = Clipboard.GetImage();
             }
         }
     }

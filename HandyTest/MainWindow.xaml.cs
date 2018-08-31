@@ -17,7 +17,6 @@ namespace HandyTest
 
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
 
-
         public MainWindow()
         {
             InitializeComponent();
