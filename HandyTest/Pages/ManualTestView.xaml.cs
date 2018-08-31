@@ -21,14 +21,10 @@ namespace HandyTest.Pages
             InitializeComponent();
             Loaded += ManualTestDataGrid_Loaded;
             manualTestDataGrid.SelectedIndex = 0;
-        }
 
 
-        private void WindowDragMove(object sender, MouseButtonEventArgs e)
-        {
-            WindowSettings set = new WindowSettings();
-            set.Window_MouseDown(sender, e);
         }
+        
 
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
@@ -41,9 +37,9 @@ namespace HandyTest.Pages
         {
             manualTestDataGrid.ItemsSource = ManualTestOpt;
             ManualTestOpt.Add(new ManualTestOptions("File checker"));
-            ManualTestOpt.Add(new ManualTestOptions("Generate text"));
+            ManualTestOpt.Add(new ManualTestOptions("Image checker"));
+            ManualTestOpt.Add(new ManualTestOptions("Text generator"));
             ManualTestOpt.Add(new ManualTestOptions("Auto-Clicker"));
-
         }
 
 
@@ -74,8 +70,13 @@ namespace HandyTest.Pages
                         fileChecker.IsEnabled = true;
                         fileChecker.Visibility = Visibility.Visible;
 
+                        imageChecker.IsEnabled = false;
+                        imageChecker.Visibility = Visibility.Hidden;
+
                         textGenerator.IsEnabled = false;
                         textGenerator.Visibility = Visibility.Hidden;
+
+
                         break;
                     }
                 case 1:
@@ -83,8 +84,37 @@ namespace HandyTest.Pages
                         fileChecker.IsEnabled = false;
                         fileChecker.Visibility = Visibility.Hidden;
 
+                        imageChecker.IsEnabled = true;
+                        imageChecker.Visibility = Visibility.Visible;
+
+                        textGenerator.IsEnabled = true;
+                        textGenerator.Visibility = Visibility.Hidden;
+                        break;
+                    }
+                case 2:
+                    {
+                        fileChecker.IsEnabled = false;
+                        fileChecker.Visibility = Visibility.Hidden;
+
+
+                        imageChecker.IsEnabled = false;
+                        imageChecker.Visibility = Visibility.Hidden;
+
                         textGenerator.IsEnabled = true;
                         textGenerator.Visibility = Visibility.Visible;
+                        break;
+                    }
+                case 3:
+                    {
+                        fileChecker.IsEnabled = false;
+                        fileChecker.Visibility = Visibility.Hidden;
+
+
+                        imageChecker.IsEnabled = false;
+                        imageChecker.Visibility = Visibility.Hidden;
+
+                        textGenerator.IsEnabled = true;
+                        textGenerator.Visibility = Visibility.Hidden;
                         break;
                     }
             }
@@ -160,6 +190,15 @@ namespace HandyTest.Pages
                 errorTextGen.Visibility = Visibility.Visible;
             else
                 errorTextGen.Visibility = Visibility.Hidden;
+        }
+
+        private void CopyImageFromClipboard(object sender, RoutedEventArgs e)
+        {
+            if (Clipboard.ContainsImage())
+            {
+                // ImageUIElement.Source = Clipboard.GetImage(); // does not work
+                testImg.Source = Clipboard.GetImage();
+            }
         }
     }
 }

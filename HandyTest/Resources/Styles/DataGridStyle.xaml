@@ -1,60 +1,59 @@
-﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:local="clr-namespace:HandyTest.Styles">
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:HandyTest.Styles">
 
     <Style x:Key="MyDataGridCell" TargetType="DataGridCell">
-        <Setter Property="Background" Value="WhiteSmoke"/>
-        <Setter Property="VerticalContentAlignment" Value="Center"/>
-        <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="BorderBrush" Value="Transparent"/>
-        <Setter Property="FontSize" Value="15"/>
-        <Setter Property="Cursor" Value="Hand"/>
-        <Setter Property="Foreground" Value="Gray"/>
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="FontSize" Value="15" />
+        <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="Foreground" Value="Gray" />
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
-                <Setter Property="Background" Value="WhiteSmoke"/>
-                <Setter Property="Foreground" Value="Black"/>
-                <Setter Property="FontWeight" Value="Normal"/>
+                <Setter Property="Background" Value="WhiteSmoke" />
+                <Setter Property="Foreground" Value="Black" />
+                <Setter Property="FontWeight" Value="Normal" />
             </Trigger>
             <Trigger Property="IsSelected" Value="False">
-                <Setter Property="Background" Value="WhiteSmoke"/>
+                <Setter Property="Background" Value="WhiteSmoke" />
             </Trigger>
         </Style.Triggers>
     </Style>
 
     <Style x:Key="deleteBtnGridCell" TargetType="DataGridCell">
-        <Setter Property="Background" Value="WhiteSmoke"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Column.Header, RelativeSource={RelativeSource Self}}">
-                <Setter Property="IsHitTestVisible" Value="False"/>
+                <Setter Property="IsHitTestVisible" Value="False" />
             </DataTrigger>
 
         </Style.Triggers>
     </Style>
 
     <Style x:Key="selectionIndicator" TargetType="DataGridCell">
-        <Setter Property="Background" Value="WhiteSmoke"/>
-        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="0" />
         <Style.Triggers>
             <DataTrigger Binding="{Binding Column.Header, RelativeSource={RelativeSource Self}}">
-                <Setter Property="IsHitTestVisible" Value="False"/>
+                <Setter Property="IsHitTestVisible" Value="False" />
             </DataTrigger>
 
         </Style.Triggers>
     </Style>
 
     <Style TargetType="{x:Type DataGridColumnHeader}">
-        <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Padding" Value="5"/>
-        <Setter Property="BorderThickness" Value="0,0,0,2"/>
-        <Setter Property="BorderBrush" Value="#DF964C"/>
-        <Setter Property="FontSize" Value="20"/>
-        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="Foreground" Value="Black" />
+        <Setter Property="Padding" Value="5" />
+        <Setter Property="BorderThickness" Value="0,0,0,2" />
+        <Setter Property="BorderBrush" Value="#DF964C" />
+        <Setter Property="FontSize" Value="20" />
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
     </Style>
 
-    <Style x:Key="textBlockOnDataGrid" TargetType="{x:Type TextBlock}">
+    <Style x:Key="textBlockOnDataGrid" TargetType="{x:Type TextBlock}" />
 
-    </Style>
-    
 </ResourceDictionary>

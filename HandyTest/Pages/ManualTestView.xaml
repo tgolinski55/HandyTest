@@ -11,7 +11,6 @@
     d:DesignWidth="800"
     FontWeight="Light"
     mc:Ignorable="d">
-
     <Grid Name="rowH" Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
@@ -22,37 +21,6 @@
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <!--  Upper ribbon  -->
-        <!--<Label Grid.Row="0" Grid.ColumnSpan="3"
-                   FontSize="15" Content="HandyTest"
-                   Foreground="WhiteSmoke" Background="#232526"
-                   HorizontalContentAlignment="Center"
-
-               MouseDown="WindowDragMove"
-
-                  />-->
-        <!--<Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
-            <Button.Content>
-                <StackPanel>
-                    <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
-                </StackPanel>
-            </Button.Content>
-        </Button>
-        <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,30,0" BorderThickness="0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MaximizeWindowCommand}">
-            <Button.Content>
-                <StackPanel>
-                    <Label Content="&#128470;" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
-                </StackPanel>
-            </Button.Content>
-        </Button>
-        <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
-            <Button.Content>
-                <StackPanel>
-                    <Label Content="🗕"  HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
-                </StackPanel>
-            </Button.Content>
-        </Button>
-        -->
         <Button
             Width="30"
             Height="30"
@@ -63,8 +31,6 @@
             Style="{StaticResource TransparentStyle2}">
             <Image Source="../Resources/Icons/icons8-wstecz-100.png" />
         </Button>
-        <!--  Lower ribbon  -->
-        <!--<Label FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>-->
 
         <!--  Content  -->
         <Label
@@ -115,6 +81,7 @@
                             <Setter Property="TextWrapping" Value="NoWrap" />
                             <Setter Property="TextTrimming" Value="CharacterEllipsis" />
                             <Setter Property="Padding" Value="5,2" />
+                            <Setter Property="Margin" Value="5,0,0,0" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
@@ -181,6 +148,52 @@
                 FontWeight="Medium" />
         </Grid>
 
+        <!--  **************************************************************************  -->
+        <!--  Image checker  -->
+        <!--  **************************************************************************  -->
+
+        <Grid
+            Name="imageChecker"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            VerticalAlignment="Stretch"
+            Visibility="Visible">
+
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Button
+                Width="100"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Click="CopyImageFromClipboard"
+                Content="Copy image" />
+            <ToggleButton
+                Name="testToggle"
+                Width="100"
+                Margin="110,0,0,0"
+                HorizontalAlignment="Left"
+                VerticalAlignment="Top"
+                Content="Magnifier" />
+            <Image
+                Name="testImg"
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2" />
+            <wpfTool:MagnifierManager.Magnifier>
+                <wpfTool:Magnifier
+                    Name="magnifier"
+                    BorderBrush="Black"
+                    BorderThickness="1"
+                    Radius="100"
+                    ZoomFactor=".4" />
+            </wpfTool:MagnifierManager.Magnifier>
+
+        </Grid>
 
         <!--  **************************************************************************  -->
         <!--  Text Generator  -->
@@ -192,7 +205,7 @@
             Grid.Column="1"
             Margin="10,20"
             VerticalAlignment="Stretch"
-            Visibility="Visible">
+            Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition />
@@ -245,16 +258,6 @@
                             FontSize="14"
                             IsEnabled="{Binding ElementName=charsRbtn, Path=IsChecked}"
                             MaxLength="100" />
-                        <!--<wpfTool:IntegerUpDown Name="lengthValue"
-                                               FontSize="14" Margin="3"
-                                               Maximum="100000" Minimum="0"
-                                               Watermark="Enter length"
-                                               DefaultValue="0"
-                                               AllowSpin="True"
-                                               ShowButtonSpinner="True"
-                                               ClipValueToMinMax="True"
-                                               OpacityMask="Black"
-                                               />-->
                         <Controls:NumericUpDown
                             Name="lengthValue"
                             Height="Auto"
@@ -322,7 +325,7 @@
                 Margin="10,0"
                 BorderBrush="#D4791C"
                 BorderThickness="2"
-                FontSize="14"
+                FontSize="15"
                 Header="Preview"
                 Style="{x:Null}"
                 Visibility="Visible">
@@ -333,6 +336,7 @@
                     VerticalScrollBarVisibility="Visible">
                     <TextBlock
                         x:Name="generateTxtBlk"
+                        FontSize="12"
                         ScrollViewer.CanContentScroll="True"
                         ScrollViewer.VerticalScrollBarVisibility="Auto"
                         SizeChanged="ErrorTextSize"
@@ -362,25 +366,6 @@
                     Content="Copy"
                     Style="{StaticResource FunctionalButtonStyle}" />
             </StackPanel>
-            <!--<StackPanel
-                Grid.Row="2"
-                Grid.Column="1"
-                HorizontalAlignment="Right"
-                VerticalAlignment="Bottom"
-                Orientation="Horizontal"
-                Visibility="{Binding ElementName=previewResult, Path=Visibility}">
-
-                <Label
-                    Margin="0,5"
-                    Content="{Binding ElementName=generateTxtBlk, Path=Text.Length}"
-                    FontSize="14"
-                    Foreground="Gray" />
-                <Label
-                    Margin="0,5"
-                    Content="/  100000"
-                    FontSize="14"
-                    Foreground="Gray" />-->
-
             <TextBlock
                 Grid.Row="2"
                 Grid.Column="1"
@@ -393,7 +378,6 @@
                 <Run Text="{Binding ElementName=generateTxtBlk, Path=Text.Length, Mode=OneWay}" />
                 <Run Text="/ 100000" />
             </TextBlock>
-            <!--</StackPanel>-->
         </Grid>
 
 

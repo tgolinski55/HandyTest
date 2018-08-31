@@ -33,7 +33,7 @@
                 Width="20"
                 Margin="0"
                 Padding="0"
-                Foreground="White"
+                Foreground="WhiteSmoke"
                 Style="{StaticResource ImageButtonStyle}">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle
