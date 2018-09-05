@@ -120,4 +120,55 @@
   <data name="ApplicationName" xml:space="preserve">
     <value>HandyTest</value>
   </data>
+  <data name="button_CreateNew" xml:space="preserve">
+    <value>Create New</value>
+  </data>
+  <data name="button_functionalX" xml:space="preserve">
+    <value>✕</value>
+  </data>
+  <data name="button_MakeActive" xml:space="preserve">
+    <value>Make Active</value>
+  </data>
+  <data name="imageButton_AutoTest" xml:space="preserve">
+    <value>Automatic test</value>
+  </data>
+  <data name="imageButton_CreateReport" xml:space="preserve">
+    <value>Create report</value>
+  </data>
+  <data name="imageButton_Log" xml:space="preserve">
+    <value>Log</value>
+  </data>
+  <data name="imageButton_ManualTest" xml:space="preserve">
+    <value>Manual test</value>
+  </data>
+  <data name="label_CreateProject" xml:space="preserve">
+    <value>Create new project</value>
+  </data>
+  <data name="label_SelectProject" xml:space="preserve">
+    <value>Select project</value>
+  </data>
+  <data name="popUP_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="popUP_Create" xml:space="preserve">
+    <value>Create</value>
+  </data>
+  <data name="popUP_Description" xml:space="preserve">
+    <value>Description:</value>
+  </data>
+  <data name="popUP_EnterDesc" xml:space="preserve">
+    <value>Enter description</value>
+  </data>
+  <data name="popUP_EnterName" xml:space="preserve">
+    <value>Enter project name</value>
+  </data>
+  <data name="popUP_Name" xml:space="preserve">
+    <value>Name:</value>
+  </data>
+  <data name="Projects_label" xml:space="preserve">
+    <value>Projects</value>
+  </data>
+  <data name="tooltip_Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
 </root>

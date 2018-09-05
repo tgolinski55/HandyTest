@@ -73,6 +73,8 @@ namespace HandyTest.Pages
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
             string path = @"..//../Projects/";
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
             var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
             foreach (var o in AllFiles)
             {
@@ -189,9 +191,11 @@ namespace HandyTest.Pages
                     selectProjectGrid.IsEnabled = false;
                     selectProjectLabel.Visibility = Visibility.Visible;
                 }
-
-                Directory.Delete(path, true);
+                if (Directory.Exists(path))
+                    Directory.Delete(path, true);
                 ProjectsList.Remove(selectedItem);
+
+                SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
             }
         }
 

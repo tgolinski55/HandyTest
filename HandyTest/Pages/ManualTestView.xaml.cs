@@ -211,7 +211,6 @@ namespace HandyTest.Pages
             {
                 // ImageUIElement.Source = Clipboard.GetImage(); // does not work
                 testImg1.Source = Clipboard.GetImage();
-
             }
         }
 

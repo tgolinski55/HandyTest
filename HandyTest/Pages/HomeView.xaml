@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:HandyTest.Pages"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:resx="clr-namespace:HandyTest.Resources"
     xmlns:scm="clr-namespace:System.ComponentModel;assembly=WindowsBase"
     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
     d:DesignHeight="450"
@@ -323,7 +324,7 @@
             Margin="0,30,0,10"
             Padding="5"
             HorizontalAlignment="Left"
-            Content="Projects"
+            Content="{x:Static resx:Resource.Projects_label}"
             FontSize="25" />
         <DataGrid
             Name="projectsListDataGrid"
@@ -394,7 +395,7 @@
                             <Button
                                 Click="DeleteProjectBtn"
                                 Style="{StaticResource DeleteButtonStyle}"
-                                ToolTip="Delete"
+                                ToolTip="{x:Static resx:Resource.tooltip_Delete}"
                                 Visibility="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
@@ -406,7 +407,7 @@
             Name="createNewProjectBtn"
             Margin="10,0,10,15"
             Click="CreateNewProjectBtn_Click"
-            Content="Create New"
+            Content="{x:Static resx:Resource.button_CreateNew}"
             Style="{StaticResource FunctionalButtonStyle}" />
 
         <Button
@@ -414,7 +415,7 @@
             Margin="10,0,10,15"
             HorizontalAlignment="Left"
             Click="MakeActiveProjectBtn_Click"
-            Content="Make Active"
+            Content="{x:Static resx:Resource.button_MakeActive}"
             Style="{StaticResource FunctionalButtonStyle}" />
 
 
@@ -461,7 +462,7 @@
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Background="#D4791C"
-                        Content="Select project"
+                        Content="{x:Static resx:Resource.label_SelectProject}"
                         FontSize="50"
                         FontStyle="Italic"
                         FontWeight="Light"
@@ -483,7 +484,7 @@
                     <Image MaxHeight="70" Source="../Resources/Icons/icons8-test-zaliczony-100.png" />
                     <TextBlock
                         FontSize="20"
-                        Text="Manual test"
+                        Text="{x:Static resx:Resource.imageButton_ManualTest}"
                         TextAlignment="Center" />
                 </StackPanel>
 
@@ -516,7 +517,7 @@
                     <Image MaxHeight="70" Source="../Resources/Icons/icons8-otwórz-dokument-100.png" />
                     <TextBlock
                         FontSize="20"
-                        Text="Create report"
+                        Text="{x:Static resx:Resource.imageButton_CreateReport}"
                         TextAlignment="Center" />
                 </StackPanel>
 
@@ -534,7 +535,7 @@
                     <Image MaxHeight="70" Source="../Resources/Icons/icons8-log-100.png" />
                     <TextBlock
                         FontSize="20"
-                        Text="Log"
+                        Text="{x:Static resx:Resource.imageButton_Log}"
                         TextAlignment="Center" />
                 </StackPanel>
             </Button>
@@ -551,7 +552,7 @@
                     <Image MaxHeight="70" Source="../Resources/Icons/icons8-automatyczny-100.png" />
                     <TextBlock
                         FontSize="20"
-                        Text="Automatic test"
+                        Text="{x:Static resx:Resource.imageButton_AutoTest}"
                         TextAlignment="Center" />
                 </StackPanel>
             </Button>
@@ -563,7 +564,8 @@
                 Width="Auto"
                 Height="Auto"
                 IsOpen="False"
-                Placement="Center">
+                Placement="Center"
+                PopupAnimation="Fade">
                 <Border BorderBrush="#232526" BorderThickness="1">
 
                     <StackPanel
@@ -587,7 +589,7 @@
                                 Grid.ColumnSpan="2"
                                 HorizontalContentAlignment="Center"
                                 Background="#232526"
-                                Content="Create new project"
+                                Content="{x:Static resx:Resource.label_CreateProject}"
                                 FontSize="15"
                                 Foreground="WhiteSmoke" />
                             <Button
@@ -604,7 +606,7 @@
                                         <Label
                                             Margin="0"
                                             HorizontalAlignment="Center"
-                                            Content="✕"
+                                            Content="{x:Static resx:Resource.button_functionalX}"
                                             FontSize="15"
                                             Foreground="WhiteSmoke" />
                                     </StackPanel>
@@ -616,7 +618,7 @@
                                 Grid.Column="0"
                                 Margin="5"
                                 Padding="5"
-                                Content="Name:"
+                                Content="{x:Static resx:Resource.popUP_Name}"
                                 FontSize="15" />
                             <TextBox
                                 Name="newProjectName"
@@ -634,14 +636,14 @@
                                 MaxLength="100"
                                 MaxLines="1"
                                 TextWrapping="Wrap"
-                                ToolTip="Enter project name" />
+                                ToolTip="{x:Static resx:Resource.popUP_EnterName}" />
 
                             <Label
                                 Grid.Row="2"
                                 Grid.Column="0"
                                 Margin="5"
                                 Padding="5"
-                                Content="Description:"
+                                Content="{x:Static resx:Resource.popUP_Description}"
                                 FontSize="15" />
 
 
@@ -663,14 +665,14 @@
                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled"
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                 TextWrapping="Wrap"
-                                ToolTip="Enter description" />
+                                ToolTip="{x:Static resx:Resource.popUP_EnterDesc}" />
 
                             <Button
                                 Grid.Row="3"
                                 Grid.Column="1"
                                 Margin="5,10,5,5"
                                 Click="UpdateProjectsList"
-                                Content="Create"
+                                Content="{x:Static resx:Resource.popUP_Create}"
                                 Style="{StaticResource FunctionalButtonStyle}" />
                             <Button
                                 Grid.Row="3"
@@ -678,7 +680,7 @@
                                 Margin="5,10,5,5"
                                 HorizontalAlignment="Left"
                                 Click="Close_PopUp"
-                                Content="Cancel"
+                                Content="{x:Static resx:Resource.popUP_Cancel}"
                                 Style="{StaticResource FunctionalButtonStyle}" />
                         </Grid>
 
