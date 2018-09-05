@@ -7,6 +7,10 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Drawing;
+using System.Windows.Shapes;
+using System.Drawing.Imaging;
+using System.IO;
 
 namespace HandyTest.Pages
 {
@@ -24,7 +28,7 @@ namespace HandyTest.Pages
 
 
         }
-        
+
 
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
@@ -48,12 +52,12 @@ namespace HandyTest.Pages
             if (txtToCheck.Text != txtToCheck2.Text)
             {
                 resultLabel.Content = "Files are different!";
-                resultLabel.Foreground = Brushes.Red;
+                resultLabel.Foreground = System.Windows.Media.Brushes.Red;
             }
             else
             {
                 resultLabel.Content = "Files are the same";
-                resultLabel.Foreground = Brushes.Green;
+                resultLabel.Foreground = System.Windows.Media.Brushes.Green;
             }
         }
 
@@ -161,7 +165,7 @@ namespace HandyTest.Pages
                             generateTxtBlk.Text += (string)shuffleTab[randomValue];
                     }
                 }
-               
+
             }
         }
 
@@ -192,13 +196,44 @@ namespace HandyTest.Pages
                 errorTextGen.Visibility = Visibility.Hidden;
         }
 
-        private void CopyImageFromClipboard(object sender, RoutedEventArgs e)
+        private void CopyLeftImageFromClipboard(object sender, RoutedEventArgs e)
         {
             if (Clipboard.ContainsImage())
             {
                 // ImageUIElement.Source = Clipboard.GetImage(); // does not work
-                //testImg.Source = Clipboard.GetImage();
+                testImg.Source = Clipboard.GetImage();
             }
         }
+
+        private void CopyRightImageFromClipboard(object sender, RoutedEventArgs e)
+        {
+            if (Clipboard.ContainsImage())
+            {
+                // ImageUIElement.Source = Clipboard.GetImage(); // does not work
+                testImg1.Source = Clipboard.GetImage();
+
+            }
+        }
+
+        private void RestetLeftImage(object sender, RoutedEventArgs e)
+        {
+            ZoomBorder zoomBorder = new ZoomBorder();
+            zoomBorder.Reset();
+        }
+        //public static List<bool> GetHash(Bitmap bmpSource)
+        //{
+        //    //List<bool> lResult = new List<bool>();
+        //    ////create new image with 16x16 pixel
+        //    //Bitmap bmpMin = new Bitmap(bmpSource, new Size(16, 16));
+        //    //for (int j = 0; j < bmpMin.Height; j++)
+        //    //{
+        //    //    for (int i = 0; i < bmpMin.Width; i++)
+        //    //    {
+        //    //        //reduce colors to true / false                
+        //    //        lResult.Add(bmpMin.GetPixel(i, j).GetBrightness() < 0.5f);
+        //    //    }
+        //    //}
+        //    //return lResult;
+        //}
     }
 }

@@ -373,7 +373,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn
-                    Width="100"
+                    Width="80"
                     Binding="{Binding Date}"
                     CellStyle="{StaticResource MyDataGridCell}"
                     IsReadOnly="True">
