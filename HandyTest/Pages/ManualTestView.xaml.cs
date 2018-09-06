@@ -11,6 +11,9 @@ using System.Drawing;
 using System.Windows.Shapes;
 using System.Drawing.Imaging;
 using System.IO;
+using System.Windows.Media.Imaging;
+using System.Security.Cryptography;
+using System.Runtime.InteropServices;
 
 namespace HandyTest.Pages
 {
@@ -20,6 +23,7 @@ namespace HandyTest.Pages
     public partial class ManualTestView : UserControl
     {
         ObservableCollection<ManualTestOptions> ManualTestOpt = new ObservableCollection<ManualTestOptions>();
+        ObservableCollection<string> ImageViewer = new ObservableCollection<string>();
         public ManualTestView()
         {
             InitializeComponent();
@@ -219,20 +223,95 @@ namespace HandyTest.Pages
             ZoomBorder zoomBorder = new ZoomBorder();
             zoomBorder.Reset();
         }
-        //public static List<bool> GetHash(Bitmap bmpSource)
-        //{
-        //    //List<bool> lResult = new List<bool>();
-        //    ////create new image with 16x16 pixel
-        //    //Bitmap bmpMin = new Bitmap(bmpSource, new Size(16, 16));
-        //    //for (int j = 0; j < bmpMin.Height; j++)
-        //    //{
-        //    //    for (int i = 0; i < bmpMin.Width; i++)
-        //    //    {
-        //    //        //reduce colors to true / false                
-        //    //        lResult.Add(bmpMin.GetPixel(i, j).GetBrightness() < 0.5f);
-        //    //    }
-        //    //}
-        //    //return lResult;
-        //}
+
+        public static Bitmap ConvertToBitmap(BitmapSource bitmapSource)
+        {
+            var width = bitmapSource.PixelWidth;
+            var height = bitmapSource.PixelHeight;
+            var stride = width * ((bitmapSource.Format.BitsPerPixel + 7) / 8);
+            var memoryBlockPointer = Marshal.AllocHGlobal(height * stride);
+            bitmapSource.CopyPixels(new Int32Rect(0, 0, width, height), memoryBlockPointer, height * stride, stride);
+            var bitmap = new Bitmap(width, height, stride, System.Drawing.Imaging.PixelFormat.Format32bppPArgb, memoryBlockPointer);
+            return bitmap;
+        }
+
+        private BitmapImage LoadImageFromFile(string filename)
+        {
+            using (var fs = File.OpenRead(filename))
+            {
+                var img = new BitmapImage();
+                img.BeginInit();
+                img.CacheOption = BitmapCacheOption.OnLoad;
+                // Downscaling to keep the memory footprint low
+                img.DecodePixelWidth = (int)SystemParameters.PrimaryScreenWidth;
+                img.StreamSource = fs;
+                img.EndInit();
+                return img;
+            }
+        }
+        private void CompareImages(object sender, RoutedEventArgs e)
+        {
+            if (testImg.Source != null && testImg1.Source != null)
+            {
+
+                var bmp1 = ConvertToBitmap((BitmapSource)testImg.Source);
+                var bmp2 = ConvertToBitmap((BitmapSource)testImg1.Source);
+                ImageConverter imageConverter = new ImageConverter();
+
+                byte[] btImage1 = new byte[1];
+                btImage1 = (byte[])imageConverter.ConvertTo(bmp1, btImage1.GetType());
+
+                byte[] btImage2 = new byte[1];
+                btImage2 = (byte[])imageConverter.ConvertTo(bmp2, btImage2.GetType());
+
+                SHA256Managed shaM = new SHA256Managed();
+                byte[] hash1 = shaM.ComputeHash(btImage1);
+                byte[] hash2 = shaM.ComputeHash(btImage2);
+
+                for (int i = 0; i < hash1.Length && i < hash2.Length; i++)
+                {
+                    if (hash1[i] != hash2[i])
+                        imageCompareLabel.Background = System.Windows.Media.Brushes.Red;
+                    else
+                        imageCompareLabel.Background = System.Windows.Media.Brushes.Green;
+                }
+            }
+        }
+
+        private void LeftImageDragAndDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data != null)
+            {
+                var data = e.Data as DataObject;
+                if (data.ContainsFileDropList())
+                {
+                    var files = data.GetFileDropList();
+                    testImg.Source = LoadImageFromFile(files[0]);
+                    if (!ImageViewer.Contains(files[0]))
+                        ImageViewer.Add(files[0]);
+                }
+
+            }
+        }
+
+        private void RightImageDragAndDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data != null)
+            {
+                var data = e.Data as DataObject;
+                if (data.ContainsFileDropList())
+                {
+                    var files = data.GetFileDropList();
+                    testImg1.Source = LoadImageFromFile(files[0]);
+                    if (!ImageViewer.Contains(files[0]))
+                    {
+                        dropDownImageList.ItemsSource = ImageViewer;
+                        ImageViewer.Add(files[0]);
+                    }
+                }
+
+            }
+        }
     }
 }
+

@@ -15,14 +15,15 @@
     FontWeight="Light"
     mc:Ignorable="d">
 
+
     <Grid Name="rowH" Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="30" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="*" AllowDrop="True" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MaxWidth="200" SharedSizeGroup="A" />
-            <ColumnDefinition />
+            <ColumnDefinition AllowDrop="True" />
         </Grid.ColumnDefinitions>
 
         <Button
@@ -166,8 +167,8 @@
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="67" />
-                <RowDefinition />
-                <RowDefinition Height="50" />
+                <RowDefinition AllowDrop="False" />
+                <RowDefinition Height="50" AllowDrop="False" />
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -202,47 +203,80 @@
                 Style="{StaticResource FunctionalButtonStyle}" />
 
             <controls:DropDownButton
+                Name="dropDownImageList"
                 Margin="5,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
-                FontSize="14" />
+                FontSize="14"
+                ItemsSource="{Binding ImageViewer}">
+                <controls:DropDownButton.ItemContainerStyle>
+                    <Style BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="MenuItem">
+                        <Setter Property="Header" Value="{Binding ImageViewer}" />
+                        <Setter Property="Command" Value="{Binding DataContext.SetAlbumCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
+                        <Setter Property="CommandParameter" Value="{Binding}" />
+                        <Setter Property="Foreground" Value="Black" />
+                    </Style>
+                </controls:DropDownButton.ItemContainerStyle>
+            </controls:DropDownButton>
             <controls:DropDownButton
                 Grid.Column="1"
                 Margin="5,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
-                FontSize="14" />
+                FontSize="14"
+                ItemsSource="{Binding ImageViewer}" />
+
             <Border
+                Name="borderImage1"
                 Grid.Row="1"
                 Grid.Column="0"
                 Margin="5,0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                AllowDrop="True"
                 BorderBrush="#D4791C"
-                BorderThickness="1,0,1,1">
-                <Border ClipToBounds="True">
-                    <utils:ZoomBorder Grid.Row="1">
-                        <Image Name="testImg" />
-                    </utils:ZoomBorder>
+                BorderThickness="1,0,1,1"
+                ClipToBounds="True"
+                Drop="LeftImageDragAndDrop">
 
-                </Border>
+                <Label ClipToBounds="True">
+
+                    <utils:ZoomBorder AllowDrop="True">
+                        <Image
+                            Name="testImg"
+                            Width="{Binding ElementName=borderImage1, Path=Width}"
+                            Height="{Binding ElementName=borderImage1, Path=Height}"
+                            HorizontalAlignment="Stretch"
+                            VerticalAlignment="Stretch"
+                            AllowDrop="True"
+                            ClipToBounds="True" />
+                    </utils:ZoomBorder>
+                </Label>
             </Border>
+
             <Border
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="5,0"
+                Padding="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Stretch"
+                AllowDrop="True"
                 BorderBrush="#D4791C"
-                BorderThickness="1,0,1,1">
-                <Border ClipToBounds="True">
+                BorderThickness="1,0,1,1"
+                Drop="RightImageDragAndDrop">
+                <Label ClipToBounds="True">
                     <utils:ZoomBorder>
-                        <Image Name="testImg1" />
+                        <Image Name="testImg1" AllowDrop="True" />
                     </utils:ZoomBorder>
-                </Border>
+                </Label>
             </Border>
 
             <Button
                 Grid.Row="2"
                 Grid.Column="0"
                 Width="50"
-                Height="20"
+                Height="25"
                 Margin="20,10"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
@@ -253,10 +287,11 @@
                 Grid.Row="2"
                 Grid.ColumnSpan="2"
                 Width="70"
-                Height="20"
+                Height="25"
                 Margin="20,10"
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
+                Click="CompareImages"
                 Content="Compare"
                 Style="{StaticResource FunctionalButtonStyle}" />
             <Label
@@ -268,7 +303,7 @@
                 Grid.Row="2"
                 Grid.Column="1"
                 Width="50"
-                Height="20"
+                Height="25"
                 Margin="20,10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"

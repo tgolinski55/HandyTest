@@ -152,22 +152,6 @@ namespace HandyTest.Pages
             newProjectDescription.Text = "";
             wholeGrid.IsEnabled = false;
             wholeGrid.Opacity = 0.7;
-            //var metroWindow = (Application.Current.MainWindow as MetroWindow);
-            //metroWindow.ShowModalMessageExternal("Create new project", "Test123", MessageDialogStyle.AffirmativeAndNegative, new MetroDialogSettings()
-            //{
-            //    AffirmativeButtonText = "Create project",
-            //    NegativeButtonText = "Cancel",
-            //    DefaultButtonFocus = MessageDialogResult.Affirmative,
-            //    ColorScheme = MetroDialogColorScheme.Theme,
-            //});
-            //    string res = metroWindow.ShowModalInputExternal("Create new project", "Enter name and description to create new project.", new MetroDialogSettings()
-            //    {
-            //        AffirmativeButtonText = "Create",
-            //        ColorScheme = MetroDialogColorScheme.Theme,
-            //        NegativeButtonText = "Cancel",
-            //        DefaultButtonFocus = MessageDialogResult.Affirmative
-            //});
-
         }
 
         void OpenManualTest(object sender, RoutedEventArgs e)
