@@ -24,13 +24,13 @@ namespace HandyTest.Pages
     {
         ObservableCollection<ManualTestOptions> ManualTestOpt = new ObservableCollection<ManualTestOptions>();
         ObservableCollection<string> ImageViewer = new ObservableCollection<string>();
+        ObservableCollection<ImageSource> ImageViewerList = new ObservableCollection<ImageSource>();
+        public IEnumerable<ManualTestView> ImageViewerer;
         public ManualTestView()
         {
             InitializeComponent();
             Loaded += ManualTestDataGrid_Loaded;
             manualTestDataGrid.SelectedIndex = 0;
-
-
         }
 
 
@@ -67,10 +67,7 @@ namespace HandyTest.Pages
 
         private void ChangeFunction(object sender, SelectionChangedEventArgs e)
         {
-            if (manualTestDataGrid.SelectedIndex == 0)
-            {
-                fileChecker.Visibility = Visibility.Visible;
-            }
+
             switch (manualTestDataGrid.SelectedIndex)
             {
                 case 0:
@@ -165,8 +162,13 @@ namespace HandyTest.Pages
                     for (int i = 0; i < lengthValue.Value; i++)
                     {
                         int randomValue = randomizeCharTab.Next(shuffleTab.Count);
+
                         if (generateTxtBlk.Text.Length < 100000)
+                        {
+                            if (charsRbtn.IsChecked == true && charsSample.Text == "" && (numbersRbtn.IsChecked == false && lettersRbtn.IsChecked == false && specialCharsRbtn.IsChecked == false))
+                                break;
                             generateTxtBlk.Text += (string)shuffleTab[randomValue];
+                        }
                     }
                 }
 
@@ -199,31 +201,22 @@ namespace HandyTest.Pages
             else
                 errorTextGen.Visibility = Visibility.Hidden;
         }
-
+        List<object> imageList = new List<object>();
+        List<Bitmap> image2List = new List<Bitmap>();
         private void CopyLeftImageFromClipboard(object sender, RoutedEventArgs e)
         {
             if (Clipboard.ContainsImage())
             {
-                // ImageUIElement.Source = Clipboard.GetImage(); // does not work
                 testImg.Source = Clipboard.GetImage();
+                dropDownLeftImageList.ItemsSource = ImageViewerList.ToString();
+                dropDownRightImageList.ItemsSource = ImageViewerList.ToString();
+
+                ImageViewerList.Add((ImageSource)testImg.Source);
+                //if (!imageList.Contains(testImg.Source))
+                //    imageList.Add(testImg.Source);
+
             }
         }
-
-        private void CopyRightImageFromClipboard(object sender, RoutedEventArgs e)
-        {
-            if (Clipboard.ContainsImage())
-            {
-                // ImageUIElement.Source = Clipboard.GetImage(); // does not work
-                testImg1.Source = Clipboard.GetImage();
-            }
-        }
-
-        private void RestetLeftImage(object sender, RoutedEventArgs e)
-        {
-            ZoomBorder zoomBorder = new ZoomBorder();
-            zoomBorder.Reset();
-        }
-
         public static Bitmap ConvertToBitmap(BitmapSource bitmapSource)
         {
             var width = bitmapSource.PixelWidth;
@@ -234,6 +227,29 @@ namespace HandyTest.Pages
             var bitmap = new Bitmap(width, height, stride, System.Drawing.Imaging.PixelFormat.Format32bppPArgb, memoryBlockPointer);
             return bitmap;
         }
+
+        private void CopyRightImageFromClipboard(object sender, RoutedEventArgs e)
+        {
+            if (Clipboard.ContainsImage())
+            {
+                testImg1.Source = Clipboard.GetImage();
+                dropDownLeftImageList.ItemsSource = ImageViewer;
+                dropDownRightImageList.ItemsSource = ImageViewer;
+                ImageViewer.Add((ImageViewer.Count).ToString());
+                if (!imageList.Contains(testImg.Source))
+                {
+
+                    image2List.Add(ConvertToBitmap((BitmapSource)testImg.Source));
+                }
+            }
+        }
+
+        private void RestetLeftImage(object sender, RoutedEventArgs e)
+        {
+            ZoomBorder zoomBorder = new ZoomBorder();
+            zoomBorder.Reset();
+        }
+
 
         private BitmapImage LoadImageFromFile(string filename)
         {
@@ -288,7 +304,12 @@ namespace HandyTest.Pages
                     var files = data.GetFileDropList();
                     testImg.Source = LoadImageFromFile(files[0]);
                     if (!ImageViewer.Contains(files[0]))
+                    {
+
+                        dropDownLeftImageList.ItemsSource = ImageViewer;
+                        dropDownRightImageList.ItemsSource = ImageViewer;
                         ImageViewer.Add(files[0]);
+                    }
                 }
 
             }
@@ -305,12 +326,22 @@ namespace HandyTest.Pages
                     testImg1.Source = LoadImageFromFile(files[0]);
                     if (!ImageViewer.Contains(files[0]))
                     {
-                        dropDownImageList.ItemsSource = ImageViewer;
+                        dropDownLeftImageList.ItemsSource = ImageViewer;
+                        dropDownRightImageList.ItemsSource = ImageViewer;
                         ImageViewer.Add(files[0]);
                     }
                 }
 
             }
+        }
+
+        private void ChangeImage(object sender, SelectionChangedEventArgs e)
+        {
+            //ComboBoxItem cmb = dropDownLeftImageList.SelectedItem as ComboBoxItem;
+            //string content = cmb.Content.ToString();
+
+            //testImg.Source = (ImageSource)dropDownLeftImageList.SelectedItem;
+
         }
     }
 }

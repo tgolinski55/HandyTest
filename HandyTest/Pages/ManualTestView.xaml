@@ -5,7 +5,9 @@
     xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:System.Drawing;assembly=System.Drawing"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:sys="clr-namespace:System;assembly=mscorlib"
     xmlns:utils="clr-namespace:HandyTest.BL"
     xmlns:views="clr-namespace:HandyTest.Pages"
     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
@@ -15,6 +17,9 @@
     FontWeight="Light"
     mc:Ignorable="d">
 
+    <UserControl.Resources>
+        <local:ImageConverter x:Key="ImageConverter" />
+    </UserControl.Resources>
 
     <Grid Name="rowH" Background="WhiteSmoke">
         <Grid.RowDefinitions>
@@ -202,30 +207,56 @@
                 FontSize="14"
                 Style="{StaticResource FunctionalButtonStyle}" />
 
-            <controls:DropDownButton
-                Name="dropDownImageList"
+            <!--<controls:DropDownButton
+                Name="dropDownLeftImageList"
                 Margin="5,0"
+                Padding="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom"
+                Content="{Binding ImageViewer, Mode=TwoWay}"
+                FontSize="14"
+                ItemsSource="{Binding ImageViewer, Mode=OneWay}"
+                TabIndex="0" />-->
+            <!--<ListBox
+                Name="dropDownLeftImageList"
+                Margin="5,0"
+                Padding="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom"
+                BorderBrush="Black"
+                BorderThickness="1"
+                FontSize="14"
+                ItemsSource="{Binding ImageViewer, Mode=OneWay}"
+                TabIndex="0" />-->
+            <!--<wpfTool:DropDownButton
+                Name="dropDownLeftImageList"
+                Margin="5,0"
+                Padding="0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
                 FontSize="14"
-                ItemsSource="{Binding ImageViewer}">
-                <controls:DropDownButton.ItemContainerStyle>
-                    <Style BasedOn="{StaticResource {x:Type MenuItem}}" TargetType="MenuItem">
-                        <Setter Property="Header" Value="{Binding ImageViewer}" />
-                        <Setter Property="Command" Value="{Binding DataContext.SetAlbumCommand, RelativeSource={RelativeSource FindAncestor, AncestorType=UserControl}}" />
-                        <Setter Property="CommandParameter" Value="{Binding}" />
-                        <Setter Property="Foreground" Value="Black" />
-                    </Style>
-                </controls:DropDownButton.ItemContainerStyle>
-            </controls:DropDownButton>
-            <controls:DropDownButton
+
+                ItemsSource="{Binding ImageViewer, Mode=OneWay}"
+                TabIndex="0" />-->
+            <ComboBox
+                x:Name="dropDownLeftImageList"
+                Margin="5,0"
+                Padding="0"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Bottom"
+                FontSize="14"
+                ItemsSource="{Binding Name}"
+                SelectedIndex="0"
+                SelectionChanged="ChangeImage" />
+            <ComboBox
+                Name="dropDownRightImageList"
                 Grid.Column="1"
                 Margin="5,0"
                 HorizontalAlignment="Stretch"
                 VerticalAlignment="Bottom"
                 FontSize="14"
-                ItemsSource="{Binding ImageViewer}" />
-
+                ItemsSource="{Binding ImageViewer, Mode=TwoWay}"
+                SelectedIndex="0" />
             <Border
                 Name="borderImage1"
                 Grid.Row="1"
@@ -249,7 +280,8 @@
                             HorizontalAlignment="Stretch"
                             VerticalAlignment="Stretch"
                             AllowDrop="True"
-                            ClipToBounds="True" />
+                            ClipToBounds="True"
+                            Source="{Binding ElementName=dropDownLeftImageList, Path=SelectedItem.image}" />
                     </utils:ZoomBorder>
                 </Label>
             </Border>
@@ -310,108 +342,6 @@
                 Click="ClearTxtBlk"
                 Content="Reset"
                 Style="{StaticResource FunctionalButtonStyle}" />
-
-
-
-
-
-            <!--<Button
-                Width="100"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Click="CopyImageFromClipboard"
-                Content="Copy image" />
-            <ToggleButton
-                Name="testToggle"
-                Width="100"
-                Margin="110,0,0,0"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Content="Magnifier" />
-            <Image
-                Name="testImg"
-                Grid.RowSpan="2"
-                Grid.ColumnSpan="2" />
-            <wpfTool:MagnifierManager.Magnifier>
-                <wpfTool:Magnifier
-                    Name="magnifier"
-                    BorderBrush="Black"
-                    BorderThickness="1"
-                    Radius="100"
-                    ZoomFactor=".4" />
-            </wpfTool:MagnifierManager.Magnifier>-->
-            <!--<Controls:FlyoutsControl Grid.RowSpan="2" Grid.Column="1">
-                <Controls:Flyout
-                    Name="flyoutOptions"
-                    Width="200"
-                    CloseButtonVisibility="Visible"
-                    Header="Options"
-                    IsPinned="False"
-                    IsOpen="False"
-                    Position="Right"
-                    Theme="Dark"
-                    TitleVisibility="Visible">
-                    <StackPanel Margin="10,10">
-                        <CheckBox Content="Magnifier" />
-                        <CheckBox Content="Diff" />
-                        <CheckBox Content="Toolbar" />
-                    </StackPanel>
-                </Controls:Flyout>
-            </Controls:FlyoutsControl>-->
-            <!--<controls:HamburgerMenu
-                x:Name="HamburgerMenuControl"
-                Grid.RowSpan="2"
-                Grid.Column="1"
-                HorizontalAlignment="Right"
-                DisplayMode="CompactInline"
-                ItemTemplate="{StaticResource MenuItemTemplate}"
-                OptionsItemTemplate="{StaticResource MenuItemTemplate}"
-                PaneBackground="#232526"
-                PanePlacement="Right">
-                <controls:HamburgerMenu.ContentTemplate>
-                    <DataTemplate DataType="{x:Type controls:HamburgerMenuItem}">
-                        <Grid x:Name="TheContentGrid" IsEnabled="{Binding ElementName=HamburgerMenuControl, Path=IsPaneOpen}">
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="48" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Border Grid.Row="0" Background="WhiteSmoke">
-                                <TextBlock
-                                    x:Name="Header"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"
-                                    FontSize="24"
-                                    Foreground="White"
-                                    Text="{Binding Label}" />
-                            </Border>
-                            <ContentControl
-                                x:Name="TheContent"
-                                Grid.Row="1"
-                                Content="{Binding Tag}"
-                                Focusable="False"
-                                Foreground="{DynamicResource BlackBrush}" />
-                        </Grid>
-                    </DataTemplate>
-                </controls:HamburgerMenu.ContentTemplate>
-                <controls:HamburgerMenu.ItemsSource>
-                    <controls:HamburgerMenuItemCollection>
-                        <controls:HamburgerMenuGlyphItem Glyph="" Label="Home" />
-
-                        <controls:HamburgerMenuGlyphItem Glyph="" Label="Private" />
-
-                        <controls:HamburgerMenuGlyphItem Glyph="" Label="Settings" />
-                    </controls:HamburgerMenuItemCollection>
-                </controls:HamburgerMenu.ItemsSource>
-
-            -->
-            <!--  Options  -->
-            <!--
-                <controls:HamburgerMenu.OptionsItemsSource>
-                    <controls:HamburgerMenuItemCollection>
-                        <controls:HamburgerMenuGlyphItem Glyph="" Label="About" />
-                    </controls:HamburgerMenuItemCollection>
-                </controls:HamburgerMenu.OptionsItemsSource>
-            </controls:HamburgerMenu>-->
         </Grid>
 
         <!--  **************************************************************************  -->
