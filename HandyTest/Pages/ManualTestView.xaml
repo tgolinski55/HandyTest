@@ -168,7 +168,7 @@
             Grid.RowSpan="2"
             Grid.Column="1"
             VerticalAlignment="Stretch"
-            Visibility="Visible">
+            Visibility="Hidden">
 
             <Grid.RowDefinitions>
                 <RowDefinition Height="67" />
@@ -528,6 +528,99 @@
             </TextBlock>
         </Grid>
 
+        <!--  **************************************************************************  -->
+        <!--  Auto clicker  -->
+        <!--  **************************************************************************  -->
+        <Grid
+            Name="autoClicker"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch"
+            Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
 
+            <StackPanel
+                Grid.ColumnSpan="2"
+                IsEnabled="True"
+                Visibility="Visible">
+                <GroupBox
+                    Height="Auto"
+                    Margin="0,0,10,0"
+                    Padding="5"
+                    BorderBrush="#D4791C"
+                    BorderThickness="1"
+                    FontSize="15"
+                    Header="General"
+                    Style="{x:Null}">
+                    <DockPanel>
+                        <StackPanel IsEnabled="True" Visibility="Visible">
+                            <RadioButton
+                                Name="lmbRbtn"
+                                Padding="3"
+                                Content="LMB"
+                                FontSize="15"
+                                GroupName="ACOptions"
+                                IsChecked="True" />
+                            <RadioButton
+                                Name="rmbRbtn"
+                                Padding="3"
+                                Content="RMB"
+                                FontSize="15"
+                                GroupName="ACOptions" />
+                            <RadioButton
+                                Name="keySequenceRbtn"
+                                Padding="3"
+                                Content="Key sequence"
+                                FontSize="15"
+                                GroupName="ACOptions" />
+                            <TextBox controls:TextBoxHelper.Watermark="Press key(s)" IsEnabled="{Binding ElementName=keySequenceRbtn, Path=IsChecked}" />
+                        </StackPanel>
+                        <StackPanel Margin="70,0,0,0">
+                            <Label
+                                Padding="3"
+                                Content="Time(ms):"
+                                IsEnabled="{Binding ElementName=lmbRbtn, Path=IsChecked}" />
+                            <Label
+                                Padding="3"
+                                Content="Time(ms):"
+                                IsEnabled="{Binding ElementName=rmbRbtn, Path=IsChecked}" />
+                            <Label
+                                Padding="3"
+                                Content="Time(ms):"
+                                IsEnabled="{Binding ElementName=keySequenceRbtn, Path=IsChecked}" />
+                        </StackPanel>
+                        <StackPanel Margin="20,0,0,0" HorizontalAlignment="Left">
+                            <controls:NumericUpDown
+                                Width="100"
+                                HorizontalAlignment="Right"
+                                IsEnabled="{Binding ElementName=lmbRbtn, Path=IsChecked}"
+                                Minimum="0" />
+                            <controls:NumericUpDown
+                                Width="100"
+                                HorizontalAlignment="Right"
+                                IsEnabled="{Binding ElementName=rmbRbtn, Path=IsChecked}"
+                                Minimum="0" />
+
+                            <controls:NumericUpDown
+                                Width="100"
+                                HorizontalAlignment="Right"
+                                IsEnabled="{Binding ElementName=keySequenceRbtn, Path=IsChecked}"
+                                Minimum="0" />
+                        </StackPanel>
+                    </DockPanel>
+
+                </GroupBox>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </UserControl>

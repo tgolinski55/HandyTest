@@ -81,6 +81,8 @@ namespace HandyTest.Pages
                         textGenerator.IsEnabled = false;
                         textGenerator.Visibility = Visibility.Hidden;
 
+                        autoClicker.IsEnabled = false;
+                        autoClicker.Visibility = Visibility.Hidden;
 
                         break;
                     }
@@ -94,6 +96,10 @@ namespace HandyTest.Pages
 
                         textGenerator.IsEnabled = true;
                         textGenerator.Visibility = Visibility.Hidden;
+
+                        autoClicker.IsEnabled = false;
+                        autoClicker.Visibility = Visibility.Hidden;
+
                         break;
                     }
                 case 2:
@@ -107,6 +113,10 @@ namespace HandyTest.Pages
 
                         textGenerator.IsEnabled = true;
                         textGenerator.Visibility = Visibility.Visible;
+
+                        autoClicker.IsEnabled = false;
+                        autoClicker.Visibility = Visibility.Hidden;
+
                         break;
                     }
                 case 3:
@@ -118,8 +128,12 @@ namespace HandyTest.Pages
                         imageChecker.IsEnabled = false;
                         imageChecker.Visibility = Visibility.Hidden;
 
-                        textGenerator.IsEnabled = true;
+                        textGenerator.IsEnabled = false;
                         textGenerator.Visibility = Visibility.Hidden;
+
+                        autoClicker.IsEnabled = true;
+                        autoClicker.Visibility = Visibility.Visible;
+
                         break;
                     }
             }
