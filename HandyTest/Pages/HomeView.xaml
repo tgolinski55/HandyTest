@@ -567,7 +567,7 @@
                 Click="OpenExplorativeTest"
                 Style="{StaticResource ImageButtonStyle}">
                 <StackPanel>
-                    <Image MaxHeight="40" Source="../Resources/Icons/icons8-utwórz-nowy-100.png" />
+                    <Image MaxHeight="30" Source="../Resources/Icons/Black/handytest2_icon_black.png" />
                     <TextBlock
                         FontSize="16"
                         Text="{x:Static resx:Resource.repot_bug}"

@@ -214,7 +214,7 @@ namespace HandyTest.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Report Bug.
+        ///   Looks up a localized string similar to Report.
         /// </summary>
         public static string repot_bug {
             get {

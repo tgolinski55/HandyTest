@@ -24,6 +24,7 @@ namespace HandyTest.Views
         public ExplorativeTestView()
         {
             InitializeComponent();
+            SetCurrentData();
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -34,7 +35,8 @@ namespace HandyTest.Views
 
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            //this.Close();
+            this.Hide();
         }
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
@@ -51,6 +53,19 @@ namespace HandyTest.Views
             report_typeCombo.Items.Add("Task");
             report_typeCombo.Items.Add("Bug");
             report_typeCombo.Items.Add("Feature");
+        }
+
+        private void AddStateItems(object sender, RoutedEventArgs e)
+        {
+            stateCombo.Items.Add("Reported");
+            stateCombo.Items.Add("Success");
+            stateCombo.Items.Add("Failure");
+            stateCombo.Items.Add("Won't Fix");
+        }
+        private void SetCurrentData()
+        {
+            var currentData = DateTime.Today;
+            reportDateFile.Text = currentData.ToShortDateString();
         }
     }
 }

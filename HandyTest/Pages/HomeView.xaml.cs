@@ -193,20 +193,13 @@ namespace HandyTest.Pages
         private void OpenExplorativeTest(object sender, RoutedEventArgs e)
         {
 
-
-               
-            //if (explorativeTestView.IsActive == false)
-            //{
-            //    explorativeTestView.Show();
-            //    explorativeTestView.Activate();
-            //}
-            //else
-            //{
-            //}
-
             if (!IsWindowOpen<Window>("ExplorativeTestView"))
             {
                 explorativeTestView.Show();
+            }
+            else
+            {
+                explorativeTestView.Close();
             }
 
         }
