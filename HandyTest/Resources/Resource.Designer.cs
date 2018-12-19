@@ -214,6 +214,15 @@ namespace HandyTest.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Report Bug.
+        /// </summary>
+        public static string repot_bug {
+            get {
+                return ResourceManager.GetString("repot_bug", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Delete.
         /// </summary>
         public static string tooltip_Delete {

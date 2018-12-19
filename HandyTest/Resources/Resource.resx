@@ -171,4 +171,7 @@
   <data name="tooltip_Delete" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <data name="repot_bug" xml:space="preserve">
+    <value>Report Bug</value>
+  </data>
 </root>

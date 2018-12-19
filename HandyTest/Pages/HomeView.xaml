@@ -339,7 +339,7 @@
             CanUserResizeColumns="False"
             CanUserSortColumns="False"
             CellStyle="{StaticResource MyDataGridCell}"
-            DataContextChanged="projectsListDataGrid_DataContextChanged"
+            DataContextChanged="ProjectsListDataGrid_DataContextChanged"
             GridLinesVisibility="None"
             HeadersVisibility="Column"
             HorizontalScrollBarVisibility="Disabled"
@@ -556,7 +556,24 @@
                         TextAlignment="Center" />
                 </StackPanel>
             </Button>
-
+            <Button
+                Grid.Row="2"
+                Grid.Column="2"
+                Margin="10"
+                HorizontalAlignment="Right"
+                VerticalAlignment="Bottom"
+                Background="Transparent"
+                BorderThickness="0"
+                Click="OpenExplorativeTest"
+                Style="{StaticResource ImageButtonStyle}">
+                <StackPanel>
+                    <Image MaxHeight="40" Source="../Resources/Icons/icons8-utwórz-nowy-100.png" />
+                    <TextBlock
+                        FontSize="16"
+                        Text="{x:Static resx:Resource.repot_bug}"
+                        TextAlignment="Center" />
+                </StackPanel>
+            </Button>
 
             <!--  Create new project pop-up  -->
             <Popup
