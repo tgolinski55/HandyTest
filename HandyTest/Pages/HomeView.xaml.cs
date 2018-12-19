@@ -9,6 +9,8 @@ using System.Data;
 using System.ComponentModel;
 using System.Windows.Controls;
 using HandyTest.Pages;
+using HandyTest.Views;
+using HandyTest.Resources;
 using System.Windows.Navigation;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
@@ -21,7 +23,7 @@ namespace HandyTest.Pages
     public partial class HomeView : UserControl
     {
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
-
+        ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         BL.WindowSettings set = new BL.WindowSettings();
         public HomeView()
         {
@@ -183,9 +185,37 @@ namespace HandyTest.Pages
             }
         }
 
-        private void projectsListDataGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
+        private void ProjectsListDataGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
             SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
+        }
+
+        private void OpenExplorativeTest(object sender, RoutedEventArgs e)
+        {
+
+
+               
+            //if (explorativeTestView.IsActive == false)
+            //{
+            //    explorativeTestView.Show();
+            //    explorativeTestView.Activate();
+            //}
+            //else
+            //{
+            //}
+
+            if (!IsWindowOpen<Window>("ExplorativeTestView"))
+            {
+                explorativeTestView.Show();
+            }
+
+        }
+
+        public static bool IsWindowOpen<T>(string name = "") where T : Window
+        {
+            return string.IsNullOrEmpty(name)
+               ? Application.Current.Windows.OfType<T>().Any()
+               : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
         }
     }
 }

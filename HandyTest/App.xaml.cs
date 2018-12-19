@@ -14,4 +14,5 @@ namespace HandyTest
     public partial class App : Application
     {
     }
+
 }
