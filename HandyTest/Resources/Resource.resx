@@ -130,7 +130,7 @@
     <value>Make Active</value>
   </data>
   <data name="imageButton_AutoTest" xml:space="preserve">
-    <value>Automatic test</value>
+    <value>Automated test</value>
   </data>
   <data name="imageButton_CreateReport" xml:space="preserve">
     <value>Create report</value>

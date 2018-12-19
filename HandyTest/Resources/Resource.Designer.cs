@@ -97,7 +97,7 @@ namespace HandyTest.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automatic test.
+        ///   Looks up a localized string similar to Automated test.
         /// </summary>
         public static string imageButton_AutoTest {
             get {
