@@ -57,7 +57,7 @@ namespace HandyTest.Views
 
         private void AddStateItems(object sender, RoutedEventArgs e)
         {
-            stateCombo.Items.Add("Reported");
+            stateCombo.Items.Add("Submitted");
             stateCombo.Items.Add("Success");
             stateCombo.Items.Add("Failure");
             stateCombo.Items.Add("Won't Fix");
@@ -66,6 +66,15 @@ namespace HandyTest.Views
         {
             var currentData = DateTime.Today;
             reportDateFile.Text = currentData.ToShortDateString();
+        }
+
+        private void ChangeFocusIfTabIsPressed(object sender, KeyEventArgs e)
+        {
+            if(e.Key == Key.Tab)
+            {
+                textBoxDescription.Focus();
+                e.Handled = true;
+            }
         }
     }
 }

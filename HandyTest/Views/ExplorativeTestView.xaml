@@ -15,11 +15,13 @@
     MaxHeight="620"
     Background="Transparent"
     BorderBrush="#232526"
+    BorderThickness="1"
     Icon="{x:Null}"
     Loaded="Window_Loaded"
     ResizeMode="NoResize"
     ShowInTaskbar="True"
     Style="{x:Null}"
+    Topmost="True"
     WindowStyle="None"
     mc:Ignorable="d">
     <Grid Background="WhiteSmoke">
@@ -54,7 +56,7 @@
             VerticalAlignment="Top"
             Click="PreviousWindowBtn"
             Style="{StaticResource FunctionalButtonStyle}">
-            <Label Content="Raport" Foreground="WhiteSmoke" />
+            <Label Content="Create" Foreground="WhiteSmoke" />
         </Button>
 
         <DockPanel>
@@ -69,7 +71,7 @@
                     Content="Author"
                     FontSize="16" />
                 <TextBox
-                    Width="100"
+                    Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
                     FontSize="14" />
@@ -85,7 +87,7 @@
                     Content="Build version"
                     FontSize="16" />
                 <TextBox
-                    Width="100"
+                    Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
                     FontSize="14" />
@@ -104,12 +106,10 @@
                     FontSize="16" />
                 <DatePicker
                     Name="reportDateFile"
-                    Width="100"
+                    Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
-                    FontSize="14"
-                    SelectedDateFormat="Short"
-                    Text="" />
+                    FontSize="14" />
             </StackPanel>
         </DockPanel>
 
@@ -127,7 +127,7 @@
                     FontSize="16" />
                 <ComboBox
                     Name="priorityCombo"
-                    Width="100"
+                    Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
                     VerticalAlignment="Top"
@@ -148,7 +148,7 @@
                     FontSize="16" />
                 <ComboBox
                     Name="report_typeCombo"
-                    Width="100"
+                    Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
                     VerticalAlignment="Top"
@@ -169,7 +169,7 @@
                     FontSize="16" />
                 <ComboBox
                     Name="stateCombo"
-                    Width="100"
+                    Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
                     VerticalAlignment="Top"
@@ -192,7 +192,10 @@
             HorizontalAlignment="Left"
             VerticalAlignment="Center"
             controls:TextBoxHelper.Watermark="Summary"
-            FontSize="16" />
+            AcceptsTab="False"
+            FontSize="16"
+            IsTabStop="False"
+            Keyboard.KeyDown="ChangeFocusIfTabIsPressed" />
 
 
         <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
@@ -243,7 +246,8 @@
                 AcceptsTab="True"
                 FontSize="{Binding ElementName=fontSizeCombo, Path=SelectedItem.Content}"
                 SpellCheck.IsEnabled="True"
-                TextWrapping="Wrap" />
+                TextWrapping="Wrap"
+                VerticalScrollBarVisibility="Auto" />
         </DockPanel>
     </Grid>
 </Window>
