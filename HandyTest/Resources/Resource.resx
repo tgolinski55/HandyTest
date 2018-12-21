@@ -129,8 +129,8 @@
   <data name="button_MakeActive" xml:space="preserve">
     <value>Make Active</value>
   </data>
-  <data name="imageButton_AutoTest" xml:space="preserve">
-    <value>Automated test</value>
+  <data name="imageButton_ViewIssues" xml:space="preserve">
+    <value>All Issues</value>
   </data>
   <data name="imageButton_CreateReport" xml:space="preserve">
     <value>Create report</value>

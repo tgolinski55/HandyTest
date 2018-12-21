@@ -280,44 +280,6 @@
             <ColumnDefinition />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
-
-        <!--  Upper ribbon  -->
-        <!--<Label Grid.Row="0" Grid.ColumnSpan="3"
-                   FontSize="15" Content="HandyTest"
-                   Foreground="WhiteSmoke" Background="#232526"
-                   HorizontalContentAlignment="Center"
-
-                   MouseDown="WindowDragMove"
-                       MouseDoubleClick="WindowDoubleClick"/>-->
-
-        <!--<Button Style="{StaticResource TransparentStyle}" Grid.Column="2" HorizontalAlignment="Right" Width="30" FontSize="10" Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.CloseWindowCommand}">
-                <Button.Content>
-                    <StackPanel>
-                        <Label Content="✕" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15"  Margin="0"/>
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-            <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,30,0" BorderThickness="0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MaximizeWindowCommand}">
-                <Button.Content>
-                    <StackPanel>
-                        <Label Content="&#128470;" HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
-                    </StackPanel>
-                </Button.Content>
-            </Button>
-            <Button Style="{StaticResource TransparentStyle2}" Grid.Column="2" HorizontalAlignment="Right" Width="30" Margin="0,0,60,0"  Background="Transparent" Foreground="WhiteSmoke" Command="{x:Static SystemCommands.MinimizeWindowCommand}">
-                <Button.Content>
-                    <StackPanel>
-                        <Label Content="🗕"  HorizontalAlignment="Center" Foreground="WhiteSmoke" FontSize="15" Margin="0"/>
-                    </StackPanel>
-                </Button.Content>
-            </Button>-->
-        <!--  Lower ribbon  -->
-        <!--<Label Content="Ver. 1.0.1.1" FontSize="15"  Grid.Row="2" Grid.ColumnSpan="3" Background="#232526" Foreground="WhiteSmoke"/>-->
-
-
-        <!--  Separator  -->
-        <!--<Label Grid.Row="1" BorderBrush="#D4791C" BorderThickness="0,0,1,0" Background="Transparent" IsEnabled="False" Margin="0,5" />-->
-
         <!--  Projects list  -->
         <Label
             Grid.Row="1"
@@ -333,7 +295,6 @@
             Padding="0,5,5,5"
             AutoGenerateColumns="False"
             Background="Transparent"
-            MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
             BorderBrush="#D4791C"
             BorderThickness="0"
             CanUserDeleteRows="False"
@@ -345,6 +306,7 @@
             HeadersVisibility="Column"
             HorizontalScrollBarVisibility="Disabled"
             IsSynchronizedWithCurrentItem="True"
+            MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
             SelectionMode="Single"
             VerticalScrollBarVisibility="Visible">
 
@@ -451,7 +413,8 @@
                 Grid.RowSpan="3"
                 Grid.ColumnSpan="3"
                 Margin="0"
-                Panel.ZIndex="1">
+                Panel.ZIndex="1"
+                Visibility="Hidden">
                 <Grid>
                     <Label
                         HorizontalAlignment="Stretch"
@@ -548,12 +511,13 @@
                 VerticalAlignment="Center"
                 Background="Transparent"
                 BorderThickness="0"
+                Click="OpenAllIssues"
                 Style="{StaticResource ImageButtonStyle}">
                 <StackPanel>
-                    <Image MaxHeight="70" Source="../Resources/Icons/icons8-automatyczny-100.png" />
+                    <Image MaxHeight="70" Source="../Resources/Icons/icons8-folder-tree-100.png" />
                     <TextBlock
                         FontSize="20"
-                        Text="{x:Static resx:Resource.imageButton_AutoTest}"
+                        Text="{x:Static resx:Resource.imageButton_ViewIssues}"
                         TextAlignment="Center" />
                 </StackPanel>
             </Button>

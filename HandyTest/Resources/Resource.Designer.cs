@@ -97,15 +97,6 @@ namespace HandyTest.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Automated test.
-        /// </summary>
-        public static string imageButton_AutoTest {
-            get {
-                return ResourceManager.GetString("imageButton_AutoTest", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Create report.
         /// </summary>
         public static string imageButton_CreateReport {
@@ -129,6 +120,15 @@ namespace HandyTest.Resources {
         public static string imageButton_ManualTest {
             get {
                 return ResourceManager.GetString("imageButton_ManualTest", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All Issues.
+        /// </summary>
+        public static string imageButton_ViewIssues {
+            get {
+                return ResourceManager.GetString("imageButton_ViewIssues", resourceCulture);
             }
         }
         

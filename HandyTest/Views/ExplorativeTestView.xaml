@@ -54,7 +54,7 @@
             Padding="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
-            Click="PreviousWindowBtn"
+            Click="CreateExplorativeReport"
             Style="{StaticResource FunctionalButtonStyle}">
             <Label Content="Create" Foreground="WhiteSmoke" />
         </Button>
@@ -71,6 +71,7 @@
                     Content="Author"
                     FontSize="16" />
                 <TextBox
+                    Name="setAuthor"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
@@ -87,6 +88,7 @@
                     Content="Build version"
                     FontSize="16" />
                 <TextBox
+                    Name="setBuildVersion"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
@@ -105,7 +107,7 @@
                     Content="Date"
                     FontSize="16" />
                 <DatePicker
-                    Name="reportDateFile"
+                    Name="setreportDateFile"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
@@ -126,7 +128,7 @@
                     Content="Priority"
                     FontSize="16" />
                 <ComboBox
-                    Name="priorityCombo"
+                    Name="setpriorityCombo"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
@@ -147,7 +149,7 @@
                     Content="Type"
                     FontSize="16" />
                 <ComboBox
-                    Name="report_typeCombo"
+                    Name="setreporttypeCombo"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
@@ -168,7 +170,7 @@
                     Content="State"
                     FontSize="16" />
                 <ComboBox
-                    Name="stateCombo"
+                    Name="setstateCombo"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
@@ -185,6 +187,7 @@
             VerticalAlignment="Top" />
 
         <TextBox
+            Name="setSummary"
             Grid.Row="1"
             Grid.ColumnSpan="2"
             MinWidth="400"
@@ -239,7 +242,7 @@
                 </ToolBar>
             </ToolBarTray>
             <TextBox
-                Name="textBoxDescription"
+                Name="settextBoxDescription"
                 Margin="10,0,10,0"
                 controls:TextBoxHelper.Watermark="Description..."
                 AcceptsReturn="True"

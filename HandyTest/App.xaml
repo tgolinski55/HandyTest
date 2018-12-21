@@ -11,6 +11,7 @@
                 <ResourceDictionary Source="Resources/Styles/HeaderStyle.xaml" />
                 <ResourceDictionary Source="Resources/Styles/DataGridStyle.xaml" />
                 <ResourceDictionary Source="Resources/Styles/ButtonStyle.xaml" />
+                <ResourceDictionary Source="Resources/Styles/TreeStyle.xaml" />
                 <ResourceDictionary Source="Resources/Converters/BoolToVisibilityConverter.xaml" />
                 <ResourceDictionary Source="Resources/IDictionary/MenuItemTemplate.xaml" />
 

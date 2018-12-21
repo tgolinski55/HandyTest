@@ -1,18 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
 using HandyTest.BL;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using HandyTest.Pages;
+using System.Collections.ObjectModel;
+using System.Xml.Linq;
 
 namespace HandyTest.Views
 {
@@ -21,6 +12,7 @@ namespace HandyTest.Views
     /// </summary>
     public partial class ExplorativeTestView : Window
     {
+    ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
         public ExplorativeTestView()
         {
             InitializeComponent();
@@ -41,40 +33,68 @@ namespace HandyTest.Views
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
         {
-            priorityCombo.Items.Add("Critical");
-            priorityCombo.Items.Add("Major");
-            priorityCombo.Items.Add("Medium");
-            priorityCombo.Items.Add("Minor");
-            priorityCombo.Items.Add("Cosmetics");
+            setpriorityCombo.Items.Add("Critical");
+            setpriorityCombo.Items.Add("Major");
+            setpriorityCombo.Items.Add("Medium");
+            setpriorityCombo.Items.Add("Minor");
+            setpriorityCombo.Items.Add("Cosmetics");
         }
 
         private void AddTypeItems(object sender, RoutedEventArgs e)
         {
-            report_typeCombo.Items.Add("Task");
-            report_typeCombo.Items.Add("Bug");
-            report_typeCombo.Items.Add("Feature");
+            setreporttypeCombo.Items.Add("Task");
+            setreporttypeCombo.Items.Add("Bug");
+            setreporttypeCombo.Items.Add("Feature");
         }
 
         private void AddStateItems(object sender, RoutedEventArgs e)
         {
-            stateCombo.Items.Add("Submitted");
-            stateCombo.Items.Add("Success");
-            stateCombo.Items.Add("Failure");
-            stateCombo.Items.Add("Won't Fix");
+            setstateCombo.Items.Add("Submitted");
+            setstateCombo.Items.Add("Success");
+            setstateCombo.Items.Add("Failure");
+            setstateCombo.Items.Add("Won't Fix");
         }
         private void SetCurrentData()
         {
             var currentData = DateTime.Today;
-            reportDateFile.Text = currentData.ToShortDateString();
+            setreportDateFile.Text = currentData.ToShortDateString();
         }
 
         private void ChangeFocusIfTabIsPressed(object sender, KeyEventArgs e)
         {
             if(e.Key == Key.Tab)
             {
-                textBoxDescription.Focus();
+                settextBoxDescription.Focus();
                 e.Handled = true;
             }
         }
+        public string activeProject;
+        private void CreateExplorativeReport(object sender, RoutedEventArgs e)
+        {
+            
+            string path = @"../../Projects/" + activeProject+"/";
+            createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
+            new XDocument(
+                new XElement("root",
+                    new XElement("Author", setAuthor.Text),
+                    new XElement("BuildVersion", setBuildVersion.Text),
+                    new XElement("Date", setreportDateFile.Text),
+                    new XElement("Priority", setpriorityCombo.Text),
+                    new XElement("Type", setreporttypeCombo.Text),
+                    new XElement("State", setstateCombo.Text),
+                    new XElement("Description", settextBoxDescription.Text))
+                    )
+            .Save(path+"Reports/"+setSummary.Text+".xml");
+            this.Hide();
+            setAuthor.Clear();
+            setBuildVersion.Clear();
+            SetCurrentData();
+            setpriorityCombo.SelectedIndex = 2;
+            setreporttypeCombo.SelectedIndex = 1;
+            setstateCombo.SelectedIndex = 0;
+            setSummary.Clear();
+            settextBoxDescription.Clear();
+        }
+
     }
 }

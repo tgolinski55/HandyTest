@@ -8,12 +8,7 @@ using System.Linq;
 using System.Data;
 using System.ComponentModel;
 using System.Windows.Controls;
-using HandyTest.Pages;
 using HandyTest.Views;
-using HandyTest.Resources;
-using System.Windows.Navigation;
-using MahApps.Metro.Controls;
-using MahApps.Metro.Controls.Dialogs;
 
 namespace HandyTest.Pages
 {
@@ -24,6 +19,8 @@ namespace HandyTest.Pages
     {
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
+        public event EventHandler Changed;
+        private string getCurrentProject;
         BL.WindowSettings set = new BL.WindowSettings();
         public HomeView()
         {
@@ -54,7 +51,7 @@ namespace HandyTest.Pages
                 Directory.CreateDirectory(pathToProject);
                 Directory.CreateDirectory(pathToProject + "/Manual Test");
                 Directory.CreateDirectory(pathToProject + "/Automatic Test");
-                File.Create(pathToProject + "/Report.docx");
+                Directory.CreateDirectory(pathToProject + "/Reports");
                 Close_PopUp(sender, e);
 
                 SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
@@ -161,6 +158,13 @@ namespace HandyTest.Pages
             PageNavigator.Switch(new ManualTestView());
         }
 
+        void OpenAllIssues(object sender, RoutedEventArgs e)
+        {
+            AllIssues allIssues = new AllIssues();
+            allIssues.activeProject = activeProjectTxtBlock.Text;
+            PageNavigator.Switch(allIssues);
+
+        }
 
 
         private void DeleteProjectBtn(object sender, RoutedEventArgs e)
@@ -196,6 +200,7 @@ namespace HandyTest.Pages
             if (!IsWindowOpen<Window>("ExplorativeTestView"))
             {
                 explorativeTestView.Show();
+                SetActiveProj();
             }
             else
             {
@@ -210,6 +215,12 @@ namespace HandyTest.Pages
                ? Application.Current.Windows.OfType<T>().Any()
                : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
         }
+
+        public void SetActiveProj()
+        {
+            explorativeTestView.activeProject = activeProjectTxtBlock.Text;
+        }
+
     }
 }
 
