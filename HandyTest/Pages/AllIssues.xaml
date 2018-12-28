@@ -54,5 +54,147 @@
             BorderThickness="0,2,0,0"
             FontSize="14"
             Loaded="LoadAllIssues" />
+        <GroupBox
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="5"
+            Padding="5"
+            BorderBrush="#D4791C"
+            BorderThickness="1"
+            FontSize="16"
+            Header="Issue Info"
+            Style="{x:Null}">
+            <DockPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <DockPanel>
+                        <StackPanel
+                            Margin="0,30,0,0"
+                            HorizontalAlignment="Right"
+                            DockPanel.Dock="Top"
+                            Orientation="Horizontal">
+                            <Label
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                Content="Author"
+                                FontSize="14" />
+                            <TextBox
+                                Name="setAuthor"
+                                Width="100"
+                                Margin="10,0,0,0"
+                                Padding="1"
+                                FontSize="12" />
+                        </StackPanel>
+                        <StackPanel
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Right"
+                            DockPanel.Dock="Top"
+                            Orientation="Horizontal">
+                            <Label
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                Content="Build version"
+                                FontSize="14" />
+                            <TextBox
+                                Name="setBuildVersion"
+                                Width="100"
+                                Margin="10,0,0,0"
+                                Padding="1"
+                                FontSize="12" />
+                        </StackPanel>
+                        <StackPanel
+                            Margin="0,5,0,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            DockPanel.Dock="Top"
+                            Orientation="Horizontal">
+
+                            <Label
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                Content="Date"
+                                FontSize="14" />
+                            <DatePicker
+                                Name="setreportDateFile"
+                                Width="100"
+                                Margin="10,0,0,0"
+                                Padding="1"
+                                FontSize="12" />
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel Grid.Column="1">
+                        <StackPanel
+                            Margin="0,30,5,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            DockPanel.Dock="Top"
+                            Orientation="Horizontal">
+                            <Label
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                Content="Priority"
+                                FontSize="14" />
+                            <ComboBox
+                                Name="setpriorityCombo"
+                                Width="100"
+                                Margin="10,0,0,0"
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                FontSize="14"
+                                Loaded="AddPriorityItems"
+                                SelectedIndex="2" />
+                        </StackPanel>
+                        <StackPanel
+                            Margin="0,5,5,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            DockPanel.Dock="Top"
+                            Orientation="Horizontal">
+                            <Label
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                Content="Type"
+                                FontSize="14" />
+                            <ComboBox
+                                Name="setreporttypeCombo"
+                                Width="100"
+                                Margin="10,0,0,0"
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                FontSize="14"
+                                Loaded="AddTypeItems"
+                                SelectedIndex="1" />
+                        </StackPanel>
+                        <StackPanel
+                            Margin="0,5,5,0"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Top"
+                            DockPanel.Dock="Top"
+                            Orientation="Horizontal">
+                            <Label
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                Content="State"
+                                FontSize="14" />
+                            <ComboBox
+                                Name="setstateCombo"
+                                Width="100"
+                                Margin="10,0,0,0"
+                                Padding="1"
+                                VerticalAlignment="Top"
+                                FontSize="14"
+                                Loaded="AddStateItems"
+                                SelectedIndex="0" />
+                        </StackPanel>
+                    </DockPanel>
+                </Grid>
+            </DockPanel>
+
+        </GroupBox>
+
     </Grid>
 </UserControl>
