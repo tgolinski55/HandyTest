@@ -69,12 +69,12 @@
                     Padding="1"
                     VerticalAlignment="Top"
                     Content="Author"
-                    FontSize="16" />
+                    FontSize="14" />
                 <TextBox
                     Name="setAuthor"
                     Width="110"
                     Margin="10,0,0,0"
-                    Padding="1"
+                    Padding="0.5"
                     FontSize="14" />
             </StackPanel>
             <StackPanel
@@ -86,12 +86,12 @@
                     Padding="1"
                     VerticalAlignment="Top"
                     Content="Build version"
-                    FontSize="16" />
+                    FontSize="14" />
                 <TextBox
                     Name="setBuildVersion"
                     Width="110"
                     Margin="10,0,0,0"
-                    Padding="1"
+                    Padding="0.5"
                     FontSize="14" />
             </StackPanel>
             <StackPanel
@@ -105,7 +105,7 @@
                     Padding="1"
                     VerticalAlignment="Top"
                     Content="Date"
-                    FontSize="16" />
+                    FontSize="14" />
                 <DatePicker
                     Name="setreportDateFile"
                     Width="110"
@@ -126,14 +126,14 @@
                     Padding="1"
                     VerticalAlignment="Top"
                     Content="Priority"
-                    FontSize="16" />
+                    FontSize="14" />
                 <ComboBox
                     Name="setpriorityCombo"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
                     VerticalAlignment="Top"
-                    FontSize="16"
+                    FontSize="14"
                     Loaded="AddPriorityItems"
                     SelectedIndex="2" />
             </StackPanel>
@@ -147,14 +147,14 @@
                     Padding="1"
                     VerticalAlignment="Top"
                     Content="Type"
-                    FontSize="16" />
+                    FontSize="14" />
                 <ComboBox
                     Name="setreporttypeCombo"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
                     VerticalAlignment="Top"
-                    FontSize="16"
+                    FontSize="14"
                     Loaded="AddTypeItems"
                     SelectedIndex="1" />
             </StackPanel>
@@ -168,14 +168,14 @@
                     Padding="1"
                     VerticalAlignment="Top"
                     Content="State"
-                    FontSize="16" />
+                    FontSize="14" />
                 <ComboBox
                     Name="setstateCombo"
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="1"
                     VerticalAlignment="Top"
-                    FontSize="16"
+                    FontSize="14"
                     Loaded="AddStateItems"
                     SelectedIndex="0" />
             </StackPanel>
