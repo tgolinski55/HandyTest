@@ -4,6 +4,7 @@ using HandyTest.BL;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
+using System.IO;
 
 namespace HandyTest.Views
 {
@@ -12,7 +13,8 @@ namespace HandyTest.Views
     /// </summary>
     public partial class ExplorativeTestView : Window
     {
-    ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
+        ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
+        int issueID;
         public ExplorativeTestView()
         {
             InitializeComponent();
@@ -71,11 +73,12 @@ namespace HandyTest.Views
         public string activeProject;
         private void CreateExplorativeReport(object sender, RoutedEventArgs e)
         {
-            
             string path = @"../../Projects/" + activeProject+"/";
+            issueID = Directory.GetFiles(path, "*.xml", SearchOption.AllDirectories).Length + 1;
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
             new XDocument(
                 new XElement("root",
+                    new XElement("ID", issueID),
                     new XElement("Author", setAuthor.Text),
                     new XElement("BuildVersion", setBuildVersion.Text),
                     new XElement("Date", setreportDateFile.Text),
