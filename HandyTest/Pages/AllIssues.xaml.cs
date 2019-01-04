@@ -6,6 +6,7 @@ using System.Windows.Media;
 using System.Windows;
 using System.Windows.Controls;
 using System;
+using System.Collections.ObjectModel;
 
 namespace HandyTest.Pages
 {
@@ -14,6 +15,7 @@ namespace HandyTest.Pages
     /// </summary>
     public partial class AllIssues : UserControl
     {
+        ObservableCollection<IssuesList> issuesLists = new ObservableCollection<IssuesList>();
         public AllIssues()
         {
             InitializeComponent();
@@ -34,12 +36,15 @@ namespace HandyTest.Pages
             DirectoryInfo dirInfo = new DirectoryInfo(path);
             int count = 1;
             FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
+
+
             foreach (var o in AllFiles)
-            {               
-                allIssuesTree.Items.Add(Path.GetFileNameWithoutExtension("[#"+count.ToString()+"] "+o.Name));
+            {
+                allIssuesDataGrid.ItemsSource = issuesLists;
+                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension("[#" + count.ToString() + "] " + o.Name)));
                 count++;
             }
-        }
+    }
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
         {
