@@ -34,6 +34,7 @@
         BasedOn="{StaticResource {x:Type Button}}"
         TargetType="{x:Type Button}">
         <Setter Property="Cursor" Value="Hand" />
+        <Setter Property="ToolTip" Value="Back" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">

@@ -36,7 +36,7 @@ namespace HandyTest.Pages
             FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
             foreach (var o in AllFiles)
             {               
-                allIssuesTree.Items.Add(Path.GetFileNameWithoutExtension("["+count.ToString()+"] "+o.Name));
+                allIssuesTree.Items.Add(Path.GetFileNameWithoutExtension("[#"+count.ToString()+"] "+o.Name));
                 count++;
             }
         }

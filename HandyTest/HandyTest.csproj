@@ -284,5 +284,8 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\icons8-folder-tree-100.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-edit-64.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
