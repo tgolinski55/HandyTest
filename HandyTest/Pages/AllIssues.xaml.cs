@@ -7,6 +7,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System;
 using System.Collections.ObjectModel;
+using System.Xml.Linq;
 
 namespace HandyTest.Pages
 {
@@ -16,6 +17,7 @@ namespace HandyTest.Pages
     public partial class AllIssues : UserControl
     {
         ObservableCollection<IssuesList> issuesLists = new ObservableCollection<IssuesList>();
+        string selectedIssue;
         public AllIssues()
         {
             InitializeComponent();
@@ -41,7 +43,7 @@ namespace HandyTest.Pages
             foreach (var o in AllFiles)
             {
                 allIssuesDataGrid.ItemsSource = issuesLists;
-                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension("[#" + count.ToString() + "] " + o.Name)));
+                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name)));
                 count++;
             }
     }
@@ -73,6 +75,31 @@ namespace HandyTest.Pages
         {
             var currentData = DateTime.Today;
             setreportDateFile.Text = currentData.ToShortDateString();
+        }
+
+        private void GetInfo()
+        {
+            string path = @"../../Projects/" + activeProject + "/Reports/" + selectedIssue;
+            //XDocument xml = XDocument.Load(path);
+            //var issueInfo = from info in xml.Descendants("root")
+            //                select new
+            //                {
+            //                }
+            //string ID;
+            //XElement xElement = XElement.Parse(path);
+            //var issueInfo =
+            //    xElement
+            //    .Descendants("ID");
+        }
+
+
+
+        private void SelectedIssueChange(object sender, SelectionChangedEventArgs e)
+        {
+            var cellInfo = allIssuesDataGrid.SelectedCells[1];
+            selectedIssue = (cellInfo.Column.GetCellContent(cellInfo.Item) as TextBlock).Text;
+
+            GetInfo();
         }
     }
 }

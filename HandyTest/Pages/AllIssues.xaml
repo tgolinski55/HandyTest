@@ -58,6 +58,7 @@
             GridLinesVisibility="None"
             HeadersVisibility="Column"
             Loaded="LoadAllIssues"
+            SelectionChanged="SelectedIssueChange"
             SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTemplateColumn MaxWidth="4" CellStyle="{StaticResource selectionIndicator}">
@@ -302,8 +303,6 @@
                     </ToggleButton>
                 </Grid>
             </DockPanel>
-
         </GroupBox>
-
     </Grid>
 </UserControl>
