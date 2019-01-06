@@ -179,11 +179,6 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <CheckBox
-                Margin="5,10"
-                VerticalAlignment="Top"
-                Content="Left magnifier"
-                FontSize="14" />
             <Button
                 VerticalAlignment="Top"
                 Click="CopyLeftImageFromClipboard"
@@ -191,12 +186,6 @@
                 FocusVisualStyle="{StaticResource FocusVisualStyle}"
                 FontSize="14"
                 Style="{StaticResource FunctionalButtonStyle}" />
-            <CheckBox
-                Grid.Column="1"
-                Margin="5,10"
-                VerticalAlignment="Top"
-                Content="Right magnifier"
-                FontSize="14" />
 
             <Button
                 Grid.Column="1"
@@ -247,7 +236,8 @@
                 FontSize="14"
                 ItemsSource="{Binding Name}"
                 SelectedIndex="0"
-                SelectionChanged="ChangeImage" />
+                SelectionChanged="ChangeImage"
+                Visibility="Collapsed" />
             <ComboBox
                 Name="dropDownRightImageList"
                 Grid.Column="1"
@@ -256,7 +246,8 @@
                 VerticalAlignment="Bottom"
                 FontSize="14"
                 ItemsSource="{Binding ImageViewer, Mode=TwoWay}"
-                SelectedIndex="0" />
+                SelectedIndex="0"
+                Visibility="Collapsed" />
             <Border
                 Name="borderImage1"
                 Grid.Row="1"
@@ -266,7 +257,7 @@
                 VerticalAlignment="Stretch"
                 AllowDrop="True"
                 BorderBrush="#D4791C"
-                BorderThickness="1,0,1,1"
+                BorderThickness="1"
                 ClipToBounds="True"
                 Drop="LeftImageDragAndDrop">
 
@@ -295,7 +286,7 @@
                 VerticalAlignment="Stretch"
                 AllowDrop="True"
                 BorderBrush="#D4791C"
-                BorderThickness="1,0,1,1"
+                BorderThickness="1"
                 Drop="RightImageDragAndDrop">
                 <Label ClipToBounds="True">
                     <utils:ZoomBorder>
@@ -312,8 +303,7 @@
                 Margin="20,10"
                 HorizontalAlignment="Left"
                 VerticalAlignment="Top"
-                Click="RestetLeftImage"
-                Content="Reset"
+                Content="Clear"
                 Style="{StaticResource FunctionalButtonStyle}" />
             <Button
                 Grid.Row="2"
@@ -339,8 +329,7 @@
                 Margin="20,10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Click="ClearTxtBlk"
-                Content="Reset"
+                Content="Clear"
                 Style="{StaticResource FunctionalButtonStyle}" />
         </Grid>
 

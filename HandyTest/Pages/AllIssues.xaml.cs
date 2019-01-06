@@ -99,7 +99,7 @@ namespace HandyTest.Pages
             var cellInfo = allIssuesDataGrid.SelectedCells[1];
             selectedIssue = (cellInfo.Column.GetCellContent(cellInfo.Item) as TextBlock).Text;
 
-            GetInfo();
+            //GetInfo();
         }
     }
 }
