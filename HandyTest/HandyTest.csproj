@@ -100,6 +100,7 @@
     <Compile Include="BL\CreateReport.cs" />
     <Compile Include="BL\ImageList.cs" />
     <Compile Include="BL\IssuesList.cs" />
+    <Compile Include="BL\SaveXml.cs" />
     <Compile Include="Pages\AllIssues.xaml.cs">
       <DependentUpon>AllIssues.xaml</DependentUpon>
     </Compile>

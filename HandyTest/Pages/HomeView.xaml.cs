@@ -9,6 +9,7 @@ using System.Data;
 using System.ComponentModel;
 using System.Windows.Controls;
 using HandyTest.Views;
+using System.Xml.Serialization;
 
 namespace HandyTest.Pages
 {
@@ -101,8 +102,20 @@ namespace HandyTest.Pages
                 }
                 selectProjectGrid.IsEnabled = true;
                 selectProjectLabel.Visibility = Visibility.Hidden;
+                string path = @"..//../Projects/";
+                try
+                {
+                    SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path+"ActiveProjectInfo.xml");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
+
         }
+
+       
 
         public void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Ascending)
         {
@@ -135,6 +148,15 @@ namespace HandyTest.Pages
 
             selectProjectGrid.IsEnabled = true;
             selectProjectLabel.Visibility = Visibility.Hidden;
+            string path = @"..//../Projects/";
+            try
+            {
+                SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path + "ActiveProjectInfo.xml");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void Close_PopUp(object sender, RoutedEventArgs e)
