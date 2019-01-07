@@ -259,7 +259,11 @@ namespace HandyTest.Pages
             }
         }
 
-
+        private void RestetLeftImage(object sender, RoutedEventArgs e)
+        {
+            ZoomBorder zoomBorder = new ZoomBorder();
+            zoomBorder.Reset();
+        }
 
 
         private BitmapImage LoadImageFromFile(string filename)
