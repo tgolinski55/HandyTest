@@ -34,7 +34,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>Resources\Icons\muka2_aEv_icon.ico</ApplicationIcon>
+    <ApplicationIcon>handytest2_icon_black_ico.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <NoWin32Manifest>true</NoWin32Manifest>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
@@ -288,6 +291,15 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\icons8-edit-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="handytest2_icon_black.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\Black\handytest2_icon_black_ico.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="handytest2_icon_black_ico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
