@@ -299,7 +299,7 @@
             BorderThickness="0"
             CanUserDeleteRows="False"
             CanUserResizeColumns="False"
-            CanUserSortColumns="False"
+            CanUserSortColumns="True"
             CellStyle="{StaticResource MyDataGridCell}"
             DataContextChanged="ProjectsListDataGrid_DataContextChanged"
             GridLinesVisibility="None"
@@ -352,6 +352,23 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
+                <DataGridTextColumn
+                    Width="120"
+                    Binding="{Binding CurrentDate}"
+                    CellStyle="{StaticResource MyDataGridCell}"
+                    IsReadOnly="True"
+                    Visibility="Collapsed">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                            <Setter Property="HorizontalAlignment" Value="Right" />
+                            <Setter Property="Padding" Value="5,2" />
+                            <Setter Property="FontStyle" Value="Italic" />
+                            <Setter Property="FontSize" Value="13" />
+                            <Setter Property="Cursor" Value="Arrow" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+
                 <DataGridTemplateColumn CellStyle="{StaticResource deleteBtnGridCell}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
@@ -362,7 +379,9 @@
                                 Visibility="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, Converter={StaticResource BooleanToVisibilityConverter}}" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
+
                 </DataGridTemplateColumn>
+
             </DataGrid.Columns>
         </DataGrid>
 

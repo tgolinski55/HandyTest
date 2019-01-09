@@ -20,6 +20,8 @@ namespace HandyTest.Pages
     {
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
+
+        LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         public event EventHandler Changed;
         private string getCurrentProject;
         BL.WindowSettings set = new BL.WindowSettings();
@@ -42,31 +44,35 @@ namespace HandyTest.Pages
         private void UpdateProjectsList(object sender, RoutedEventArgs e)
         {
 
-            var currentDate = DateTime.Now.ToString("dd-MM-yyyy");
+            var currentDate = DateTime.Now.ToString();
+            var displayedDate = DateTime.Now.ToShortDateString();
             if (newProjectName.Text.Length != 0 && !ProjectsList.Any(p => p.Name == newProjectName.Text))
             {
                 projectsListDataGrid.ItemsSource = ProjectsList;
-                ProjectsList.Add(new ProjectList(newProjectName.Text, currentDate));
+                ProjectsList.Add(new ProjectList(newProjectName.Text, displayedDate, currentDate));
                 string path = @"../../Projects/";
                 string pathToProject = Path.Combine(path, newProjectName.Text);
                 Directory.CreateDirectory(pathToProject);
                 Directory.CreateDirectory(pathToProject + "/Manual Test");
-                Directory.CreateDirectory(pathToProject + "/Automatic Test");
                 Directory.CreateDirectory(pathToProject + "/Reports");
                 Close_PopUp(sender, e);
-
-                SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
+                SaveActiveProject();
+                ReloadDataGrid();
 
             }
             else
             {
                 Close_PopUp(sender, e);
             }
+            projectsListDataGrid.Items.Refresh();
+            
         }
 
         public void ReloadDataGrid()
         {
-            SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
+            SortDataGrid(projectsListDataGrid, 3, ListSortDirection.Descending);
+
+            
         }
 
 
@@ -78,17 +84,31 @@ namespace HandyTest.Pages
             var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
             foreach (var o in AllFiles)
             {
-                var item = new ProjectList(o, Directory.GetCreationTime(path + o).ToString("dd-MM-yyyy"));
+                var item = new ProjectList(o, Directory.GetCreationTime(path + o).ToShortDateString(), Directory.GetCreationTime(path + o).ToString());
                 if (!ProjectsList.Contains(item))
                 {
                     ProjectsList.Add(item);
                     projectsListDataGrid.ItemsSource = ProjectsList;
                 }
             }
-            SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
-
+            ReloadDataGrid();
+            LoadCurrentProject();
         }
-
+        public void LoadCurrentProject()
+        {
+            projectsListDataGrid.SelectedIndex = loadCurrentProject.GetCurrentIndex();
+            if (projectsListDataGrid.SelectedItem != null)
+            {
+                activeProjectTxtBlock.Text = loadCurrentProject.GetCurrentProject();
+                selectProjectGrid.IsEnabled = true;
+            }
+            else
+            {
+                activeProjectTxtBlock.Text = null;
+                selectProjectGrid.IsEnabled = false;
+                selectProjectLabel.Visibility = Visibility.Visible;
+            }
+        }
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -102,22 +122,26 @@ namespace HandyTest.Pages
                 }
                 selectProjectGrid.IsEnabled = true;
                 selectProjectLabel.Visibility = Visibility.Hidden;
-                string path = @"..//../Projects/";
-                try
-                {
-                    SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path+"ActiveProjectInfo.xml");
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
+
+                SaveActiveProject();
             }
 
         }
 
-       
+        public void SaveActiveProject()
+        {
+            string path = @"..//../Projects/";
+            try
+            {
+                SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path + "ActiveProjectInfo.xml", projectsListDataGrid.SelectedIndex.ToString());
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
-        public void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Ascending)
+        public void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Descending)
         {
             if (projectsListDataGrid.Items.Count > 0)
             {
@@ -131,9 +155,7 @@ namespace HandyTest.Pages
                 column.SortDirection = sortDirection;
                 projectsListDataGrid.Items.Refresh();
 
-                projectsListDataGrid.SelectedIndex = 0;
-
-                MakeActiveProjectBtn_Click(makeActiveProjectBtn, new RoutedEventArgs());
+                //MakeActiveProjectBtn_Click(makeActiveProjectBtn, new RoutedEventArgs());
             }
         }
 
@@ -148,15 +170,7 @@ namespace HandyTest.Pages
 
             selectProjectGrid.IsEnabled = true;
             selectProjectLabel.Visibility = Visibility.Hidden;
-            string path = @"..//../Projects/";
-            try
-            {
-                SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path + "ActiveProjectInfo.xml");
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
+            SaveActiveProject();
         }
 
         private void Close_PopUp(object sender, RoutedEventArgs e)
@@ -207,13 +221,13 @@ namespace HandyTest.Pages
                     Directory.Delete(path, true);
                 ProjectsList.Remove(selectedItem);
 
-                SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
+                ReloadDataGrid();
             }
         }
 
         private void ProjectsListDataGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
         {
-            SortDataGrid(projectsListDataGrid, 2, ListSortDirection.Descending);
+            ReloadDataGrid();
         }
 
         private void OpenExplorativeTest(object sender, RoutedEventArgs e)
