@@ -36,9 +36,7 @@
   <PropertyGroup>
     <ApplicationIcon>handytest2_icon_black_ico.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
@@ -291,9 +289,6 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\icons8-edit-64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="handytest2_icon_black.ico" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\Black\handytest2_icon_black_ico.ico" />
