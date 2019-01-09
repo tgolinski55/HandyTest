@@ -293,9 +293,6 @@
     <Resource Include="Resources\Icons\icons8-edit-64.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="handytest2_icon_black.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Icons\Black\handytest2_icon_black_ico.ico" />
   </ItemGroup>
   <ItemGroup>
