@@ -10,10 +10,12 @@ namespace HandyTest.BL
     {
         public string Name { get; set; }
         public string Date { get; set; }
-        public ProjectList(string name, string date)
+        public string CurrentDate { get; set; }
+        public ProjectList(string name, string date, string currentDate)
         {
             this.Name = name;
             this.Date = date;
+            this.CurrentDate = currentDate;
         }
     }
 }

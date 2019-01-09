@@ -36,9 +36,7 @@
   <PropertyGroup>
     <ApplicationIcon>handytest2_icon_black_ico.ico</ApplicationIcon>
   </PropertyGroup>
-  <PropertyGroup>
-    <NoWin32Manifest>true</NoWin32Manifest>
-  </PropertyGroup>
+  <PropertyGroup />
   <ItemGroup>
     <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ControlzEx.3.0.2.4\lib\net45\ControlzEx.dll</HintPath>
@@ -103,6 +101,7 @@
     <Compile Include="BL\CreateReport.cs" />
     <Compile Include="BL\ImageList.cs" />
     <Compile Include="BL\IssuesList.cs" />
+    <Compile Include="BL\LoadCurrentProject.cs" />
     <Compile Include="BL\SaveXml.cs" />
     <Compile Include="Pages\AllIssues.xaml.cs">
       <DependentUpon>AllIssues.xaml</DependentUpon>
@@ -127,7 +126,6 @@
     <Compile Include="BL\ManualTestOptions.cs" />
     <Compile Include="BL\PageNavigator.cs" />
     <Compile Include="BL\ProjectList.cs" />
-    <Compile Include="BL\SaveProjectList.cs" />
     <Compile Include="BL\WindowSettings.cs" />
     <Compile Include="BL\ZoomBorder.cs" />
     <Compile Include="MainWindow.xaml.cs">
