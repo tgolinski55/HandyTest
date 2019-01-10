@@ -264,7 +264,7 @@
         </Style>
         <CollectionViewSource x:Key="cvs" Source="{Binding ProjecsList}">
             <CollectionViewSource.SortDescriptions>
-                <scm:SortDescription Direction="Ascending" PropertyName="Date" />
+                <scm:SortDescription Direction="Descending" PropertyName="Date" />
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
 
@@ -306,6 +306,7 @@
             HeadersVisibility="Column"
             HorizontalScrollBarVisibility="Disabled"
             IsSynchronizedWithCurrentItem="True"
+            ItemsSource="{Binding Source={StaticResource cvs}}"
             MouseDoubleClick="ProjectsListDataGrid_MouseDoubleClick"
             SelectionMode="Single"
             VerticalScrollBarVisibility="Visible">
@@ -339,6 +340,7 @@
                 <DataGridTextColumn
                     Width="80"
                     Binding="{Binding Date}"
+                    CanUserSort="True"
                     CellStyle="{StaticResource MyDataGridCell}"
                     IsReadOnly="True">
 
@@ -354,7 +356,7 @@
                 </DataGridTextColumn>
                 <DataGridTextColumn
                     Width="120"
-                    Binding="{Binding CurrentDate}"
+                    Binding="{Binding CurrentDate, Mode=OneWay}"
                     CellStyle="{StaticResource MyDataGridCell}"
                     IsReadOnly="True"
                     Visibility="Collapsed">

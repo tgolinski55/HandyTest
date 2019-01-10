@@ -54,6 +54,7 @@ namespace HandyTest.Pages
                 string pathToProject = Path.Combine(path, newProjectName.Text);
                 Directory.CreateDirectory(pathToProject);
                 Directory.CreateDirectory(pathToProject + "/Manual Test");
+                File.Create(Path.Combine(pathToProject,"config.txt"));
                 Directory.CreateDirectory(pathToProject + "/Reports");
                 Close_PopUp(sender, e);
                 SaveActiveProject();
@@ -71,8 +72,6 @@ namespace HandyTest.Pages
         public void ReloadDataGrid()
         {
             SortDataGrid(projectsListDataGrid, 3, ListSortDirection.Descending);
-
-            
         }
 
 
@@ -143,6 +142,7 @@ namespace HandyTest.Pages
 
         public void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Descending)
         {
+            
             if (projectsListDataGrid.Items.Count > 0)
             {
                 var column = projectsListDataGrid.Columns[columnIndex];

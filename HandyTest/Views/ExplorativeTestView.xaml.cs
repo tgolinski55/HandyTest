@@ -70,11 +70,39 @@ namespace HandyTest.Views
                 e.Handled = true;
             }
         }
+        private void SaveProjectConfig()
+        {
+            string pathToConfig = @"../../Projects/" + activeProject + "/";
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToConfig, "config.txt"), false))
+            {
+                outputFile.Write(issueID+1);
+            }
+        }
+        private int GetProjectConfig()
+        {
+            string pathToConfig = Path.Combine(@"../../Projects/" + activeProject + "/","config.txt");
+            
+            try
+            {
+                using (StreamReader configFile = new StreamReader(pathToConfig))
+                {
+                    string addictiveIssueID = configFile.ReadLine();
+                    int.TryParse(addictiveIssueID, out issueID);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
+            return issueID;
+        }
         public string activeProject;
         private void CreateExplorativeReport(object sender, RoutedEventArgs e)
         {
             string path = @"../../Projects/" + activeProject+"/";
-            issueID = Directory.GetFiles(path, "*.xml", SearchOption.AllDirectories).Length + 1;
+
+            //issueID = Directory.GetFiles(path, "*.xml", SearchOption.AllDirectories).Length + 1;
+            GetProjectConfig();
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
             new XDocument(
                 new XElement("root",
@@ -97,6 +125,7 @@ namespace HandyTest.Views
             setstateCombo.SelectedIndex = 0;
             setSummary.Clear();
             settextBoxDescription.Clear();
+            SaveProjectConfig();
         }
 
     }
