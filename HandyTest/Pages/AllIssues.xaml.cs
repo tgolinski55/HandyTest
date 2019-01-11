@@ -19,6 +19,7 @@ namespace HandyTest.Pages
     {
         ObservableCollection<IssuesList> issuesLists = new ObservableCollection<IssuesList>();
         string selectedIssue;
+        string selectedIssueNumber;
         public AllIssues()
         {
             InitializeComponent();
@@ -43,8 +44,10 @@ namespace HandyTest.Pages
 
             foreach (var o in AllFiles)
             {
+                int issueID = 0;
+                int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)),out issueID);
                 allIssuesDataGrid.ItemsSource = issuesLists;
-                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name))));
+                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name),issueID));
                 count++;
             }
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
@@ -81,8 +84,19 @@ namespace HandyTest.Pages
 
         private void SelectedIssueChange(object sender, SelectionChangedEventArgs e)
         {
-            var cellInfo = allIssuesDataGrid.SelectedCells[1];
+            
+            var cellInfo = allIssuesDataGrid.SelectedCells[2];
             selectedIssue = (cellInfo.Column.GetCellContent(cellInfo.Item) as TextBlock).Text;
+
+            GetIssueInfo(selectedIssue);
+
+            issueInfoPanel.IsEnabled = true;
+            issueInfoPanel.Opacity = 1;
+
+            var issueNumber = allIssuesDataGrid.SelectedCells[1];
+            
+            selectedIssueNumber = (issueNumber.Column.GetCellContent(issueNumber.Item) as TextBlock).Text;
+            issueInfoPanel.Header = "Issue Info: #" + selectedIssueNumber;
 
         }
 
@@ -102,6 +116,22 @@ namespace HandyTest.Pages
                 allIssuesDataGrid.Items.Refresh();
             }
             //MakeActiveProjectBtn_Click(makeActiveProjectBtn, new RoutedEventArgs());
+        }
+
+        public void GetIssueInfo(string issueSummary)
+        {
+            setAuthor.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Author", issueSummary);
+            setBuildVersion.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "BuildVersion", issueSummary);
+            setreportDateFile.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Date", issueSummary);
+
+            setpriorityCombo.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Priority", issueSummary);
+            setreporttypeCombo.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Type", issueSummary);
+            setstateCombo.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "State", issueSummary);
+
+            setSummary.Text = issueSummary;
+            settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
+
+
         }
     }
 }
