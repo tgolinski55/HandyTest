@@ -14,7 +14,7 @@ namespace HandyTest.Views
     public partial class ExplorativeTestView : Window
     {
         ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
-        int issueID;
+        int issueID = 1;
         public ExplorativeTestView()
         {
             InitializeComponent();
@@ -100,13 +100,13 @@ namespace HandyTest.Views
         private void CreateExplorativeReport(object sender, RoutedEventArgs e)
         {
             string path = @"../../Projects/" + activeProject+"/";
-
+            
             //issueID = Directory.GetFiles(path, "*.xml", SearchOption.AllDirectories).Length + 1;
             GetProjectConfig();
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
             new XDocument(
                 new XElement("root",
-                    new XElement("ID", issueID),
+                    new XElement("ID", issueID+1),
                     new XElement("Author", setAuthor.Text),
                     new XElement("BuildVersion", setBuildVersion.Text),
                     new XElement("Date", setreportDateFile.Text),

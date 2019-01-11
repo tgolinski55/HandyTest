@@ -9,9 +9,11 @@ namespace HandyTest.BL
     class IssuesList
     {
         public string Name { get; set; }
-        public IssuesList(string name)
+        public string Id { get; set; }
+        public IssuesList(string name, string id)
         {
             this.Name = name;
+            this.Id = id;
         }
     }
 }

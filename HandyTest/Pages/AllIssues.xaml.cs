@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
+using System.ComponentModel;
 
 namespace HandyTest.Pages
 {
@@ -43,10 +44,11 @@ namespace HandyTest.Pages
             foreach (var o in AllFiles)
             {
                 allIssuesDataGrid.ItemsSource = issuesLists;
-                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name)));
+                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name))));
                 count++;
             }
-    }
+            SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
+        }
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
         {
@@ -77,29 +79,29 @@ namespace HandyTest.Pages
             setreportDateFile.Text = currentData.ToShortDateString();
         }
 
-        private void GetInfo()
-        {
-            string path = @"../../Projects/" + activeProject + "/Reports/" + selectedIssue;
-            //XDocument xml = XDocument.Load(path);
-            //var issueInfo = from info in xml.Descendants("root")
-            //                select new
-            //                {
-            //                }
-            //string ID;
-            //XElement xElement = XElement.Parse(path);
-            //var issueInfo =
-            //    xElement
-            //    .Descendants("ID");
-        }
-
-
-
         private void SelectedIssueChange(object sender, SelectionChangedEventArgs e)
         {
             var cellInfo = allIssuesDataGrid.SelectedCells[1];
             selectedIssue = (cellInfo.Column.GetCellContent(cellInfo.Item) as TextBlock).Text;
 
-            GetInfo();
+        }
+
+        public void SortDataGrid(DataGrid allIssuesDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Descending)
+        {
+
+            if (allIssuesDataGrid.Items.Count > 0)
+            {
+                var column = allIssuesDataGrid.Columns[columnIndex];
+                allIssuesDataGrid.Items.SortDescriptions.Clear();
+                allIssuesDataGrid.Items.SortDescriptions.Add(new SortDescription(column.SortMemberPath, sortDirection));
+                foreach (var col in allIssuesDataGrid.Columns)
+                {
+                    col.SortDirection = null;
+                }
+                column.SortDirection = sortDirection;
+                allIssuesDataGrid.Items.Refresh();
+            }
+            //MakeActiveProjectBtn_Click(makeActiveProjectBtn, new RoutedEventArgs());
         }
     }
 }

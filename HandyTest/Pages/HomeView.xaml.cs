@@ -132,7 +132,8 @@ namespace HandyTest.Pages
             string path = @"..//../Projects/";
             try
             {
-                SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path + "ActiveProjectInfo.xml", projectsListDataGrid.SelectedIndex.ToString());
+                var indexOfSelectedItem = projectsListDataGrid.SelectedIndex.ToString();
+                SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path + "ActiveProjectInfo.xml", indexOfSelectedItem);
             }
             catch (Exception ex)
             {

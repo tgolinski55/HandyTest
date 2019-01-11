@@ -19,10 +19,9 @@ namespace HandyTest.BL
             string projectName;
             if (File.Exists(path))
             {
-            xmlFile.Load(path);
-            XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName("Project");
-            projectName = xmlNodeList.Item(0).InnerText;
-
+                xmlFile.Load(path);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName("Project");
+                projectName = xmlNodeList.Item(0).InnerText;
             }
             else
             {
@@ -35,10 +34,10 @@ namespace HandyTest.BL
             int x = 0;
             if (File.Exists(path))
             {
-            xmlFile.Load(path);
-            XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName("Id");
-            string projectIndex = xmlNodeList.Item(0).InnerText;
-            int.TryParse(projectIndex, out x);
+                xmlFile.Load(path);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName("Id");
+                string projectIndex = xmlNodeList.Item(0).InnerText;
+                int.TryParse(projectIndex, out x);
 
             }
             else

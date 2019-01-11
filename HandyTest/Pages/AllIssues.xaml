@@ -73,6 +73,20 @@
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTextColumn
+                    Binding="{Binding Id}"
+                    CellStyle="{StaticResource MyDataGridCell}"
+                    IsReadOnly="True">
+                    <DataGridTextColumn.ElementStyle>
+                        <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                            <Setter Property="TextWrapping" Value="NoWrap" />
+                            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                            <Setter Property="Padding" Value="5,2" />
+                            <Setter Property="ToolTip" Value="{Binding Name}" />
+                            <Setter Property="Margin" Value="0,0,0,0" />
+                        </Style>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
+                <DataGridTextColumn
                     Width="*"
                     Binding="{Binding Name}"
                     CellStyle="{StaticResource MyDataGridCell}"
