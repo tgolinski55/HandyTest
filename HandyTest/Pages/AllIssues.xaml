@@ -304,7 +304,7 @@
             CanUserReorderColumns="False"
             CanUserResizeColumns="False"
             CanUserSortColumns="True"
-            GridLinesVisibility="All"
+            GridLinesVisibility="Horizontal"
             HeadersVisibility="Column"
             Loaded="LoadAllIssues"
             SelectionChanged="SelectedIssueChange"
@@ -361,7 +361,7 @@
             BorderBrush="#D4791C"
             BorderThickness="1"
             FontSize="17"
-            Header="Select issue"
+            Header="Issue info: "
             IsEnabled="False"
             Opacity="0.6"
             Style="{x:Null}">
