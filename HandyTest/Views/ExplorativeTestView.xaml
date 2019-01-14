@@ -50,7 +50,7 @@
             Grid.Column="1"
             Width="80"
             Height="30"
-            Margin="10,5"
+            Margin="0,5,8,0"
             Padding="0"
             HorizontalAlignment="Right"
             VerticalAlignment="Top"

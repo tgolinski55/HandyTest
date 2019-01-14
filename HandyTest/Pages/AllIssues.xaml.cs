@@ -45,9 +45,9 @@ namespace HandyTest.Pages
             foreach (var o in AllFiles)
             {
                 int issueID = 0;
-                int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)),out issueID);
+                int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
                 allIssuesDataGrid.ItemsSource = issuesLists;
-                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name),issueID));
+                issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
                 count++;
             }
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
@@ -84,19 +84,22 @@ namespace HandyTest.Pages
 
         private void SelectedIssueChange(object sender, SelectionChangedEventArgs e)
         {
-            
             var cellInfo = allIssuesDataGrid.SelectedCells[2];
-            selectedIssue = (cellInfo.Column.GetCellContent(cellInfo.Item) as TextBlock).Text;
+            if (allIssuesDataGrid.SelectedIndex>=0)
+            {
 
-            GetIssueInfo(selectedIssue);
+                selectedIssue = (cellInfo.Column.GetCellContent(cellInfo.Item) as TextBlock).Text;
 
-            issueInfoPanel.IsEnabled = true;
-            issueInfoPanel.Opacity = 1;
+                GetIssueInfo(selectedIssue);
 
-            var issueNumber = allIssuesDataGrid.SelectedCells[1];
-            
-            selectedIssueNumber = (issueNumber.Column.GetCellContent(issueNumber.Item) as TextBlock).Text;
-            issueInfoPanel.Header = "Issue Info: #" + selectedIssueNumber;
+                issueInfoPanel.IsEnabled = true;
+                issueInfoPanel.Opacity = 1;
+
+                var issueNumber = allIssuesDataGrid.SelectedCells[1];
+
+                selectedIssueNumber = (issueNumber.Column.GetCellContent(issueNumber.Item) as TextBlock).Text;
+                issueInfoPanel.Header = "Issue Info: #" + selectedIssueNumber;
+            }
 
         }
 
@@ -132,6 +135,36 @@ namespace HandyTest.Pages
             settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
 
 
+        }
+
+        private void DeleteIssue(object sender, RoutedEventArgs e)
+        {
+            string path = @"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml";
+            if (File.Exists(path))
+                File.Delete(path);
+            
+            issuesLists.Clear();
+            LoadAllIssues(sender, e);
+            editButton.IsChecked = false;
+
+            setAuthor.Clear();
+            setBuildVersion.Clear();
+            SetCurrentData();
+            setpriorityCombo.SelectedIndex = 2;
+            setreporttypeCombo.SelectedIndex = 1;
+            setstateCombo.SelectedIndex = 0;
+            setSummary.Clear();
+            settextBoxDescription.Clear();
+            issueInfoPanel.Header = "Issue info: ";
+            //DecreaseIssueCount(); TBD - do i want to do this?
+        }
+
+        private void DecreaseIssueCount()
+        {
+            string path = @"..//../Projects/" + activeProject + "/config.txt";
+            var tempID = File.ReadAllText(path);
+            Int32.TryParse(tempID, out int x);
+            File.WriteAllText(path, (x-1).ToString());
         }
     }
 }
