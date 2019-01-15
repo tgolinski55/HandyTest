@@ -8,6 +8,8 @@ using System.Windows.Controls;
 using System;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
+using Spire.Doc;
+using Spire.Doc.Documents;
 using System.ComponentModel;
 
 namespace HandyTest.Pages
@@ -192,7 +194,7 @@ namespace HandyTest.Pages
         {
             //EditIssue();
         }
-        
+
         private void SaveIssueChanges(object sender, RoutedEventArgs e)
         {
             EditIssue();
@@ -202,7 +204,69 @@ namespace HandyTest.Pages
 
         private void CreateReportFile(object sender, RoutedEventArgs e)
         {
+            var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
+            string pathToReport = @"..//../Projects/" + activeProject + "-Documentation-" + currentDate + ".docx";
+            Document summaryReport = new Document();
+
+            Paragraph paragraph = summaryReport.AddSection().AddParagraph();
+            paragraph.AppendText("Summary report");
+            string pathToTemplate = @"..//../Projects/ReportTemplate.docx";
+            summaryReport.LoadFromFile(pathToTemplate);
+
+
+            #region footer
+            HeaderFooter footer = summaryReport.Sections[0].HeadersFooters.Footer;
+            Paragraph footerParagraph = footer.AddParagraph();
+
+            footerParagraph.AppendField("Page number", FieldType.FieldPage);
+            footerParagraph.AppendText(" of ");
+            footerParagraph.AppendField("Number of pages", FieldType.FieldNumPages);
+            footerParagraph.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Right;
+            #endregion
+
+            #region header
+            HeaderFooter header = summaryReport.Sections[0].HeadersFooters.Header;
+            Paragraph headerParagraph = header.AddParagraph();
+
+            headerParagraph.AppendText(activeProject);
+            headerParagraph.ApplyStyle(BuiltinStyle.NoteHeading);
+            #endregion
+
+            #region firstPage
+            Section firstPage = summaryReport.AddSection();
+            Paragraph tableOfContent = firstPage.AddParagraph();
+
+            tableOfContent.AppendTOC(1, 3);
+
+            Paragraph firstItem = firstPage.AddParagraph();
+            firstItem.AppendText("1. Introduction");
+            firstItem.ApplyStyle(BuiltinStyle.Heading2);
+
+            Paragraph secondItem = firstPage.AddParagraph();
+            secondItem.AppendText("2. Materials & Equipment");
+            secondItem.ApplyStyle(BuiltinStyle.Heading2);
+
+            Paragraph thirdItem = firstPage.AddParagraph();
+            thirdItem.AppendText("3. Test Cases / Testing");
             
+            foreach (var item in issuesLists)
+            {
+                Table table = firstPage.AddTable(true);
+                table.ResetCells(2, 2);
+            }
+
+            thirdItem.ApplyStyle(BuiltinStyle.Heading2);
+
+            Paragraph fourthItem = firstPage.AddParagraph();
+            fourthItem.AppendText("4. Conclusion");
+            fourthItem.ApplyStyle(BuiltinStyle.Heading2);
+
+            summaryReport.UpdateTableOfContents();
+            #endregion
+
+
+
+            summaryReport.SaveToFile(pathToReport, FileFormat.Docx);
         }
     }
 }
