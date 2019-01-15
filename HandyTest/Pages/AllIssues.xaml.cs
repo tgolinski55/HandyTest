@@ -200,5 +200,9 @@ namespace HandyTest.Pages
             LoadAllIssues(sender, e);
         }
 
+        private void CreateReportFile(object sender, RoutedEventArgs e)
+        {
+            
+        }
     }
 }
