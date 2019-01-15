@@ -18,6 +18,7 @@ namespace HandyTest.Pages
     public partial class AllIssues : UserControl
     {
         ObservableCollection<IssuesList> issuesLists = new ObservableCollection<IssuesList>();
+        ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
         string selectedIssue;
         string selectedIssueNumber;
         public AllIssues()
@@ -85,7 +86,7 @@ namespace HandyTest.Pages
         private void SelectedIssueChange(object sender, SelectionChangedEventArgs e)
         {
             var cellInfo = allIssuesDataGrid.SelectedCells[2];
-            if (allIssuesDataGrid.SelectedIndex>=0)
+            if (allIssuesDataGrid.SelectedIndex >= 0)
             {
 
                 selectedIssue = (cellInfo.Column.GetCellContent(cellInfo.Item) as TextBlock).Text;
@@ -118,7 +119,6 @@ namespace HandyTest.Pages
                 column.SortDirection = sortDirection;
                 allIssuesDataGrid.Items.Refresh();
             }
-            //MakeActiveProjectBtn_Click(makeActiveProjectBtn, new RoutedEventArgs());
         }
 
         public void GetIssueInfo(string issueSummary)
@@ -133,8 +133,6 @@ namespace HandyTest.Pages
 
             setSummary.Text = issueSummary;
             settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
-
-
         }
 
         private void DeleteIssue(object sender, RoutedEventArgs e)
@@ -142,7 +140,7 @@ namespace HandyTest.Pages
             string path = @"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml";
             if (File.Exists(path))
                 File.Delete(path);
-            
+
             issuesLists.Clear();
             LoadAllIssues(sender, e);
             editButton.IsChecked = false;
@@ -156,7 +154,7 @@ namespace HandyTest.Pages
             setSummary.Clear();
             settextBoxDescription.Clear();
             issueInfoPanel.Header = "Issue info: ";
-            //DecreaseIssueCount(); TBD - do i want to do this?
+            //DecreaseIssueCount(); TBD - this might be redundant
         }
 
         private void DecreaseIssueCount()
@@ -164,7 +162,43 @@ namespace HandyTest.Pages
             string path = @"..//../Projects/" + activeProject + "/config.txt";
             var tempID = File.ReadAllText(path);
             Int32.TryParse(tempID, out int x);
-            File.WriteAllText(path, (x-1).ToString());
+            File.WriteAllText(path, (x - 1).ToString());
         }
+
+        private void EditIssue()
+        {
+            string pathToID = @"..//../Projects/" + activeProject + "/config.txt";
+            string path = @"..//../Projects/" + activeProject + "/Reports/" + setSummary.Text + ".xml";
+            var tempID = LoadIssuesInfo.GetIssueInfo(activeProject, "ID", selectedIssue);
+            createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
+            new XDocument(
+                new XElement("root",
+                    new XElement("ID", tempID),
+                    new XElement("Author", setAuthor.Text),
+                    new XElement("BuildVersion", setBuildVersion.Text),
+                    new XElement("Date", setreportDateFile.Text),
+                    new XElement("Priority", setpriorityCombo.Text),
+                    new XElement("Type", setreporttypeCombo.Text),
+                    new XElement("State", setstateCombo.Text),
+                    new XElement("Description", settextBoxDescription.Text))
+                    )
+            .Save(path);
+            if (selectedIssue != setSummary.Text)
+                File.Delete(@"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml");
+
+        }
+
+        private void UpdatePriority(object sender, SelectionChangedEventArgs e)
+        {
+            //EditIssue();
+        }
+        
+        private void SaveIssueChanges(object sender, RoutedEventArgs e)
+        {
+            EditIssue();
+            issuesLists.Clear();
+            LoadAllIssues(sender, e);
+        }
+
     }
 }
