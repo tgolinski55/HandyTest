@@ -44,6 +44,8 @@ namespace HandyTest.Pages
             DirectoryInfo dirInfo = new DirectoryInfo(path);
             int count = 1;
             FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
+            string state = "";
+
 
 
             foreach (var o in AllFiles)
@@ -52,10 +54,11 @@ namespace HandyTest.Pages
                 int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
                 allIssuesDataGrid.ItemsSource = issuesLists;
                 issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
+                //StatusIndicator(o.Name);
                 count++;
             }
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
-            
+
         }
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
@@ -202,9 +205,10 @@ namespace HandyTest.Pages
             issuesLists.Clear();
             LoadAllIssues(sender, e);
         }
-
+        public static Brush stateCol = Brushes.Purple;
         private void StatusIndicator(string issue)
         {
+
             string state = "";
             string path = @"..//../Projects/" + activeProject + "/Reports/" + issue;
             XmlDocument xmlFile = new XmlDocument();
@@ -219,22 +223,29 @@ namespace HandyTest.Pages
             {
                 state = "";
             }
-
+            //var template = stateIndicator.CellTemplate;
+            //var stateIndiTemp = (Label)allIssuesDataGrid.Template.FindName("stateIndicator", allIssuesDataGrid);
             //var state = LoadIssuesInfo.GetIssueInfo(activeProject, "State", selectedIssue);
             System.Windows.Style submittedStyle = Application.Current.FindResource("submittedIndicator") as System.Windows.Style;
             System.Windows.Style successStyle = Application.Current.FindResource("successIndicator") as System.Windows.Style;
             System.Windows.Style failureStyle = Application.Current.FindResource("failureIndicator") as System.Windows.Style;
             System.Windows.Style wontfixStyle = Application.Current.FindResource("wontfixIndicator") as System.Windows.Style;
-            if (state == "Submitted")
-                statusIndicator.CellStyle = submittedStyle;
-            else if (state == "Success")
-                statusIndicator.CellStyle = successStyle;
-            else if (state == "Failure")
-                statusIndicator.CellStyle = failureStyle;
-            else if (state == "Won't Fix")
-                statusIndicator.CellStyle = failureStyle;
 
-        }
+
+            foreach (IssuesList item in allIssuesDataGrid.ItemsSource)
+            {
+                var row = allIssuesDataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
+                if (state == "Submitted")
+                    row.Background = Brushes.Blue;
+                else if (state == "Success")
+                    row.Background = Brushes.Green;
+                else if (state == "Failure")
+                    row.Background = Brushes.Red;
+                else if (state == "Won't Fix")
+                    row.Background = Brushes.Gray;
+            }
+
+        } //Obsolete
 
         private void CreateReportFile(object sender, RoutedEventArgs e)
         {
@@ -282,11 +293,11 @@ namespace HandyTest.Pages
 
             Paragraph thirdItem = firstPage.AddParagraph();
             thirdItem.AppendText("3. Test Cases / Testing");
-
             foreach (var item in issuesLists)
             {
-                Table table = firstPage.AddTable(true);
-                table.ResetCells(2, 2);
+                //Table table = firstPage.AddTable(true);
+                Table tab = new Table(summaryReport, true);
+                //tab.ResetCells(2, 2);
             }
 
             thirdItem.ApplyStyle(BuiltinStyle.Heading2);
