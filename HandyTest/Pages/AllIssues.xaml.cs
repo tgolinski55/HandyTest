@@ -11,6 +11,7 @@ using System.Xml.Linq;
 using Spire.Doc;
 using Spire.Doc.Documents;
 using System.ComponentModel;
+using System.Xml;
 
 namespace HandyTest.Pages
 {
@@ -54,6 +55,7 @@ namespace HandyTest.Pages
                 count++;
             }
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
+            
         }
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
@@ -187,7 +189,6 @@ namespace HandyTest.Pages
             .Save(path);
             if (selectedIssue != setSummary.Text)
                 File.Delete(@"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml");
-
         }
 
         private void UpdatePriority(object sender, SelectionChangedEventArgs e)
@@ -200,6 +201,39 @@ namespace HandyTest.Pages
             EditIssue();
             issuesLists.Clear();
             LoadAllIssues(sender, e);
+        }
+
+        private void StatusIndicator(string issue)
+        {
+            string state = "";
+            string path = @"..//../Projects/" + activeProject + "/Reports/" + issue;
+            XmlDocument xmlFile = new XmlDocument();
+            string element = "State";
+            if (File.Exists(path))
+            {
+                xmlFile.Load(path);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+                state = xmlNodeList.Item(0).InnerText;
+            }
+            else
+            {
+                state = "";
+            }
+
+            //var state = LoadIssuesInfo.GetIssueInfo(activeProject, "State", selectedIssue);
+            System.Windows.Style submittedStyle = Application.Current.FindResource("submittedIndicator") as System.Windows.Style;
+            System.Windows.Style successStyle = Application.Current.FindResource("successIndicator") as System.Windows.Style;
+            System.Windows.Style failureStyle = Application.Current.FindResource("failureIndicator") as System.Windows.Style;
+            System.Windows.Style wontfixStyle = Application.Current.FindResource("wontfixIndicator") as System.Windows.Style;
+            if (state == "Submitted")
+                statusIndicator.CellStyle = submittedStyle;
+            else if (state == "Success")
+                statusIndicator.CellStyle = successStyle;
+            else if (state == "Failure")
+                statusIndicator.CellStyle = failureStyle;
+            else if (state == "Won't Fix")
+                statusIndicator.CellStyle = failureStyle;
+
         }
 
         private void CreateReportFile(object sender, RoutedEventArgs e)
@@ -248,7 +282,7 @@ namespace HandyTest.Pages
 
             Paragraph thirdItem = firstPage.AddParagraph();
             thirdItem.AppendText("3. Test Cases / Testing");
-            
+
             foreach (var item in issuesLists)
             {
                 Table table = firstPage.AddTable(true);

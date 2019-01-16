@@ -45,6 +45,51 @@
         </Style.Triggers>
     </Style>
 
+    <Style x:Key="submittedIndicator" TargetType="DataGridCell">
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="Background" Value="Blue" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <Border>
+                        <Border.Style>
+                            <Style TargetType="{x:Type Border}">
+                                <Style.Triggers>
+                                    <Trigger Property="IsMouseOver" Value="True">
+                                        <Setter Property="Background" Value="Blue" />
+                                    </Trigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Border.Style>
+                        <Grid Background="Transparent">
+                            <ContentPresenter />
+                        </Grid>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="successIndicator" TargetType="DataGridCell">
+        <Setter Property="Background" Value="Green" />
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
+    <Style x:Key="failureIndicator" TargetType="DataGridCell">
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="Background" Value="Red" />
+        <Setter Property="BorderThickness" Value="0" />
+
+    </Style>
+
+    <Style x:Key="wontfixIndicator" TargetType="DataGridCell">
+        <Setter Property="IsEnabled" Value="False" />
+        <Setter Property="Background" Value="Gray" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+
     <Style TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="Padding" Value="5" />
