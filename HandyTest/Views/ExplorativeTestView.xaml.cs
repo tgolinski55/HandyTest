@@ -5,6 +5,7 @@ using System.Windows.Input;
 using System.Collections.ObjectModel;
 using System.Xml.Linq;
 using System.IO;
+using HandyTest.Pages;
 
 namespace HandyTest.Views
 {
@@ -14,6 +15,8 @@ namespace HandyTest.Views
     public partial class ExplorativeTestView : Window
     {
         ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
+        LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
+        AllIssues AllIssues = new AllIssues();
         int issueID = 1;
         public ExplorativeTestView()
         {
@@ -64,7 +67,7 @@ namespace HandyTest.Views
 
         private void ChangeFocusIfTabIsPressed(object sender, KeyEventArgs e)
         {
-            if(e.Key == Key.Tab)
+            if (e.Key == Key.Tab)
             {
                 settextBoxDescription.Focus();
                 e.Handled = true;
@@ -75,13 +78,13 @@ namespace HandyTest.Views
             string pathToConfig = @"../../Projects/" + activeProject + "/";
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToConfig, "config.txt"), false))
             {
-                outputFile.Write(issueID+1);
+                outputFile.Write(issueID + 1);
             }
         }
         private int GetProjectConfig()
         {
-            string pathToConfig = Path.Combine(@"../../Projects/" + activeProject + "/","config.txt");
-            
+            string pathToConfig = Path.Combine(@"../../Projects/" + activeProject + "/", "config.txt");
+
             try
             {
                 using (StreamReader configFile = new StreamReader(pathToConfig))
@@ -99,14 +102,14 @@ namespace HandyTest.Views
         public string activeProject;
         private void CreateExplorativeReport(object sender, RoutedEventArgs e)
         {
-            string path = @"../../Projects/" + activeProject+"/";
-            
+            string path = @"../../Projects/" + activeProject + "/";
+
             //issueID = Directory.GetFiles(path, "*.xml", SearchOption.AllDirectories).Length + 1;
             GetProjectConfig();
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
             new XDocument(
                 new XElement("root",
-                    new XElement("ID", issueID+1),
+                    new XElement("ID", issueID + 1),
                     new XElement("Author", setAuthor.Text),
                     new XElement("BuildVersion", setBuildVersion.Text),
                     new XElement("Date", setreportDateFile.Text),
@@ -115,7 +118,7 @@ namespace HandyTest.Views
                     new XElement("State", setstateCombo.Text),
                     new XElement("Description", settextBoxDescription.Text))
                     )
-            .Save(path+"Reports/"+setSummary.Text+".xml");
+            .Save(path + "Reports/" + setSummary.Text + ".xml");
             this.Hide();
             setAuthor.Clear();
             setBuildVersion.Clear();
@@ -126,6 +129,17 @@ namespace HandyTest.Views
             setSummary.Clear();
             settextBoxDescription.Clear();
             SaveProjectConfig();
+            ReloadAllIssuesPage();
+        }
+
+        public void ReloadAllIssuesPage()
+        {
+            string temp = PageNavigator.GetCurrentPage();
+            if (temp == "AllIssuesPage")
+            {
+                AllIssues.activeProject = loadCurrentProject.GetCurrentProject();
+                AllIssues.GetCreatedIssue();
+            }
         }
 
     }

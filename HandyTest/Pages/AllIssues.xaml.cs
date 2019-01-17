@@ -45,7 +45,7 @@ namespace HandyTest.Pages
             DirectoryInfo dirInfo = new DirectoryInfo(path);
             int count = 1;
             FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
-           
+
 
             foreach (var o in AllFiles)
             {
@@ -139,6 +139,29 @@ namespace HandyTest.Pages
 
             setSummary.Text = issueSummary;
             settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
+        }
+        public void GetCreatedIssue()
+        {
+            //issuesLists.Clear();
+            //allIssuesDataGrid.Items.Clear();
+            //string path = @"..//../Projects/" + activeProject + "/Reports";
+            //if (!Directory.Exists(path))
+            //    Directory.CreateDirectory(path);
+            //DirectoryInfo dirInfo = new DirectoryInfo(path);
+            //int count = 1;
+            //FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
+
+            //foreach (var o in AllFiles)
+            //{
+            //    int issueID = 0;
+            //    int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
+            //    allIssuesDataGrid.ItemsSource = issuesLists;
+            //    issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
+            //    //StatusIndicator(o.Name);
+            //    count++;
+            //}
+            LoadAllIssues(allIssuesDataGrid, new RoutedEventArgs());
+            SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
         }
 
         private void DeleteIssue(object sender, RoutedEventArgs e)
@@ -246,7 +269,7 @@ namespace HandyTest.Pages
 
         } //Obsolete
 
-        private void CreateReportFile(object sender, RoutedEventArgs e)
+        public void CreateReportFile(object sender, RoutedEventArgs e)
         {
             var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
             string pathToReport = @"..//../Projects/" + activeProject + "-Documentation-" + currentDate + ".docx";

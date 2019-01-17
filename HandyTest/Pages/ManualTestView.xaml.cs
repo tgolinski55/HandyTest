@@ -226,7 +226,7 @@ namespace HandyTest.Pages
                 //dropDownLeftImageList.ItemsSource = ImageViewerList.ToString();
                 //dropDownRightImageList.ItemsSource = ImageViewerList.ToString();
 
-                ImageViewerList.Add((ImageSource)testImg.Source);
+                //ImageViewerList.Add((ImageSource)testImg.Source);
                 //if (!imageList.Contains(testImg.Source))
                 //    imageList.Add(testImg.Source);
 
@@ -250,19 +250,26 @@ namespace HandyTest.Pages
                 testImg1.Source = Clipboard.GetImage();
                 //dropDownLeftImageList.ItemsSource = ImageViewer;
                 //dropDownRightImageList.ItemsSource = ImageViewer;
-                ImageViewer.Add((ImageViewer.Count).ToString());
-                if (!imageList.Contains(testImg.Source))
-                {
+                //ImageViewer.Add((ImageViewer.Count).ToString());
+                //if (!imageList.Contains(testImg.Source))
+                //{
 
-                    image2List.Add(ConvertToBitmap((BitmapSource)testImg.Source));
-                }
+                //    image2List.Add(ConvertToBitmap((BitmapSource)testImg.Source));
+                //}
             }
         }
 
         private void RestetLeftImage(object sender, RoutedEventArgs e)
         {
             ZoomBorder zoomBorder = new ZoomBorder();
-            zoomBorder.Reset();
+            zoomBorder.Initialize(testImg);
+        }
+
+        private void ResetRightImage(object sender, RoutedEventArgs e)
+        {
+            ZoomBorder zoomBorder = new ZoomBorder();
+            zoomBorder.Initialize(testImg1);
+            //testImg1.Source = null;
         }
 
 
@@ -358,6 +365,8 @@ namespace HandyTest.Pages
             //testImg.Source = (ImageSource)dropDownLeftImageList.SelectedItem;
 
         }
+
+      
     }
 }
 

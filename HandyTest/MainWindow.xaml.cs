@@ -6,6 +6,8 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using HandyTest.Pages;
 using MahApps.Metro.Controls;
+using HandyTest.Views;
+using System.Linq;
 
 namespace HandyTest
 {
@@ -23,58 +25,38 @@ namespace HandyTest
 
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
+            Loaded += Window_Loaded;
         }
 
-        //// Toolbar and drag window
-        //private void CloseCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    Application.Current.Shutdown();
-        //}
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.KeyDown += new KeyEventHandler(KeyListener);
+        }
 
-        //private void MinimizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        //{
-        //    SystemCommands.MinimizeWindow(this);
-        //}
-        //private void MaximizeCommandHandler(object sender, ExecutedRoutedEventArgs e)
-        //{
+        private void KeyListener(object sender, KeyEventArgs e)
+        {
+            ExplorativeTestView explorativeTestView = new ExplorativeTestView();
+            LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
+            if (e.Key == Key.Subtract)
+            {
+                if (!IsWindowOpen<Window>("ExplorativeTestView"))
+                {
+                    explorativeTestView.Show();
+                    explorativeTestView.activeProject = loadCurrentProject.GetCurrentProject();
+                }
+                else
+                {
+                    explorativeTestView.Close();
+                }
+            }
+        }
 
-        //    if (WindowState == WindowState.Maximized)
-        //    {
-        //        WindowState = WindowState.Normal;
-        //        WindowStyle = WindowStyle.None;
-        //        ResizeMode = ResizeMode.CanResizeWithGrip;
-        //    }
-        //    else
-        //    {
-        //        WindowStyle = WindowStyle.None;
-        //        ResizeMode = ResizeMode.NoResize;
-        //        WindowState = WindowState.Maximized;
-        //    }
-        //}
-
-        //private void Label_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
-        //    if (WindowState == WindowState.Maximized)
-        //    {
-        //        WindowState = WindowState.Normal;
-        //        WindowStyle = WindowStyle.None;
-        //        ResizeMode = ResizeMode.CanResizeWithGrip;
-        //    }
-        //    else
-        //    {
-        //        WindowStyle = WindowStyle.None;
-        //        ResizeMode = ResizeMode.NoResize;
-        //        WindowState = WindowState.Maximized;
-        //    }
-        //}
-
-        //private void WindowDragMove(object sender, MouseButtonEventArgs e)
-        //{
-        //    WindowSettings set = new WindowSettings();
-        //    set.Window_MouseDown(sender, e);
-        //}
-
-        
+        public static bool IsWindowOpen<T>(string name = "") where T : Window
+        {
+            return string.IsNullOrEmpty(name)
+               ? Application.Current.Windows.OfType<T>().Any()
+               : Application.Current.Windows.OfType<T>().Any(w => w.Name.Equals(name));
+        }
 
         public void Navigate(UserControl nextPage)
         {

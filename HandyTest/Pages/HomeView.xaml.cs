@@ -256,6 +256,10 @@ namespace HandyTest.Pages
             explorativeTestView.activeProject = activeProjectTxtBlock.Text;
         }
 
+        private void OpenLog(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.Switch(new LogView());
+        }
     }
 }
 

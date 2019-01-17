@@ -497,6 +497,7 @@
                 VerticalAlignment="Center"
                 Background="Transparent"
                 BorderThickness="0"
+                Click="OpenExplorativeTest"
                 Style="{StaticResource ImageButtonStyle}">
                 <StackPanel>
                     <Image MaxHeight="70" Source="../Resources/Icons/icons8-otwórz-dokument-100.png" />
@@ -514,6 +515,7 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Background="Transparent"
+                Click="OpenLog"
                 BorderThickness="0"
                 Style="{StaticResource ImageButtonStyle}">
                 <StackPanel>
@@ -551,7 +553,8 @@
                 Background="Transparent"
                 BorderThickness="0"
                 Click="OpenExplorativeTest"
-                Style="{StaticResource ImageButtonStyle}">
+                Style="{StaticResource ImageButtonStyle}"
+                Visibility="Hidden">
                 <StackPanel>
                     <Image MaxHeight="30" Source="../Resources/Icons/Black/handytest2_icon_black.png" />
                     <TextBlock

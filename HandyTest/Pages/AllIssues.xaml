@@ -10,7 +10,7 @@
     xmlns:utils="clr-namespace:HandyTest.BL"
     xmlns:views="clr-namespace:HandyTest.Pages"
     xmlns:wpfTool="clr-namespace:Xceed.Wpf.Toolkit;assembly=Xceed.Wpf.Toolkit"
-    Name="window"
+    Name="AllIssuesPage"
     d:DesignHeight="450"
     d:DesignWidth="800"
     FontWeight="Light"

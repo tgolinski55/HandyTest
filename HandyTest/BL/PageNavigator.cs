@@ -11,10 +11,15 @@ namespace HandyTest.BL
     {
 
         public static MainWindow pageSwitcher;
-
+        static UserControl currentPage;
         public static void Switch(UserControl newPage)
         {
             pageSwitcher.Navigate(newPage);
+            currentPage = newPage;
+        }
+        public static string GetCurrentPage()
+        {
+            return currentPage.Name;
         }
 
     }

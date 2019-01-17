@@ -171,7 +171,7 @@
             Visibility="Hidden">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="67" />
+                <RowDefinition Height="47" />
                 <RowDefinition AllowDrop="False" />
                 <RowDefinition Height="50" AllowDrop="False" />
             </Grid.RowDefinitions>
@@ -180,6 +180,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <Button
+                HorizontalAlignment="Left"
                 VerticalAlignment="Top"
                 Click="CopyLeftImageFromClipboard"
                 Content="Copy to left"
@@ -297,7 +298,7 @@
                 Margin="20,10"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Top"
-                Click="ClearTxtBlk"
+                Click="ResetRightImage"
                 Content="Reset"
                 Style="{StaticResource FunctionalButtonStyle}" />
         </Grid>
