@@ -13,6 +13,7 @@ using Spire.Doc.Documents;
 using System.ComponentModel;
 using System.Xml;
 using Spire.Doc.Fields;
+using System.Windows.Data;
 
 namespace HandyTest.Pages
 {
@@ -39,6 +40,10 @@ namespace HandyTest.Pages
         public string activeProject;
         private void LoadAllIssues(object sender, RoutedEventArgs e)
         {
+            allIssuesDataGrid.ItemsSource = null;
+            issuesLists.Clear();
+            allIssuesDataGrid.ItemsSource = issuesLists;
+            CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
             string path = @"..//../Projects/" + activeProject + "/Reports";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
@@ -51,11 +56,13 @@ namespace HandyTest.Pages
             {
                 int issueID = 0;
                 int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
-                allIssuesDataGrid.ItemsSource = issuesLists;
+                //allIssuesDataGrid.ItemsSource = issuesLists;
                 issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
                 //StatusIndicator(o.Name);
                 count++;
             }
+
+            CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
 
         }
@@ -140,7 +147,7 @@ namespace HandyTest.Pages
             setSummary.Text = issueSummary;
             settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
         }
-        public void GetCreatedIssue()
+        public void GetCreatedIssue(string issueName, int ID)
         {
             //issuesLists.Clear();
             //allIssuesDataGrid.Items.Clear();
@@ -160,8 +167,9 @@ namespace HandyTest.Pages
             //    //StatusIndicator(o.Name);
             //    count++;
             //}
-            LoadAllIssues(allIssuesDataGrid, new RoutedEventArgs());
+            issuesLists.Add(new IssuesList(issueName, ID));
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
+
         }
 
         private void DeleteIssue(object sender, RoutedEventArgs e)

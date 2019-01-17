@@ -297,7 +297,7 @@
         <DataGrid
             Name="allIssuesDataGrid"
             Grid.Row="1"
-            Margin="0,25,0,40"
+            Margin="-2,29,2,36"
             Padding="0,5,5,5"
             AutoGenerateColumns="False"
             Background="Transparent"
@@ -307,6 +307,7 @@
             CanUserSortColumns="True"
             GridLinesVisibility="Horizontal"
             HeadersVisibility="Column"
+            ItemsSource="{Binding issuesLists, Mode=OneWay}"
             Loaded="LoadAllIssues"
             SelectionChanged="SelectedIssueChange"
             SelectionMode="Single">
@@ -540,6 +541,7 @@
                         </StackPanel>
                     </DockPanel>
                     <Button
+                        Name="saveEditedIssueBtn"
                         Grid.Row="3"
                         Grid.Column="1"
                         Width="50"

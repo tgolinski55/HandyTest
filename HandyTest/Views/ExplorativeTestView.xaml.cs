@@ -6,6 +6,7 @@ using System.Collections.ObjectModel;
 using System.Xml.Linq;
 using System.IO;
 using HandyTest.Pages;
+using System.Windows.Data;
 
 namespace HandyTest.Views
 {
@@ -16,7 +17,6 @@ namespace HandyTest.Views
     {
         ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
-        AllIssues AllIssues = new AllIssues();
         int issueID = 1;
         public ExplorativeTestView()
         {
@@ -134,11 +134,14 @@ namespace HandyTest.Views
 
         public void ReloadAllIssuesPage()
         {
+            //TODO Finish refreshing datagrid
             string temp = PageNavigator.GetCurrentPage();
             if (temp == "AllIssuesPage")
             {
+                int x = loadCurrentProject.GetCurrentIndex();
+                AllIssues AllIssues = new AllIssues();
                 AllIssues.activeProject = loadCurrentProject.GetCurrentProject();
-                AllIssues.GetCreatedIssue();
+                AllIssues.GetCreatedIssue(setSummary.Text,x);
             }
         }
 
