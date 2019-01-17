@@ -45,9 +45,7 @@ namespace HandyTest.Pages
             DirectoryInfo dirInfo = new DirectoryInfo(path);
             int count = 1;
             FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
-            string state = "";
-
-
+           
 
             foreach (var o in AllFiles)
             {

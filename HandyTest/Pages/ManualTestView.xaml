@@ -179,11 +179,6 @@
                 <ColumnDefinition />
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
-            <CheckBox
-                Margin="5,10"
-                VerticalAlignment="Top"
-                Content="Left magnifier"
-                FontSize="14" />
             <Button
                 VerticalAlignment="Top"
                 Click="CopyLeftImageFromClipboard"
@@ -191,12 +186,6 @@
                 FocusVisualStyle="{StaticResource FocusVisualStyle}"
                 FontSize="14"
                 Style="{StaticResource FunctionalButtonStyle}" />
-            <CheckBox
-                Grid.Column="1"
-                Margin="5,10"
-                VerticalAlignment="Top"
-                Content="Right magnifier"
-                FontSize="14" />
 
             <Button
                 Grid.Column="1"
@@ -207,38 +196,7 @@
                 FontSize="14"
                 Style="{StaticResource FunctionalButtonStyle}" />
 
-            <!--<controls:DropDownButton
-                Name="dropDownLeftImageList"
-                Margin="5,0"
-                Padding="0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                Content="{Binding ImageViewer, Mode=TwoWay}"
-                FontSize="14"
-                ItemsSource="{Binding ImageViewer, Mode=OneWay}"
-                TabIndex="0" />-->
-            <!--<ListBox
-                Name="dropDownLeftImageList"
-                Margin="5,0"
-                Padding="0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                BorderBrush="Black"
-                BorderThickness="1"
-                FontSize="14"
-                ItemsSource="{Binding ImageViewer, Mode=OneWay}"
-                TabIndex="0" />-->
-            <!--<wpfTool:DropDownButton
-                Name="dropDownLeftImageList"
-                Margin="5,0"
-                Padding="0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                FontSize="14"
-
-                ItemsSource="{Binding ImageViewer, Mode=OneWay}"
-                TabIndex="0" />-->
-            <ComboBox
+            <!--<ComboBox
                 x:Name="dropDownLeftImageList"
                 Margin="5,0"
                 Padding="0"
@@ -256,7 +214,7 @@
                 VerticalAlignment="Bottom"
                 FontSize="14"
                 ItemsSource="{Binding ImageViewer, Mode=TwoWay}"
-                SelectedIndex="0" />
+                SelectedIndex="0" />-->
             <Border
                 Name="borderImage1"
                 Grid.Row="1"
@@ -266,7 +224,7 @@
                 VerticalAlignment="Stretch"
                 AllowDrop="True"
                 BorderBrush="#D4791C"
-                BorderThickness="1,0,1,1"
+                BorderThickness="1"
                 ClipToBounds="True"
                 Drop="LeftImageDragAndDrop">
 
@@ -295,7 +253,7 @@
                 VerticalAlignment="Stretch"
                 AllowDrop="True"
                 BorderBrush="#D4791C"
-                BorderThickness="1,0,1,1"
+                BorderThickness="1"
                 Drop="RightImageDragAndDrop">
                 <Label ClipToBounds="True">
                     <utils:ZoomBorder>

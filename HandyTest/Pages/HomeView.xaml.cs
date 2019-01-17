@@ -22,8 +22,6 @@ namespace HandyTest.Pages
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
 
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
-        public event EventHandler Changed;
-        private string getCurrentProject;
         BL.WindowSettings set = new BL.WindowSettings();
         public HomeView()
         {

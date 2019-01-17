@@ -223,8 +223,8 @@ namespace HandyTest.Pages
             if (Clipboard.ContainsImage())
             {
                 testImg.Source = Clipboard.GetImage();
-                dropDownLeftImageList.ItemsSource = ImageViewerList.ToString();
-                dropDownRightImageList.ItemsSource = ImageViewerList.ToString();
+                //dropDownLeftImageList.ItemsSource = ImageViewerList.ToString();
+                //dropDownRightImageList.ItemsSource = ImageViewerList.ToString();
 
                 ImageViewerList.Add((ImageSource)testImg.Source);
                 //if (!imageList.Contains(testImg.Source))
@@ -248,8 +248,8 @@ namespace HandyTest.Pages
             if (Clipboard.ContainsImage())
             {
                 testImg1.Source = Clipboard.GetImage();
-                dropDownLeftImageList.ItemsSource = ImageViewer;
-                dropDownRightImageList.ItemsSource = ImageViewer;
+                //dropDownLeftImageList.ItemsSource = ImageViewer;
+                //dropDownRightImageList.ItemsSource = ImageViewer;
                 ImageViewer.Add((ImageViewer.Count).ToString());
                 if (!imageList.Contains(testImg.Source))
                 {
@@ -321,8 +321,8 @@ namespace HandyTest.Pages
                     if (!ImageViewer.Contains(files[0]))
                     {
 
-                        dropDownLeftImageList.ItemsSource = ImageViewer;
-                        dropDownRightImageList.ItemsSource = ImageViewer;
+                        //dropDownLeftImageList.ItemsSource = ImageViewer;
+                        //dropDownRightImageList.ItemsSource = ImageViewer;
                         ImageViewer.Add(files[0]);
                     }
                 }
@@ -341,8 +341,8 @@ namespace HandyTest.Pages
                     testImg1.Source = LoadImageFromFile(files[0]);
                     if (!ImageViewer.Contains(files[0]))
                     {
-                        dropDownLeftImageList.ItemsSource = ImageViewer;
-                        dropDownRightImageList.ItemsSource = ImageViewer;
+                        //dropDownLeftImageList.ItemsSource = ImageViewer;
+                        //dropDownRightImageList.ItemsSource = ImageViewer;
                         ImageViewer.Add(files[0]);
                     }
                 }
