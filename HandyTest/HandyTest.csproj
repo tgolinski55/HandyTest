@@ -103,6 +103,7 @@
     <Compile Include="BL\LoadCurrentProject.cs" />
     <Compile Include="BL\LoadIssuesInfo.cs" />
     <Compile Include="BL\SaveXml.cs" />
+    <Compile Include="BL\ScreenCapturer.cs" />
     <Compile Include="Pages\AllIssues.xaml.cs">
       <DependentUpon>AllIssues.xaml</DependentUpon>
     </Compile>

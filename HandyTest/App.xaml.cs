@@ -23,7 +23,7 @@ namespace HandyTest
             base.OnStartup(e);
             MainWindow = new MainWindow();
             MainWindow.Closing += MainWindow_Closing;
-
+            ShowMainWindow();
             _notifyIcon = new System.Windows.Forms.NotifyIcon();
             _notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
             _notifyIcon.Icon = HandyTest.Properties.Resources.MyIcon;
