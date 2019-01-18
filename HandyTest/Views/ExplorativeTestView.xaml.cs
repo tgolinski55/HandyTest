@@ -17,6 +17,7 @@ namespace HandyTest.Views
     {
         ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
+
         int issueID = 1;
         public ExplorativeTestView()
         {
@@ -144,6 +145,6 @@ namespace HandyTest.Views
                 AllIssues.GetCreatedIssue(setSummary.Text,x);
             }
         }
-
+       
     }
 }

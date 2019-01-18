@@ -1,4 +1,4 @@
-﻿using System.Windows;
+using System.Windows;
 using System.Windows.Input;
 using System.Collections.ObjectModel;
 using HandyTest.BL;
@@ -10,6 +10,7 @@ using HandyTest.Views;
 using System.Linq;
 using System;
 using System.ComponentModel;
+using Hotkeys;
 using System.Runtime.InteropServices;
 using System.Windows.Interop;
 
@@ -20,6 +21,7 @@ namespace HandyTest
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private Hotkeys.GlobalHotkey ghk;
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
 
@@ -44,13 +46,13 @@ namespace HandyTest
         {
 
             InitializeComponent();
-           //EventManager.RegisterClassHandler(typeof(Window), Keyboard.KeyUpEvent,new KeyEventHandler(keyUp), true);
+            EventManager.RegisterClassHandler(typeof(Window), Keyboard.KeyUpEvent,new KeyEventHandler(keyUp), true);
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
-            Loaded += Window_Loaded;
-            worker.DoWork += worker_DoWork;
-            worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            worker.RunWorkerAsync();
+            //Loaded += Window_Loaded;
+            //worker.DoWork += worker_DoWork;
+            //worker.RunWorkerCompleted += worker_RunWorkerCompleted;
+            //worker.RunWorkerAsync();
 
            
         }
