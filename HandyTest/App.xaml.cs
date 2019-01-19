@@ -68,7 +68,7 @@ namespace HandyTest
             if (!_isExit)
             {
                 e.Cancel = true;
-                MainWindow.Hide(); // A hidden window can be shown again, a closed one not
+                MainWindow.Hide();
             }
         }
     }
