@@ -59,7 +59,8 @@
                     Width="200"
                     Binding="{Binding Name}"
                     CellStyle="{StaticResource MyDataGridCell}"
-                    Header="Action">
+                    Header="Action"
+                    IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="NoWrap" />
@@ -74,7 +75,8 @@
                     Width="200"
                     Binding="{Binding Date}"
                     CellStyle="{StaticResource MyDataGridCell}"
-                    Header="Date">
+                    Header="Date"
+                    IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="NoWrap" />
@@ -84,20 +86,21 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridTextColumn
+                <DataGridHyperlinkColumn
                     Width="*"
                     Binding="{Binding Image}"
                     CellStyle="{StaticResource MyDataGridCell}"
-                    Header="Source">
-                    <DataGridTextColumn.ElementStyle>
+                    Header="Source"
+                    IsReadOnly="True">
+                    <DataGridHyperlinkColumn.ElementStyle>
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="NoWrap" />
                             <Setter Property="TextAlignment" Value="Center" />
                             <Setter Property="Padding" Value="5,2" />
                             <Setter Property="Margin" Value="0,0,0,0" />
                         </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
+                    </DataGridHyperlinkColumn.ElementStyle>
+                </DataGridHyperlinkColumn>
             </DataGrid.Columns>
         </DataGrid>
 

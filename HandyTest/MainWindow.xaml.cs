@@ -111,12 +111,12 @@ namespace HandyTest
             else if (e.Button == System.Windows.Forms.MouseButtons.Right)
             {
 
-                logItems.Add(new LogItems("Right Mouse button was clicked", DateTime.Now.ToLongTimeString(), "Name"));
+                logItems.Add(new LogItems("Right Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
             }
             else if (e.Button == System.Windows.Forms.MouseButtons.Middle)
             {
 
-                logItems.Add(new LogItems("Middle Mouse button was clicked", DateTime.Now.ToLongTimeString(), "Name"));
+                logItems.Add(new LogItems("Middle Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
             }
 
             screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path+path2, ImageFormat.Jpeg);
@@ -142,7 +142,7 @@ namespace HandyTest
                             LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
                             if (!IsWindowOpen<Window>("ExplorativeTestView"))
                             {
-                                logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path));
+                                logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path2));
                                 explorativeTestView.Show();
                                 explorativeTestView.activeProject = loadCurrentProject.GetCurrentProject();
                             }
