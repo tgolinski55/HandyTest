@@ -1,6 +1,7 @@
 ﻿using HandyTest.BL;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +22,7 @@ namespace HandyTest.Pages
     /// </summary>
     public partial class LogView : UserControl
     {
+        public ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
         public LogView()
         {
             InitializeComponent();
@@ -32,5 +34,17 @@ namespace HandyTest.Pages
                 var mainWindow = new HomeView();
                 mainWindow.ReloadDataGrid();
         }
+
+        private void LogItems_Loaded(object sender, RoutedEventArgs e)
+        {
+            allLogsDataGrid.ItemsSource = MainWindow.logItems;
+            //allLogsDataGrid.ItemsSource = logItems;
+        }
+
+        public void AddToLog(string action, string date, string source)
+        {
+            logItems.Add(new LogItems(action, date, source));
+        }
+
     }
 }

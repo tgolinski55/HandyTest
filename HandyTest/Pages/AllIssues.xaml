@@ -312,11 +312,11 @@
             SelectionChanged="SelectedIssueChange"
             SelectionMode="Single">
             <DataGrid.Columns>
-                <DataGridTemplateColumn MaxWidth="4" CellStyle="{StaticResource selectionIndicator}">
+                <DataGridTemplateColumn MaxWidth="6" CellStyle="{StaticResource selectionIndicator}">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label
-                                Width="4"
+                                Width="6"
                                 HorizontalAlignment="Left"
                                 Background="#DF964C"
                                 Visibility="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, Converter={StaticResource BooleanToVisibilityConverter}}" />

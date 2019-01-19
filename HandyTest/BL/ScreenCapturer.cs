@@ -57,6 +57,7 @@ namespace HandyTest.BL
                 g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
             }
 
+
             return result;
         }
 
