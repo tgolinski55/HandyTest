@@ -17,6 +17,9 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using System.Threading;
 using Gma.System.MouseKeyHook;
+using WindowsInput;
+using WindowsInput.Native;
+using DesktopWPFAppLowLevelKeyboardHook;
 
 namespace HandyTest
 {
@@ -25,11 +28,11 @@ namespace HandyTest
     /// </summary>
     public partial class MainWindow : MetroWindow
     {
+        private LowLevelKeyboardListener _listener;
         string path = "..//../Screenshoots/";
         ScreenCapturer screenCapturer = new ScreenCapturer();
         public static ObservableCollection<ProjectList> ProjectsList { get; set; }
         public static ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
-        //path + DateTime.Now.ToString("ddMMHHmmss") + ".jpg"
         private readonly BackgroundWorker worker = new BackgroundWorker();
         LogView LogView = new LogView();
         private IKeyboardMouseEvents m_GlobalHook;
@@ -38,6 +41,9 @@ namespace HandyTest
 
         [DllImport("user32.dll")]
         private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        [DllImport("user32.dll")]
+        public static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, uint dwExtraInfo);
 
         private const int HOTKEY_ID = 9000;
 
@@ -66,12 +72,47 @@ namespace HandyTest
             InitializeComponent();
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
-            //Loaded += Window_Loaded;
-            //worker.DoWork += worker_DoWork;
-            //worker.RunWorkerCompleted += worker_RunWorkerCompleted;
-            //worker.RunWorkerAsync();
 
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _listener = new LowLevelKeyboardListener();
+            _listener.OnKeyPressed += _listener_OnKeyPressed;
+            _listener.HookKeyboard();
+        }
+
+        void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
+        {
+            string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
+            if (e.KeyPressed.ToString() == "Subtract")
+            {
+                ExplorativeTestView explorativeTestView = new ExplorativeTestView();
+                LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
+                if (!IsWindowOpen<Window>("ExplorativeTestView"))
+                {
+                    logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path2));
+                    explorativeTestView.Show();
+                    explorativeTestView.activeProject = loadCurrentProject.GetCurrentProject();
+                }
+                else
+                {
+                    explorativeTestView.Close();
+                }
+
+                _listener.UnHookKeyboard();
+                _listener.HookKeyboard();
+            }
+            logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
+            screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            _listener.UnHookKeyboard();
+        }
+
+
         private IntPtr _windowHandle;
         private HwndSource _source;
         protected override void OnSourceInitialized(EventArgs e)
@@ -80,17 +121,20 @@ namespace HandyTest
             _windowHandle = new WindowInteropHelper(this).Handle;
             _source = HwndSource.FromHwnd(_windowHandle);
             _source.AddHook(HwndHook);
+            //_listener = new LowLevelKeyboardListener();
+            //_listener.OnKeyPressed += _listener_OnKeyPressed;
 
+            //_listener.HookKeyboard();
             #region Hotkeys
             //KEYBOARD
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_SUBTRACT);
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_LEFTMOUSE);
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_CKEY);
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_VKEY);
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_ZKEY);
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_ENTERKEY);
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_BACKSPACEKEY);
-            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_DELKEY);
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_SUBTRACT);
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_LEFTMOUSE);
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_CKEY);
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_VKEY);
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_ZKEY);
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_ENTERKEY);
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_BACKSPACEKEY);
+            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_DELKEY);
 
             //MOUSE
             m_GlobalHook = Hook.GlobalEvents();
@@ -119,12 +163,12 @@ namespace HandyTest
                 logItems.Add(new LogItems("Middle Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
             }
 
-            screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path+path2, ImageFormat.Jpeg);
+            screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
         }
-
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
 
+            InputSimulator inputSimulator = new InputSimulator();
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
             const int WM_HOTKEY = 0x0312;
             uint vkey = (((uint)lParam >> 16) & 0xFFFF);
@@ -153,11 +197,12 @@ namespace HandyTest
                             break;
                         case VK_CKEY:
                             logItems.Add(new LogItems("Key pressed: Ctrl+C", DateTime.Now.ToLongTimeString(), path2));
-                            handled = true;
+                            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
+                            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_C);
                             break;
                         case VK_VKEY:
                             logItems.Add(new LogItems("Key pressed: Ctrl+V", DateTime.Now.ToLongTimeString(), path2));
-                            handled = true;
+                            System.Windows.Forms.SendKeys.SendWait("^+(V)");
                             break;
                         case VK_ZKEY:
                             logItems.Add(new LogItems("Key pressed: Ctrl+Z", DateTime.Now.ToLongTimeString(), path2));
@@ -176,7 +221,7 @@ namespace HandyTest
                             handled = true;
                             break;
                     }
-                    screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+                   
                     break;
 
             }

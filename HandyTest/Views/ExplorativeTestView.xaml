@@ -6,6 +6,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:HandyTest.Views"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Name="ExplorativeTestView2"
     Title="Report bug"
     Width="700"
     Height="450"

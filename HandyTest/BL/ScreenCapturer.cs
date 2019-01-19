@@ -49,16 +49,23 @@ namespace HandyTest.BL
                 bounds = new Rectangle(rect.Left, rect.Top, rect.Right - rect.Left, rect.Bottom - rect.Top);
                 CursorPosition = new Point(Cursor.Position.X - rect.Left, Cursor.Position.Y - rect.Top);
             }
-
-            var result = new Bitmap(bounds.Width, bounds.Height);
-
-            using (var g = Graphics.FromImage(result))
+            try
             {
-                g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
+
+                var result = new Bitmap(bounds.Width, bounds.Height);
+                using (var g = Graphics.FromImage(result))
+                {
+                    g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
+                    g.DrawIcon(new Icon("../../Resources/Icons/Black/icons8_cursor_32_5Hi_icon.ico"), Cursor.Position.X - 10, Cursor.Position.Y - 5);
+                }
+
+
+                return result;
             }
-
-
-            return result;
+            catch
+            {
+                return null;
+            }
         }
 
         public Point CursorPosition
@@ -66,5 +73,6 @@ namespace HandyTest.BL
             get;
             protected set;
         }
+
     }
 }

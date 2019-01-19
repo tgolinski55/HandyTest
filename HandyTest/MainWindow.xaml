@@ -18,6 +18,7 @@
     GlowBrush="#232526"
     Icon="Resources/Icons/White/handytest2_icon_white.png"
     IgnoreTaskbarOnMaximize="False"
+    Loaded="Window_Loaded"
     ShowActivated="False"
     ShowIconOnTitleBar="True"
     ShowInTaskbar="True"
