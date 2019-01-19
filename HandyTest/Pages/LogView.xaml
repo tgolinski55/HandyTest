@@ -56,7 +56,7 @@
             SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn
-                    Width="200"
+                    Width="250"
                     Binding="{Binding Name}"
                     CellStyle="{StaticResource MyDataGridCell}"
                     Header="Action"
@@ -72,7 +72,7 @@
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
                 <DataGridTextColumn
-                    Width="200"
+                    Width="150"
                     Binding="{Binding Date}"
                     CellStyle="{StaticResource MyDataGridCell}"
                     Header="Date"
