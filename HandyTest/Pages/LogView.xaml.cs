@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,6 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace HandyTest.Pages
 {
@@ -22,6 +22,7 @@ namespace HandyTest.Pages
     /// </summary>
     public partial class LogView : UserControl
     {
+        public string completePath;
         public ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
         public LogView()
         {
@@ -30,9 +31,9 @@ namespace HandyTest.Pages
 
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
-                PageNavigator.Switch(new HomeView());
-                var mainWindow = new HomeView();
-                mainWindow.ReloadDataGrid();
+            PageNavigator.Switch(new HomeView());
+            var mainWindow = new HomeView();
+            mainWindow.ReloadDataGrid();
         }
 
         private void LogItems_Loaded(object sender, RoutedEventArgs e)
@@ -45,6 +46,65 @@ namespace HandyTest.Pages
         {
             logItems.Add(new LogItems(action, date, source));
         }
+        public string DisplayedImage
+        {
+            get { return completePath; }
+        }
+        private void AllLogsDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            previewImage.Source = null;
+            var logIndex = allLogsDataGrid.SelectedCells[2];
+            var pathToScreen = (logIndex.Column.GetCellContent(logIndex.Item) as TextBlock).Text;
+            //ImageSource imageSource = 
+            string appDomain = AppDomain.CurrentDomain.BaseDirectory;
+            completePath = Path.Combine(appDomain + @"..\..\Screenshoots\" + pathToScreen);
+            previewImage.Source = new BitmapImage(new Uri(completePath, UriKind.Absolute));
+            //previewImage.Source = completePath;
+        }
+        bool maximized = false;
+        private void ResizeUpPreviw(object sender, RoutedEventArgs e)
+        {
+            if (!maximized)
+            {
+                previewDockPanel.Width = window.Width;
 
+                previewDockPanel.Height = window.Height;
+                maximized = true;
+            }
+            else
+            {
+                previewDockPanel.Width = 200;
+                previewDockPanel.Height = 150;
+                maximized = false;
+            }
+        }
+        private BitmapImage LoadImageFromFile(string filename)
+        {
+            using (var fs = File.OpenRead(filename))
+            {
+                var img = new BitmapImage();
+                img.BeginInit();
+                img.CacheOption = BitmapCacheOption.OnLoad;
+                // Downscaling to keep the memory footprint low
+                img.DecodePixelWidth = (int)SystemParameters.PrimaryScreenWidth;
+                img.StreamSource = fs;
+                img.EndInit();
+                return img;
+            }
+        }
+        private void PreviewImageDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data != null)
+            {
+                var data = e.Data as DataObject;
+                if (data.ContainsFileDropList())
+                {
+                    var files = data.GetFileDropList();
+                    previewImage.Source = LoadImageFromFile(files[0]);
+
+                }
+
+            }
+        }
     }
 }

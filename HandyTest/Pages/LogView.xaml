@@ -53,6 +53,7 @@
             GridLinesVisibility="Horizontal"
             HeadersVisibility="Column"
             Loaded="LogItems_Loaded"
+            SelectionChanged="AllLogsDataGrid_SelectionChanged"
             SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn
@@ -86,35 +87,67 @@
                         </Style>
                     </DataGridTextColumn.ElementStyle>
                 </DataGridTextColumn>
-                <DataGridHyperlinkColumn
+                <DataGridTextColumn
                     Width="*"
                     Binding="{Binding Image}"
                     CellStyle="{StaticResource MyDataGridCell}"
                     Header="Source"
                     IsReadOnly="True">
-                    <DataGridHyperlinkColumn.ElementStyle>
+                    <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="NoWrap" />
                             <Setter Property="TextAlignment" Value="Center" />
                             <Setter Property="Padding" Value="5,2" />
                             <Setter Property="Margin" Value="0,0,0,0" />
                         </Style>
-                    </DataGridHyperlinkColumn.ElementStyle>
-                </DataGridHyperlinkColumn>
+                    </DataGridTextColumn.ElementStyle>
+                </DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 
         <DockPanel
-            Grid.Row="1"
-            Grid.RowSpan="2"
-            Grid.Column="1"
+            Name="previewDockPanel"
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             Width="200"
             Height="150"
             Margin="10"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="White">
-            <Border BorderBrush="Black" BorderThickness="1" />
+
+            <Border
+                BorderBrush="Black"
+                BorderThickness="1"
+                ClipToBounds="True"
+                Drop="PreviewImageDrop">
+                <StackPanel>
+                    <Button
+                        Margin="2"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Panel.ZIndex="1"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        Click="ResizeUpPreviw"
+                        Style="{StaticResource ImageButtonStyle}">
+                        <Image MaxHeight="20" Source="../Resources/Icons/icons8-enlarge-32.png" />
+                    </Button>
+                    <Label
+                        Width="{Binding ElementName=previewDockPanel, Path=Width}"
+                        Height="{Binding ElementName=previewDockPanel, Path=Height}"
+                        ClipToBounds="True">
+                        <utils:ZoomBorder>
+                            <Image
+                                Name="previewImage"
+                                ClipToBounds="True"
+                                Source="{Binding DisplayedImage}" />
+                        </utils:ZoomBorder>
+                    </Label>
+                </StackPanel>
+            </Border>
         </DockPanel>
     </Grid>
 </UserControl>

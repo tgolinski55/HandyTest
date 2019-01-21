@@ -20,6 +20,7 @@ using Gma.System.MouseKeyHook;
 using WindowsInput;
 using WindowsInput.Native;
 using DesktopWPFAppLowLevelKeyboardHook;
+using System.Threading.Tasks;
 
 namespace HandyTest
 {
@@ -34,6 +35,7 @@ namespace HandyTest
         public static ObservableCollection<ProjectList> ProjectsList { get; set; }
         public static ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
+
         LogView LogView = new LogView();
         private IKeyboardMouseEvents m_GlobalHook;
         [DllImport("user32.dll")]
@@ -73,6 +75,10 @@ namespace HandyTest
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
 
+
+
+
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -80,12 +86,24 @@ namespace HandyTest
             _listener = new LowLevelKeyboardListener();
             _listener.OnKeyPressed += _listener_OnKeyPressed;
             _listener.HookKeyboard();
+
+
+            ////TIMER TO DELETE SS's
+
+            //var startTimeSpan = TimeSpan.Zero;
+            //var periodTimeSpan = TimeSpan.FromSeconds(5);
+            //var timer = new System.Threading.Timer((x) =>
+            //{
+            //    MessageBox.Show("One minute just passed!");
+
+            //}, null, startTimeSpan, periodTimeSpan);
         }
 
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
             if (e.KeyPressed.ToString() == "Subtract")
+
             {
                 ExplorativeTestView explorativeTestView = new ExplorativeTestView();
                 LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
@@ -103,8 +121,18 @@ namespace HandyTest
                 _listener.UnHookKeyboard();
                 _listener.HookKeyboard();
             }
-            logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-            screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+            else if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
+            {
+                //Do not log letters
+            }
+            else
+            {
+                logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
+                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+            }
+
+
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -125,6 +153,15 @@ namespace HandyTest
             //_listener.OnKeyPressed += _listener_OnKeyPressed;
 
             //_listener.HookKeyboard();
+            Task task = new Task(() =>
+            {
+                while (true)
+                {
+                    GarbageCollector.DeleteAllScreenshoots(path);
+                    Thread.Sleep(600000);
+                }
+            });
+            task.Start();
             #region Hotkeys
             //KEYBOARD
             //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_SUBTRACT);
@@ -162,8 +199,15 @@ namespace HandyTest
 
                 logItems.Add(new LogItems("Middle Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
             }
+            try
+            {
 
             screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+            }
+            catch
+            {
+                MessageBox.Show("File is in use.");
+            }
         }
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
@@ -221,7 +265,7 @@ namespace HandyTest
                             handled = true;
                             break;
                     }
-                   
+
                     break;
 
             }

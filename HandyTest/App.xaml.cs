@@ -19,6 +19,7 @@ namespace HandyTest
     {
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isExit;
+        string path = "..//../Screenshoots/";
 
         protected override void OnStartup(StartupEventArgs e)
         {
@@ -43,6 +44,7 @@ namespace HandyTest
         }
         private void ExitApplication()
         {
+            GarbageCollector.DeleteAllScreenshoots(path);
             _isExit = true;
             MainWindow.Close();
             _notifyIcon.Dispose();
