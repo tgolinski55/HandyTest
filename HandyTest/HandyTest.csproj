@@ -114,6 +114,9 @@
     <Compile Include="BL\LoadCurrentProject.cs" />
     <Compile Include="BL\LoadIssuesInfo.cs" />
     <Compile Include="BL\LogItems.cs" />
+    <Compile Include="BL\PESELGen.cs" />
+    <Compile Include="BL\PESELVal.cs" />
+    <Compile Include="BL\PESELValidator.cs" />
     <Compile Include="BL\SaveXml.cs" />
     <Compile Include="BL\ScreenCapturer.cs" />
     <Compile Include="Pages\AllIssues.xaml.cs">

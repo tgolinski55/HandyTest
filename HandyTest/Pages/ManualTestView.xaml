@@ -497,7 +497,7 @@
             Grid.Column="1"
             Grid.ColumnSpan="2"
             VerticalAlignment="Stretch"
-            Visibility="Visible">
+            Visibility="Hidden">
             <Grid.RowDefinitions>
                 <RowDefinition />
                 <RowDefinition />
@@ -580,6 +580,86 @@
                 </GroupBox>
             </StackPanel>
 
+        </Grid>
+
+
+        <!--  **************************************************************************  -->
+        <!--  PESEL generator  -->
+        <!--  **************************************************************************  -->
+
+
+        <Grid
+            Name="PESELgenerator"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            VerticalAlignment="Stretch"
+            Visibility="Visible">
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+            <GroupBox
+                Grid.RowSpan="2"
+                Grid.ColumnSpan="2"
+                Margin="0,0,10,0"
+                Padding="5"
+                BorderBrush="#D4791C"
+                BorderThickness="1"
+                FontSize="15"
+                Header="Generators"
+                Style="{x:Null}">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        Content="Choose generator:"
+                        FontSize="17" />
+                    <ComboBox
+                        Name="selectGenerator"
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch"
+                        VerticalAlignment="Center"
+                        SelectedIndex="0" />
+                    <Button
+                        Name="genPes"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Top"
+                        Click="Generate"
+                        Content="Generate"
+                        Style="{StaticResource FunctionalButtonStyle}" />
+                    <Button
+                        Name="generatedResult"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Click="CopyGeneratedResult"
+                        Focusable="True"
+                        FontSize="24"
+                        IsEnabled="True"
+                        Style="{StaticResource TransparentStyle2}"
+                        ToolTip="Copy" />
+                </Grid>
+            </GroupBox>
         </Grid>
     </Grid>
 </UserControl>

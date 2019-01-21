@@ -11,6 +11,8 @@ using System.IO;
 using System.Windows.Media.Imaging;
 using System.Security.Cryptography;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
+using System.Threading;
 
 namespace HandyTest.Pages
 {
@@ -44,11 +46,16 @@ namespace HandyTest.Pages
             ManualTestOpt.Add(new ManualTestOptions("File checker"));
             ManualTestOpt.Add(new ManualTestOptions("Image checker"));
             ManualTestOpt.Add(new ManualTestOptions("Text generator"));
-            ManualTestOpt.Add(new ManualTestOptions("Auto-Clicker"));
+            //ManualTestOpt.Add(new ManualTestOptions("Auto-Clicker"));
             ManualTestOpt.Add(new ManualTestOptions("PESEL generator"));
             ManualTestOpt.Add(new ManualTestOptions("NIP generator"));
             ManualTestOpt.Add(new ManualTestOptions("E-mail generator"));
-            ManualTestOpt.Add(new ManualTestOptions("Password generator"));
+            //ManualTestOpt.Add(new ManualTestOptions("Password generator"));
+
+            selectGenerator.Items.Add("PESEL");
+            selectGenerator.Items.Add("NIP");
+            selectGenerator.Items.Add("E-MAIL");
+
         }
 
 
@@ -82,8 +89,8 @@ namespace HandyTest.Pages
                         textGenerator.IsEnabled = false;
                         textGenerator.Visibility = Visibility.Hidden;
 
-                        autoClicker.IsEnabled = false;
-                        autoClicker.Visibility = Visibility.Hidden;
+                        PESELgenerator.IsEnabled = true;
+                        PESELgenerator.Visibility = Visibility.Hidden;
 
                         break;
                     }
@@ -98,8 +105,8 @@ namespace HandyTest.Pages
                         textGenerator.IsEnabled = true;
                         textGenerator.Visibility = Visibility.Hidden;
 
-                        autoClicker.IsEnabled = false;
-                        autoClicker.Visibility = Visibility.Hidden;
+                        PESELgenerator.IsEnabled = true;
+                        PESELgenerator.Visibility = Visibility.Hidden;
 
                         break;
                     }
@@ -115,8 +122,8 @@ namespace HandyTest.Pages
                         textGenerator.IsEnabled = true;
                         textGenerator.Visibility = Visibility.Visible;
 
-                        autoClicker.IsEnabled = false;
-                        autoClicker.Visibility = Visibility.Hidden;
+                        PESELgenerator.IsEnabled = true;
+                        PESELgenerator.Visibility = Visibility.Hidden;
 
                         break;
                     }
@@ -132,8 +139,8 @@ namespace HandyTest.Pages
                         textGenerator.IsEnabled = false;
                         textGenerator.Visibility = Visibility.Hidden;
 
-                        autoClicker.IsEnabled = true;
-                        autoClicker.Visibility = Visibility.Visible;
+                        PESELgenerator.IsEnabled = true;
+                        PESELgenerator.Visibility = Visibility.Visible;
 
                         break;
                     }
@@ -366,7 +373,19 @@ namespace HandyTest.Pages
 
         }
 
-      
+        private void Generate(object sender, RoutedEventArgs e)
+        {
+
+            if (selectGenerator.SelectedIndex == 0)
+            {
+                PESELGen pESEL = new PESELGen();
+                generatedResult.Content = pESEL.Generate();
+            }
+        }
+        private void CopyGeneratedResult(object sender, RoutedEventArgs e)
+        {
+            Clipboard.SetData(DataFormats.Text, (object)generatedResult.Content);
+        }
     }
 }
 
