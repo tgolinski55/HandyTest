@@ -25,6 +25,9 @@
     Topmost="True"
     WindowStyle="None"
     mc:Ignorable="d">
+    
+    
+    
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.3*" MinHeight="130" />

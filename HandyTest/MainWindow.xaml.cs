@@ -206,7 +206,7 @@ namespace HandyTest
             }
             catch
             {
-                MessageBox.Show("File is in use.");
+                MessageBox.Show("File is in use. Please select different one.","Error");
             }
         }
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
