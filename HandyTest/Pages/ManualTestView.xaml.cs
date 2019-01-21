@@ -410,6 +410,40 @@ namespace HandyTest.Pages
         {
             Clipboard.SetData(DataFormats.Text, (object)generatedResult.Content);
         }
+
+        private void SelectLeftFileFromSys(object sender, RoutedEventArgs e)
+        {
+            var fileDialog = new System.Windows.Forms.OpenFileDialog();
+            var result = fileDialog.ShowDialog();
+            switch (result)
+            {
+                case System.Windows.Forms.DialogResult.OK:
+                    var file = fileDialog.FileName;
+                    txtToCheck.Text = File.ReadAllText(file);
+                    break;
+                case System.Windows.Forms.DialogResult.Cancel:
+                default:
+                    txtToCheck.Text = null;
+                    break;
+            }
+        }
+
+        private void SelectRightFileFromSys(object sender, RoutedEventArgs e)
+        {
+            var fileDialog = new System.Windows.Forms.OpenFileDialog();
+            var result = fileDialog.ShowDialog();
+            switch (result)
+            {
+                case System.Windows.Forms.DialogResult.OK:
+                    var file = fileDialog.FileName;
+                    txtToCheck2.Text = File.ReadAllText(file);
+                    break;
+                case System.Windows.Forms.DialogResult.Cancel:
+                default:
+                    txtToCheck2.Text = null;
+                    break;
+            }
+        }
     }
 }
 
