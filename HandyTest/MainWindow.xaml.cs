@@ -67,6 +67,8 @@ namespace HandyTest
         private const uint VK_BACKSPACEKEY = 0x08; //"Backspace" button
         private const uint VK_DELKEY = 0x2E; //"Delete" button
         private const uint VK_CAPITAL = 0x14; //Caps lock
+        private const uint VK_PAUSE = 0x13; //Pause break
+        private const uint VK_OEM_3 = 0xC0; //"~"
         #endregion
 
         public MainWindow()
@@ -74,11 +76,6 @@ namespace HandyTest
             InitializeComponent();
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
-
-
-
-
-
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -86,42 +83,12 @@ namespace HandyTest
             _listener = new LowLevelKeyboardListener();
             _listener.OnKeyPressed += _listener_OnKeyPressed;
             _listener.HookKeyboard();
-
-
-            ////TIMER TO DELETE SS's
-
-            //var startTimeSpan = TimeSpan.Zero;
-            //var periodTimeSpan = TimeSpan.FromSeconds(5);
-            //var timer = new System.Threading.Timer((x) =>
-            //{
-            //    MessageBox.Show("One minute just passed!");
-
-            //}, null, startTimeSpan, periodTimeSpan);
         }
 
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
-            if (e.KeyPressed.ToString() == "Subtract")
-
-            {
-                ExplorativeTestView explorativeTestView = new ExplorativeTestView();
-                LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
-                if (!IsWindowOpen<Window>("ExplorativeTestView"))
-                {
-                    logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path2));
-                    explorativeTestView.Show();
-                    explorativeTestView.activeProject = loadCurrentProject.GetCurrentProject();
-                }
-                else
-                {
-                    explorativeTestView.Close();
-                }
-
-                _listener.UnHookKeyboard();
-                _listener.HookKeyboard();
-            }
-            else if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
+            if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
             {
                 //Do not log letters
             }
@@ -131,8 +98,8 @@ namespace HandyTest
                 screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
             }
 
-
-
+            _listener.UnHookKeyboard();
+            _listener.HookKeyboard();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -152,7 +119,7 @@ namespace HandyTest
             //_listener = new LowLevelKeyboardListener();
             //_listener.OnKeyPressed += _listener_OnKeyPressed;
 
-            //_listener.HookKeyboard();
+           // _listener.HookKeyboard();
             Task task = new Task(() =>
             {
                 while (true)
@@ -171,7 +138,7 @@ namespace HandyTest
             //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_CONTROL, VK_ZKEY);
             //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_ENTERKEY);
             //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_BACKSPACEKEY);
-            //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_DELKEY);
+            RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_ALT, VK_OEM_3);
 
             //MOUSE
             m_GlobalHook = Hook.GlobalEvents();
@@ -226,27 +193,14 @@ namespace HandyTest
                     switch (vkey)
                     {
                         case VK_SUBTRACT:
-                            ExplorativeTestView explorativeTestView = new ExplorativeTestView();
-                            LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
-                            if (!IsWindowOpen<Window>("ExplorativeTestView"))
-                            {
-                                logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path2));
-                                explorativeTestView.Show();
-                                explorativeTestView.activeProject = loadCurrentProject.GetCurrentProject();
-                            }
-                            else
-                            {
-                                explorativeTestView.Close();
-                            }
+                            handled = true;
                             break;
                         case VK_CKEY:
                             logItems.Add(new LogItems("Key pressed: Ctrl+C", DateTime.Now.ToLongTimeString(), path2));
-                            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.CONTROL);
-                            inputSimulator.Keyboard.KeyDown(VirtualKeyCode.VK_C);
+                            handled = true;
                             break;
                         case VK_VKEY:
                             logItems.Add(new LogItems("Key pressed: Ctrl+V", DateTime.Now.ToLongTimeString(), path2));
-                            System.Windows.Forms.SendKeys.SendWait("^+(V)");
                             break;
                         case VK_ZKEY:
                             logItems.Add(new LogItems("Key pressed: Ctrl+Z", DateTime.Now.ToLongTimeString(), path2));
@@ -262,6 +216,26 @@ namespace HandyTest
                             break;
                         case VK_DELKEY:
                             logItems.Add(new LogItems("Key pressed: Delete", DateTime.Now.ToLongTimeString(), path2));
+                            handled = true;
+                            break;
+                        case VK_PAUSE:
+                            logItems.Add(new LogItems("Key pressed: Pause", DateTime.Now.ToLongTimeString(), path2));
+                            handled = true;
+                            break;
+                        case VK_OEM_3:
+                            logItems.Add(new LogItems("Key pressed: Oem3", DateTime.Now.ToLongTimeString(), path2));
+                            ExplorativeTestView explorativeTestView = new ExplorativeTestView();
+                            LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
+                            if (!IsWindowOpen<Window>("ExplorativeTestView"))
+                            {
+                                //logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path2));
+                                explorativeTestView.Show();
+                                explorativeTestView.activeProject = loadCurrentProject.GetCurrentProject();
+                            }
+                            else
+                            {
+                                explorativeTestView.Close();
+                            }
                             handled = true;
                             break;
                     }

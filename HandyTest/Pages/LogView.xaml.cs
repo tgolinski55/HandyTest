@@ -65,20 +65,28 @@ namespace HandyTest.Pages
         bool maximized = false;
         private void ResizeUpPreviw(object sender, RoutedEventArgs e)
         {
-            if (!maximized)
+            if (previewImage.Source == null)
             {
-                previewDockPanel.Width = window.Width;
 
-                previewDockPanel.Height = window.Height;
-                maximized = true;
             }
             else
             {
-                previewDockPanel.Width = 200;
-                previewDockPanel.Height = 150;
-                maximized = false;
+
+                if (!maximized)
+                {
+                    previewDockPanel.Width = window.Width;
+
+                    previewDockPanel.Height = window.Height;
+                    maximized = true;
+                }
+                else
+                {
+                    previewDockPanel.Width = 200;
+                    previewDockPanel.Height = 150;
+                    maximized = false;
+                }
+                previewImageBorder.Reset();
             }
-            previewImageBorder.Reset();
         }
 
         private void ReloadImage(object sender, RoutedEventArgs e)
