@@ -649,7 +649,8 @@
                     <Button
                         Name="generatedResult"
                         Grid.Row="1"
-                        Grid.Column="1"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Bottom"
                         Click="CopyGeneratedResult"

@@ -36,7 +36,8 @@
                 Margin="0"
                 Padding="0"
                 Foreground="WhiteSmoke"
-                Style="{StaticResource ImageButtonStyle}">
+                Style="{StaticResource ImageButtonStyle}"
+                Visibility="Hidden">
                 <StackPanel Orientation="Horizontal">
                     <Rectangle
                         Width="20"

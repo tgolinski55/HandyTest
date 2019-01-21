@@ -114,6 +114,7 @@
     <Compile Include="BL\LoadCurrentProject.cs" />
     <Compile Include="BL\LoadIssuesInfo.cs" />
     <Compile Include="BL\LogItems.cs" />
+    <Compile Include="BL\MailGen.cs" />
     <Compile Include="BL\NIPGen.cs" />
     <Compile Include="BL\NIPVal.cs" />
     <Compile Include="BL\NIPValidator.cs" />

@@ -323,42 +323,58 @@ namespace HandyTest.Pages
 
         private void LeftImageDragAndDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data != null)
+            try
             {
-                var data = e.Data as DataObject;
-                if (data.ContainsFileDropList())
+
+                if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data != null)
                 {
-                    var files = data.GetFileDropList();
-                    testImg.Source = LoadImageFromFile(files[0]);
-                    if (!ImageViewer.Contains(files[0]))
+                    var data = e.Data as DataObject;
+                    if (data.ContainsFileDropList())
                     {
+                        var files = data.GetFileDropList();
+                        testImg.Source = LoadImageFromFile(files[0]);
+                        if (!ImageViewer.Contains(files[0]))
+                        {
 
-                        //dropDownLeftImageList.ItemsSource = ImageViewer;
-                        //dropDownRightImageList.ItemsSource = ImageViewer;
-                        ImageViewer.Add(files[0]);
+                            //dropDownLeftImageList.ItemsSource = ImageViewer;
+                            //dropDownRightImageList.ItemsSource = ImageViewer;
+                            ImageViewer.Add(files[0]);
+                        }
                     }
-                }
 
+                }
+            }
+            catch
+            {
+                MessageBox.Show("This file format is not supported", "Error");
             }
         }
 
         private void RightImageDragAndDrop(object sender, DragEventArgs e)
         {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data != null)
+            try
             {
-                var data = e.Data as DataObject;
-                if (data.ContainsFileDropList())
-                {
-                    var files = data.GetFileDropList();
-                    testImg1.Source = LoadImageFromFile(files[0]);
-                    if (!ImageViewer.Contains(files[0]))
-                    {
-                        //dropDownLeftImageList.ItemsSource = ImageViewer;
-                        //dropDownRightImageList.ItemsSource = ImageViewer;
-                        ImageViewer.Add(files[0]);
-                    }
-                }
 
+                if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data != null)
+                {
+                    var data = e.Data as DataObject;
+                    if (data.ContainsFileDropList())
+                    {
+                        var files = data.GetFileDropList();
+                        testImg1.Source = LoadImageFromFile(files[0]);
+                        if (!ImageViewer.Contains(files[0]))
+                        {
+                            //dropDownLeftImageList.ItemsSource = ImageViewer;
+                            //dropDownRightImageList.ItemsSource = ImageViewer;
+                            ImageViewer.Add(files[0]);
+                        }
+                    }
+
+                }
+            }
+            catch
+            {
+                MessageBox.Show("This file format is not supported", "Error");
             }
         }
 
@@ -383,6 +399,11 @@ namespace HandyTest.Pages
             {
                 NIPGen nIPGen = new NIPGen();
                 generatedResult.Content = nIPGen.Generate();
+            }
+            else if (selectGenerator.SelectedIndex == 2)
+            {
+                MailGen mailGen = new MailGen();
+                generatedResult.Content = mailGen.Generate();
             }
         }
         private void CopyGeneratedResult(object sender, RoutedEventArgs e)
