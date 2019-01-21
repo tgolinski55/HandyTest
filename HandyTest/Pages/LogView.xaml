@@ -121,25 +121,37 @@
             <Border
                 BorderBrush="Black"
                 BorderThickness="1"
-                ClipToBounds="True"
-                Drop="PreviewImageDrop">
+                ClipToBounds="True">
                 <StackPanel>
-                    <Button
-                        Margin="2"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        Panel.ZIndex="1"
-                        Background="Transparent"
-                        BorderThickness="0"
-                        Click="ResizeUpPreviw"
-                        Style="{StaticResource ImageButtonStyle}">
-                        <Image MaxHeight="20" Source="../Resources/Icons/icons8-enlarge-32.png" />
-                    </Button>
+                    <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                        <Button
+                            Margin="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Panel.ZIndex="1"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="ReloadImage"
+                            Style="{StaticResource ImageButtonStyle}">
+                            <Image MaxHeight="15" Source="../Resources/Icons/icons8-reset-32.png" />
+                        </Button>
+                        <Button
+                            Margin="2"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Panel.ZIndex="1"
+                            Background="Transparent"
+                            BorderThickness="0"
+                            Click="ResizeUpPreviw"
+                            Style="{StaticResource ImageButtonStyle}">
+                            <Image MaxHeight="15" Source="../Resources/Icons/icons8-enlarge-32.png" />
+                        </Button>
+                    </StackPanel>
                     <Label
                         Width="{Binding ElementName=previewDockPanel, Path=Width}"
                         Height="{Binding ElementName=previewDockPanel, Path=Height}"
                         ClipToBounds="True">
-                        <utils:ZoomBorder>
+                        <utils:ZoomBorder x:Name="previewImageBorder">
                             <Image
                                 Name="previewImage"
                                 ClipToBounds="True"

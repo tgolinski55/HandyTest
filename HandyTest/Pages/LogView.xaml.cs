@@ -59,6 +59,7 @@ namespace HandyTest.Pages
             string appDomain = AppDomain.CurrentDomain.BaseDirectory;
             completePath = Path.Combine(appDomain + @"..\..\Screenshoots\" + pathToScreen);
             previewImage.Source = new BitmapImage(new Uri(completePath, UriKind.Absolute));
+            previewImageBorder.Reset();
             //previewImage.Source = completePath;
         }
         bool maximized = false;
@@ -77,34 +78,12 @@ namespace HandyTest.Pages
                 previewDockPanel.Height = 150;
                 maximized = false;
             }
+            previewImageBorder.Reset();
         }
-        private BitmapImage LoadImageFromFile(string filename)
-        {
-            using (var fs = File.OpenRead(filename))
-            {
-                var img = new BitmapImage();
-                img.BeginInit();
-                img.CacheOption = BitmapCacheOption.OnLoad;
-                // Downscaling to keep the memory footprint low
-                img.DecodePixelWidth = (int)SystemParameters.PrimaryScreenWidth;
-                img.StreamSource = fs;
-                img.EndInit();
-                return img;
-            }
-        }
-        private void PreviewImageDrop(object sender, DragEventArgs e)
-        {
-            if (e.Data.GetDataPresent(DataFormats.FileDrop) && e.Data != null)
-            {
-                var data = e.Data as DataObject;
-                if (data.ContainsFileDropList())
-                {
-                    var files = data.GetFileDropList();
-                    previewImage.Source = LoadImageFromFile(files[0]);
 
-                }
-
-            }
+        private void ReloadImage(object sender, RoutedEventArgs e)
+        {
+            previewImageBorder.Reset();
         }
     }
 }

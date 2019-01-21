@@ -332,5 +332,8 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\Black\icons8_enlarge_32_IYi_icon.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-reset-32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
