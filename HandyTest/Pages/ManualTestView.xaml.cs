@@ -47,9 +47,7 @@ namespace HandyTest.Pages
             ManualTestOpt.Add(new ManualTestOptions("Image checker"));
             ManualTestOpt.Add(new ManualTestOptions("Text generator"));
             //ManualTestOpt.Add(new ManualTestOptions("Auto-Clicker"));
-            ManualTestOpt.Add(new ManualTestOptions("PESEL generator"));
-            ManualTestOpt.Add(new ManualTestOptions("NIP generator"));
-            ManualTestOpt.Add(new ManualTestOptions("E-mail generator"));
+            ManualTestOpt.Add(new ManualTestOptions("Generators"));
             //ManualTestOpt.Add(new ManualTestOptions("Password generator"));
 
             selectGenerator.Items.Add("PESEL");
@@ -380,6 +378,11 @@ namespace HandyTest.Pages
             {
                 PESELGen pESEL = new PESELGen();
                 generatedResult.Content = pESEL.Generate();
+            }
+            else if (selectGenerator.SelectedIndex == 1)
+            {
+                NIPGen nIPGen = new NIPGen();
+                generatedResult.Content = nIPGen.Generate();
             }
         }
         private void CopyGeneratedResult(object sender, RoutedEventArgs e)
