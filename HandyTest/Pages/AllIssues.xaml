@@ -436,7 +436,8 @@
                                 Width="100"
                                 Margin="10,0,0,0"
                                 Padding="1"
-                                FontSize="12" />
+                                FontSize="12"
+                                VerticalContentAlignment="Center"/>
                         </StackPanel>
                     </DockPanel>
                     <DockPanel
