@@ -58,8 +58,22 @@ namespace HandyTest.Pages
             //ImageSource imageSource = 
             string appDomain = AppDomain.CurrentDomain.BaseDirectory;
             completePath = Path.Combine(appDomain + @"..\..\Screenshoots\" + pathToScreen);
-            previewImage.Source = new BitmapImage(new Uri(completePath, UriKind.Absolute));
-            previewImageBorder.Reset();
+            try
+            {
+                previewImageBorder.IsEnabled = true;
+                previewImage.IsEnabled = true;
+                previewImage.Source = new BitmapImage(new Uri(completePath, UriKind.Absolute));
+
+            }
+            catch
+            {
+                previewImage.Source = new BitmapImage(new Uri("pack://application:,,,/HandyTest;component/Resources/Icons/icons8-remove-image-96.png"));
+                previewImageBorder.IsEnabled = false;
+                previewImage.IsEnabled = false;
+                previewImageBorder.Reset();
+                //MessageBox.Show("File was deleted. You can increase time between each garbage collector execution in Settings.", "Error");
+            }
+            //previewImageBorder.Reset();
             //previewImage.Source = completePath;
         }
         bool maximized = false;
