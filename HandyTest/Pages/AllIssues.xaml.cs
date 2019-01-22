@@ -391,8 +391,15 @@ namespace HandyTest.Pages
             #endregion
 
 
-
+            try
+            {
             summaryReport.SaveToFile(pathToReport, FileFormat.Docx);
+
+            }
+            catch
+            {
+                MessageBox.Show("File couldn't be saved because it's opened.", "Error");
+            }
         }
     }
 }
