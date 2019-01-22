@@ -14,6 +14,7 @@ using System.ComponentModel;
 using System.Xml;
 using Spire.Doc.Fields;
 using System.Windows.Data;
+using Microsoft.Win32;
 
 namespace HandyTest.Pages
 {
@@ -280,7 +281,11 @@ namespace HandyTest.Pages
         public void CreateReportFile(object sender, RoutedEventArgs e)
         {
             var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
-            string pathToReport = @"..//../Projects/" + activeProject + "-Documentation-" + currentDate + ".docx";
+            //string pathToReport = @"..//../Projects/" + activeProject + "-Documentation-" + currentDate + ".docx";
+            var fileDialog = new SaveFileDialog();
+            //var result = fileDialog.ShowDialog();
+            fileDialog.DefaultExt = ".docx";
+            fileDialog.Filter = "Dokumenty programu Word (.docx)|*.docx";
             Document summaryReport = new Document();
             string pathToTemplate = @"..//../Projects/ReportTemplate.docx";
             summaryReport.LoadFromFile(pathToTemplate);
@@ -393,7 +398,11 @@ namespace HandyTest.Pages
 
             try
             {
-            summaryReport.SaveToFile(pathToReport, FileFormat.Docx);
+                if (fileDialog.ShowDialog() == true)
+                {
+                    var pathToReport = fileDialog.FileName;
+                    summaryReport.SaveToFile(pathToReport, FileFormat.Docx);
+                }
 
             }
             catch

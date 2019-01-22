@@ -16,7 +16,14 @@ namespace HandyTest.BL
             DirectoryInfo di = new DirectoryInfo(pathToScreenshoots);
             foreach (FileInfo file in di.GetFiles())
             {
+                try
+                {
                 file.Delete();
+                }
+                catch
+                {
+                    
+                }
             }
         }
     }
