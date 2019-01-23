@@ -83,23 +83,28 @@ namespace HandyTest
             _listener = new LowLevelKeyboardListener();
             _listener.OnKeyPressed += _listener_OnKeyPressed;
             _listener.HookKeyboard();
+
         }
 
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
-            if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
+            if (!this.IsActive)
             {
-                //Do not log letters
-            }
-            else
-            {
-                logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+                if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
+                {
+                    //Do not log letters
+                }
+                else
+                {
+                    logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
+                    screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+                }
             }
 
             _listener.UnHookKeyboard();
             _listener.HookKeyboard();
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -119,7 +124,9 @@ namespace HandyTest
             //_listener = new LowLevelKeyboardListener();
             //_listener.OnKeyPressed += _listener_OnKeyPressed;
 
-           // _listener.HookKeyboard();
+            //_listener.HookKeyboard();
+
+            //Clean all screenshoots every 10minutes
             Task task = new Task(() =>
             {
                 while (true)
@@ -129,6 +136,8 @@ namespace HandyTest
                 }
             });
             task.Start();
+
+
             #region Hotkeys
             //KEYBOARD
             //RegisterHotKey(_windowHandle, HOTKEY_ID, MOD_NONE, VK_SUBTRACT);
@@ -144,6 +153,8 @@ namespace HandyTest
             m_GlobalHook = Hook.GlobalEvents();
             m_GlobalHook.MouseClick += m_GlobalHook_MouseClick;
             #endregion
+
+
             LogView.allLogsDataGrid.ItemsSource = logItems;
             base.OnSourceInitialized(e);
 
@@ -152,28 +163,31 @@ namespace HandyTest
         {
 
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
-            if (e.Button == System.Windows.Forms.MouseButtons.Left)
-            {
-                logItems.Add(new LogItems("Left Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
-            }
-            else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+            if (!this.IsActive)
             {
 
-                logItems.Add(new LogItems("Right Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
-            }
-            else if (e.Button == System.Windows.Forms.MouseButtons.Middle)
-            {
+                if (e.Button == System.Windows.Forms.MouseButtons.Left)
+                {
+                    logItems.Add(new LogItems("Left Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
+                }
+                else if (e.Button == System.Windows.Forms.MouseButtons.Right)
+                {
 
-                logItems.Add(new LogItems("Middle Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
+                    logItems.Add(new LogItems("Right Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
+                }
+                else if (e.Button == System.Windows.Forms.MouseButtons.Middle)
+                {
+
+                    logItems.Add(new LogItems("Middle Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
+                }
             }
             try
             {
-
-            screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
             }
             catch
             {
-                MessageBox.Show("File is in use. Please select different one.","Error");
+                MessageBox.Show("File is in use. Please select different one.", "Error");
             }
         }
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
