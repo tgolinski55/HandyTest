@@ -436,8 +436,8 @@
                                 Width="100"
                                 Margin="10,0,0,0"
                                 Padding="1"
-                                FontSize="12"
-                                VerticalContentAlignment="Center"/>
+                                VerticalContentAlignment="Center"
+                                FontSize="12" />
                         </StackPanel>
                     </DockPanel>
                     <DockPanel
@@ -601,7 +601,7 @@
                                 Margin="0"
                                 Source="../Resources/Icons/icons8-edit-64.png" />
                             <Label
-                                Margin="0"
+                                Margin="3"
                                 Padding="0"
                                 Content="Edit" />
                         </StackPanel>
