@@ -349,5 +349,11 @@
   <ItemGroup>
     <Resource Include="Resources\Icons\icons8-remove-image-96.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-enlarge-32_2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-replay-32.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

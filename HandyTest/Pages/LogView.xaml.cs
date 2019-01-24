@@ -95,7 +95,7 @@ namespace HandyTest.Pages
                 }
                 else
                 {
-                    previewDockPanel.Width = 200;
+                    previewDockPanel.Width = 250;
                     previewDockPanel.Height = 150;
                     maximized = false;
                 }
