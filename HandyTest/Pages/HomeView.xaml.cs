@@ -10,6 +10,8 @@ using System.ComponentModel;
 using System.Windows.Controls;
 using HandyTest.Views;
 using System.Xml.Serialization;
+using MahApps.Metro.Controls.Dialogs;
+using MahApps.Metro.Controls;
 
 namespace HandyTest.Pages
 {
@@ -201,8 +203,7 @@ namespace HandyTest.Pages
 
         }
 
-
-        private void DeleteProjectBtn(object sender, RoutedEventArgs e)
+        private void DeleteProject()
         {
             var selectedItem = (ProjectList)projectsListDataGrid.SelectedItem;
             ProjectList currentCell = (ProjectList)projectsListDataGrid.CurrentCell.Item;
@@ -222,6 +223,22 @@ namespace HandyTest.Pages
 
                 ReloadDataGrid();
             }
+        }
+
+        private void DeleteProjectBtn(object sender, RoutedEventArgs e)
+        {
+            var selectedProjectInfo = projectsListDataGrid.SelectedCells[1];
+            var selectedProjectName = (selectedProjectInfo.Column.GetCellContent(selectedProjectInfo.Item) as TextBlock).Text;
+            MessageBoxResult message = MessageBox.Show("Do you really wan't to delete " + selectedProjectName + " project?", "Information", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+            if (message == MessageBoxResult.OK)
+            {
+                DeleteProject();
+            }
+            else
+            {
+                //Close msg
+            }
+           
         }
 
         private void ProjectsListDataGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
