@@ -97,13 +97,20 @@ namespace HandyTest
                 }
                 else
                 {
-                    logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-                    screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
-                }
-            }
+                    if (Keyboard.IsKeyDown(e.KeyPressed))
+                    { }
+                    else
+                    {
+                        logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
+                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
 
-            _listener.UnHookKeyboard();
-            _listener.HookKeyboard();
+                    }
+                }
+
+                _listener.UnHookKeyboard();
+                _listener.HookKeyboard();
+
+            }
 
         }
 
