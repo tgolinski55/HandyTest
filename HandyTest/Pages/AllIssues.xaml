@@ -517,7 +517,6 @@
                         controls:TextBoxHelper.Watermark="Summary"
                         AcceptsTab="False"
                         FontSize="14"
-                        IsEnabled="{Binding ElementName=editButton, Path=IsChecked}"
                         IsTabStop="False" />
                     <DockPanel
                         Name="descriptionIssueDockPanel"
@@ -532,7 +531,6 @@
                                 AcceptsReturn="True"
                                 AcceptsTab="True"
                                 FontSize="12"
-                                IsEnabled="{Binding ElementName=editButton, Path=IsChecked}"
                                 SpellCheck.IsEnabled="True"
                                 TextWrapping="Wrap"
                                 VerticalScrollBarVisibility="Auto" />
@@ -571,7 +569,6 @@
                         BorderThickness="1"
                         Click="DeleteIssue"
                         FontSize="14"
-                        IsEnabled="{Binding ElementName=editButton, Path=IsChecked}"
                         Style="{StaticResource FunctionalButtonStyle}">
                         <Label
                             Margin="0"
@@ -579,31 +576,6 @@
                             Content="Delete"
                             Foreground="WhiteSmoke" />
                     </Button>
-                    <ToggleButton
-                        Name="editButton"
-                        Grid.Row="1"
-                        Grid.Column="1"
-                        Height="25"
-                        Margin="0"
-                        Padding="0"
-                        HorizontalAlignment="Right"
-                        VerticalAlignment="Center"
-                        BorderThickness="0"
-                        FontSize="14"
-                        Style="{StaticResource ToggleButtonStyle}"
-                        ToolTip="Edit">
-                        <StackPanel Orientation="Horizontal">
-                            <Image
-                                Height="20"
-                                Margin="0"
-                                Source="../Resources/Icons/icons8-edit-64.png" />
-                            <Label
-                                Margin="3"
-                                Padding="0"
-                                Content="Edit" />
-                        </StackPanel>
-                    </ToggleButton>
-
                 </Grid>
             </DockPanel>
         </GroupBox>
