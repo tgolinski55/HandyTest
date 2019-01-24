@@ -157,7 +157,6 @@ namespace HandyTest.Pages
 
             issuesLists.Clear();
             LoadAllIssues(sender, e);
-            editButton.IsChecked = false;
 
             setAuthor.Clear();
             setBuildVersion.Clear();
