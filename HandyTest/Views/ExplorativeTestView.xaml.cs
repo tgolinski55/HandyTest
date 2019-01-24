@@ -33,7 +33,6 @@ namespace HandyTest.Views
 
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
-            //this.Close();
             this.Hide();
         }
 
@@ -104,8 +103,6 @@ namespace HandyTest.Views
         private void CreateExplorativeReport(object sender, RoutedEventArgs e)
         {
             string path = @"../../Projects/" + activeProject + "/";
-
-            //issueID = Directory.GetFiles(path, "*.xml", SearchOption.AllDirectories).Length + 1;
             GetProjectConfig();
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
             new XDocument(
@@ -132,21 +129,7 @@ namespace HandyTest.Views
             setSummary.Clear();
             settextBoxDescription.Clear();
             SaveProjectConfig();
-            //ReloadAllIssuesPage();
         }
-
-        //public void ReloadAllIssuesPage()
-        //{
-        //    //TODO Finish refreshing datagrid
-        //    string temp = PageNavigator.GetCurrentPage();
-        //    if (temp == "AllIssuesPage")
-        //    {
-        //        int x = loadCurrentProject.GetCurrentIndex();
-        //        AllIssues AllIssues = new AllIssues();
-        //        AllIssues.activeProject = loadCurrentProject.GetCurrentProject();
-        //        AllIssues.GetCreatedIssue(setSummary.Text,x);
-        //    }
-        //}
        
     }
 }

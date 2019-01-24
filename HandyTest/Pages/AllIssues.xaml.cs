@@ -148,30 +148,6 @@ namespace HandyTest.Pages
             setSummary.Text = issueSummary;
             settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
         }
-        //public void GetCreatedIssue(string issueName, int ID)
-        //{
-        //    //issuesLists.Clear();
-        //    //allIssuesDataGrid.Items.Clear();
-        //    //string path = @"..//../Projects/" + activeProject + "/Reports";
-        //    //if (!Directory.Exists(path))
-        //    //    Directory.CreateDirectory(path);
-        //    //DirectoryInfo dirInfo = new DirectoryInfo(path);
-        //    //int count = 1;
-        //    //FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
-
-        //    //foreach (var o in AllFiles)
-        //    //{
-        //    //    int issueID = 0;
-        //    //    int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
-        //    //    allIssuesDataGrid.ItemsSource = issuesLists;
-        //    //    issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
-        //    //    //StatusIndicator(o.Name);
-        //    //    count++;
-        //    //}
-        //    issuesLists.Add(new IssuesList(issueName, ID));
-        //    SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
-
-        //}
 
         private void DeleteIssue(object sender, RoutedEventArgs e)
         {
@@ -192,15 +168,6 @@ namespace HandyTest.Pages
             setSummary.Clear();
             settextBoxDescription.Clear();
             issueInfoPanel.Header = "Issue info: ";
-            //DecreaseIssueCount(); TBD - this might be redundant
-        }
-
-        private void DecreaseIssueCount()
-        {
-            string path = @"..//../Projects/" + activeProject + "/config.txt";
-            var tempID = File.ReadAllText(path);
-            Int32.TryParse(tempID, out int x);
-            File.WriteAllText(path, (x - 1).ToString());
         }
 
         private void EditIssue()
@@ -225,64 +192,17 @@ namespace HandyTest.Pages
                 File.Delete(@"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml");
         }
 
-        private void UpdatePriority(object sender, SelectionChangedEventArgs e)
-        {
-            //EditIssue();
-        }
-
         private void SaveIssueChanges(object sender, RoutedEventArgs e)
         {
             EditIssue();
             issuesLists.Clear();
             LoadAllIssues(sender, e);
         }
-        //private void StatusIndicator(string issue)
-        //{
-
-        //    string state = "";
-        //    string path = @"..//../Projects/" + activeProject + "/Reports/" + issue;
-        //    XmlDocument xmlFile = new XmlDocument();
-        //    string element = "State";
-        //    if (File.Exists(path))
-        //    {
-        //        xmlFile.Load(path);
-        //        XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
-        //        state = xmlNodeList.Item(0).InnerText;
-        //    }
-        //    else
-        //    {
-        //        state = "";
-        //    }
-        //    //var template = stateIndicator.CellTemplate;
-        //    //var stateIndiTemp = (Label)allIssuesDataGrid.Template.FindName("stateIndicator", allIssuesDataGrid);
-        //    //var state = LoadIssuesInfo.GetIssueInfo(activeProject, "State", selectedIssue);
-        //    System.Windows.Style submittedStyle = Application.Current.FindResource("submittedIndicator") as System.Windows.Style;
-        //    System.Windows.Style successStyle = Application.Current.FindResource("successIndicator") as System.Windows.Style;
-        //    System.Windows.Style failureStyle = Application.Current.FindResource("failureIndicator") as System.Windows.Style;
-        //    System.Windows.Style wontfixStyle = Application.Current.FindResource("wontfixIndicator") as System.Windows.Style;
-
-
-        //    foreach (IssuesList item in allIssuesDataGrid.ItemsSource)
-        //    {
-        //        var row = allIssuesDataGrid.ItemContainerGenerator.ContainerFromItem(item) as DataGridRow;
-        //        if (state == "Submitted")
-        //            row.Background = Brushes.Blue;
-        //        else if (state == "Success")
-        //            row.Background = Brushes.Green;
-        //        else if (state == "Failure")
-        //            row.Background = Brushes.Red;
-        //        else if (state == "Won't Fix")
-        //            row.Background = Brushes.Gray;
-        //    }
-
-        //} //Obsolete
-
+        
         public void CreateReportFile(object sender, RoutedEventArgs e)
         {
             var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
-            //string pathToReport = @"..//../Projects/" + activeProject + "-Documentation-" + currentDate + ".docx";
             var fileDialog = new SaveFileDialog();
-            //var result = fileDialog.ShowDialog();
             fileDialog.DefaultExt = ".docx";
             fileDialog.Filter = "Dokumenty programu Word (.docx)|*.docx";
             Document summaryReport = new Document();

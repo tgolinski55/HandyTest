@@ -372,11 +372,13 @@
                 HorizontalAlignment="Left"
                 Click="SelectLeftFileFromSys"
                 Content="Open File.."
+                VerticalAlignment="Top"
                 FontSize="14"
                 Style="{StaticResource FunctionalButtonStyle}" />
             <Button
                 Grid.Column="1"
                 Height="25"
+                VerticalAlignment="Top"
                 HorizontalAlignment="Right"
                 Click="SelectRightFileFromSys"
                 Content="Open File.."
@@ -436,7 +438,7 @@
             Visibility="Hidden">
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="47" />
+                <RowDefinition Height="40" />
                 <RowDefinition AllowDrop="False" />
                 <RowDefinition Height="50" AllowDrop="False" />
             </Grid.RowDefinitions>
@@ -463,26 +465,6 @@
                 FocusVisualStyle="{StaticResource FocusVisualStyle}"
                 FontSize="14"
                 Style="{StaticResource FunctionalButtonStyle}" />
-
-            <!--<ComboBox
-                x:Name="dropDownLeftImageList"
-                Margin="5,0"
-                Padding="0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                FontSize="14"
-                ItemsSource="{Binding Name}"
-                SelectedIndex="0"
-                SelectionChanged="ChangeImage" />
-            <ComboBox
-                Name="dropDownRightImageList"
-                Grid.Column="1"
-                Margin="5,0"
-                HorizontalAlignment="Stretch"
-                VerticalAlignment="Bottom"
-                FontSize="14"
-                ItemsSource="{Binding ImageViewer, Mode=TwoWay}"
-                SelectedIndex="0" />-->
             <Border
                 Name="borderImage1"
                 Grid.Row="1"
@@ -579,7 +561,7 @@
             Grid.Row="1"
             Grid.RowSpan="2"
             Grid.Column="1"
-            Margin="15,0,5,15"
+            Margin="15,0,10,15"
             VerticalAlignment="Stretch"
             Visibility="Hidden">
             <Grid.RowDefinitions>
@@ -590,13 +572,14 @@
                 <ColumnDefinition MinWidth="200" MaxWidth="250" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Row="0" Grid.RowSpan="3">
+            <StackPanel Grid.Row="0" Grid.RowSpan="2">
                 <GroupBox
                     Name="grpBox"
                     HorizontalAlignment="Stretch"
                     VerticalAlignment="Top"
                     BorderBrush="#D4791C"
                     BorderThickness="1"
+                    Margin="0,0,5,0"
                     FontSize="15"
                     Header="What should be generated?"
                     Style="{x:Null}">
@@ -695,9 +678,9 @@
             <GroupBox
                 Name="previewResult"
                 Grid.Row="0"
-                Grid.RowSpan="3"
+                Grid.RowSpan="2"
                 Grid.Column="1"
-                Margin="10,0"
+                Margin="10,0,5,0"
                 BorderBrush="#D4791C"
                 BorderThickness="1"
                 FontSize="15"
