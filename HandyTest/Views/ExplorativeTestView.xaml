@@ -5,7 +5,9 @@
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:HandyTest.Views"
+    xmlns:local1="clr-namespace:HandyTest.Resources.Converters"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
     Name="ExplorativeTestView2"
     Title="Report bug"
     Width="700"
@@ -25,9 +27,9 @@
     Topmost="True"
     WindowStyle="None"
     mc:Ignorable="d">
-    
-    
-    
+
+
+
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.3*" MinHeight="130" />
@@ -79,7 +81,23 @@
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="0.5"
-                    FontSize="14" />
+                    FontSize="14">
+                    <Validation.ErrorTemplate>
+                        <ControlTemplate>
+                            <StackPanel>
+                                <!--  Placeholder for the TextBox itself  -->
+                                <AdornedElementPlaceholder x:Name="textBox" />
+                                <ItemsControl ItemsSource="{Binding}">
+                                    <ItemsControl.ItemTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Foreground="Red" Text="Author can not be empty!" />
+                                        </DataTemplate>
+                                    </ItemsControl.ItemTemplate>
+                                </ItemsControl>
+                            </StackPanel>
+                        </ControlTemplate>
+                    </Validation.ErrorTemplate>
+                </TextBox>
             </StackPanel>
             <StackPanel
                 Margin="0,5,50,0"
