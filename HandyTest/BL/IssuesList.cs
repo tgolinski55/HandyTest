@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HandyTest.BL
 {
-    class IssuesList
+    public class IssuesList
     {
         public string Name { get; set; }
         public int Id { get; set; }

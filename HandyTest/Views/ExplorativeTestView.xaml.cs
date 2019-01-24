@@ -121,6 +121,8 @@ namespace HandyTest.Views
                     )
             .Save(path + "Reports/" + setSummary.Text + ".xml");
             this.Hide();
+
+            AllIssues.issuesLists.Add(new IssuesList(setSummary.Text, issueID + 1));
             setAuthor.Clear();
             setBuildVersion.Clear();
             SetCurrentData();
@@ -130,21 +132,21 @@ namespace HandyTest.Views
             setSummary.Clear();
             settextBoxDescription.Clear();
             SaveProjectConfig();
-            ReloadAllIssuesPage();
+            //ReloadAllIssuesPage();
         }
 
-        public void ReloadAllIssuesPage()
-        {
-            //TODO Finish refreshing datagrid
-            string temp = PageNavigator.GetCurrentPage();
-            if (temp == "AllIssuesPage")
-            {
-                int x = loadCurrentProject.GetCurrentIndex();
-                AllIssues AllIssues = new AllIssues();
-                AllIssues.activeProject = loadCurrentProject.GetCurrentProject();
-                AllIssues.GetCreatedIssue(setSummary.Text,x);
-            }
-        }
+        //public void ReloadAllIssuesPage()
+        //{
+        //    //TODO Finish refreshing datagrid
+        //    string temp = PageNavigator.GetCurrentPage();
+        //    if (temp == "AllIssuesPage")
+        //    {
+        //        int x = loadCurrentProject.GetCurrentIndex();
+        //        AllIssues AllIssues = new AllIssues();
+        //        AllIssues.activeProject = loadCurrentProject.GetCurrentProject();
+        //        AllIssues.GetCreatedIssue(setSummary.Text,x);
+        //    }
+        //}
        
     }
 }

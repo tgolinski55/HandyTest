@@ -307,7 +307,7 @@
             CanUserSortColumns="True"
             GridLinesVisibility="Horizontal"
             HeadersVisibility="Column"
-            ItemsSource="{Binding issuesLists, Mode=OneWay}"
+            ItemsSource="{Binding issuesLists}"
             Loaded="LoadAllIssues"
             SelectionChanged="SelectedIssueChange"
             SelectionMode="Single">
@@ -331,7 +331,6 @@
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="NoWrap" />
                             <Setter Property="Padding" Value="5,2" />
-                            <Setter Property="ToolTip" Value="{Binding Name}" />
                             <Setter Property="Margin" Value="0,0,0,0" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
@@ -346,7 +345,6 @@
                             <Setter Property="TextWrapping" Value="NoWrap" />
                             <Setter Property="TextTrimming" Value="CharacterEllipsis" />
                             <Setter Property="Padding" Value="5,2" />
-                            <Setter Property="ToolTip" Value="{Binding Name}" />
                             <Setter Property="Margin" Value="5,0,0,0" />
                         </Style>
                     </DataGridTextColumn.ElementStyle>
