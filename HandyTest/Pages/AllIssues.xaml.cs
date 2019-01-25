@@ -52,7 +52,6 @@ namespace HandyTest.Pages
             int count = 1;
             FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
 
-
             foreach (var o in AllFiles)
             {
                 int issueID = 0;
@@ -65,8 +64,12 @@ namespace HandyTest.Pages
 
             CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
-
         }
+
+
+      
+        
+
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
         {
@@ -147,6 +150,7 @@ namespace HandyTest.Pages
 
             setSummary.Text = issueSummary;
             settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
+            
         }
 
         private void DeleteConfirm()

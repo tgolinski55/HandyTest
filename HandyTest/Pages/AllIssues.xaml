@@ -294,6 +294,22 @@
             HorizontalAlignment="Left"
             Content="Issues"
             FontSize="25" />
+        <StackPanel
+            Grid.Row="1"
+            Margin="0,10,10,0"
+            HorizontalAlignment="Right"
+            VerticalAlignment="Top"
+            Orientation="Horizontal">
+
+            <Label Content="Search:" FontSize="14" />
+            <TextBox
+                MinWidth="100"
+                MaxWidth="200"
+                controls:TextBoxHelper.Watermark="type.."
+                FontSize="14"
+                Text="{Binding CurrentNameFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                TextAlignment="Left" />
+        </StackPanel>
         <DataGrid
             Name="allIssuesDataGrid"
             Grid.Row="1"
@@ -307,6 +323,8 @@
             CanUserSortColumns="True"
             GridLinesVisibility="Horizontal"
             HeadersVisibility="Column"
+            IsTextSearchCaseSensitive="False"
+            IsTextSearchEnabled="True"
             ItemsSource="{Binding issuesLists}"
             Loaded="LoadAllIssues"
             SelectionChanged="SelectedIssueChange"
