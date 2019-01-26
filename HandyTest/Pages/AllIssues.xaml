@@ -294,6 +294,20 @@
             HorizontalAlignment="Left"
             Content="Issues"
             FontSize="25" />
+        <TextBlock
+            Name="filterCounter"
+            Grid.Row="1"
+            Margin="0,18,10,0"
+            HorizontalAlignment="Center"
+            Visibility="Hidden"
+            VerticalAlignment="Top"
+            FontSize="12"
+            >
+            <Run FontWeight="Bold" Name="filteredTableCount"/>
+            <Run Text=" of "/>
+            <Run FontWeight="Bold" Name="allTableCount"/>
+
+        </TextBlock>
         <StackPanel
             Grid.Row="1"
             Margin="0,10,10,0"
@@ -308,7 +322,6 @@
                 MaxWidth="200"
                 KeyUp="SearchTable"
                 VerticalContentAlignment="Center"
-                controls:TextBoxHelper.Watermark="type.."
                 FontSize="14"
                 Text="{Binding CurrentNameFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 TextAlignment="Left" />
@@ -337,7 +350,7 @@
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Label
-                                Width="6"
+                                Width="4"
                                 HorizontalAlignment="Left"
                                 Background="#DF964C"
                                 Visibility="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, Converter={StaticResource BooleanToVisibilityConverter}}" />

@@ -68,8 +68,8 @@ namespace HandyTest.Pages
         }
 
 
-      
-        
+
+
 
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
@@ -151,7 +151,7 @@ namespace HandyTest.Pages
 
             setSummary.Text = issueSummary;
             settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
-            
+
         }
 
         private void DeleteConfirm()
@@ -161,7 +161,7 @@ namespace HandyTest.Pages
             if (File.Exists(path))
                 File.Delete(path);
 
-           
+
         }
         private void DeleteIssue(object sender, RoutedEventArgs e)
         {
@@ -205,6 +205,7 @@ namespace HandyTest.Pages
             .Save(path);
             if (selectedIssue != setSummary.Text)
                 File.Delete(@"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml");
+            searchTextField.Text = null;
         }
 
         private void SaveIssueChanges(object sender, RoutedEventArgs e)
@@ -347,8 +348,16 @@ namespace HandyTest.Pages
 
         private void SearchTable(object sender, System.Windows.Input.KeyEventArgs e)
         {
+            if (searchTextField.Text.Length == 0)
+                filterCounter.Visibility = Visibility.Hidden;
+            else
+                filterCounter.Visibility = Visibility.Visible;
+
             var filteredIssues = issuesLists.Where(issuesLists => issuesLists.Name.Contains(searchTextField.Text));
             allIssuesDataGrid.ItemsSource = filteredIssues;
+            filteredTableCount.Text = filteredIssues.Count().ToString();
+            allTableCount.Text = issuesLists.Count.ToString();
         }
+
     }
 }
