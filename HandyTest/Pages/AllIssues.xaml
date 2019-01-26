@@ -303,8 +303,11 @@
 
             <Label Content="Search:" FontSize="14" />
             <TextBox
+                Name="searchTextField"
                 MinWidth="100"
                 MaxWidth="200"
+                KeyUp="SearchTable"
+                VerticalContentAlignment="Center"
                 controls:TextBoxHelper.Watermark="type.."
                 FontSize="14"
                 Text="{Binding CurrentNameFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"

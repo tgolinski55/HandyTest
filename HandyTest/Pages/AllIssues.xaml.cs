@@ -15,6 +15,7 @@ using System.Xml;
 using Spire.Doc.Fields;
 using System.Windows.Data;
 using Microsoft.Win32;
+using System.Collections.Generic;
 
 namespace HandyTest.Pages
 {
@@ -342,6 +343,12 @@ namespace HandyTest.Pages
             {
                 MessageBox.Show("File couldn't be saved because it's opened.", "Error");
             }
+        }
+
+        private void SearchTable(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            var filteredIssues = issuesLists.Where(issuesLists => issuesLists.Name.Contains(searchTextField.Text));
+            allIssuesDataGrid.ItemsSource = filteredIssues;
         }
     }
 }
