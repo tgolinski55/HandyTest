@@ -52,7 +52,6 @@ namespace HandyTest.Pages
             int count = 1;
             FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
 
-
             foreach (var o in AllFiles)
             {
                 int issueID = 0;
@@ -65,8 +64,12 @@ namespace HandyTest.Pages
 
             CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
-
         }
+
+
+      
+        
+
 
         private void AddPriorityItems(object sender, RoutedEventArgs e)
         {
@@ -147,27 +150,38 @@ namespace HandyTest.Pages
 
             setSummary.Text = issueSummary;
             settextBoxDescription.Text = LoadIssuesInfo.GetIssueInfo(activeProject, "Description", issueSummary);
+            
         }
 
-        private void DeleteIssue(object sender, RoutedEventArgs e)
+        private void DeleteConfirm()
         {
+
             string path = @"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml";
             if (File.Exists(path))
                 File.Delete(path);
 
-            issuesLists.Clear();
-            LoadAllIssues(sender, e);
-            editButton.IsChecked = false;
+           
+        }
+        private void DeleteIssue(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult message = MessageBox.Show("Do you really wan't to delete " + selectedIssue + " test case?", "Information", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
 
-            setAuthor.Clear();
-            setBuildVersion.Clear();
-            SetCurrentData();
-            setpriorityCombo.SelectedIndex = 2;
-            setreporttypeCombo.SelectedIndex = 1;
-            setstateCombo.SelectedIndex = 0;
-            setSummary.Clear();
-            settextBoxDescription.Clear();
-            issueInfoPanel.Header = "Issue info: ";
+            if (message == MessageBoxResult.OK)
+            {
+                DeleteConfirm();
+                issuesLists.Clear();
+                LoadAllIssues(sender, e);
+
+                setAuthor.Clear();
+                setBuildVersion.Clear();
+                SetCurrentData();
+                setpriorityCombo.SelectedIndex = 2;
+                setreporttypeCombo.SelectedIndex = 1;
+                setstateCombo.SelectedIndex = 0;
+                setSummary.Clear();
+                settextBoxDescription.Clear();
+                issueInfoPanel.Header = "Issue info: ";
+            }
         }
 
         private void EditIssue()
@@ -198,7 +212,7 @@ namespace HandyTest.Pages
             issuesLists.Clear();
             LoadAllIssues(sender, e);
         }
-        
+
         public void CreateReportFile(object sender, RoutedEventArgs e)
         {
             var currentDate = DateTime.Today.ToString("dd-MM-yyyy");
@@ -214,109 +228,109 @@ namespace HandyTest.Pages
                 if (fileDialog.ShowDialog() == true)
                 {
 
-            #region footer
-            HeaderFooter footer = summaryReport.Sections[0].HeadersFooters.Footer;
-            Paragraph footerParagraph = footer.AddParagraph();
+                    #region footer
+                    HeaderFooter footer = summaryReport.Sections[0].HeadersFooters.Footer;
+                    Paragraph footerParagraph = footer.AddParagraph();
 
-            footerParagraph.AppendField("Page number", FieldType.FieldPage);
-            footerParagraph.AppendText(" of ");
-            footerParagraph.AppendField("Number of pages", FieldType.FieldNumPages);
-            footerParagraph.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Right;
-            #endregion
+                    footerParagraph.AppendField("Page number", FieldType.FieldPage);
+                    footerParagraph.AppendText(" of ");
+                    footerParagraph.AppendField("Number of pages", FieldType.FieldNumPages);
+                    footerParagraph.Format.HorizontalAlignment = Spire.Doc.Documents.HorizontalAlignment.Right;
+                    #endregion
 
-            #region header
-            HeaderFooter header = summaryReport.Sections[0].HeadersFooters.Header;
-            Paragraph headerParagraph = header.AddParagraph();
+                    #region header
+                    HeaderFooter header = summaryReport.Sections[0].HeadersFooters.Header;
+                    Paragraph headerParagraph = header.AddParagraph();
 
-            TextRange projectName = headerParagraph.AppendText(activeProject);
-            projectName.CharacterFormat.Bold = true;
-            projectName.CharacterFormat.FontSize = 12;
-            projectName.CharacterFormat.TextColor = System.Drawing.Color.FromArgb(4485828);
+                    TextRange projectName = headerParagraph.AppendText(activeProject);
+                    projectName.CharacterFormat.Bold = true;
+                    projectName.CharacterFormat.FontSize = 12;
+                    projectName.CharacterFormat.TextColor = System.Drawing.Color.FromArgb(4485828);
 
-            headerParagraph.ApplyStyle(BuiltinStyle.NoteHeading);
-            #endregion
+                    headerParagraph.ApplyStyle(BuiltinStyle.NoteHeading);
+                    #endregion
 
-            #region content
-            Section firstPage = summaryReport.AddSection();
-            Paragraph tableOfContent = firstPage.AddParagraph();
+                    #region content
+                    Section firstPage = summaryReport.AddSection();
+                    Paragraph tableOfContent = firstPage.AddParagraph();
 
-            tableOfContent.AppendTOC(1, 3);
+                    tableOfContent.AppendTOC(1, 3);
 
-            Paragraph firstItem = firstPage.AddParagraph();
-            firstItem.AppendText("1. Introduction");
-            firstItem.ApplyStyle(BuiltinStyle.Heading2);
+                    Paragraph firstItem = firstPage.AddParagraph();
+                    firstItem.AppendText("1. Introduction");
+                    firstItem.ApplyStyle(BuiltinStyle.Heading2);
 
-            Paragraph secondItem = firstPage.AddParagraph();
-            secondItem.AppendText("2. Materials & Equipment");
-            secondItem.ApplyStyle(BuiltinStyle.Heading2);
+                    Paragraph secondItem = firstPage.AddParagraph();
+                    secondItem.AppendText("2. Materials & Equipment");
+                    secondItem.ApplyStyle(BuiltinStyle.Heading2);
 
-            Paragraph thirdItem = firstPage.AddParagraph();
-            thirdItem.AppendText("3. Test Cases / Testing");
-            thirdItem.ApplyStyle(BuiltinStyle.Heading2);
+                    Paragraph thirdItem = firstPage.AddParagraph();
+                    thirdItem.AppendText("3. Test Cases / Testing");
+                    thirdItem.ApplyStyle(BuiltinStyle.Heading2);
 
-            Table table = firstPage.AddTable(true);
-            table.ResetCells(issuesLists.Count + 1, 4);
-            table.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
-            int counter = 1;
+                    Table table = firstPage.AddTable(true);
+                    table.ResetCells(issuesLists.Count + 1, 4);
+                    table.AutoFit(AutoFitBehaviorType.AutoFitToWindow);
+                    int counter = 1;
 
-            TableRow tableHeader = table.Rows[0];
-            Paragraph tableHeaderIDCell = tableHeader.Cells[0].AddParagraph();
-            TextRange text = tableHeaderIDCell.AppendText("ID");
-            text.CharacterFormat.FontSize = 12;
-            text.CharacterFormat.Bold = true;
-            Paragraph tableHeaderNameCell = tableHeader.Cells[1].AddParagraph();
-            text = tableHeaderNameCell.AppendText("Name");
-            text.CharacterFormat.FontSize = 12;
-            text.CharacterFormat.Bold = true;
-            Paragraph tableHeaderStepsCell = tableHeader.Cells[2].AddParagraph();
-            text = tableHeaderStepsCell.AppendText("Steps");
-            text.CharacterFormat.FontSize = 12;
-            text.CharacterFormat.Bold = true;
-            Paragraph tableHeaderStatusCell = tableHeader.Cells[3].AddParagraph();
-            text = tableHeaderStatusCell.AppendText("Status (Yes/No)");
-            text.CharacterFormat.FontSize = 12;
-            text.CharacterFormat.Bold = true;
+                    TableRow tableHeader = table.Rows[0];
+                    Paragraph tableHeaderIDCell = tableHeader.Cells[0].AddParagraph();
+                    TextRange text = tableHeaderIDCell.AppendText("ID");
+                    text.CharacterFormat.FontSize = 12;
+                    text.CharacterFormat.Bold = true;
+                    Paragraph tableHeaderNameCell = tableHeader.Cells[1].AddParagraph();
+                    text = tableHeaderNameCell.AppendText("Name");
+                    text.CharacterFormat.FontSize = 12;
+                    text.CharacterFormat.Bold = true;
+                    Paragraph tableHeaderStepsCell = tableHeader.Cells[2].AddParagraph();
+                    text = tableHeaderStepsCell.AppendText("Steps");
+                    text.CharacterFormat.FontSize = 12;
+                    text.CharacterFormat.Bold = true;
+                    Paragraph tableHeaderStatusCell = tableHeader.Cells[3].AddParagraph();
+                    text = tableHeaderStatusCell.AppendText("Status (Yes/No)");
+                    text.CharacterFormat.FontSize = 12;
+                    text.CharacterFormat.Bold = true;
 
-            foreach (var item in issuesLists)
-            {
-                TableRow issueIdRow = table.Rows[counter];
-                Paragraph issueId = issueIdRow.Cells[0].AddParagraph();
-                issueId.AppendText(item.Id.ToString());
-
-
-                TableRow dataRow = table.Rows[counter];
-                Paragraph issueName = dataRow.Cells[1].AddParagraph();
-                issueName.AppendText(item.Name);
-
-                TableRow description = table.Rows[counter];
-                Paragraph issueDesc = description.Cells[2].AddParagraph();
-                issueDesc.AppendText(LoadIssuesInfo.GetIssueInfo(activeProject, "Description", item.Name));
-
-                //tab.ResetCells(2, 2);
-                counter++;
-            }
-
-            for (int i = 0; i < summaryReport.Sections[1].Tables[0].Rows.Count; i++)
-            {
-                for (int j = 0; j < 3; j++)
-                    table.Rows[i].Cells[j].CellFormat.VerticalAlignment = Spire.Doc.Documents.VerticalAlignment.Middle;
-                summaryReport.Sections[1].Tables[0].Rows[i].Cells[0].Width = 8;
-                summaryReport.Sections[1].Tables[0].Rows[i].Cells[1].Width = 47;
-                summaryReport.Sections[1].Tables[0].Rows[i].Cells[2].Width = 35;
-                summaryReport.Sections[1].Tables[0].Rows[i].Cells[3].Width = 10;
-            }
+                    foreach (var item in issuesLists)
+                    {
+                        TableRow issueIdRow = table.Rows[counter];
+                        Paragraph issueId = issueIdRow.Cells[0].AddParagraph();
+                        issueId.AppendText(item.Id.ToString());
 
 
-            Paragraph fifthItem = firstPage.AddParagraph();
-            fifthItem.AppendText("4. Conclusion");
-            fifthItem.ApplyStyle(BuiltinStyle.Heading2);
+                        TableRow dataRow = table.Rows[counter];
+                        Paragraph issueName = dataRow.Cells[1].AddParagraph();
+                        issueName.AppendText(item.Name);
 
-            Paragraph fourthItem = firstPage.AddParagraph();
-            fourthItem.AppendText("5. Observations to tests");
-            fourthItem.ApplyStyle(BuiltinStyle.Heading2);
+                        TableRow description = table.Rows[counter];
+                        Paragraph issueDesc = description.Cells[2].AddParagraph();
+                        issueDesc.AppendText(LoadIssuesInfo.GetIssueInfo(activeProject, "Description", item.Name));
 
-            summaryReport.UpdateTableOfContents();
-            #endregion
+                        //tab.ResetCells(2, 2);
+                        counter++;
+                    }
+
+                    for (int i = 0; i < summaryReport.Sections[1].Tables[0].Rows.Count; i++)
+                    {
+                        for (int j = 0; j < 3; j++)
+                            table.Rows[i].Cells[j].CellFormat.VerticalAlignment = Spire.Doc.Documents.VerticalAlignment.Middle;
+                        summaryReport.Sections[1].Tables[0].Rows[i].Cells[0].Width = 8;
+                        summaryReport.Sections[1].Tables[0].Rows[i].Cells[1].Width = 47;
+                        summaryReport.Sections[1].Tables[0].Rows[i].Cells[2].Width = 35;
+                        summaryReport.Sections[1].Tables[0].Rows[i].Cells[3].Width = 10;
+                    }
+
+
+                    Paragraph fifthItem = firstPage.AddParagraph();
+                    fifthItem.AppendText("4. Conclusion");
+                    fifthItem.ApplyStyle(BuiltinStyle.Heading2);
+
+                    Paragraph fourthItem = firstPage.AddParagraph();
+                    fourthItem.AppendText("5. Observations to tests");
+                    fourthItem.ApplyStyle(BuiltinStyle.Heading2);
+
+                    summaryReport.UpdateTableOfContents();
+                    #endregion
 
 
                     var pathToReport = fileDialog.FileName;

@@ -302,7 +302,7 @@
             CanUserSortColumns="True"
             CellStyle="{StaticResource MyDataGridCell}"
             DataContextChanged="ProjectsListDataGrid_DataContextChanged"
-            GridLinesVisibility="None"
+            GridLinesVisibility="Horizontal"
             HeadersVisibility="Column"
             HorizontalScrollBarVisibility="Disabled"
             IsSynchronizedWithCurrentItem="True"
@@ -515,8 +515,8 @@
                 HorizontalAlignment="Center"
                 VerticalAlignment="Top"
                 Background="Transparent"
-                Click="OpenLog"
                 BorderThickness="0"
+                Click="OpenLog"
                 Style="{StaticResource ImageButtonStyle}">
                 <StackPanel>
                     <Image MaxHeight="70" Source="../Resources/Icons/icons8-log-100.png" />
