@@ -206,6 +206,7 @@ namespace HandyTest.Pages
             if (selectedIssue != setSummary.Text)
                 File.Delete(@"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml");
             searchTextField.Text = null;
+            filterCounter.Visibility = Visibility.Hidden;
         }
 
         private void SaveIssueChanges(object sender, RoutedEventArgs e)
