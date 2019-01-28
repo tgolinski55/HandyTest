@@ -299,13 +299,12 @@
             Grid.Row="1"
             Margin="0,18,10,0"
             HorizontalAlignment="Center"
-            Visibility="Hidden"
             VerticalAlignment="Top"
             FontSize="12"
-            >
-            <Run FontWeight="Bold" Name="filteredTableCount"/>
-            <Run Text=" of "/>
-            <Run FontWeight="Bold" Name="allTableCount"/>
+            Visibility="Hidden">
+            <Run Name="filteredTableCount" FontWeight="Bold" />
+            <Run Text=" of " />
+            <Run Name="allTableCount" FontWeight="Bold" />
 
         </TextBlock>
         <StackPanel
@@ -320,9 +319,9 @@
                 Name="searchTextField"
                 MinWidth="100"
                 MaxWidth="200"
-                KeyUp="SearchTable"
                 VerticalContentAlignment="Center"
                 FontSize="14"
+                KeyUp="SearchTable"
                 Text="{Binding CurrentNameFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 TextAlignment="Left" />
         </StackPanel>
@@ -616,7 +615,7 @@
         <Button
             Grid.Row="2"
             Grid.Column="0"
-            Width="100"
+            Width="80"
             Height="25"
             Margin="11,0,0,0"
             Padding="0"
