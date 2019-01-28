@@ -220,8 +220,38 @@
             AcceptsTab="False"
             FontSize="16"
             IsTabStop="False"
+            KeyUp="SummaryValidator"
             Keyboard.KeyDown="ChangeFocusIfTabIsPressed" />
-
+        <Popup
+            Name="summaryValidatorPopup"
+            MaxHeight="300"
+            IsOpen="False"
+            PlacementTarget="{Binding ElementName=setSummary}"
+            Visibility="Collapsed">
+            <DockPanel Width="{Binding ElementName=setSummary, Path=ActualWidth}" Background="White">
+                <StackPanel>
+                    <DataGrid
+                        Name="summaryValidator"
+                        AutoGenerateColumns="False"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        CanUserReorderColumns="False"
+                        CanUserResizeColumns="False"
+                        
+                        CanUserSortColumns="False"
+                        HeadersVisibility="None"
+                        IsReadOnly="True"
+                        Loaded="LoadIssuesFilter"
+                        VerticalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </DockPanel>
+        </Popup>
 
         <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
             <ToolBarTray Margin="10,0" DockPanel.Dock="Top">
