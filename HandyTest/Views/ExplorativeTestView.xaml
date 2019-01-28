@@ -81,23 +81,8 @@
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="0.5"
-                    FontSize="14">
-                    <Validation.ErrorTemplate>
-                        <ControlTemplate>
-                            <StackPanel>
-                                <!--  Placeholder for the TextBox itself  -->
-                                <AdornedElementPlaceholder x:Name="textBox" />
-                                <ItemsControl ItemsSource="{Binding}">
-                                    <ItemsControl.ItemTemplate>
-                                        <DataTemplate>
-                                            <TextBlock Foreground="Red" Text="Author can not be empty!" />
-                                        </DataTemplate>
-                                    </ItemsControl.ItemTemplate>
-                                </ItemsControl>
-                            </StackPanel>
-                        </ControlTemplate>
-                    </Validation.ErrorTemplate>
-                </TextBox>
+                    FontSize="14"
+                    Text="{Binding AuthorName, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel
                 Margin="0,5,50,0"
@@ -219,9 +204,11 @@
             controls:TextBoxHelper.Watermark="Summary"
             AcceptsTab="False"
             FontSize="16"
+            GotFocus="OpenPopUpOnGetFocus"
             IsTabStop="False"
             KeyUp="SummaryValidator"
-            Keyboard.KeyDown="ChangeFocusIfTabIsPressed" />
+            Keyboard.KeyDown="ChangeFocusIfTabIsPressed"
+            LostFocus="ClosePopUpOnFoucsLst" />
         <Popup
             Name="summaryValidatorPopup"
             MaxHeight="300"
@@ -239,7 +226,6 @@
                         CanUserDeleteRows="False"
                         CanUserReorderColumns="False"
                         CanUserResizeColumns="False"
-                        
                         CanUserSortColumns="False"
                         HeadersVisibility="None"
                         IsReadOnly="True"

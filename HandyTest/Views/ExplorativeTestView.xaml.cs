@@ -104,36 +104,62 @@ namespace HandyTest.Views
             }
             return issueID;
         }
+        private string ValidateEmptyFields()
+        {
+            var msg = "";
+            if (setAuthor.Text == "")
+                msg += "Author is required";
+            if (setBuildVersion.Text == "")
+            {
+                if (msg != "")
+                    msg += Environment.NewLine;
+                msg += "Build version is required";
+            }
+            if (setSummary.Text == "")
+            {
+                if (msg != "")
+                    msg += Environment.NewLine;
+                msg += "Summary is required";
+            }
+
+            return msg;
+        }
         public string activeProject;
         private void CreateExplorativeReport(object sender, RoutedEventArgs e)
         {
-            string path = @"../../Projects/" + activeProject + "/";
-            GetProjectConfig();
-            createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
-            new XDocument(
-                new XElement("root",
-                    new XElement("ID", issueID + 1),
-                    new XElement("Author", setAuthor.Text),
-                    new XElement("BuildVersion", setBuildVersion.Text),
-                    new XElement("Date", setreportDateFile.Text),
-                    new XElement("Priority", setpriorityCombo.Text),
-                    new XElement("Type", setreporttypeCombo.Text),
-                    new XElement("State", setstateCombo.Text),
-                    new XElement("Description", settextBoxDescription.Text))
-                    )
-            .Save(path + "Reports/" + setSummary.Text + ".xml");
-            this.Hide();
+            if (ValidateEmptyFields() != "")
+                MessageBox.Show(ValidateEmptyFields(), "Missing key infromations", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
+            else
+            {
+                string path = @"../../Projects/" + activeProject + "/";
+                GetProjectConfig();
+                createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
+                new XDocument(
+                    new XElement("root",
+                        new XElement("ID", issueID + 1),
+                        new XElement("Author", setAuthor.Text),
+                        new XElement("BuildVersion", setBuildVersion.Text),
+                        new XElement("Date", setreportDateFile.Text),
+                        new XElement("Priority", setpriorityCombo.Text),
+                        new XElement("Type", setreporttypeCombo.Text),
+                        new XElement("State", setstateCombo.Text),
+                        new XElement("Description", settextBoxDescription.Text))
+                        )
+                .Save(path + "Reports/" + setSummary.Text + ".xml");
+                this.Hide();
 
-            AllIssues.issuesLists.Add(new IssuesList(setSummary.Text, issueID + 1));
-            setAuthor.Clear();
-            setBuildVersion.Clear();
-            SetCurrentData();
-            setpriorityCombo.SelectedIndex = 2;
-            setreporttypeCombo.SelectedIndex = 1;
-            setstateCombo.SelectedIndex = 0;
-            setSummary.Clear();
-            settextBoxDescription.Clear();
-            SaveProjectConfig();
+                AllIssues.issuesLists.Add(new IssuesList(setSummary.Text, issueID + 1));
+                summaryValidatorPopup.IsOpen = false;
+                setAuthor.Clear();
+                setBuildVersion.Clear();
+                SetCurrentData();
+                setpriorityCombo.SelectedIndex = 2;
+                setreporttypeCombo.SelectedIndex = 1;
+                setstateCombo.SelectedIndex = 0;
+                setSummary.Clear();
+                settextBoxDescription.Clear();
+                SaveProjectConfig();
+            }
         }
 
         private void SummaryValidator(object sender, KeyEventArgs e)
@@ -166,6 +192,16 @@ namespace HandyTest.Views
                     issuesList.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
                 }
             }
+        }
+
+        private void ClosePopUpOnFoucsLst(object sender, RoutedEventArgs e)
+        {
+            summaryValidatorPopup.IsOpen = false;
+        }
+
+        private void OpenPopUpOnGetFocus(object sender, RoutedEventArgs e)
+        {
+            summaryValidatorPopup.IsOpen = true;
         }
     }
 }
