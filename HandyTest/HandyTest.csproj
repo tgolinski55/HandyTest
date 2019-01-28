@@ -130,6 +130,7 @@
     <Compile Include="Pages\LogView.xaml.cs">
       <DependentUpon>LogView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Resources\Converters\EmptyStringValidationConverter.cs" />
     <Compile Include="Resources\Converters\ImageConverter.cs" />
     <Compile Include="Resources\Resource.Designer.cs">
       <AutoGen>True</AutoGen>

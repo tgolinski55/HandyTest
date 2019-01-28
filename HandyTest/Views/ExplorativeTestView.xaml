@@ -5,7 +5,9 @@
     xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:local="clr-namespace:HandyTest.Views"
+    xmlns:local1="clr-namespace:HandyTest.Resources.Converters"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:s="clr-namespace:System;assembly=mscorlib"
     Name="ExplorativeTestView2"
     Title="Report bug"
     Width="700"
@@ -25,9 +27,9 @@
     Topmost="True"
     WindowStyle="None"
     mc:Ignorable="d">
-    
-    
-    
+
+
+
     <Grid Background="WhiteSmoke">
         <Grid.RowDefinitions>
             <RowDefinition Height="1.3*" MinHeight="130" />
@@ -79,7 +81,8 @@
                     Width="110"
                     Margin="10,0,0,0"
                     Padding="0.5"
-                    FontSize="14" />
+                    FontSize="14"
+                    Text="{Binding AuthorName, UpdateSourceTrigger=PropertyChanged}" />
             </StackPanel>
             <StackPanel
                 Margin="0,5,50,0"
@@ -201,9 +204,40 @@
             controls:TextBoxHelper.Watermark="Summary"
             AcceptsTab="False"
             FontSize="16"
+            GotFocus="OpenPopUpOnGetFocus"
             IsTabStop="False"
-            Keyboard.KeyDown="ChangeFocusIfTabIsPressed" />
-
+            KeyUp="SummaryValidator"
+            Keyboard.KeyDown="ChangeFocusIfTabIsPressed"
+            LostFocus="ClosePopUpOnFoucsLst" />
+        <Popup
+            Name="summaryValidatorPopup"
+            MaxHeight="300"
+            IsOpen="False"
+            PlacementTarget="{Binding ElementName=setSummary}"
+            Visibility="Collapsed">
+            <DockPanel Width="{Binding ElementName=setSummary, Path=ActualWidth}" Background="White">
+                <StackPanel>
+                    <DataGrid
+                        Name="summaryValidator"
+                        AutoGenerateColumns="False"
+                        BorderBrush="Black"
+                        BorderThickness="1"
+                        CanUserAddRows="False"
+                        CanUserDeleteRows="False"
+                        CanUserReorderColumns="False"
+                        CanUserResizeColumns="False"
+                        CanUserSortColumns="False"
+                        HeadersVisibility="None"
+                        IsReadOnly="True"
+                        Loaded="LoadIssuesFilter"
+                        VerticalScrollBarVisibility="Auto">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+            </DockPanel>
+        </Popup>
 
         <DockPanel Grid.Row="2" Grid.ColumnSpan="2">
             <ToolBarTray Margin="10,0" DockPanel.Dock="Top">

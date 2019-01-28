@@ -58,6 +58,7 @@ namespace HandyTest.Pages
                 int issueID = 0;
                 int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
                 //allIssuesDataGrid.ItemsSource = issuesLists;
+                
                 issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
                 //StatusIndicator(o.Name);
                 count++;
