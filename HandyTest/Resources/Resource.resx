@@ -133,7 +133,7 @@
     <value>All Issues</value>
   </data>
   <data name="imageButton_CreateReport" xml:space="preserve">
-    <value>Create report</value>
+    <value>Report bug</value>
   </data>
   <data name="imageButton_Log" xml:space="preserve">
     <value>Log</value>

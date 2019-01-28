@@ -97,7 +97,7 @@ namespace HandyTest.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Create report.
+        ///   Looks up a localized string similar to Report bug.
         /// </summary>
         public static string imageButton_CreateReport {
             get {
