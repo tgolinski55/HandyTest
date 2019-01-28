@@ -35,7 +35,8 @@ namespace HandyTest
         public static ObservableCollection<ProjectList> ProjectsList { get; set; }
         public static ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
-
+        ExplorativeTestView explorativeTestView = new ExplorativeTestView();
+        LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         LogView LogView = new LogView();
         private IKeyboardMouseEvents m_GlobalHook;
         [DllImport("user32.dll")]
@@ -245,8 +246,7 @@ namespace HandyTest
                             break;
                         case VK_OEM_3:
                             logItems.Add(new LogItems("Key pressed: Oem3", DateTime.Now.ToLongTimeString(), path2));
-                            ExplorativeTestView explorativeTestView = new ExplorativeTestView();
-                            LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
+                            
                             if (!IsWindowOpen<Window>("ExplorativeTestView"))
                             {
                                 //logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path2));

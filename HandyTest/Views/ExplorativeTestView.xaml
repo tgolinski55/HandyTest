@@ -8,7 +8,6 @@
     xmlns:local1="clr-namespace:HandyTest.Resources.Converters"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:s="clr-namespace:System;assembly=mscorlib"
-    Name="ExplorativeTestView2"
     Title="Report bug"
     Width="700"
     Height="450"
