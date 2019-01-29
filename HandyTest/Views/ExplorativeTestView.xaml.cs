@@ -17,7 +17,6 @@ namespace HandyTest.Views
     /// </summary>
     public partial class ExplorativeTestView : Window
     {
-
         public static ObservableCollection<IssuesList> issuesList = new ObservableCollection<IssuesList>();
         ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();

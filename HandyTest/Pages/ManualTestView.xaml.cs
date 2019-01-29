@@ -14,6 +14,8 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Threading;
 using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Threading;
 
 namespace HandyTest.Pages
 {
@@ -22,6 +24,9 @@ namespace HandyTest.Pages
     /// </summary>
     public partial class ManualTestView : UserControl
     {
+
+        public List<string> MyCollection { get; set; }
+        int paragraphCounter = 1;
         ObservableCollection<ManualTestOptions> ManualTestOpt = new ObservableCollection<ManualTestOptions>();
         ObservableCollection<string> ImageViewer = new ObservableCollection<string>();
         ObservableCollection<ImageSource> ImageViewerList = new ObservableCollection<ImageSource>();
@@ -70,7 +75,34 @@ namespace HandyTest.Pages
             //    resultLabel.Content = "Files are the same";
             //    resultLabel.Foreground = System.Windows.Media.Brushes.Green;
             //}
-            CheckTextFiles();
+            string[] leftText = { };
+            string[] rightText = { };
+            foreach (var line in txtToCheck.Text)
+            {
+                leftText = txtToCheck.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            }
+            foreach (var line in newTxt.Text)
+            {
+                rightText = newTxt.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            }
+            if (txtToCheck.CaretPosition.Paragraph != null)
+            {
+                for (int i = 0; i < leftText.Length; i++)
+                {
+                    if (leftText[i] != rightText[i])
+                    {
+                        paragraphCounter++;
+                        txtToCheck.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+                        {
+                            if (paragraphCounter % 3 == 0)
+                                txtToCheck.CaretPosition.Paragraph.Style = this.FindResource("AquaPara") as Style;
+                            else
+                                txtToCheck.CaretPosition.Paragraph.Style = this.FindResource("RedPara") as Style;
+                        }));
+                    }
+
+                }
+            }
         }
 
         private void ChangeFunction(object sender, SelectionChangedEventArgs e)
@@ -436,7 +468,7 @@ namespace HandyTest.Pages
                 if (oneLineLeft[i] != oneLineRight[i])
                 {
                     richTextBox.Select(i, i + 1);
-                    richTextBox.SelectionColor = System.Drawing.Color.Red; 
+                    richTextBox.SelectionColor = System.Drawing.Color.Red;
                 }
             txtToCheck.Text = richTextBox.Text;
         }
@@ -470,13 +502,13 @@ namespace HandyTest.Pages
                 case System.Windows.Forms.DialogResult.OK:
                     var file = fileDialog.FileName;
                     if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith(".docx") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
-                        txtToCheck2.Text = File.ReadAllText(file);
+                        newTxt.Text = File.ReadAllText(file);
                     else
                         MessageBox.Show("This file format is not supported", "Error");
                     break;
                 case System.Windows.Forms.DialogResult.Cancel:
                 default:
-                    txtToCheck2.Text = null;
+                    newTxt.Text = null;
                     break;
             }
         }

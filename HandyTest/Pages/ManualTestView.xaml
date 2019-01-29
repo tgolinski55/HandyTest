@@ -18,6 +18,15 @@
     mc:Ignorable="d">
 
     <UserControl.Resources>
+        <Style TargetType="{x:Type Paragraph}">
+            <Setter Property="Background" Value="Red" />
+        </Style>
+        <Style x:Key="RedPara" TargetType="{x:Type Paragraph}">
+            <Setter Property="Background" Value="Red" />
+        </Style>
+        <Style x:Key="AquaPara" TargetType="{x:Type Paragraph}">
+            <Setter Property="Background" Value="Aqua" />
+        </Style>
         <SolidColorBrush x:Key="StandardBorderBrush" Color="#888" />
         <SolidColorBrush x:Key="StandardBackgroundBrush" Color="Black" />
         <SolidColorBrush x:Key="HoverBorderBrush" Color="#DDD" />
@@ -402,27 +411,23 @@
                 VerticalScrollBarVisibility="Visible" />-->
 
             <wpfTool:RichTextBox
-                Grid.Row="1"
-                TextChanged="FileChecker"
-                Name="txtToCheck"
-                Text="HELLLO"
-                Margin="5,0,5,10">
-            </wpfTool:RichTextBox>
-            
-            <TextBox
-                Name="txtToCheck2"
+                Name="newTxt"
                 Grid.Row="1"
                 Grid.Column="1"
                 Margin="5,0,5,10"
-                AcceptsReturn="True"
-                AcceptsTab="True"
-                AllowDrop="True"
-                BorderBrush="#232526"
-                BorderThickness="1"
-                FontSize="14"
-                TextChanged="FileChecker"
-                TextWrapping="Wrap"
-                VerticalScrollBarVisibility="Visible" />
+                Text="Test"
+                TextChanged="FileChecker" >
+                
+            </wpfTool:RichTextBox>
+
+            <wpfTool:RichTextBox
+                Name="txtToCheck"
+                Grid.Row="1"
+                Height="370"
+                Margin="5,0,5,10"
+                VerticalAlignment="Bottom"
+                Text="HELLLO"
+                TextChanged="FileChecker" />
             <Label
                 Name="resultLabel"
                 Grid.Row="0"
