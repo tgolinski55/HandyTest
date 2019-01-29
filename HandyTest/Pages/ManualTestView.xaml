@@ -386,7 +386,7 @@
                 Style="{StaticResource FunctionalButtonStyle}" />
 
 
-            <TextBox
+            <!--<TextBox
                 Name="txtToCheck"
                 Grid.Row="1"
                 Grid.Column="0"
@@ -399,7 +399,16 @@
                 FontSize="14"
                 TextChanged="FileChecker"
                 TextWrapping="Wrap"
-                VerticalScrollBarVisibility="Visible" />
+                VerticalScrollBarVisibility="Visible" />-->
+
+            <wpfTool:RichTextBox
+                Grid.Row="1"
+                TextChanged="FileChecker"
+                Name="txtToCheck"
+                Text="HELLLO"
+                Margin="5,0,5,10">
+            </wpfTool:RichTextBox>
+            
             <TextBox
                 Name="txtToCheck2"
                 Grid.Row="1"

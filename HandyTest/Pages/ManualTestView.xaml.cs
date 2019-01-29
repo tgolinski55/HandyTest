@@ -13,6 +13,7 @@ using System.Security.Cryptography;
 using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Threading;
+using System.Windows.Documents;
 
 namespace HandyTest.Pages
 {
@@ -59,16 +60,17 @@ namespace HandyTest.Pages
 
         private void FileChecker(object sender, TextChangedEventArgs e)
         {
-            if (txtToCheck.Text != txtToCheck2.Text)
-            {
-                resultLabel.Content = "Files are different!";
-                resultLabel.Foreground = System.Windows.Media.Brushes.Red;
-            }
-            else
-            {
-                resultLabel.Content = "Files are the same";
-                resultLabel.Foreground = System.Windows.Media.Brushes.Green;
-            }
+            //if (txtToCheck.Text != txtToCheck2.Text)
+            //{
+            //    resultLabel.Content = "Files are different!";
+            //    resultLabel.Foreground = System.Windows.Media.Brushes.Red;
+            //}
+            //else
+            //{
+            //    resultLabel.Content = "Files are the same";
+            //    resultLabel.Foreground = System.Windows.Media.Brushes.Green;
+            //}
+            CheckTextFiles();
         }
 
         private void ChangeFunction(object sender, SelectionChangedEventArgs e)
@@ -411,6 +413,34 @@ namespace HandyTest.Pages
             Clipboard.SetData(DataFormats.Text, (object)generatedResult.Content);
         }
 
+        private void CheckTextFiles()
+        {
+            string[] oneLineRight = { };
+            string[] oneLineLeft = { };
+            System.Windows.Forms.RichTextBox richTextBox = new System.Windows.Forms.RichTextBox();
+            var allLeftText = "";
+            var allRightText = "";
+            Paragraph text = new Paragraph();
+            foreach (var lineLeft in allLeftText)
+            {
+                foreach (var lineRight in allRightText)
+                {
+                    oneLineRight = allRightText.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                    continue;
+                }
+                oneLineLeft = allLeftText.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+
+            }
+            richTextBox.Text = txtToCheck.Text;
+            for (int i = 0; i < oneLineLeft.Length; i++)
+                if (oneLineLeft[i] != oneLineRight[i])
+                {
+                    richTextBox.Select(i, i + 1);
+                    richTextBox.SelectionColor = System.Drawing.Color.Red; 
+                }
+            txtToCheck.Text = richTextBox.Text;
+        }
+
         private void SelectLeftFileFromSys(object sender, RoutedEventArgs e)
         {
             var fileDialog = new System.Windows.Forms.OpenFileDialog();
@@ -419,7 +449,7 @@ namespace HandyTest.Pages
             {
                 case System.Windows.Forms.DialogResult.OK:
                     var file = fileDialog.FileName;
-                    if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith(".docx") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
+                    if (file.EndsWith(".txt") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
                         txtToCheck.Text = File.ReadAllText(file);
                     else
                         MessageBox.Show("This file format is not supported", "Error");
