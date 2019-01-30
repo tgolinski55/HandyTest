@@ -65,44 +65,44 @@ namespace HandyTest.Pages
 
         private void FileChecker(object sender, TextChangedEventArgs e)
         {
-            //if (txtToCheck.Text != txtToCheck2.Text)
-            //{
-            //    resultLabel.Content = "Files are different!";
-            //    resultLabel.Foreground = System.Windows.Media.Brushes.Red;
-            //}
-            //else
-            //{
-            //    resultLabel.Content = "Files are the same";
-            //    resultLabel.Foreground = System.Windows.Media.Brushes.Green;
-            //}
-            string[] leftText = { };
-            string[] rightText = { };
-            foreach (var line in txtToCheck.Text)
+            if (txtToCheck.Text != newTxt.Text)
             {
-                leftText = txtToCheck.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                resultLabel.Content = "Files are different!";
+                resultLabel.Foreground = System.Windows.Media.Brushes.Red;
             }
-            foreach (var line in newTxt.Text)
+            else
             {
-                rightText = newTxt.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+                resultLabel.Content = "Files are the same";
+                resultLabel.Foreground = System.Windows.Media.Brushes.Green;
             }
-            if (txtToCheck.CaretPosition.Paragraph != null)
-            {
-                for (int i = 0; i < leftText.Length; i++)
-                {
-                    if (leftText[i] != rightText[i])
-                    {
-                        paragraphCounter++;
-                        txtToCheck.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
-                        {
-                            if (paragraphCounter % 3 == 0)
-                                txtToCheck.CaretPosition.Paragraph.Style = this.FindResource("AquaPara") as Style;
-                            else
-                                txtToCheck.CaretPosition.Paragraph.Style = this.FindResource("RedPara") as Style;
-                        }));
-                    }
+            //string[] leftText = { };
+            //string[] rightText = { };
+            //foreach (var line in txtToCheck.Text)
+            //{
+            //    leftText = txtToCheck.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            //}
+            //foreach (var line in newTxt.Text)
+            //{
+            //    rightText = newTxt.Text.Split(new[] { Environment.NewLine }, StringSplitOptions.None);
+            //}
+            //if (txtToCheck.CaretPosition.Paragraph != null)
+            //{
+            //    for (int i = 0; i < leftText.Length; i++)
+            //    {
+            //        if (leftText[i] != rightText[i])
+            //        {
+            //            paragraphCounter++;
+            //            txtToCheck.Dispatcher.BeginInvoke(DispatcherPriority.Background, new Action(() =>
+            //            {
+            //                if (paragraphCounter % 3 == 0)
+            //                    txtToCheck.CaretPosition.Paragraph.Style = this.FindResource("AquaPara") as Style;
+            //                else
+            //                    txtToCheck.CaretPosition.Paragraph.Style = this.FindResource("RedPara") as Style;
+            //            }));
+            //        }
 
-                }
-            }
+            //    }
+            //}
         }
 
         private void ChangeFunction(object sender, SelectionChangedEventArgs e)

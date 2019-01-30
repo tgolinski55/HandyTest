@@ -410,23 +410,21 @@
                 TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Visible" />-->
 
-            <wpfTool:RichTextBox
-                Name="newTxt"
-                Grid.Row="1"
-                Grid.Column="1"
-                Margin="5,0,5,10"
-                Text="Test"
-                TextChanged="FileChecker" >
-                
-            </wpfTool:RichTextBox>
 
-            <wpfTool:RichTextBox
+            <TextBox
                 Name="txtToCheck"
                 Grid.Row="1"
                 Height="370"
                 Margin="5,0,5,10"
                 VerticalAlignment="Bottom"
                 Text="HELLLO"
+                TextChanged="FileChecker" />
+            <TextBox
+                Name="newTxt"
+                Grid.Row="1"
+                Grid.Column="1"
+                Margin="5,0,5,10"
+                Text="Test"
                 TextChanged="FileChecker" />
             <Label
                 Name="resultLabel"
