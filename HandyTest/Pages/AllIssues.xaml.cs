@@ -351,7 +351,9 @@ namespace HandyTest.Pages
         private void SearchTable(object sender, System.Windows.Input.KeyEventArgs e)
         {
             if (searchTextField.Text.Length == 0)
+            {
                 filterCounter.Visibility = Visibility.Hidden;
+            }
             else
                 filterCounter.Visibility = Visibility.Visible;
 
@@ -359,6 +361,7 @@ namespace HandyTest.Pages
             allIssuesDataGrid.ItemsSource = filteredIssues;
             filteredTableCount.Text = filteredIssues.Count().ToString();
             allTableCount.Text = issuesLists.Count.ToString();
+                SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
         }
 
     }
