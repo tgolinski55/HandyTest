@@ -313,13 +313,12 @@
             HorizontalAlignment="Right"
             VerticalAlignment="Top"
             Orientation="Horizontal">
-
-            <Label Content="Search:" FontSize="14" />
             <TextBox
                 Name="searchTextField"
                 MinWidth="100"
                 MaxWidth="200"
                 VerticalContentAlignment="Center"
+                controls:TextBoxHelper.Watermark="Search"
                 FontSize="14"
                 KeyUp="SearchTable"
                 Text="{Binding CurrentNameFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
