@@ -12,12 +12,30 @@ namespace HandyTest.BL
     {
         public static string GetIssueInfo(string projectName, string element, string issueSummary)
         {
-            string path = @"..//../Projects/"+projectName+"/Reports/"+issueSummary+".xml";
+            string path = GetProjectsPath("ProjectsPath") + "/" + projectName + "/Reports/" + issueSummary + ".xml";
             XmlDocument xmlFile = new XmlDocument();
 
             if (File.Exists(path))
             {
                 xmlFile.Load(path);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+                element = xmlNodeList.Item(0).InnerText;
+            }
+            else
+            {
+                element = "";
+            }
+            return element;
+        }
+
+        private static string GetProjectsPath(string element)
+        {
+            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            XmlDocument xmlFile = new XmlDocument();
+
+            if (File.Exists(pathToConfig))
+            {
+                xmlFile.Load(pathToConfig);
                 XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
                 element = xmlNodeList.Item(0).InnerText;
             }

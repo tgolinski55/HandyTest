@@ -9,6 +9,7 @@ using HandyTest.Pages;
 using System.Windows.Data;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml;
 
 namespace HandyTest.Views
 {
@@ -35,7 +36,23 @@ namespace HandyTest.Views
             this.Top = desktopWorkingArea.Bottom - this.Height;
 
         }
+        private string GetProjectsPath(string element)
+        {
+            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            XmlDocument xmlFile = new XmlDocument();
 
+            if (File.Exists(pathToConfig))
+            {
+                xmlFile.Load(pathToConfig);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+                element = xmlNodeList.Item(0).InnerText;
+            }
+            else
+            {
+                element = "";
+            }
+            return element;
+        }
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             this.Hide();
@@ -81,7 +98,7 @@ namespace HandyTest.Views
         }
         private void SaveProjectConfig()
         {
-            string pathToConfig = @"../../Projects/" + activeProject + "/";
+            string pathToConfig = GetProjectsPath("ProjectsPath")+"/" + activeProject + "/";
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToConfig, "config.txt"), false))
             {
                 outputFile.Write(issueID + 1);
@@ -89,7 +106,7 @@ namespace HandyTest.Views
         }
         private int GetProjectConfig()
         {
-            string pathToConfig = Path.Combine(@"../../Projects/" + activeProject + "/", "config.txt");
+            string pathToConfig = Path.Combine(GetProjectsPath("ProjectsPath") + "/" + activeProject + "/", "config.txt");
 
             try
             {
@@ -132,7 +149,7 @@ namespace HandyTest.Views
                 MessageBox.Show(ValidateEmptyFields(), "Missing key infromations", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
             else
             {
-                string path = @"../../Projects/" + activeProject + "/";
+                string path = GetProjectsPath("ProjectsPath")+"/" + activeProject + "/";
                 GetProjectConfig();
                 createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
                 new XDocument(
@@ -179,7 +196,7 @@ namespace HandyTest.Views
             if (summaryValidator.ItemsSource == null)
             {
                 summaryValidator.ItemsSource = null;
-                string path = @"..//../Projects/" + activeProject + "/Reports";
+                string path = GetProjectsPath("ProjectsPath") +"/"+ activeProject + "/Reports";
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 DirectoryInfo dirInfo = new DirectoryInfo(path);

@@ -32,7 +32,7 @@ namespace HandyTest.Pages
             manualTestDataGrid.SelectedIndex = 0;
         }
 
-
+        
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new HomeView());

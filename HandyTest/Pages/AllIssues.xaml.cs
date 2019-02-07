@@ -46,7 +46,7 @@ namespace HandyTest.Pages
             issuesLists.Clear();
             allIssuesDataGrid.ItemsSource = issuesLists;
             CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
-            string path = @"..//../Projects/" + activeProject + "/Reports";
+            string path = GetProjectsPath("ProjectsPath") +"/" + activeProject + "/Reports";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             DirectoryInfo dirInfo = new DirectoryInfo(path);
@@ -69,7 +69,23 @@ namespace HandyTest.Pages
         }
 
 
+        private string GetProjectsPath(string element)
+        {
+            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            XmlDocument xmlFile = new XmlDocument();
 
+            if (File.Exists(pathToConfig))
+            {
+                xmlFile.Load(pathToConfig);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+                element = xmlNodeList.Item(0).InnerText;
+            }
+            else
+            {
+                element = "";
+            }
+            return element;
+        }
 
 
 
@@ -159,7 +175,7 @@ namespace HandyTest.Pages
         private void DeleteConfirm()
         {
 
-            string path = @"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml";
+            string path = GetProjectsPath("ProjectsPath") +"/" + activeProject + "/Reports/" + selectedIssue + ".xml";
             if (File.Exists(path))
                 File.Delete(path);
 
@@ -189,8 +205,8 @@ namespace HandyTest.Pages
 
         private void EditIssue()
         {
-            string pathToID = @"..//../Projects/" + activeProject + "/config.txt";
-            string path = @"..//../Projects/" + activeProject + "/Reports/" + setSummary.Text + ".xml";
+            string pathToID = GetProjectsPath("ProjectsPath") +"/" + activeProject + "/config.txt";
+            string path = GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + setSummary.Text + ".xml";
             var tempID = LoadIssuesInfo.GetIssueInfo(activeProject, "ID", selectedIssue);
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
             new XDocument(
@@ -206,7 +222,7 @@ namespace HandyTest.Pages
                     )
             .Save(path);
             if (selectedIssue != setSummary.Text)
-                File.Delete(@"..//../Projects/" + activeProject + "/Reports/" + selectedIssue + ".xml");
+                File.Delete(GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + selectedIssue + ".xml");
             searchTextField.Text = null;
             filterCounter.Visibility = Visibility.Hidden;
         }
@@ -225,7 +241,7 @@ namespace HandyTest.Pages
             fileDialog.DefaultExt = ".docx";
             fileDialog.Filter = "Dokumenty programu Word (.docx)|*.docx";
             Document summaryReport = new Document();
-            string pathToTemplate = @"..//../Projects/ReportTemplate.docx";
+            string pathToTemplate = GetProjectsPath("ProjectsPath") + "/" + "/ReportTemplate.docx";
             summaryReport.LoadFromFile(pathToTemplate);
 
             try
