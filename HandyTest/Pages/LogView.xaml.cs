@@ -74,7 +74,7 @@ namespace HandyTest.Pages
             var pathToScreen = (logIndex.Column.GetCellContent(logIndex.Item) as TextBlock).Text;
             //ImageSource imageSource = 
             string appDomain = AppDomain.CurrentDomain.BaseDirectory;
-            completePath = Path.Combine(appDomain +GetProjectsPath("ScreenshotsPath") + "/" + pathToScreen);
+            completePath = Path.Combine(GetProjectsPath("ScreenshotsPath") + "/" + pathToScreen);
             try
             {
                 previewImageBorder.IsEnabled = true;
