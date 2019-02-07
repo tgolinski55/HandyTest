@@ -87,6 +87,7 @@ namespace HandyTest.Pages
             setreporttypeCombo.Items.Add("Task");
             setreporttypeCombo.Items.Add("Bug");
             setreporttypeCombo.Items.Add("Feature");
+            setreporttypeCombo.Items.Add("Automation");
         }
 
         private void AddStateItems(object sender, RoutedEventArgs e)
