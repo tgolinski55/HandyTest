@@ -14,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Xml;
 
 namespace HandyTest.Pages
 {
@@ -28,7 +29,23 @@ namespace HandyTest.Pages
         {
             InitializeComponent();
         }
+        private string GetProjectsPath(string element)
+        {
+            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            XmlDocument xmlFile = new XmlDocument();
 
+            if (File.Exists(pathToConfig))
+            {
+                xmlFile.Load(pathToConfig);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+                element = xmlNodeList.Item(0).InnerText;
+            }
+            else
+            {
+                element = "";
+            }
+            return element;
+        }
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new HomeView());
@@ -57,7 +74,7 @@ namespace HandyTest.Pages
             var pathToScreen = (logIndex.Column.GetCellContent(logIndex.Item) as TextBlock).Text;
             //ImageSource imageSource = 
             string appDomain = AppDomain.CurrentDomain.BaseDirectory;
-            completePath = Path.Combine(appDomain + @"..\..\Screenshoots\" + pathToScreen);
+            completePath = Path.Combine(appDomain +GetProjectsPath("ScreenshotsPath") + "/" + pathToScreen);
             try
             {
                 previewImageBorder.IsEnabled = true;

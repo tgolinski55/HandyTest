@@ -21,6 +21,8 @@ using WindowsInput;
 using WindowsInput.Native;
 using DesktopWPFAppLowLevelKeyboardHook;
 using System.Threading.Tasks;
+using System.Xml;
+using System.IO;
 
 namespace HandyTest
 {
@@ -30,7 +32,7 @@ namespace HandyTest
     public partial class MainWindow : MetroWindow
     {
         private LowLevelKeyboardListener _listener;
-        string path = "..//../Screenshoots/";
+        //string path = "..//../Screenshoots/";
         ScreenCapturer screenCapturer = new ScreenCapturer();
         public static ObservableCollection<ProjectList> ProjectsList { get; set; }
         public static ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
@@ -78,7 +80,23 @@ namespace HandyTest
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
         }
+        private string GetProjectsPath(string element)
+        {
+            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            XmlDocument xmlFile = new XmlDocument();
 
+            if (File.Exists(pathToConfig))
+            {
+                xmlFile.Load(pathToConfig);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+                element = xmlNodeList.Item(0).InnerText;
+            }
+            else
+            {
+                element = "";
+            }
+            return element;
+        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _listener = new LowLevelKeyboardListener();
@@ -103,7 +121,7 @@ namespace HandyTest
                     else
                     {
                         logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(GetProjectsPath("ScreenshotsPath") +"/"+ path2, ImageFormat.Jpeg);
 
                     }
                 }
@@ -139,7 +157,7 @@ namespace HandyTest
             {
                 while (true)
                 {
-                    GarbageCollector.DeleteAllScreenshoots(path);
+                    GarbageCollector.DeleteAllScreenshoots(GetProjectsPath("ScreenshotsPath") + "/");
                     Thread.Sleep(600000);
                 }
             });
@@ -191,7 +209,7 @@ namespace HandyTest
             }
             try
             {
-                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(path + path2, ImageFormat.Jpeg);
+                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(GetProjectsPath("ScreenshotsPath") +"/" + path2, ImageFormat.Jpeg);
             }
             catch
             {

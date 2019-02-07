@@ -10,16 +10,32 @@ namespace HandyTest.BL
 {
     class LoadCurrentProject
     {
-        string path = @"..//../Projects/ActiveProjectInfo.xml";
+        //string path = @"..//../Projects/ActiveProjectInfo.xml";
         //string path = @"..//../Projects/xD/Reports/xD.xml";
         XmlDocument xmlFile = new XmlDocument();
+        private string GetProjectsPath(string element)
+        {
+            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            XmlDocument xmlFile = new XmlDocument();
 
+            if (File.Exists(pathToConfig))
+            {
+                xmlFile.Load(pathToConfig);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+                element = xmlNodeList.Item(0).InnerText;
+            }
+            else
+            {
+                element = "";
+            }
+            return element;
+        }
         public string GetCurrentProject()
         {
             string projectName;
-            if (File.Exists(path))
+            if (File.Exists(GetProjectsPath("ProjectsPath")+"/ActiveProjectInfo.xml"))
             {
-                xmlFile.Load(path);
+                xmlFile.Load(GetProjectsPath("ProjectsPath")+"/ActiveProjectInfo.xml");
                 XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName("Project");
                 projectName = xmlNodeList.Item(0).InnerText;
             }
@@ -32,9 +48,9 @@ namespace HandyTest.BL
         public int GetCurrentIndex()
         {
             int x = 0;
-            if (File.Exists(path))
+            if (File.Exists(GetProjectsPath("ProjectsPath")+"/ActiveProjectInfo.xml"))
             {
-                xmlFile.Load(path);
+                xmlFile.Load(GetProjectsPath("ProjectsPath")+"/ActiveProjectInfo.xml");
                 XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName("Id");
                 string projectIndex = xmlNodeList.Item(0).InnerText;
                 int.TryParse(projectIndex, out x);

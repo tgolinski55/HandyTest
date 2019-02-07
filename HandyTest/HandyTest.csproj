@@ -127,6 +127,9 @@
     <Compile Include="Pages\AllIssues.xaml.cs">
       <DependentUpon>AllIssues.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Pages\ConfigurationView.xaml.cs">
+      <DependentUpon>ConfigurationView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\LogView.xaml.cs">
       <DependentUpon>LogView.xaml</DependentUpon>
     </Compile>
@@ -158,6 +161,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Pages\AllIssues.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Pages\ConfigurationView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -355,6 +362,12 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Icons\icons8-replay-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-settings-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Icons\icons8-help-32.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
