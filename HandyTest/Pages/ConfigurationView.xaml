@@ -1,0 +1,157 @@
+﻿<UserControl
+    x:Class="HandyTest.Pages.ConfigurationView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:controls="http://metro.mahapps.com/winfx/xaml/controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:HandyTest.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    mc:Ignorable="d">
+
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30" />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Button
+            Width="30"
+            Height="30"
+            Padding="0"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Click="PreviousWindowBtn"
+            Style="{StaticResource TransparentStyle2}">
+            <Image Source="../Resources/Icons/icons8-wstecz-100.png" />
+        </Button>
+        <GroupBox
+            Name="grpBox"
+            Grid.Row="1"
+            Grid.RowSpan="2"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            Margin="10,0,10,10"
+            BorderBrush="#D4791C"
+            BorderThickness="1"
+            FontSize="16"
+            Header="General settings"
+            Style="{x:Null}">
+            <DockPanel Margin="10,5" HorizontalAlignment="Left">
+
+                <StackPanel MaxWidth="{Binding ElementName=grpBox, Path=Width}" Orientation="Horizontal">
+                    <StackPanel
+                        HorizontalAlignment="Left"
+                        DockPanel.Dock="Top"
+                        Orientation="Vertical">
+                        <Label
+                            Margin="5"
+                            Content="Projects path"
+                            FontSize="14" />
+                        <Label
+                            Margin="5"
+                            Content="Screenshots path"
+                            FontSize="14" />
+
+                    </StackPanel>
+                    <StackPanel DockPanel.Dock="Top">
+                        <TextBox
+                            Name="projectsPath"
+                            Height="20"
+                            MinWidth="100"
+                            MaxWidth="450"
+                            Margin="5"
+                            VerticalAlignment="Top"
+                            controls:TextBoxHelper.Watermark="default"
+                            FontSize="14" />
+                        <TextBox
+                            Name="screenshootsPath"
+                            Height="20"
+                            MinWidth="100"
+                            MaxWidth="450"
+                            Margin="5"
+                            VerticalAlignment="Top"
+                            controls:TextBoxHelper.Watermark="default"
+                            FontSize="14" />
+
+                        <Image
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Width="20"
+                            Height="20"
+                            HorizontalAlignment="Right"
+                            Source="../Resources/Icons/icons8-help-32.png"
+                            ToolBarTray.IsLocked="True"
+                            ToolTip="Default path is created in public documents" />
+                    </StackPanel>
+                    <StackPanel>
+                        <Button
+                            Width="50"
+                            Height="{Binding ElementName=projectsPath, Path=ActualHeight}"
+                            Margin="25,5,5,5"
+                            VerticalAlignment="Top"
+                            Click="OpenWidowsDialog"
+                            Content="Select"
+                            FontSize="14"
+                            Style="{StaticResource FunctionalButtonStyle}" />
+                        <Button
+                            Width="50"
+                            Height="{Binding ElementName=screenshootsPath, Path=ActualHeight}"
+                            Margin="25,5,5,5"
+                            VerticalAlignment="Top"
+                            Click="OpenSSPathDialog"
+                            Content="Select"
+                            FontSize="14"
+                            Style="{StaticResource FunctionalButtonStyle}" />
+                    </StackPanel>
+                </StackPanel>
+
+                <!--<StackPanel
+                    HorizontalAlignment="Left"
+                    DockPanel.Dock="Top"
+                    Orientation="Horizontal">
+                    <Label Content="Screenshots path " />
+                    <TextBox
+                        MinWidth="100"
+                        VerticalAlignment="Top"
+                        controls:TextBoxHelper.Watermark="default"
+                        FontSize="14" />
+                    <Button
+                        Width="50"
+                        Height="20"
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Top"
+                        Content="Select"
+                        FontSize="14"
+                        Style="{StaticResource FunctionalButtonStyle}" />
+                </StackPanel>
+                <StackPanel
+                    HorizontalAlignment="Right"
+                    DockPanel.Dock="Top"
+                    Orientation="Horizontal">
+                    <Label Content="Projects path " />
+                    <TextBox
+                        MinWidth="100"
+                        VerticalAlignment="Top"
+                        controls:TextBoxHelper.Watermark="default"
+                        FontSize="14" />
+                    <Button
+                        Width="50"
+                        Height="20"
+                        Margin="20,0,0,0"
+                        VerticalAlignment="Top"
+                        Content="Select"
+                        FontSize="14"
+                        Style="{StaticResource FunctionalButtonStyle}" />
+                </StackPanel>-->
+            </DockPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>

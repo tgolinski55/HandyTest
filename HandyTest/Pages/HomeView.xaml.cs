@@ -12,6 +12,8 @@ using HandyTest.Views;
 using System.Xml.Serialization;
 using MahApps.Metro.Controls.Dialogs;
 using MahApps.Metro.Controls;
+using System.Xml.Linq;
+using System.Xml;
 
 namespace HandyTest.Pages
 {
@@ -29,6 +31,22 @@ namespace HandyTest.Pages
         {
             InitializeComponent();
             Loaded += ProjectsListDataGrid_Loaded;
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
+            if (!Directory.Exists(path + "HandyTest/config.xml"))
+            {
+                Directory.CreateDirectory(path + "\\HandyTest");
+            }
+            if (!Directory.Exists(path + "HandyTest/Projects"))
+                Directory.CreateDirectory(path + "\\HandyTest\\Projects");
+            if (!Directory.Exists(path + "HandyTest/Screenshots"))
+                Directory.CreateDirectory(path + "\\HandyTest\\Screenshots");
+            new XDocument(
+                new XElement("root",
+                    new XElement("ProjectsPath", path + "\\HandyTest\\Projects"),
+                    new XElement("ScreenshotsPath", path + "\\HandyTest\\Screenshots"))
+                    )
+            .Save(path + "/HandyTest/config.xml");
         }
 
         private void WindowDragMove(object sender, MouseButtonEventArgs e)
@@ -50,23 +68,39 @@ namespace HandyTest.Pages
             {
                 projectsListDataGrid.ItemsSource = ProjectsList;
                 ProjectsList.Add(new ProjectList(newProjectName.Text, displayedDate, currentDate));
-                string path = @"../../Projects/";
+                string path = GetProjectsPath("ProjectsPath") + "/";
                 string pathToProject = Path.Combine(path, newProjectName.Text);
                 Directory.CreateDirectory(pathToProject);
                 Directory.CreateDirectory(pathToProject + "/Manual Test");
-                File.Create(Path.Combine(pathToProject,"config.txt"));
+                File.Create(Path.Combine(pathToProject, "config.txt"));
                 Directory.CreateDirectory(pathToProject + "/Reports");
                 Close_PopUp(sender, e);
                 SaveActiveProject();
                 ReloadDataGrid();
-
             }
             else
             {
                 Close_PopUp(sender, e);
             }
             projectsListDataGrid.Items.Refresh();
-            
+
+        }
+        private string GetProjectsPath(string element)
+        {
+            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            XmlDocument xmlFile = new XmlDocument();
+
+            if (File.Exists(pathToConfig))
+            {
+                xmlFile.Load(pathToConfig);
+                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+                element = xmlNodeList.Item(0).InnerText;
+            }
+            else
+            {
+                element = "";
+            }
+            return element;
         }
 
         public void ReloadDataGrid()
@@ -77,7 +111,7 @@ namespace HandyTest.Pages
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            string path = @"..//../Projects/";
+            string path = GetProjectsPath("ProjectsPath") + "/";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
@@ -95,17 +129,29 @@ namespace HandyTest.Pages
         }
         public void LoadCurrentProject()
         {
-            projectsListDataGrid.SelectedIndex = loadCurrentProject.GetCurrentIndex();
-            if (projectsListDataGrid.SelectedItem != null)
+            if (loadCurrentProject.GetCurrentProject() == "")
             {
-                activeProjectTxtBlock.Text = loadCurrentProject.GetCurrentProject();
-                selectProjectGrid.IsEnabled = true;
+                projectsListDataGrid.SelectedItem = null;
+                activeProjectTxtBlock.Text = null;
+
+                selectProjectGrid.IsEnabled = false;
+                selectProjectLabel.Visibility = Visibility.Visible;
             }
             else
             {
-                activeProjectTxtBlock.Text = null;
-                selectProjectGrid.IsEnabled = false;
-                selectProjectLabel.Visibility = Visibility.Visible;
+
+                projectsListDataGrid.SelectedIndex = loadCurrentProject.GetCurrentIndex();
+                if (projectsListDataGrid.SelectedItem != null)
+                {
+                    activeProjectTxtBlock.Text = loadCurrentProject.GetCurrentProject();
+                    selectProjectGrid.IsEnabled = true;
+                }
+                else
+                {
+                    activeProjectTxtBlock.Text = null;
+                    selectProjectGrid.IsEnabled = false;
+                    selectProjectLabel.Visibility = Visibility.Visible;
+                }
             }
         }
         private void MakeActiveProjectBtn_Click(object sender, RoutedEventArgs e)
@@ -129,7 +175,7 @@ namespace HandyTest.Pages
 
         public void SaveActiveProject()
         {
-            string path = @"..//../Projects/";
+            string path = GetProjectsPath("ProjectsPath") + "/"; ;
             try
             {
                 var indexOfSelectedItem = projectsListDataGrid.SelectedIndex.ToString();
@@ -143,7 +189,7 @@ namespace HandyTest.Pages
 
         public void SortDataGrid(DataGrid projectsListDataGrid, int columnIndex = 0, ListSortDirection sortDirection = ListSortDirection.Descending)
         {
-            
+
             if (projectsListDataGrid.Items.Count > 0)
             {
                 var column = projectsListDataGrid.Columns[columnIndex];
@@ -208,7 +254,7 @@ namespace HandyTest.Pages
             var selectedItem = (ProjectList)projectsListDataGrid.SelectedItem;
             ProjectList currentCell = (ProjectList)projectsListDataGrid.CurrentCell.Item;
             string item = currentCell.Name;
-            string path = @"..//../Projects/" + item;
+            string path = GetProjectsPath("ProjectsPath") + "/" + item;
             if (selectedItem != null)
             {
                 if (item == activeProjectTxtBlock.Text)
@@ -220,7 +266,7 @@ namespace HandyTest.Pages
                 if (Directory.Exists(path))
                     Directory.Delete(path, true);
                 ProjectsList.Remove(selectedItem);
-
+                SaveActiveProject();
                 ReloadDataGrid();
             }
         }
@@ -238,7 +284,7 @@ namespace HandyTest.Pages
             {
                 //Close msg
             }
-           
+
         }
 
         private void ProjectsListDataGrid_DataContextChanged(object sender, DependencyPropertyChangedEventArgs e)
@@ -276,6 +322,11 @@ namespace HandyTest.Pages
         private void OpenLog(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new LogView());
+        }
+
+        private void OpenSettings(object sender, RoutedEventArgs e)
+        {
+            PageNavigator.Switch(new ConfigurationView());
         }
     }
 }
