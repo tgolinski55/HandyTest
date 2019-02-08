@@ -120,6 +120,8 @@ namespace HandyTest
                     { }
                     else
                     {
+                        if (!Directory.Exists(GetProjectsPath("ScreenshotsPath")))
+                            Directory.CreateDirectory(GetProjectsPath("ScreenshotsPath"));
                         logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
                         screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(GetProjectsPath("ScreenshotsPath") +"/"+ path2, ImageFormat.Jpeg);
 
@@ -211,6 +213,8 @@ namespace HandyTest
             }
             try
             {
+                if (!Directory.Exists(GetProjectsPath("ScreenshotsPath")))
+                    Directory.CreateDirectory(GetProjectsPath("ScreenshotsPath"));
                 screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(GetProjectsPath("ScreenshotsPath") +"/" + path2, ImageFormat.Jpeg);
             }
             catch

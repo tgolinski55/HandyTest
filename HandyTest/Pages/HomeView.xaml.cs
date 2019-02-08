@@ -33,7 +33,7 @@ namespace HandyTest.Pages
             Loaded += ProjectsListDataGrid_Loaded;
 
             string path = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
-            if (!Directory.Exists(path + "HandyTest/config.xml"))
+            if (!File.Exists(path + "HandyTest/config.xml"))
             {
                 Directory.CreateDirectory(path + "\\HandyTest");
             }
@@ -41,12 +41,15 @@ namespace HandyTest.Pages
                 Directory.CreateDirectory(path + "\\HandyTest\\Projects");
             if (!Directory.Exists(path + "HandyTest/Screenshots"))
                 Directory.CreateDirectory(path + "\\HandyTest\\Screenshots");
-            new XDocument(
-                new XElement("root",
-                    new XElement("ProjectsPath", path + "\\HandyTest\\Projects"),
-                    new XElement("ScreenshotsPath", path + "\\HandyTest\\Screenshots"))
-                    )
-            .Save(path + "/HandyTest/config.xml");
+            if (GetProjectsPath("ProjectsPath") == "" || GetProjectsPath("ScreenshotsPath") == "")
+            {
+                new XDocument(
+                    new XElement("root",
+                        new XElement("ProjectsPath", path + "\\HandyTest\\Projects"),
+                        new XElement("ScreenshotsPath", path + "\\HandyTest\\Screenshots"))
+                        )
+                .Save(path + "/HandyTest/config.xml");
+            }
         }
 
         private void WindowDragMove(object sender, MouseButtonEventArgs e)

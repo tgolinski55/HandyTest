@@ -67,6 +67,7 @@ namespace HandyTest.Pages
                 if (DialogResult.OK == dialog.ShowDialog())
                 {
                     projectsPath.Text = dialog.SelectedPath;
+                    SaveNewPaths();
                 }
             }
                 
