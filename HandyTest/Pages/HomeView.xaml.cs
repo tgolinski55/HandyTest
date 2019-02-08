@@ -300,8 +300,8 @@ namespace HandyTest.Pages
 
             if (!IsWindowOpen<Window>("ExplorativeTestView"))
             {
-                explorativeTestView.Show();
                 SetActiveProj();
+                explorativeTestView.Show();
             }
             else
             {
