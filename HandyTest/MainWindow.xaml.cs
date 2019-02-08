@@ -129,12 +129,15 @@ namespace HandyTest
                 _listener.UnHookKeyboard();
                 _listener.HookKeyboard();
 
+                GC.Collect();
             }
 
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
+
+            GC.Collect();
             _listener.UnHookKeyboard();
         }
 
@@ -180,7 +183,6 @@ namespace HandyTest
             m_GlobalHook.MouseClick += m_GlobalHook_MouseClick;
             #endregion
 
-
             LogView.allLogsDataGrid.ItemsSource = logItems;
             base.OnSourceInitialized(e);
 
@@ -215,6 +217,8 @@ namespace HandyTest
             {
                 MessageBox.Show("File is in use. Please select different one.", "Error");
             }
+
+            GC.Collect();
         }
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
