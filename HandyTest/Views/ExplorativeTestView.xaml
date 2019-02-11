@@ -228,7 +228,6 @@
                         CanUserSortColumns="False"
                         HeadersVisibility="None"
                         IsReadOnly="True"
-                        Loaded="LoadIssuesFilter"
                         VerticalScrollBarVisibility="Auto">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Name}" />
