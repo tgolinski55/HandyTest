@@ -178,7 +178,7 @@ namespace HandyTest.Pages
 
         public void SaveActiveProject()
         {
-            string path = GetProjectsPath("ProjectsPath") + "/"; ;
+            string path = Path.GetFullPath(GetProjectsPath("ProjectsPath") + "/") ;
             try
             {
                 var indexOfSelectedItem = projectsListDataGrid.SelectedIndex.ToString();

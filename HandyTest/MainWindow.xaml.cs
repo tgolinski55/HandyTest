@@ -82,7 +82,7 @@ namespace HandyTest
         }
         private string GetProjectsPath(string element)
         {
-            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            string pathToConfig = Path.GetFullPath(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml");
             XmlDocument xmlFile = new XmlDocument();
 
             if (File.Exists(pathToConfig))
@@ -215,11 +215,13 @@ namespace HandyTest
             {
                 if (!Directory.Exists(GetProjectsPath("ScreenshotsPath")))
                     Directory.CreateDirectory(GetProjectsPath("ScreenshotsPath"));
-                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(GetProjectsPath("ScreenshotsPath") +"/" + path2, ImageFormat.Jpeg);
+                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(Path.GetFullPath(GetProjectsPath("ScreenshotsPath") + "/" + path2), ImageFormat.Jpeg);
             }
+
             catch
             {
-                MessageBox.Show("File is in use. Please select different one.", "Error");
+                throw;
+                //MessageBox.Show("File is in use. Please select different one.", "Error");
             }
 
             GC.Collect();

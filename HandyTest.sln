@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HandyTest", "HandyTest\HandyTest.csproj", "{BEE5AFE8-0DC2-439A-8D20-D085B8A3AA2E}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "HandyTest Installer", "HandyTest Installer\HandyTest Installer.vdproj", "{753577A7-C975-4176-BB60-BDA1134EF58D}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -17,9 +15,6 @@ Global
 		{BEE5AFE8-0DC2-439A-8D20-D085B8A3AA2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BEE5AFE8-0DC2-439A-8D20-D085B8A3AA2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BEE5AFE8-0DC2-439A-8D20-D085B8A3AA2E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{753577A7-C975-4176-BB60-BDA1134EF58D}.Debug|Any CPU.ActiveCfg = Debug
-		{753577A7-C975-4176-BB60-BDA1134EF58D}.Release|Any CPU.ActiveCfg = Release
-		{753577A7-C975-4176-BB60-BDA1134EF58D}.Release|Any CPU.Build.0 = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

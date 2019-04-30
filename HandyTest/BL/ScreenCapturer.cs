@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace HandyTest.BL
 {
@@ -35,7 +38,7 @@ namespace HandyTest.BL
         public Bitmap Capture(enmScreenCaptureMode screenCaptureMode = enmScreenCaptureMode.Window)
         {
             Rectangle bounds;
-
+            //Icon ico = new Icon("../../Resources/Icons/Black/icons8_cursor_32_5Hi_icon.ico");
             if (screenCaptureMode == enmScreenCaptureMode.Screen)
             {
                 bounds = Screen.GetBounds(Point.Empty);
@@ -51,12 +54,12 @@ namespace HandyTest.BL
             }
             try
             {
-
                 var result = new Bitmap(bounds.Width, bounds.Height);
                 using (var g = Graphics.FromImage(result))
                 {
                     g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
-                    g.DrawIcon(new Icon("../../Resources/Icons/Black/icons8_cursor_32_5Hi_icon.ico"), Cursor.Position.X - 10, Cursor.Position.Y - 5);
+                    //TODO fix rendering icon on image;
+                    //g.DrawIcon(ico, CursorPosition.X - 10, CursorPosition.Y - 5);
                 }
 
 

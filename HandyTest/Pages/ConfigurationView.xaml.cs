@@ -36,7 +36,7 @@ namespace HandyTest.Pages
         }
         private string GetProjectsPath(string element)
         {
-            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
+            string pathToConfig = System.IO.Path.GetFullPath(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml");
             XmlDocument xmlFile = new XmlDocument();
 
             if (File.Exists(pathToConfig))
