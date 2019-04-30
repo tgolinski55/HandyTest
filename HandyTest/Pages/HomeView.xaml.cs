@@ -172,6 +172,7 @@ namespace HandyTest.Pages
                 selectProjectLabel.Visibility = Visibility.Hidden;
 
                 SaveActiveProject();
+                SetActiveProj();
             }
 
         }
@@ -221,6 +222,7 @@ namespace HandyTest.Pages
             selectProjectGrid.IsEnabled = true;
             selectProjectLabel.Visibility = Visibility.Hidden;
             SaveActiveProject();
+            SetActiveProj();
         }
 
         private void Close_PopUp(object sender, RoutedEventArgs e)
@@ -320,6 +322,7 @@ namespace HandyTest.Pages
         public void SetActiveProj()
         {
             explorativeTestView.activeProject = activeProjectTxtBlock.Text;
+            //explorativeTestView.summaryValidator.ItemsSource = null;
         }
 
         private void OpenLog(object sender, RoutedEventArgs e)

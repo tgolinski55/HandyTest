@@ -241,7 +241,8 @@ namespace HandyTest.Pages
             fileDialog.DefaultExt = ".docx";
             fileDialog.Filter = "Dokumenty programu Word (.docx)|*.docx";
             Document summaryReport = new Document();
-            string pathToTemplate = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/HandyTest" + "/ReportTemplate.docx";
+            //string pathToTemplate = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "/HandyTest" + "/ReportTemplate.docx";
+            string pathToTemplate = "Projects/ReportTemplate.docx";
             summaryReport.LoadFromFile(pathToTemplate);
 
             try

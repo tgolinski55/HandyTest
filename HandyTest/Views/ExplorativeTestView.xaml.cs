@@ -98,7 +98,7 @@ namespace HandyTest.Views
         }
         private void SaveProjectConfig()
         {
-            string pathToConfig = GetProjectsPath("ProjectsPath")+"/" + activeProject + "/";
+            string pathToConfig = GetProjectsPath("ProjectsPath") + "/" + activeProject + "/";
             using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToConfig, "config.txt"), false))
             {
                 outputFile.Write(issueID + 1);
@@ -149,7 +149,7 @@ namespace HandyTest.Views
                 MessageBox.Show(ValidateEmptyFields(), "Missing key infromations", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
             else
             {
-                string path = GetProjectsPath("ProjectsPath")+"/" + activeProject + "/";
+                string path = GetProjectsPath("ProjectsPath") + "/" + activeProject + "/";
                 GetProjectConfig();
                 createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
                 new XDocument(
@@ -182,21 +182,28 @@ namespace HandyTest.Views
 
         private void SummaryValidator(object sender, KeyEventArgs e)
         {
+
+            summaryValidator.ItemsSource = null;
+            
             if (setSummary.Text.Length > 0)
+            {
+                summaryValidator.ItemsSource = null;
                 summaryValidatorPopup.IsOpen = true;
+
+                var filteredIssues = issuesList.Where(issues => issues.Name.Contains(setSummary.Text));
+                summaryValidator.ItemsSource = filteredIssues;
+
+            }
             else
                 summaryValidatorPopup.IsOpen = false;
-            summaryValidator.ItemsSource = null;
-            var filteredIssues = issuesList.Where(issues => issues.Name.Contains(setSummary.Text));
-            summaryValidator.ItemsSource = filteredIssues;
         }
 
         private void LoadIssuesFilter(object sender, RoutedEventArgs e)
         {
             if (summaryValidator.ItemsSource == null)
             {
-                summaryValidator.ItemsSource = null;
-                string path = GetProjectsPath("ProjectsPath") +"/"+ activeProject + "/Reports";
+
+                string path = GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports";
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
                 DirectoryInfo dirInfo = new DirectoryInfo(path);
@@ -207,8 +214,11 @@ namespace HandyTest.Views
                 {
                     int issueID = 0;
                     int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
-                    issuesList.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
+
+                    if (!issuesList.Contains(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID)))
+                        issuesList.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
                 }
+                //summaryValidator.ItemsSource = issuesList;
             }
         }
 
@@ -220,6 +230,24 @@ namespace HandyTest.Views
         private void OpenPopUpOnGetFocus(object sender, RoutedEventArgs e)
         {
             summaryValidatorPopup.IsOpen = true;
+            issuesList.Clear();
+            string path = GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports";
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            DirectoryInfo dirInfo = new DirectoryInfo(path);
+            FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
+
+
+            foreach (var o in AllFiles)
+            {
+                int issueID = 0;
+                int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
+
+                if (!issuesList.Contains(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID)))
+                    issuesList.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
+            }
+            //summaryValidator.ItemsSource = issuesList;
+
         }
     }
 }
