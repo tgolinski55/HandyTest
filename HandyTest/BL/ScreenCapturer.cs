@@ -20,11 +20,33 @@ namespace HandyTest.BL
 
     class ScreenCapturer
     {
+        struct CURSORINFO
+        {
+            public Int32 cbSize;
+            public Int32 flags;
+            public IntPtr hCursor;
+            public POINTAPI ptScreenPos;
+        }
+        [StructLayout(LayoutKind.Sequential)]
+        struct POINTAPI
+        {
+            public int x;
+            public int y;
+        }
+
         [DllImport("user32.dll")]
         private static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
         private static extern IntPtr GetWindowRect(IntPtr hWnd, ref Rect rect);
+
+        [DllImport("user32.dll")]
+        static extern bool DrawIcon(IntPtr hDC, int X, int Y, IntPtr hIcon);
+
+        [DllImport("user32.dll")]
+        static extern bool GetCursorInfo(out CURSORINFO pci);
+
+        const Int32 CURSOR_SHOWING = 0x00000001;
 
         [StructLayout(LayoutKind.Sequential)]
         private struct Rect
@@ -57,9 +79,21 @@ namespace HandyTest.BL
                 var result = new Bitmap(bounds.Width, bounds.Height);
                 using (var g = Graphics.FromImage(result))
                 {
+                    CURSORINFO pci;
+                    pci.cbSize = System.Runtime.InteropServices.Marshal.SizeOf(typeof(CURSORINFO));
+
+
                     g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
                     //TODO fix rendering icon on image;
                     //g.DrawIcon(ico, CursorPosition.X - 10, CursorPosition.Y - 5);
+                    if (GetCursorInfo(out pci))
+                    {
+                        if (pci.flags == CURSOR_SHOWING)
+                        {
+                            DrawIcon(g.GetHdc(), Cursor.Position.X - 10, Cursor.Position.Y - 5, pci.hCursor);
+                            g.ReleaseHdc();
+                        }
+                    }
                 }
 
 
