@@ -17,14 +17,14 @@ namespace HandyTest.BL
                     return false;
                 }
 
-                int checkSum = NipCheckSumCalculator.Calculate(nip);
+                int checkSum = ValidateNIP.CheckIfNipIsCorrect(nip);
 
                 if (nip.Last() - '0' != checkSum)
                 {
                     return false;
                 }
 
-                return TaxOffice.Codes.Contains(nip.Substring(0, 3));
+                return TaxOfficeCodes.Codes.Contains(nip.Substring(0, 3));
             }
         }
 }

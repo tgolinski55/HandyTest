@@ -27,30 +27,30 @@ namespace HandyTest.Pages
     /// </summary>
     public partial class ConfigurationView : System.Windows.Controls.UserControl
     {
-        
+        ProjectPath pathToProjects = new ProjectPath();
         public ConfigurationView()
         {
             InitializeComponent();
-            projectsPath.Text = GetProjectsPath("ProjectsPath");
-            screenshootsPath.Text = GetProjectsPath("ScreenshotsPath");
+            projectsPath.Text = pathToProjects.GetProjectsPath("ProjectsPath");
+            screenshootsPath.Text = pathToProjects.GetProjectsPath("ScreenshotsPath");
         }
-        private string GetProjectsPath(string element)
-        {
-            string pathToConfig = System.IO.Path.GetFullPath(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml");
-            XmlDocument xmlFile = new XmlDocument();
+        //private string GetProjectsPath(string element)
+        //{
+        //    string pathToConfig = System.IO.Path.GetFullPath(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml");
+        //    XmlDocument xmlFile = new XmlDocument();
 
-            if (File.Exists(pathToConfig))
-            {
-                xmlFile.Load(pathToConfig);
-                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
-                element = xmlNodeList.Item(0).InnerText;
-            }
-            else
-            {
-                element = "";
-            }
-            return element;
-        }
+        //    if (File.Exists(pathToConfig))
+        //    {
+        //        xmlFile.Load(pathToConfig);
+        //        XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
+        //        element = xmlNodeList.Item(0).InnerText;
+        //    }
+        //    else
+        //    {
+        //        element = "";
+        //    }
+        //    return element;
+        //}
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new HomeView());

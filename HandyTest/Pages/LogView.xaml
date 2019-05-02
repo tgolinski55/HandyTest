@@ -326,7 +326,7 @@
                     Width="150"
                     Binding="{Binding Date}"
                     CellStyle="{StaticResource MyDataGridCell}"
-                    Header="Date"
+                    Header="Time"
                     IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">

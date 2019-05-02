@@ -152,6 +152,7 @@
     <Compile Include="BL\PESELGen.cs" />
     <Compile Include="BL\PESELVal.cs" />
     <Compile Include="BL\PESELValidator.cs" />
+    <Compile Include="BL\ProjectPath.cs" />
     <Compile Include="BL\SaveXml.cs" />
     <Compile Include="BL\ScreenCapturer.cs" />
     <Compile Include="BL\TaxOfficeCodes.cs" />

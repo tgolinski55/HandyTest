@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace HandyTest.BL
 {
-    internal static class TaxOffice
+    internal static class TaxOfficeCodes
     {
         public static string[] Codes = new[]
         {

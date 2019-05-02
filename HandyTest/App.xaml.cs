@@ -21,24 +21,7 @@ namespace HandyTest
     {
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isExit;
-        //string path = "..//../Screenshoots/";
-        private string GetProjectsPath(string element)
-        {
-            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
-            XmlDocument xmlFile = new XmlDocument();
-
-            if (File.Exists(pathToConfig))
-            {
-                xmlFile.Load(pathToConfig);
-                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
-                element = xmlNodeList.Item(0).InnerText;
-            }
-            else
-            {
-                element = "";
-            }
-            return element;
-        }
+        ProjectPath pathToProjects = new ProjectPath();
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
@@ -62,7 +45,7 @@ namespace HandyTest
         }
         private void ExitApplication()
         {
-            GarbageCollector.DeleteAllScreenshoots(GetProjectsPath("ScreenshotsPath") + "/");
+            GarbageCollector.DeleteAllScreenshoots(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/");
             _isExit = true;
             MainWindow.Close();
             _notifyIcon.Dispose();

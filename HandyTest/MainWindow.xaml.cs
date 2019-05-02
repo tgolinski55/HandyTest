@@ -40,6 +40,7 @@ namespace HandyTest
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         LogView LogView = new LogView();
+        ProjectPath pathToProjects = new ProjectPath();
         private IKeyboardMouseEvents m_GlobalHook;
         [DllImport("user32.dll")]
         private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
@@ -80,23 +81,7 @@ namespace HandyTest
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
         }
-        private string GetProjectsPath(string element)
-        {
-            string pathToConfig = Path.GetFullPath(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml");
-            XmlDocument xmlFile = new XmlDocument();
 
-            if (File.Exists(pathToConfig))
-            {
-                xmlFile.Load(pathToConfig);
-                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
-                element = xmlNodeList.Item(0).InnerText;
-            }
-            else
-            {
-                element = "";
-            }
-            return element;
-        }
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             _listener = new LowLevelKeyboardListener();
@@ -120,10 +105,10 @@ namespace HandyTest
                     { }
                     else
                     {
-                        if (!Directory.Exists(GetProjectsPath("ScreenshotsPath")))
-                            Directory.CreateDirectory(GetProjectsPath("ScreenshotsPath"));
+                        if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
+                            Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
                         logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(GetProjectsPath("ScreenshotsPath") +"/"+ path2, ImageFormat.Jpeg);
+                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") +"/"+ path2, ImageFormat.Jpeg);
 
                     }
                 }
@@ -162,7 +147,7 @@ namespace HandyTest
             {
                 while (true)
                 {
-                    GarbageCollector.DeleteAllScreenshoots(GetProjectsPath("ScreenshotsPath") + "/");
+                    GarbageCollector.DeleteAllScreenshoots(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/");
                     Thread.Sleep(600000);
                 }
             });
@@ -213,9 +198,9 @@ namespace HandyTest
             }
             try
             {
-                if (!Directory.Exists(GetProjectsPath("ScreenshotsPath")))
-                    Directory.CreateDirectory(GetProjectsPath("ScreenshotsPath"));
-                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(Path.GetFullPath(GetProjectsPath("ScreenshotsPath") + "/" + path2), ImageFormat.Jpeg);
+                if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
+                    Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
+                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(Path.GetFullPath(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2), ImageFormat.Jpeg);
             }
 
             catch

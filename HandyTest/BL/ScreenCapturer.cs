@@ -84,8 +84,6 @@ namespace HandyTest.BL
 
 
                     g.CopyFromScreen(new Point(bounds.Left, bounds.Top), Point.Empty, bounds.Size);
-                    //TODO fix rendering icon on image;
-                    //g.DrawIcon(ico, CursorPosition.X - 10, CursorPosition.Y - 5);
                     if (GetCursorInfo(out pci))
                     {
                         if (pci.flags == CURSOR_SHOWING)

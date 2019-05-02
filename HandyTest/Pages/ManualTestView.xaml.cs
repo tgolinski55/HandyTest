@@ -221,20 +221,11 @@ namespace HandyTest.Pages
             else
                 errorTextGen.Visibility = Visibility.Hidden;
         }
-        List<object> imageList = new List<object>();
-        List<Bitmap> image2List = new List<Bitmap>();
         private void CopyLeftImageFromClipboard(object sender, RoutedEventArgs e)
         {
             if (Clipboard.ContainsImage())
             {
                 testImg.Source = Clipboard.GetImage();
-                //dropDownLeftImageList.ItemsSource = ImageViewerList.ToString();
-                //dropDownRightImageList.ItemsSource = ImageViewerList.ToString();
-
-                //ImageViewerList.Add((ImageSource)testImg.Source);
-                //if (!imageList.Contains(testImg.Source))
-                //    imageList.Add(testImg.Source);
-
             }
         }
         public static Bitmap ConvertToBitmap(BitmapSource bitmapSource)
@@ -253,14 +244,6 @@ namespace HandyTest.Pages
             if (Clipboard.ContainsImage())
             {
                 testImg1.Source = Clipboard.GetImage();
-                //dropDownLeftImageList.ItemsSource = ImageViewer;
-                //dropDownRightImageList.ItemsSource = ImageViewer;
-                //ImageViewer.Add((ImageViewer.Count).ToString());
-                //if (!imageList.Contains(testImg.Source))
-                //{
-
-                //    image2List.Add(ConvertToBitmap((BitmapSource)testImg.Source));
-                //}
             }
         }
 
@@ -376,15 +359,6 @@ namespace HandyTest.Pages
             {
                 MessageBox.Show("This file format is not supported", "Error");
             }
-        }
-
-        private void ChangeImage(object sender, SelectionChangedEventArgs e)
-        {
-            //ComboBoxItem cmb = dropDownLeftImageList.SelectedItem as ComboBoxItem;
-            //string content = cmb.Content.ToString();
-
-            //testImg.Source = (ImageSource)dropDownLeftImageList.SelectedItem;
-
         }
 
         private void Generate(object sender, RoutedEventArgs e)

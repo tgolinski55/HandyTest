@@ -24,7 +24,7 @@ namespace HandyTest.Pages
     {
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
-
+        ProjectPath pathToProjects = new ProjectPath();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         BL.WindowSettings set = new BL.WindowSettings();
         public HomeView()
@@ -41,7 +41,7 @@ namespace HandyTest.Pages
                 Directory.CreateDirectory(path + "\\HandyTest\\Projects");
             if (!Directory.Exists(path + "HandyTest/Screenshots"))
                 Directory.CreateDirectory(path + "\\HandyTest\\Screenshots");
-            if (GetProjectsPath("ProjectsPath") == "" || GetProjectsPath("ScreenshotsPath") == "")
+            if (pathToProjects.GetProjectsPath("ProjectsPath") == "" || pathToProjects.GetProjectsPath("ScreenshotsPath") == "")
             {
                 new XDocument(
                     new XElement("root",
@@ -71,7 +71,7 @@ namespace HandyTest.Pages
             {
                 projectsListDataGrid.ItemsSource = ProjectsList;
                 ProjectsList.Add(new ProjectList(newProjectName.Text, displayedDate, currentDate));
-                string path = GetProjectsPath("ProjectsPath") + "/";
+                string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/";
                 string pathToProject = Path.Combine(path, newProjectName.Text);
                 Directory.CreateDirectory(pathToProject);
                 Directory.CreateDirectory(pathToProject + "/Manual Test");
@@ -88,23 +88,6 @@ namespace HandyTest.Pages
             projectsListDataGrid.Items.Refresh();
 
         }
-        private string GetProjectsPath(string element)
-        {
-            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
-            XmlDocument xmlFile = new XmlDocument();
-
-            if (File.Exists(pathToConfig))
-            {
-                xmlFile.Load(pathToConfig);
-                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
-                element = xmlNodeList.Item(0).InnerText;
-            }
-            else
-            {
-                element = "";
-            }
-            return element;
-        }
 
         public void ReloadDataGrid()
         {
@@ -114,7 +97,7 @@ namespace HandyTest.Pages
 
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
-            string path = GetProjectsPath("ProjectsPath") + "/";
+            string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
@@ -179,7 +162,7 @@ namespace HandyTest.Pages
 
         public void SaveActiveProject()
         {
-            string path = Path.GetFullPath(GetProjectsPath("ProjectsPath") + "/") ;
+            string path = Path.GetFullPath(pathToProjects.GetProjectsPath("ProjectsPath") + "/") ;
             try
             {
                 var indexOfSelectedItem = projectsListDataGrid.SelectedIndex.ToString();
@@ -259,7 +242,7 @@ namespace HandyTest.Pages
             var selectedItem = (ProjectList)projectsListDataGrid.SelectedItem;
             ProjectList currentCell = (ProjectList)projectsListDataGrid.CurrentCell.Item;
             string item = currentCell.Name;
-            string path = GetProjectsPath("ProjectsPath") + "/" + item;
+            string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + item;
             if (selectedItem != null)
             {
                 if (item == activeProjectTxtBlock.Text)

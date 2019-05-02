@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace HandyTest.BL
 {
-    internal class NipCheckSumCalculator
+    internal class ValidateNIP
     {
-        readonly static int[] _Weight = new[] { 6, 5, 7, 2, 3, 4, 5, 6, 7 };
+        readonly static int[] numberWeight = new[] { 6, 5, 7, 2, 3, 4, 5, 6, 7 };
 
-        public static int Calculate(string nip)
+        public static int CheckIfNipIsCorrect(string nip)
         {
-            int checkSum = nip.Zip(_Weight, (digit, weight) => (digit - '0') * weight)
+            int checkSum = nip.Zip(numberWeight, (digit, weight) => (digit - '0') * weight)
                 .Sum();
 
             return checkSum % 11;

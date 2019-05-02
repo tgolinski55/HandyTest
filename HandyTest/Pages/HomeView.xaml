@@ -282,15 +282,15 @@
         </Grid.ColumnDefinitions>
         <!--  Projects list  -->
         <Button
-                Margin="5"
-                HorizontalAlignment="Left"
-                VerticalAlignment="Top"
-                Panel.ZIndex="0"
-                Background="Transparent"
-                BorderThickness="0"
-                Click="OpenSettings"
-                Style="{StaticResource ImageButtonStyle}"
-                Visibility="Visible">
+            Margin="5"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Panel.ZIndex="0"
+            Background="Transparent"
+            BorderThickness="0"
+            Click="OpenSettings"
+            Style="{StaticResource ImageButtonStyle}"
+            Visibility="Visible">
             <StackPanel>
                 <Image MaxHeight="25" Source="../Resources/Icons/icons8-settings-32.png" />
             </StackPanel>
@@ -403,6 +403,9 @@
 
         <Button
             Name="createNewProjectBtn"
+            Width="80"
+            Height="25"
+            FontSize="14"
             Margin="10,0,10,15"
             Click="CreateNewProjectBtn_Click"
             Content="{x:Static resx:Resource.button_CreateNew}"
@@ -410,7 +413,10 @@
 
         <Button
             Name="makeActiveProjectBtn"
+            Width="80"
+            Height="25"
             Margin="10,0,10,15"
+            FontSize="14"
             HorizontalAlignment="Left"
             Click="MakeActiveProjectBtn_Click"
             Content="{x:Static resx:Resource.button_MakeActive}"
@@ -558,7 +564,7 @@
                         TextAlignment="Center" />
                 </StackPanel>
             </Button>
-            
+
 
             <!--  Create new project pop-up  -->
             <Popup

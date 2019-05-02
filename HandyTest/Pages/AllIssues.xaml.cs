@@ -26,13 +26,13 @@ namespace HandyTest.Pages
     {
         public static ObservableCollection<IssuesList> issuesLists = new ObservableCollection<IssuesList>();
         ObservableCollection<CreateReport> createReports = new ObservableCollection<CreateReport>();
+        ProjectPath pathToProjects = new ProjectPath();
         string selectedIssue;
         string selectedIssueNumber;
         public AllIssues()
         {
             InitializeComponent();
         }
-
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new HomeView());
@@ -46,7 +46,8 @@ namespace HandyTest.Pages
             issuesLists.Clear();
             allIssuesDataGrid.ItemsSource = issuesLists;
             CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
-            string path = GetProjectsPath("ProjectsPath") +"/" + activeProject + "/Reports";
+            
+            string path = pathToProjects.GetProjectsPath("ProjectsPath") +"/" + activeProject + "/Reports";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             DirectoryInfo dirInfo = new DirectoryInfo(path);
@@ -67,28 +68,6 @@ namespace HandyTest.Pages
             CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
             SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
         }
-
-
-        private string GetProjectsPath(string element)
-        {
-            string pathToConfig = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments) + "\\HandyTest\\config.xml";
-            XmlDocument xmlFile = new XmlDocument();
-
-            if (File.Exists(pathToConfig))
-            {
-                xmlFile.Load(pathToConfig);
-                XmlNodeList xmlNodeList = xmlFile.GetElementsByTagName(element);
-                element = xmlNodeList.Item(0).InnerText;
-            }
-            else
-            {
-                element = "";
-            }
-            return element;
-        }
-
-
-
         private void AddPriorityItems(object sender, RoutedEventArgs e)
         {
             setpriorityCombo.Items.Add("Critical");
@@ -175,7 +154,7 @@ namespace HandyTest.Pages
         private void DeleteConfirm()
         {
 
-            string path = GetProjectsPath("ProjectsPath") +"/" + activeProject + "/Reports/" + selectedIssue + ".xml";
+            string path = pathToProjects.GetProjectsPath("ProjectsPath") +"/" + activeProject + "/Reports/" + selectedIssue + ".xml";
             if (File.Exists(path))
                 File.Delete(path);
 
@@ -205,8 +184,8 @@ namespace HandyTest.Pages
 
         private void EditIssue()
         {
-            string pathToID = GetProjectsPath("ProjectsPath") +"/" + activeProject + "/config.txt";
-            string path = GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + setSummary.Text + ".xml";
+            string pathToID = pathToProjects.GetProjectsPath("ProjectsPath") +"/" + activeProject + "/config.txt";
+            string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + setSummary.Text + ".xml";
             var tempID = LoadIssuesInfo.GetIssueInfo(activeProject, "ID", selectedIssue);
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
             new XDocument(
@@ -222,7 +201,7 @@ namespace HandyTest.Pages
                     )
             .Save(path);
             if (selectedIssue != setSummary.Text)
-                File.Delete(GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + selectedIssue + ".xml");
+                File.Delete(pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + selectedIssue + ".xml");
             searchTextField.Text = null;
             filterCounter.Visibility = Visibility.Hidden;
         }
