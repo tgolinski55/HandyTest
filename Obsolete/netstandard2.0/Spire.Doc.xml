@@ -121,6 +121,67 @@
         <member name="M:Spire.Doc.Documents.Converters.BinaryDoc.Fib.ToString">
             [JavaDelete("Don't need this logging method in Java.")]
         </member>
+        <member name="T:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.ProtectionType">
+            <summary>
+            The ProtectionType enumeration identifies common types 
+            of editing protection for ranges of text in a document.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.ProtectionType.iProtNone">
+            <summary>
+            Allow all changes.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.ProtectionType.iProtReadWrite">
+            <summary>
+            Allow the editing of the regions that are marked as editable in forms.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.ProtectionType.iProtRevision">
+            <summary>
+            Allow the creation, deletion, and editing of annatations. 
+            For all other changes: Allow them, but track them with revision marks.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.ProtectionType.iProtComment">
+            <summary>
+            Allow the creation, deletion, and editing of annotations,
+            but allow no other changes.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.ProtectionType.iProtRead">
+            <summary>
+            Allow no changes.
+            </summary>
+        </member>
+        <member name="T:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.Prti">
+            <summary>
+            The PRTI structure contains information about a span of text that is delimited 
+            by a range-level protection bookmark in the document.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.Prti.uidSel">
+            <summary>
+            A Uidsel that identifies the permitted editors for the text range
+            that is associated withe this PRTI.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.Prti.iProt">
+            <summary>
+            A ProtectionType that identifies the kind of protection for which exception is granted
+            to the editors that are specified byt uidSel within a span of text.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.Prti.fUseMe">
+            <summary>
+            This value is undefined and MUST be ignored.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.Converters.BinaryDoc.Permissions.Prti.i">
+            <summary>
+            The is value is undefined and MUST be ignored.
+            </summary>
+        </member>
         <member name="M:Spire.Doc.Documents.Converters.BinaryDoc.Output.DocOutput.Save(Spire.Doc.Document,System.String)">
             <summary>
             
@@ -260,6 +321,77 @@
             draw free warning.
             </summary>
             <param name="index"></param>
+        </member>
+        <member name="T:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter">
+            <summary>
+            This class provides support for converting WordDocument into an PCL Document.
+            </summary>
+        </member>
+        <member name="P:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.PageSettings">
+            <summary>
+            Gets the page settings.
+            </summary>
+            <value>The page settings.</value>
+        </member>
+        <member name="P:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.PdfParameterList">
+            <summary>
+            Gets the to pdf parameter list.
+            </summary>
+        </member>
+        <member name="P:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.JPEGQuality">
+            <summary>
+            Set jpeg quality.
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.ConvertToPcl(Spire.Doc.Document,System.IO.Stream)">
+            <summary>
+            Converts the specified WordDocument to Pcl.
+            </summary>
+            <param name="wordDocument">The word document.</param>
+        </member>
+        <member name="M:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.ConvertToPostScript(Spire.Doc.Document,System.IO.Stream,Spire.Doc.ToPdfParameterList)">
+            <summary>
+            Converts the specified WordDocument to Pcl.
+            </summary>
+            <param name="wordDocument">The word document.</param>
+        </member>
+        <member name="M:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.ConvertToPcl(Spire.Doc.Document,System.IO.Stream,System.Collections.Generic.List{System.String})">
+            <summary>
+            Converts the specified WordDocument to Pcl.
+            </summary>
+            <param name="wordDocument">The word document.</param>
+        </member>
+        <member name="M:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.ConvertToPcl(System.String,System.String)">
+             <summary>
+             Converts the specified WordDocument to Pcl.
+             </summary>
+             <param name="fileName">Name of the file.</param>
+            <param name="psFileName">Name of the Pcl file.</param>
+        </member>
+        <member name="M:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.ConvertToPcl(System.IO.Stream,System.IO.Stream)">
+             <summary>
+             Converts to PostScript.
+             </summary>
+             <param name="stream">The document stream.</param>
+            <param name="psStream">The Pcl stream.</param>
+        </member>
+        <member name="M:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.InitPagesSettings(Spire.Doc.Documents.Rendering.DocumentLayouter)">
+            <summary>
+            Sets the pages settings.
+            </summary>
+            <param name="layouter">The layouter.</param>
+        </member>
+        <member name="M:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.AddDocumentProperties(Spire.Doc.BuiltinDocumentProperties)">
+            <summary>
+            Adds the document properties.
+            </summary>
+            <param name="docProperties">The doc properties.</param>
+        </member>
+        <member name="M:Spire.Doc.Documents.Converters.DocToPrinterCommandLanguageConverter.AddHyperLinks(System.Collections.Generic.List{System.Collections.Generic.Dictionary{System.String,System.Drawing.RectangleF}},Spire.Pdf.General.Paper.Drawing.Rendering.Ps.PsPage)">
+            <summary>
+            Adds the hyper links.
+            </summary>
+            <param name="hyperlinks">The hyperlinks.</param>
         </member>
         <member name="T:Spire.Doc.Documents.Converters.DocToSVGConverter">
             <summary>
@@ -1559,6 +1691,11 @@
             </summary>
             <param name="breakType">Type of the break.</param>
         </member>
+        <member name="M:Spire.Doc.Documents.Paragraph.IntegrateFormatToCurrStyle">
+            <summary>
+            Integrate the relative format to curr style para uses to keep its format same as format in source document.
+            </summary>
+        </member>
         <member name="M:Spire.Doc.Documents.Paragraph.UpdateSourceFormatting(Spire.Doc.Document)">
             <summary>
             Updates the source formatting.
@@ -1770,6 +1907,11 @@
             Gets or set a value indicating whether the render to WPF.
             </summary>
         </member>
+        <member name="P:Spire.Doc.Documents.Rendering.DocumentLayouter.RenderToViewer">
+            <summary>
+            Gets or set a value indicating whether the render to Viewer.
+            </summary>
+        </member>
         <member name="P:Spire.Doc.Documents.Rendering.DocumentLayouter.ConvertToPdf">
             <summary>
             Gets or sets a value indicating whether the convert to pdf.
@@ -1788,6 +1930,11 @@
         <member name="P:Spire.Doc.Documents.Rendering.DocumentLayouter.ConvertToSvg">
             <summary>
             Gets or sets a value indicating whether the convert to svg.
+            </summary>
+        </member>
+        <member name="P:Spire.Doc.Documents.Rendering.DocumentLayouter.ConvertToImg">
+            <summary>
+            Gets or sets a value indicating whether the convert to Img.
             </summary>
         </member>
         <member name="M:Spire.Doc.Documents.Rendering.DocumentLayouter.GetPageSize">
@@ -5316,37 +5463,37 @@
         </member>
         <member name="F:Spire.Doc.Documents.EditingGroup.None">
             <summary>
-            No Users Have Editing Permissions.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.EditingGroup.Administrators">
-            <summary>
-            Administrator Group.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.EditingGroup.Contributors">
-            <summary>
-            Contributors Group.
+            No users.
             </summary>
         </member>
         <member name="F:Spire.Doc.Documents.EditingGroup.Current">
             <summary>
-            Current Group.
+            The current user.
             </summary>
         </member>
         <member name="F:Spire.Doc.Documents.EditingGroup.Editors">
             <summary>
-            Editors Group.
-            </summary>
-        </member>
-        <member name="F:Spire.Doc.Documents.EditingGroup.Everyone">
-            <summary>
-            All Users Have Editing Permissions.
+            Editors of the documnet.
             </summary>
         </member>
         <member name="F:Spire.Doc.Documents.EditingGroup.Owners">
             <summary>
-            Owners Group.
+            Owners of the documnet.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.EditingGroup.Contributors">
+            <summary>
+            Contributors to the documnet.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.EditingGroup.Administrators">
+            <summary>
+            Members of the administrator group on the computer.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Documents.EditingGroup.Everyone">
+            <summary>
+            All users.
             </summary>
         </member>
         <member name="T:Spire.Doc.Documents.MD5">
@@ -5453,6 +5600,1727 @@
                {
                    // reads full document
                }
+        </member>
+        <member name="T:Spire.Doc.Bidi.ArabicShapeJoiningType">
+            <summary>
+            Letter joining types of Arabic letters.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.ArabicShapeJoiningType.R">
+            <summary>Right Joining</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.ArabicShapeJoiningType.L">
+            <summary>Left Joining</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.ArabicShapeJoiningType.D">
+            <summary>Dual Joining</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.ArabicShapeJoiningType.C">
+            <summary>Join Causing</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.ArabicShapeJoiningType.U">
+            <summary>Non Joining</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.ArabicShapeJoiningType.T">
+            <summary>Transparent</summary>
+        </member>
+        <member name="T:Spire.Doc.Bidi.BidiCharacterMirrorResolver">
+            <summary>
+            An helper class that provides the mirrored alternatives for characters.
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Bidi.BidiCharacterMirrorResolver.GetBidiCharacterMirror(System.Char)">
+            <summary>
+            Returns the corresponding mirrored character for the given character, if any. If no mirroring available, returns the given character.
+            </summary>
+            <param name="c">A character to mirror.</param>
+            <returns>The mirrored character, or the given character if no mirroring available.</returns>
+        </member>
+        <member name="T:Spire.Doc.Bidi.BidiCharacterType">
+            <summary>
+            Types of BiDi characters (Table 4 in the Unicode BiDi algorithm).
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.L">
+            <summary>
+            Left-to-Right
+            </summary>
+            <example>
+            LRM, most alphabetic, syllabic, Han ideographs, non-European or non-Arabic digits, ...
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.LRE">
+            <summary>
+            Left-to-Right Embedding
+            </summary>
+            <example>
+            LRE
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.LRO">
+            <summary>
+            Left-to-Right Override
+            </summary>
+            <example>
+            LRO
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.LRI">
+            <summary>
+            Left-to-Right Isolate
+            </summary>
+            <example>
+            LRI
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.R">
+            <summary>
+            Right-to-Left
+            </summary>
+            <example>
+            RLM, Hebrew alphabet, and related punctuation
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.AL">
+            <summary>
+            Right-to-Left Arabic
+            </summary>
+            <example>
+            Arabic, Thaana, and Syriac alphabets, most punctuation specific to those scripts, ...
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.RLE">
+            <summary>
+            Right-to-Left Embedding
+            </summary>
+            <example>
+            RLE
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.RLO">
+            <summary>
+            Right-to-Left Override
+            </summary>
+            <example>
+            RLO
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.RLI">
+            <summary>
+            Right-to-Left Isolate
+            </summary>
+            <example>
+            RLI
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.FSI">
+            <summary>
+            First Strong Isolate
+            </summary>
+            <example>
+            FSI
+            </example>
+            <remarks>Strong Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.PDF">
+            <summary>
+            Pop Directional Format
+            </summary>
+            <example>
+            PDF
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.PDI">
+            <summary>
+            Pop Directional Isolate
+            </summary>
+            <example>
+            PDI
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.EN">
+            <summary>
+            European Number
+            </summary>
+            <example>
+            European digits, Eastern Arabic-Indic digits, ...
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.ES">
+            <summary>
+            European Number Separator
+            </summary>
+            <example>
+            Plus sign, minus sign
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.ET">
+            <summary>
+            European Number Terminator
+            </summary>
+            <example>
+            Degree sign, currency symbols, ...
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.AN">
+            <summary>
+            Arabic Number
+            </summary>
+            <example>
+            Arabic-Indic digits, Arabic decimal and thousands separators, ...
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.CS">
+            <summary>
+            Common Number Separator
+            </summary>
+            <example>
+            Colon, comma, full stop (period), No-break space, ...
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.NSM">
+            <summary>
+            Nonspacing Mark
+            </summary>
+            <example>
+            Characters marked Mn (Nonspacing_Mark) and Me (Enclosing_Mark) in the Unicode Character Database
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.BN">
+            <summary>
+            Boundary Neutral
+            </summary>
+            <example>
+            Most formatting and control characters, other than those explicitly given types above
+            </example>
+            <remarks>Weak Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.B">
+            <summary>
+            Paragraph Separator
+            </summary>
+            <example>
+            Paragraph separator, appropriate Newline Functions, higher-level protocol paragraph determination
+            </example>
+            <remarks>Neutral Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.S">
+            <summary>
+            Segment Separator
+            </summary>
+            <example>
+            Tab
+            </example>
+            <remarks>Neutral Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.WS">
+            <summary>
+            Whitespace
+            </summary>
+            <example>
+            Space, figure space, line separator, form feed, General Punctuation spaces, ...
+            </example>
+            <remarks>Neutral Type</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiCharacterType.ON">
+            <summary>
+            Other Neutrals
+            </summary>
+            <example>
+            All other characters, including OBJECT REPLACEMENT CHARACTER
+            </example>
+            <remarks>Neutral Type</remarks>
+        </member>
+        <member name="M:Spire.Doc.Bidi.UnicodeCharacterDataResolver.GetBidiCharacterType(System.Char)">
+            <summary>
+            Returns the BiDi type for a given character.
+            </summary>
+            <param name="c">A Unicode character for which to get the BiDi type.</param>
+            <returns>The character BiDi type.</returns>
+        </member>
+        <member name="M:Spire.Doc.Bidi.UnicodeCharacterDataResolver.GetUnicodeGeneralCategory(System.Char)">
+            <summary>
+            Returns the Unicode category for a given character.
+            </summary>
+            <param name="c">A Unicode character for which to get the general Unicode category.</param>
+            <returns>The character general Unicode category.</returns>
+        </member>
+        <member name="M:Spire.Doc.Bidi.UnicodeCharacterDataResolver.GetUnicodeCanonicalClass(System.Char)">
+            <summary>
+            Returns the Unicode canonical class for a given character.
+            </summary>
+            <param name="c">A Unicode character for which to get the Unicode canonical class.</param>
+            <returns>The character Unicode canonical class.</returns>
+        </member>
+        <member name="T:Spire.Doc.Bidi.BidiChars">
+            <summary>
+            A set of common Unicode characters, including BiDi control characters, and some Arabic letters used mainly for testing purposes.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.RLM">
+            <summary>
+            Right-to-Left Mark
+            Right-to-left zero-width non-Arabic character.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.RLE">
+            <summary>
+            Start of Right-to-Left Embedding
+            Treat the following text as embedded right-to-left.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.RLO">
+            <summary>
+            Start of Right-to-Left Override
+            Force following characters to be treated as strong right-to-left characters.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.RLI">
+            <summary>
+            Start of Right-to-Left Isolate
+            Treat the following text as isolated and right-to-left.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.LRM">
+            <summary>
+            Left-to-Right Mark
+            Left-to-right zero-width character.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.LRE">
+            <summary>
+            Start of Left-to-Right Embedding
+            Treat the following text as embedded left-to-right.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.LRO">
+            <summary>
+            Start of Left-to-Right Override
+            Force following characters to be treated as strong left-to-right characters.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.LRI">
+            <summary>
+            Start of Left-to-Right Isolate
+            Treat the following text as isolated and left-to-right.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.PDF">
+            <summary>
+            Pop Directional Formatting
+            End the scope of the last LRE, RLE, RLO, or LRO.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.PDI">
+            <summary>
+            Pop Directional Isolate
+            End the scope of the last LRI, RLI, or FSI.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.FSI">
+            <summary>
+            First Strong Isolate
+            Treat the following text as isolated and in the direction of its first strong directional character 
+            that is not inside a nested isolate.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.NotAChar">
+            <summary>
+            A Dummy Character Indicating None.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM">
+            <summary>
+            Arabic Letter Lam
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_ALEF_MADDA_ABOVE">
+            <summary>
+            Arabic Letter Alef With Madda Above
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_ALEF_HAMZA_ABOVE">
+            <summary>
+            Arabic Letter Alef With Hamza Above
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_ALEF_HAMZA_BELOW">
+            <summary>
+            Arabic Letter Alef With Hamza Below
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_ALEF">
+            <summary>
+            Arabic Letter Alef
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM_ALEF_MADDA_ABOVE_ISOLATED">
+            <summary>
+            Arabic Ligature Lam With Alef With Madda Above Isolated Form
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM_ALEF_MADDA_ABOVE_FINAL">
+            <summary>
+            Arabic Ligature Lam With Alef With Madda Above Final Form
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM_ALEF_HAMZA_ABOVE_ISOLATED">
+            <summary>
+            Arabic Ligature Lam With Alef With Hamza Above Isolated Form
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM_ALEF_HAMZA_ABOVE_FINAL">
+            <summary>
+            Arabic Ligature Lam With Alef With Hamza Above Final Form
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM_ALEF_HAMZA_BELOW_ISOLATED">
+            <summary>
+            Arabic Ligature Lam With Alef With Hamza Below Isolated Form
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM_ALEF_HAMZA_BELOW_FINAL">
+            <summary>
+            Arabic Ligature Lam With Alef With Hamza Below Final Form
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM_ALEF_ISOLATED">
+            <summary>
+            Arabic Ligature Lam With Alef Isolated Form
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.BidiChars.ARABIC_LAM_ALEF_FINAL">
+            <summary>
+            Arabic Ligature Lam With Alef Final Form
+            </summary>
+        </member>
+        <member name="T:Spire.Doc.Bidi.DirectionalOverrideStatus">
+            <summary>
+            Directional Override Statii used to determine current letter direction (Table 2 in the Unicode BiDi algorithm).
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.DirectionalOverrideStatus.Neutral">
+            <summary>
+            No override is currently active.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.DirectionalOverrideStatus.RTL">
+            <summary>
+            Characters are to be reset to R.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.DirectionalOverrideStatus.LTR">
+            <summary>
+            Characters are to be reset to L.
+            </summary>
+        </member>
+        <member name="T:Spire.Doc.Bidi.LetterForm">
+            <summary>
+            The four different available letter presentation forms.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.LetterForm.Initial">
+            <summary>
+            A presentation form of a letter that begins a sequence of connected letters.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.LetterForm.Medial">
+            <summary>
+            A presentation form of a letter that is connected to other letters on both sides.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.LetterForm.Final">
+            <summary>
+            A presentation form of a letter that ends a sequence of connected letters.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.LetterForm.Isolated">
+            <summary>
+            A presentation form of a letter that is not connected to other letters on either sides.
+            </summary>
+        </member>
+        <member name="T:Spire.Doc.Bidi.NBidi">
+            <summary>
+            The main class that implements the BIDI algorithm.
+            </summary>
+            <remarks>
+            Note that the BiDi algorithm does not cover reordering a visual string to logical form.
+            Some times the very same algorithm will do the job, but in more complex situations it'll fail.
+            The correct way is to always work in logical form in memory, and only run the BiDi algorithm to display the results on the screen.
+            </remarks>
+            <example>
+            <code>string visual = NBidi.NBidi.LogicalToVisual(string logical)</code>
+            </example>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.LogicalToVisual(System.String)">
+            <summary>
+            Implementation of the BIDI algorithm, as described in http://www.unicode.org/reports/tr9/tr9-17.html
+            </summary>
+            <param name="logicalString">The original logical-ordered string.</param>
+            <returns>The visual representation of the string.</returns>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.LogicalToVisual(System.String,System.Collections.Generic.List{System.Int32}@,System.Collections.Generic.List{System.Int32}@)">
+            <summary>
+            Implementation of the BIDI algorithm, as described in http://www.unicode.org/reports/tr9/tr9-17.html
+            </summary>
+            <param name="logicalString">The original logical-ordered string.</param>
+            <param name="indexes">Implies where the original characters are.</param>
+            <param name="lengths">Implies how many characters each original character occupies.</param>
+            <returns>The visual representation of the string.</returns>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.ResolveWeakTypes(System.Int32,System.Int32,Spire.Doc.Bidi.BidiCharacterType,Spire.Doc.Bidi.BidiCharacterType)">
+            <summary>
+            3.3.3 Resolving Weak Types
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.ResolveNeutralTypes(System.Int32,System.Int32,Spire.Doc.Bidi.BidiCharacterType,Spire.Doc.Bidi.BidiCharacterType,System.Int32)">
+            <summary>
+            3.3.4 Resolving Neutral Types
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.ResolveImplicitTypes(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            3.3.5 Resolving Implicit Levels
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.ReorderString">
+            <summary>
+            3.4 Reordering Resolved Levels
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.FixMirroredCharacters">
+            <summary>
+            L4. A character is depicted by a mirrored glyph if and only if (a) the resolved directionality of that character is R, and (b) the Bidi_Mirrored property value of that character is true.
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.PerformArabicShaping(System.String)">
+            <summary>
+            3.5 Shaping
+            Implements rules R1-R7 and rules L1-L3 of section 8.2 (Arabic) of the Unicode standard.
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.TypeForLevel(System.Int32)">
+            <summary>
+            Return the strong type (L or R) corresponding to the embedding level.
+            </summary>
+            <param name="level">The embedding level to check.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.FindRunLimit(System.Int32,System.Int32,Spire.Doc.Bidi.BidiCharacterType[])">
+            <summary>
+            Return the limit of the run, starting at index, that includes only resultTypes in validSet.
+            This checks the value at index, and will return index if that value is not in validSet.
+            </summary>
+            <param name="index"></param>
+            <param name="limit"></param>
+            <param name="validSet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Doc.Bidi.NBidi.Paragraph.SetTypes(System.Int32,System.Int32,Spire.Doc.Bidi.BidiCharacterType)">
+            <summary>
+            Set resultTypes from start up to (but not including) limit to newType.
+            </summary>
+            <param name="start"></param>
+            <param name="limit"></param>
+            <param name="newType"></param>
+        </member>
+        <member name="T:Spire.Doc.Bidi.UnicodeCanonicalClass">
+            <summary>
+            The different canonical classes of Unicode characters.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.NR">
+            <summary>Not Reordered</summary>
+            <remarks>Spacing, split, enclosing, reordrant, and Tibetan subjoined.</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.OV">
+            <summary>Overlays and interior</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.NK">
+            <summary>Nuktas</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.KV">
+            <summary>Hiragana/Katakana voicing marks</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.VR">
+            <summary>Viramas</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_10">
+            <summary>
+            General class level 10.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_11">
+            <summary>
+            General class level 11.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_12">
+            <summary>
+            General class level 12.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_13">
+            <summary>
+            General class level 13.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_14">
+            <summary>
+            General class level 14.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_15">
+            <summary>
+            General class level 15.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_16">
+            <summary>
+            General class level 16.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_17">
+            <summary>
+            General class level 17.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_18">
+            <summary>
+            General class level 18.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_19">
+            <summary>
+            General class level 19.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_20">
+            <summary>
+            General class level 20.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_21">
+            <summary>
+            General class level 21.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_22">
+            <summary>
+            General class level 22.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_23">
+            <summary>
+            General class level 23.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_24">
+            <summary>
+            General class level 24.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_25">
+            <summary>
+            General class level 25.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_26">
+            <summary>
+            General class level 26.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_27">
+            <summary>
+            General class level 27.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_28">
+            <summary>
+            General class level 28.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_29">
+            <summary>
+            General class level 29.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_30">
+            <summary>
+            General class level 30.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_31">
+            <summary>
+            General class level 31.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_32">
+            <summary>
+            General class level 32.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_33">
+            <summary>
+            General class level 33.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_34">
+            <summary>
+            General class level 34.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_35">
+            <summary>
+            General class level 35.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_36">
+            <summary>
+            General class level 36.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_37">
+            <summary>
+            General class level 37.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_38">
+            <summary>
+            General class level 38.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_39">
+            <summary>
+            General class level 39.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_40">
+            <summary>
+            General class level 40.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_41">
+            <summary>
+            General class level 41.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_42">
+            <summary>
+            General class level 42.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_43">
+            <summary>
+            General class level 43.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_44">
+            <summary>
+            General class level 44.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_45">
+            <summary>
+            General class level 45.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_46">
+            <summary>
+            General class level 46.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_47">
+            <summary>
+            General class level 47.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_48">
+            <summary>
+            General class level 48.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_49">
+            <summary>
+            General class level 49.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_50">
+            <summary>
+            General class level 50.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_51">
+            <summary>
+            General class level 51.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_52">
+            <summary>
+            General class level 52.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_53">
+            <summary>
+            General class level 53.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_54">
+            <summary>
+            General class level 54.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_55">
+            <summary>
+            General class level 55.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_56">
+            <summary>
+            General class level 56.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_57">
+            <summary>
+            General class level 57.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_58">
+            <summary>
+            General class level 58.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_59">
+            <summary>
+            General class level 59.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_60">
+            <summary>
+            General class level 60.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_61">
+            <summary>
+            General class level 61.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_62">
+            <summary>
+            General class level 62.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_63">
+            <summary>
+            General class level 63.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_64">
+            <summary>
+            General class level 64.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_65">
+            <summary>
+            General class level 65.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_66">
+            <summary>
+            General class level 66.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_67">
+            <summary>
+            General class level 67.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_68">
+            <summary>
+            General class level 68.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_69">
+            <summary>
+            General class level 69.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_70">
+            <summary>
+            General class level 70.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_71">
+            <summary>
+            General class level 71.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_72">
+            <summary>
+            General class level 72.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_73">
+            <summary>
+            General class level 73.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_74">
+            <summary>
+            General class level 74.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_75">
+            <summary>
+            General class level 75.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_76">
+            <summary>
+            General class level 76.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_77">
+            <summary>
+            General class level 77.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_78">
+            <summary>
+            General class level 78.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_79">
+            <summary>
+            General class level 79.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_80">
+            <summary>
+            General class level 80.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_81">
+            <summary>
+            General class level 81.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_82">
+            <summary>
+            General class level 82.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_83">
+            <summary>
+            General class level 83.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_84">
+            <summary>
+            General class level 84.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_85">
+            <summary>
+            General class level 85.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_86">
+            <summary>
+            General class level 86.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_87">
+            <summary>
+            General class level 87.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_88">
+            <summary>
+            General class level 88.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_89">
+            <summary>
+            General class level 89.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_90">
+            <summary>
+            General class level 90.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_91">
+            <summary>
+            General class level 91.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_92">
+            <summary>
+            General class level 92.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_93">
+            <summary>
+            General class level 93.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_94">
+            <summary>
+            General class level 94.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_95">
+            <summary>
+            General class level 95.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_96">
+            <summary>
+            General class level 96.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_97">
+            <summary>
+            General class level 97.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_98">
+            <summary>
+            General class level 98.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_99">
+            <summary>
+            General class level 99.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_100">
+            <summary>
+            General class level 100.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_101">
+            <summary>
+            General class level 101.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_102">
+            <summary>
+            General class level 102.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_103">
+            <summary>
+            General class level 103.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_104">
+            <summary>
+            General class level 104.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_105">
+            <summary>
+            General class level 105.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_106">
+            <summary>
+            General class level 106.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_107">
+            <summary>
+            General class level 107.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_108">
+            <summary>
+            General class level 108.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_109">
+            <summary>
+            General class level 109.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_110">
+            <summary>
+            General class level 110.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_111">
+            <summary>
+            General class level 111.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_112">
+            <summary>
+            General class level 112.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_113">
+            <summary>
+            General class level 113.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_114">
+            <summary>
+            General class level 114.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_115">
+            <summary>
+            General class level 115.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_116">
+            <summary>
+            General class level 116.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_117">
+            <summary>
+            General class level 117.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_118">
+            <summary>
+            General class level 118.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_119">
+            <summary>
+            General class level 119.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_120">
+            <summary>
+            General class level 120.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_121">
+            <summary>
+            General class level 121.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_122">
+            <summary>
+            General class level 122.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_123">
+            <summary>
+            General class level 123.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_124">
+            <summary>
+            General class level 124.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_125">
+            <summary>
+            General class level 125.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_126">
+            <summary>
+            General class level 126.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_127">
+            <summary>
+            General class level 127.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_128">
+            <summary>
+            General class level 128.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_129">
+            <summary>
+            General class level 129.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_130">
+            <summary>
+            General class level 130.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_131">
+            <summary>
+            General class level 131.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_132">
+            <summary>
+            General class level 132.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_133">
+            <summary>
+            General class level 133.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_134">
+            <summary>
+            General class level 134.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_135">
+            <summary>
+            General class level 135.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_136">
+            <summary>
+            General class level 136.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_137">
+            <summary>
+            General class level 137.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_138">
+            <summary>
+            General class level 138.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_139">
+            <summary>
+            General class level 139.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_140">
+            <summary>
+            General class level 140.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_141">
+            <summary>
+            General class level 141.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_142">
+            <summary>
+            General class level 142.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_143">
+            <summary>
+            General class level 143.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_144">
+            <summary>
+            General class level 144.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_145">
+            <summary>
+            General class level 145.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_146">
+            <summary>
+            General class level 146.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_147">
+            <summary>
+            General class level 147.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_148">
+            <summary>
+            General class level 148.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_149">
+            <summary>
+            General class level 149.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_150">
+            <summary>
+            General class level 150.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_151">
+            <summary>
+            General class level 151.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_152">
+            <summary>
+            General class level 152.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_153">
+            <summary>
+            General class level 153.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_154">
+            <summary>
+            General class level 154.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_155">
+            <summary>
+            General class level 155.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_156">
+            <summary>
+            General class level 156.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_157">
+            <summary>
+            General class level 157.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_158">
+            <summary>
+            General class level 158.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_159">
+            <summary>
+            General class level 159.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_160">
+            <summary>
+            General class level 160.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_161">
+            <summary>
+            General class level 161.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_162">
+            <summary>
+            General class level 162.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_163">
+            <summary>
+            General class level 163.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_164">
+            <summary>
+            General class level 164.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_165">
+            <summary>
+            General class level 165.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_166">
+            <summary>
+            General class level 166.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_167">
+            <summary>
+            General class level 167.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_168">
+            <summary>
+            General class level 168.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_169">
+            <summary>
+            General class level 169.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_170">
+            <summary>
+            General class level 170.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_171">
+            <summary>
+            General class level 171.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_172">
+            <summary>
+            General class level 172.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_173">
+            <summary>
+            General class level 173.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_174">
+            <summary>
+            General class level 174.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_175">
+            <summary>
+            General class level 175.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_176">
+            <summary>
+            General class level 176.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_177">
+            <summary>
+            General class level 177.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_178">
+            <summary>
+            General class level 178.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_179">
+            <summary>
+            General class level 179.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_180">
+            <summary>
+            General class level 180.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_181">
+            <summary>
+            General class level 181.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_182">
+            <summary>
+            General class level 182.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_183">
+            <summary>
+            General class level 183.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_184">
+            <summary>
+            General class level 184.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_185">
+            <summary>
+            General class level 185.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_186">
+            <summary>
+            General class level 186.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_187">
+            <summary>
+            General class level 187.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_188">
+            <summary>
+            General class level 188.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_189">
+            <summary>
+            General class level 189.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_190">
+            <summary>
+            General class level 190.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_191">
+            <summary>
+            General class level 191.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_192">
+            <summary>
+            General class level 192.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_193">
+            <summary>
+            General class level 193.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_194">
+            <summary>
+            General class level 194.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_195">
+            <summary>
+            General class level 195.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_196">
+            <summary>
+            General class level 196.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_197">
+            <summary>
+            General class level 197.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_198">
+            <summary>
+            General class level 198.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.CLASS_199">
+            <summary>
+            General class level 199.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.ATBL">
+            <summary>Attached Below Left</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.ATB">
+            <summary>Attached Below</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.ATBR">
+            <summary>Attached Below Right</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.ATL">
+            <summary>Attached Left</summary>
+            <remarks>Reordrant around single base character.</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.ATR">
+            <summary>Attached Right</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.ATAL">
+            <summary>Attached Above Left</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.ATA">
+            <summary>Attached Above</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.ATAR">
+            <summary>Attached Above Right</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.BL">
+            <summary>Below Left</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.B">
+            <summary>Below</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.BR">
+            <summary>Below Right</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.L">
+            <summary>Left</summary>
+            <remarks>Reordrant around single base character.</remarks>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.R">
+            <summary>Right</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.AL">
+            <summary>Above Left</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.A">
+            <summary>Above</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.AR">
+            <summary>Above Right</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.DB">
+            <summary>Double Below</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.DA">
+            <summary>Double Above</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeCanonicalClass.IS">
+            <summary>Iota Subscript</summary>
+        </member>
+        <member name="T:Spire.Doc.Bidi.UnicodeDecompositionType">
+            <summary>
+            The type of Unicode character decomposition.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.None">
+            <summary>A base form or no special variant.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Font">
+            <summary>A font variant (e.g. a blackletter form).</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.NoBreak">
+            <summary>A no-break version of a space or hyphen.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Initial">
+            <summary>An initial presentation form (Arabic).</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Medial">
+            <summary>A medial presentation form (Arabic).</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Final">
+            <summary>A final presentation form (Arabic).</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Isolated">
+            <summary>An isolated presentation form (Arabic).</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Circle">
+            <summary>An encircled form.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Super">
+            <summary>A superscript form.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Sub">
+            <summary>A subscript form.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Vertical">
+            <summary>A vertical layout presentation form.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Wide">
+            <summary>A wide (or zenkaku) compatibility character.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Narrow">
+            <summary>A narrow (or hankaku) compatibility character.></summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Small">
+            <summary>A small variant form (CNS compatibility).</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Square">
+            <summary>A CJK squared font variant.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Fraction">
+            <summary>A vulgar fraction form.</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeDecompositionType.Compat">
+            <summary>Otherwise unspecified compatibility character.</summary>
+        </member>
+        <member name="T:Spire.Doc.Bidi.UnicodeGeneralCategory">
+            <summary>
+            Unicode character categories.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Lu">
+            <summary>Letter, Uppercase</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Ll">
+            <summary>Letter, Lowercase</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Lt">
+            <summary>Letter, Titlecase</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Lm">
+            <summary>Letter, Modifier</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Lo">
+            <summary>Letter, Other</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Mn">
+            <summary>Mark, Nonspacing</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Mc">
+            <summary>Mark, Spacing Combining</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Me">
+            <summary>Mark, Enclosing</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Nd">
+            <summary>Number, Decimal Digit</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Nl">
+            <summary>Number, Letter</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.No">
+            <summary>Number, Other</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Pc">
+            <summary>Punctuation, Connector</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Pd">
+            <summary>Punctuation, Dash</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Ps">
+            <summary>Punctuation, Open</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Pe">
+            <summary>Punctuation, Close</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Pi">
+            <summary>Punctuation, Initial quote (may behave like Ps or Pe depending on usage)</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Pf">
+            <summary>Punctuation, Final quote (may behave like Ps or Pe depending on usage)</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Po">
+            <summary>Punctuation, Other</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Sm">
+            <summary>Symbol, Math</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Sc">
+            <summary>Symbol, Currency</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Sk">
+            <summary>Symbol, Modifier</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.So">
+            <summary>Symbol, Other</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Zs">
+            <summary>Separator, Space</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Zl">
+            <summary>Separator, Line</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Zp">
+            <summary>Separator, Paragraph</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Cc">
+            <summary>Other, Control</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Cf">
+            <summary>Other, Format</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Cs">
+            <summary>Other, Surrogate</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Co">
+            <summary>Other, Private Use</summary>
+        </member>
+        <member name="F:Spire.Doc.Bidi.UnicodeGeneralCategory.Cn">
+            <summary>Other, Not Assigned (no characters in the file have this property)</summary>
         </member>
         <member name="T:Spire.Doc.Collections.PermissionCollection">
             <summary>
@@ -5598,6 +7466,76 @@
              Removes all items from the collection.
             </summary>
         </member>
+        <member name="P:Spire.Doc.Collections.DocumentInnerList.Item(System.Int32)">
+            <summary>
+            Gets or sets the element at the specified index.
+            </summary>
+            <param name="index">the index.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Spire.Doc.Collections.DocumentInnerList.Count">
+            <summary>
+            Gets the number of items in the collection.
+            </summary>
+            <value>The count.</value>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.GetEnumerator">
+            <summary>
+            Returns an enumerator that iterates through a collection.
+            </summary>
+            <returns>
+            An <see cref="T:System.Collections.IEnumerator"></see> object that can be used to iterate through the collection.
+            </returns>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.Add(System.Object)">
+            <summary>
+            Adds an item to the IList.
+            </summary>
+            <param name="value">the item.</param>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.Clear">
+            <summary>
+            Removes all items from the IList.
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.Contains(System.Object)">
+            <summary>
+            Determines whether the IList contains a specific value.
+            </summary>
+            <param name="value">The item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.IndexOf(System.Object)">
+            <summary>
+            Determines the index of a specific item in the IList.
+            </summary>
+            <param name="value">The Item.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.Insert(System.Int32,System.Object)">
+            <summary>
+            Inserts an item to the IList at the specified index.
+            </summary>
+            <param name="index">the index.</param>
+            <param name="value">the item.</param>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.Remove(System.Object)">
+            <summary>
+            Removes the first occurrence of a specific object from the IList.
+            </summary>
+            <param name="value">the item.</param>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.RemoveAt(System.Int32)">
+            <summary>
+            Removes the IList item at the specified index.
+            </summary>
+            <param name="index"></param>
+        </member>
+        <member name="M:Spire.Doc.Collections.DocumentInnerList.OnStateChange">
+            <summary>
+            Listening status change.
+            </summary>
+        </member>
         <member name="T:Spire.Doc.Collections.ColumnCollection">
             <summary>
             A collection of <see cref="T:Spire.Doc.Column"/> objects that 
@@ -5609,6 +7547,11 @@
             Gets the <see cref="T:Spire.Doc.Column"/> at the specified index.
             </summary>
             <value></value>
+        </member>
+        <member name="P:Spire.Doc.Collections.ColumnCollection.OnlyOneColumn">
+            <summary>
+            Only one column.
+            </summary>
         </member>
         <member name="M:Spire.Doc.Collections.ColumnCollection.Add(Spire.Doc.Column)">
             <summary>
@@ -5945,6 +7888,11 @@
             Initializes a new instance of the <see cref="T:Spire.Doc.Collections.ParagraphItemCollection"/> class.
             </summary>
             <param name="doc">The doc.</param>
+        </member>
+        <member name="M:Spire.Doc.Collections.ParagraphItemCollection.UpdateWidgetCollectionFlag">
+            <summary>
+            Updates widget collection flag of paragraph.
+            </summary>
         </member>
         <member name="M:Spire.Doc.Collections.ShapeObjectTextCollection.#ctor">
             <summary>
@@ -7367,6 +9315,11 @@
             Updates the character properties.
             </summary>
         </member>
+        <member name="M:Spire.Doc.Formatting.CharacterFormat.RemoveThemeFontKey">
+            <summary>
+            docx解析的时候会作相应的处理,所以合并到其他文档的时候这些key是多余的（doc没有这些key）
+            </summary>
+        </member>
         <member name="T:Spire.Doc.Formatting.CharacterFormatLayoutInfo">
             <summary>
             The character foramt layout info class.
@@ -7495,6 +9448,11 @@
             Removes the list from current paragraph.
             </summary>
         </member>
+        <member name="P:Spire.Doc.Formatting.ParagraphFormat.IsKinSoku">
+            <summary>
+            Get or Set a value that determines whether use Asian rules for controlling first and last characters.
+            </summary>
+        </member>
         <member name="P:Spire.Doc.Formatting.ParagraphFormat.IsBidi">
             <summary>
             Returns or sets right-to-left property of the paragraph.
@@ -7534,6 +9492,16 @@
             are to remain on the same page as the rest of the paragraph. 
             </summary>
             <remarks></remarks>
+        </member>
+        <member name="P:Spire.Doc.Formatting.ParagraphFormat.AutoSpaceDN">
+            <summary>
+            Gets or sets the value that determines whether the space is automatically adjusted between Asian text and numbers. 
+            </summary>
+        </member>
+        <member name="P:Spire.Doc.Formatting.ParagraphFormat.AutoSpaceDE">
+            <summary>
+             Gets or sets the value that determines whether the space is automatically adjusted between Asian and Latin text.
+            </summary>
         </member>
         <member name="P:Spire.Doc.Formatting.ParagraphFormat.HorizontalAlignment">
             <summary>
@@ -7607,6 +9575,11 @@
             <summary>
             Gets a value indicating whether this instance is frame.
             </summary>
+        </member>
+        <member name="P:Spire.Doc.Formatting.ParagraphFormat.WordWrap">
+            <summary>        
+             Gets or sets a value that determines whether allow Latin text to wrap in the middle of a word.   
+            </summary>       
         </member>
         <member name="P:Spire.Doc.Formatting.ParagraphFormat.FrameWrapType">
             <summary>
@@ -9254,6 +11227,11 @@
             Indicates whether the document has macros.
             </summary>
         </member>
+        <member name="P:Spire.Doc.Document.KeepSameFormat">
+            <summary>
+            Gets or sets a value that indicates whether to keep same formatting when it is merged to other document.
+            </summary>
+        </member>
         <member name="P:Spire.Doc.Document.ListNames">
             <summary>
             Gets the list names.
@@ -9843,6 +11821,11 @@
             Update Table of contents in the document.
             </summary>
         </member>
+        <member name="M:Spire.Doc.Document.UpdateTableOfContents(Spire.Doc.Fields.TableOfContent)">
+            <summary>
+            Update specified Table of content in the document.
+            </summary>
+        </member>
         <member name="M:Spire.Doc.Document.ReplaceInLine(System.String,System.String,System.Boolean,System.Boolean)">
             <summary>
             Replaces all entries of matchString text with newValue text in single-line mode.
@@ -10119,6 +12102,11 @@
         <member name="P:Spire.Doc.ToPdfParameterList.PrivateFontPaths">
             <summary>
             Gets or sets the private font paths.
+            </summary>
+        </member>
+        <member name="P:Spire.Doc.ToPdfParameterList.CreateWordBookmarksUsingHeadings">
+            <summary>
+            Gets or set the a value that determines whether create the bookmarks using Headings.
             </summary>
         </member>
         <member name="P:Spire.Doc.ToPdfParameterList.CreateWordBookmarks">
@@ -11588,6 +13576,11 @@
              </summary>
              <returns></returns>
         </member>
+        <member name="P:Spire.Doc.Fields.ShapeObject.HasMatch">
+            <summary>
+            Indicates that vml shape has been matched with dml shape
+            </summary>
+        </member>
         <member name="P:Spire.Doc.Fields.ShapeObject.DocumentObjectType">
             <summary>
             Gets the type of the document object.
@@ -11887,12 +13880,12 @@
         </member>
         <member name="P:Spire.Doc.Fields.Field.IsLocked">
             <summary>
-            gets and sets the lock property of the filed.if the field is locked,the field can't be updated.
+            Gets or sets the lock property of the filed.if the field is locked,the field can't be updated.
             </summary>
         </member>
         <member name="P:Spire.Doc.Fields.Field.TextFormat">
             <summary>
-            Gets/ sets regular text format.
+            Gets or sets regular text format.
             </summary>
         </member>
         <member name="P:Spire.Doc.Fields.Field.DocumentObjectType">
@@ -11903,7 +13896,7 @@
         </member>
         <member name="P:Spire.Doc.Fields.Field.Pattern">
             <summary>
-            Returns or setsfield pattern.
+            Returns or sets field pattern.
             </summary>
         </member>
         <member name="P:Spire.Doc.Fields.Field.Value">
@@ -11914,7 +13907,7 @@
         </member>
         <member name="P:Spire.Doc.Fields.Field.Type">
             <summary>
-            Returns or setsfield type
+            Returns or sets field type
             </summary>
             <value></value>
         </member>
@@ -13001,6 +14994,11 @@
             <param name="doc"></param>
         </member>
         <member name="P:Spire.Doc.Fields.TextRange.IsPTab">
+            <summary>
+            Gets or sets a value whether is PTab.
+            </summary>
+        </member>
+        <member name="P:Spire.Doc.Fields.TextRange.PTabAlignment">
             <summary>
             Gets or sets a value whether is PTab.
             </summary>
@@ -16584,6 +18582,11 @@
             Letter, whoes code > 0x7ff
             </summary>
         </member>
+        <member name="M:Spire.Doc.Layout.IStringWidgetText.GetVisualText">
+            <summary>
+            Gets visual text string.
+            </summary>
+        </member>
         <member name="P:Spire.Doc.Layout.LayoutedWidget.ColumnsIndex">
             <summary>
             Gets or set the columns index of the current section.
@@ -16620,7 +18623,7 @@
             Getst the next layouted widget.
             </summary>
         </member>
-        <member name="M:Spire.Doc.Layout.LayoutedWidget.CompressChinesPunctuation(Spire.Doc.Fields.TextRange,Spire.Doc.Documents.Rendering.DrawingContext)">
+        <member name="M:Spire.Doc.Layout.LayoutedWidget.CompressChinesPunctuationEx(Spire.Doc.Layout.IDocumentBase,Spire.Doc.Documents.Rendering.DrawingContext,System.Boolean,System.Single@)">
             <summary>
             compress the punctuations by the character spacing control
             </summary>
@@ -16642,7 +18645,7 @@
             <param name="splitTextRange"></param>
             <param name="currTr"></param>
         </member>
-        <member name="M:Spire.Doc.Layout.LayoutedWidget.RemoveDontCompressPunctuation(System.Collections.Generic.List{Spire.Doc.Fields.ChinesePunctuation},System.Int32)">
+        <member name="M:Spire.Doc.Layout.LayoutedWidget.RemoveDontCompressPunctuationEx(System.Collections.Generic.List{Spire.Doc.Fields.ChinesePunctuation},System.Collections.Generic.List{Spire.Doc.Fields.ChinesePunctuation},System.String,System.Boolean,System.Boolean,Spire.Doc.CharacterSpacing)">
             <summary>
             删除当前TEXTRANGE里的不压缩标点，除了第一个字符与最后一个字符
             </summary>
@@ -16662,6 +18665,17 @@
             <param name="maxAscentDes"></param>
             <param name="dc"></param>
             <param name="childWidget"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Doc.Layout.LayoutedWidget.ReverseOrderAndChangeXPointOfRTLItems">
+            <summary>
+            Reverse the order of the right-to-left items and change the X-axis starting point.
+            </summary>
+        </member>
+        <member name="M:Spire.Doc.Layout.LayoutedWidget.GetStartPointWithoutSquareObject">
+            <summary>
+            Gets the start point position, without square objects. 
+            </summary>
             <returns></returns>
         </member>
         <member name="M:Spire.Doc.Layout.LayoutedWidget.CalculateMaxChildWidget(Spire.Doc.Documents.Rendering.DrawingContext,System.Double@,System.Double@,System.Double@)">
@@ -16699,6 +18713,16 @@
         <member name="M:Spire.Doc.Layout.Layouter.IsCurrentWidgetNeedToLayout(Spire.Doc.Layout.LayoutContext,System.Int32,System.Boolean@,System.Boolean@,System.Boolean)">
             <param name="isSplittedWidget"></param>
         </member>
+        <member name="P:Spire.Doc.Layout.ILayoutInfo.IsBidi">
+            <summary>
+            Gets or set a value indicating whether this instance is bidi(RTL).
+            </summary>
+        </member>
+        <member name="P:Spire.Doc.Layout.LayoutInfo.IsBidi">
+            <summary>
+            Gets or set a value indicating whether this instance is bidi(RTL).
+            </summary>
+        </member>
         <member name="P:Spire.Doc.Layout.ParagraphLayoutInfo.IsItemsOutOfArea">
             <summary>
             Gets and sets whether the items which are after a tab is out of the area.
@@ -16728,6 +18752,11 @@
             <param name="paragraph"></param>
             <param name="pageMarginLeft"></param>
             <param name="tabsInfo"></param>
+        </member>
+        <member name="P:Spire.Doc.Layout.TabsLayoutInfo.LayoutTab.IsPTab">
+            <summary>
+            Gets or sets a value whether is PTab.
+            </summary>
         </member>
         <member name="M:Spire.Doc.Layout.LCContainer.UpdateParagraphYPosition(Spire.Doc.Layout.IDocumentBase)">
             <summary>
@@ -17287,6 +19316,11 @@
         <member name="M:Spire.Doc.Layout.StringParser.GetCharsCount(System.String,System.Char[])">
             
         </member>
+        <member name="F:Spire.Doc.Layout.TabLeader.MiddleDot">
+            <summary>
+            The leader line is made up from middle-dots.
+            </summary>
+        </member>
         <member name="M:Spire.Doc.StreamReadException.#ctor(System.Exception)">
             
         </member>
@@ -17552,6 +19586,11 @@
         <member name="F:Spire.Doc.FileFormat.PostScript">
             <summary>
             PostScript (PS) format.
+            </summary>
+        </member>
+        <member name="F:Spire.Doc.FileFormat.PCL">
+            <summary>
+            Printer Command Language (PCL) format.
             </summary>
         </member>
         <member name="F:Spire.Doc.FileFormat.Auto">

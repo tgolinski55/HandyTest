@@ -25134,6 +25134,299 @@
             <param name="index">signerInfo index</param>
             <returns>The encoded authenticatedAttributes.</returns>
         </member>
+        <member name="M:Spire.Pdf.Security.DigitalSignatureHelper.BuildTimeStampTokenUnauthenticatedAttributes(System.Byte[])">
+            <summary>
+            build TimeStampToken unauthenticatedAttributes.
+            </summary>
+            <param name="timeStampToken">time stamp token, DER encoded signedData</param>
+            <returns>TimeStampToken unauthenticatedAttributes</returns>
+        </member>
+        <member name="T:Spire.Pdf.Security.PdfPKCS7SignatureGenerator">
+            <summary>
+            Pdf PKCS#7 signature generator.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.m_pdfSignature">
+            <summary>
+            Pdf signature.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.m_generator">
+            <summary>
+            CmsSignedData generator.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.#ctor(Spire.Pdf.Security.PdfSignature)">
+            <summary>
+            Constructor new instance.
+            </summary>
+            <param name="pdfSignature">Pdf signature.</param>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.Generate(System.Byte[][])">
+            <summary>
+            Generate signature byte array.
+            </summary>
+            <param name="signedContent">signed content.</param>
+            <returns>Pdf PKCS#7 signature byte array.</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.BuildCertificateChain(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)">
+            <summary>
+            Build signature certificate chain.
+            </summary>
+            <param name="certificate">signature certificate</param>
+            <param name="extraCertificates">
+            Represents an additional collection of certificates that can be searched.
+            </param>
+            <returns>Certificate chain</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.BuildCertificateList(System.Security.Cryptography.X509Certificates.X509Chain)">
+            <summary>
+            Build certificate list.
+            </summary>
+            <param name="certificateChain">certificate chain.</param>
+            <returns>Certificate list.</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.BuildCertificateOCSPValidation(System.Security.Cryptography.X509Certificates.X509Chain)">
+            <summary>
+            Build certificate chain OCSP validation.
+            </summary>
+            <param name="certificateChain">certificate chain.</param>
+            <returns>Certificate chain OCSP validation.</returns>
+        </member>
+        <member name="T:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.AuthenticatedAttributeTableGenerator">
+            <summary>
+            SignInfo's "AuthenticatedAttribute" generator.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.AuthenticatedAttributeTableGenerator.m_pdfSignature">
+            <summary>
+            Pdf signature.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.AuthenticatedAttributeTableGenerator.m_ocsps">
+            <summary>
+            OCSP validation.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.AuthenticatedAttributeTableGenerator.m_crls">
+            <summary>
+            CRL validation.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.AuthenticatedAttributeTableGenerator.#ctor(Spire.Pdf.Security.PdfSignature)">
+            <summary>
+            Construct a new instance.
+            </summary>
+            <param name="pdfSignature">Pdf signature.</param>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.AuthenticatedAttributeTableGenerator.AddCrls(System.Collections.Generic.ICollection{System.Byte[]})">
+            <summary>
+            Add CRL validation.
+            </summary>
+            <param name="crls">CRL validation.</param>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.AuthenticatedAttributeTableGenerator.AddOcsps(System.Collections.Generic.ICollection{System.Byte[]})">
+            <summary>
+            Add OCSP validation.
+            </summary>
+            <param name="ocsps">OCSP validation.</param>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.AuthenticatedAttributeTableGenerator.GetAttributes(System.Collections.IDictionary)">
+            <summary>
+            Generate signInfo's "AuthenticatedAttribute".
+            </summary>
+            <param name="parameters">parameters.</param>
+            <returns>signInfo's "AuthenticatedAttribute".</returns>
+        </member>
+        <member name="T:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.UnauthenticatedAttributeTableGenerator">
+            <summary>
+            SignInfo's "UnauthenticatedAttribute" generator.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.UnauthenticatedAttributeTableGenerator.m_pdfSignature">
+            <summary>
+            Pdf signature.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.UnauthenticatedAttributeTableGenerator.#ctor(Spire.Pdf.Security.PdfSignature)">
+            <summary>
+            Construct a new instance.
+            </summary>
+            <param name="pdfSignature">Pdf signature.</param>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfPKCS7SignatureGenerator.UnauthenticatedAttributeTableGenerator.GetAttributes(System.Collections.IDictionary)">
+            <summary>
+            Generate signInfo's "UnauthenticatedAttribute".
+            </summary>
+            <param name="parameters">parameters.</param>
+            <returns>signInfo's "UnauthenticatedAttribute".</returns>
+        </member>
+        <member name="T:Spire.Pdf.Security.OCSPHttpClientBouncyCastle">
+            <summary>
+            Ocsp http client implementation using BouncyCastle.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Security.OCSPHttpClientBouncyCastle.GetEncoded(System.Security.Cryptography.X509Certificates.X509Certificate2,System.Security.Cryptography.X509Certificates.X509Certificate2,System.String)">
+            <summary>
+            Get an basic ocsp response byte array.
+            </summary>
+            <param name="checkedCert">certificate to checked</param>
+            <param name="issuerCert">certificate of the issuer</param>
+            <param name="ocspUrl">
+            to get the verification. It it's null it will be taken
+            from the check cert or from other implementation specific source
+            </param>
+            <returns>an basic ocsp response byte array or null if the validation could not be obtained</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.OCSPHttpClientBouncyCastle.GetEncoded(Spire.Security.X509.X509Certificate,Spire.Security.X509.X509Certificate,System.String)">
+            <summary>
+            Get an basic ocsp response byte array.
+            </summary>
+            <param name="checkedCert">certificate to checked</param>
+            <param name="issuerCert">certificate of the issuer</param>
+            <param name="ocspUrl">
+            to get the verification. It it's null it will be taken
+            from the check cert or from other implementation specific source
+            </param>
+            <returns>an basic ocsp response byte array or null if the validation could not be obtained</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.OCSPHttpClientBouncyCastle.GetBasicOCSPResponse(Spire.Security.X509.X509Certificate,Spire.Security.X509.X509Certificate,System.String)">
+            <summary>
+            Get basic ocsp response.
+            </summary>
+            <param name="checkedCert">certificate to checked</param>
+            <param name="issuerCert">certificate of the issuer</param>
+            <param name="ocspUrl">
+            to get the verification. It it's null it will be taken
+            from the check cert or from other implementation specific source
+            </param>
+            <returns>an basic ocsp response</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.OCSPHttpClientBouncyCastle.GetOcspResponse(Spire.Security.X509.X509Certificate,Spire.Security.X509.X509Certificate,System.String)">
+            <summary>
+            Get ocsp response using http method.
+            </summary>
+            <param name="checkedCert">certificate to checked</param>
+            <param name="issuerCert">certificate of the issuer</param>
+            <param name="ocspUrl">
+            to get the verification. It it's null it will be taken
+            from the check cert or from other implementation specific source
+            </param>
+            <returns>an ocsp response</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.OCSPHttpClientBouncyCastle.GenerateOCSPRequest(Spire.Security.X509.X509Certificate,Spire.Security.Math.BigInteger)">
+            <summary>
+            Generates an OCSP request using BouncyCastle.
+            </summary>
+            <param name="issuerCert">certificate of the issuer</param>
+            <param name="serialNumber">serial number of checked certificate</param>
+            <returns>an OCSP request</returns>
+        </member>
+        <member name="T:Spire.Pdf.Security.CertificateUtil">
+            <summary>
+            This class contains a series of static methods that
+            allow you to retrieve information from a Certificate.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Security.CertificateUtil.GetCRLURL(Spire.Security.X509.X509Certificate)">
+            <summary>
+            Get the crl url from the given certificate.
+            </summary>
+            <param name="certificate">the certificate</param>
+            <returns>the crl url or null</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.CertificateUtil.GetOCSPURL(Spire.Security.X509.X509Certificate)">
+            <summary>
+            Get the ocsp url from the given certificate.
+            </summary>
+            <param name="certificate">the certificate</param>
+            <returns>the ocsp url or null</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.CertificateUtil.GetTSAURL(Spire.Security.X509.X509Certificate)">
+            <summary>
+            Get the tsa url from the given certificate.
+            </summary>
+            <param name="certificate">the certificate</param>
+            <returns>a tsa url or null</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.CertificateUtil.GetExtensionValue(Spire.Security.X509.X509Certificate,System.String)">
+            <summary>
+            Get the extension value.
+            </summary>
+            <param name="cert">the certificate from which we need the ExtensionValue</param>
+            <param name="oid">the Object Identifier value for the extension</param>
+            <returns>the extension value as an ASN1Primitive object</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.CertificateUtil.GetStringFromGeneralName(Spire.Security.Asn1.Asn1Object)">
+            <summary>
+            Gets a String from an ASN1Primitive
+            </summary>
+            <param name="names">the ASN1Primitive</param>
+            <returns>a human-readable String</returns>
+        </member>
+        <member name="T:Spire.Pdf.Security.TSAHttpClientBouncyCastle">
+            Time Stamp http Client which must conform to RFC 3161.
+        </member>
+        <member name="F:Spire.Pdf.Security.TSAHttpClientBouncyCastle.tsaURL">
+            URL of the Time Stamp Authority 
+        </member>
+        <member name="F:Spire.Pdf.Security.TSAHttpClientBouncyCastle.tsaUsername">
+            TSA Username 
+        </member>
+        <member name="F:Spire.Pdf.Security.TSAHttpClientBouncyCastle.tsaPassword">
+            TSA password 
+        </member>
+        <member name="F:Spire.Pdf.Security.TSAHttpClientBouncyCastle.DEFAULTTOKENSIZE">
+            The default value for the hash algorithm 
+        </member>
+        <member name="F:Spire.Pdf.Security.TSAHttpClientBouncyCastle.tokenSizeEstimate">
+            Estimate of the received time stamp token 
+        </member>
+        <member name="F:Spire.Pdf.Security.TSAHttpClientBouncyCastle.DEFAULTHASHALGORITHM">
+            The default value for the hash algorithm 
+        </member>
+        <member name="F:Spire.Pdf.Security.TSAHttpClientBouncyCastle.digestAlgorithm">
+            Hash algorithm 
+        </member>
+        <member name="M:Spire.Pdf.Security.TSAHttpClientBouncyCastle.#ctor(System.String)">
+            Creates an instance of a TSAClient that will use BouncyCastle.
+            @param url String - Time Stamp Authority URL (i.e. "http://tsatest1.digistamp.com/TSA")
+        </member>
+        <member name="M:Spire.Pdf.Security.TSAHttpClientBouncyCastle.#ctor(System.String,System.String,System.String)">
+            Creates an instance of a TSAClient that will use BouncyCastle.
+            @param url String - Time Stamp Authority URL (i.e. "http://tsatest1.digistamp.com/TSA")
+            @param username String - user(account) name
+            @param password String - password
+        </member>
+        <member name="M:Spire.Pdf.Security.TSAHttpClientBouncyCastle.#ctor(System.String,System.String,System.String,System.Int32,System.String)">
+            Constructor.
+            Note the token size estimate is updated by each call, as the token
+            size is not likely to change (as long as we call the same TSA using
+            the same imprint length).
+            @param url String - Time Stamp Authority URL (i.e. "http://tsatest1.digistamp.com/TSA")
+            @param username String - user(account) name
+            @param password String - password
+            @param tokSzEstimate int - estimated size of received time stamp token (DER encoded)
+        </member>
+        <member name="M:Spire.Pdf.Security.TSAHttpClientBouncyCastle.GetTokenSizeEstimate">
+            Get the token size estimate.
+            Returned value reflects the result of the last succesfull call, padded
+            @return an estimate of the token size
+        </member>
+        <member name="M:Spire.Pdf.Security.TSAHttpClientBouncyCastle.GetDigestAlgorithm">
+            Gets the digest algorithm to digest the data imprint
+            @return the digest algorithm name
+        </member>
+        <member name="M:Spire.Pdf.Security.TSAHttpClientBouncyCastle.GetTimeStampToken(System.Byte[])">
+            Get RFC 3161 timeStampToken.
+            Method may return null indicating that timestamp should be skipped.
+            @param imprint data imprint to be time-stamped
+            @return encoded, TSA signed data of the timeStampToken
+        </member>
+        <member name="M:Spire.Pdf.Security.TSAHttpClientBouncyCastle.GetTSAResponse(System.Byte[])">
+            Get timestamp token - communications layer
+            @return - byte[] - TSA response, raw bytes (RFC 3161 encoded)
+        </member>
         <member name="T:Spire.Pdf.Security.PdfCertificate">
             <summary>
             Represents the Certificate object.
@@ -25404,11 +25697,6 @@
             </summary>
             <remarks>Signature can be set as invisible when its  size is set to empty.</remarks>
         </member>
-        <member name="P:Spire.Pdf.Security.PdfSignature.TimeStampServer">
-            <summary>
-            Gets or sets time stamping server unique resource identifier. 
-            </summary>
-        </member>
         <member name="P:Spire.Pdf.Security.PdfSignature.Field">
             <summary>
             Gets pdf signature field.
@@ -25672,6 +25960,69 @@
             Check if the document was altered after signed. True if modified; otherwise false.
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:Spire.Pdf.Security.PdfSignature.TimestampGenerateHandler">
+            <summary>
+            The handler which generate timestamp token.
+            </summary>
+            <param name="signature">
+            The value of signature field within SignerInfo.
+            The value of messageImprint field within TimeStampToken shall be the hash of signature.
+            Refrence RFC 3161 APPENDIX A.
+            </param>
+            <returns>timestamp which must conform to RFC 3161</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfSignature.ConfigureTimestamp(System.String)">
+            <summary>
+            Configure timestamp which must conform to RFC 3161.
+            </summary>
+            <param name="tsaUrl">TSA url</param>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfSignature.ConfigureTimestamp(Spire.Pdf.Security.PdfSignature.TimestampGenerateHandler)">
+            <summary>
+            Configure timestamp which must conform to RFC 3161.
+            </summary>
+            <param name="handler">the handler which generate timestamp token</param>
+        </member>
+        <member name="P:Spire.Pdf.Security.PdfSignature.OnTimestampGenerate">
+            <summary>
+            Timestamp generator.
+            </summary>
+        </member>
+        <member name="T:Spire.Pdf.Security.PdfSignature.OCSPResponseGenerateHandler">
+            <summary>
+            The handler which generate OCSP response.
+            </summary>
+            <param name="checkedCertificate">certificate to checked</param>
+            <param name="issuerCertificate">certificate of the issuer</param>
+            <returns>OCSP response which must conform to RFC 2560</returns>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfSignature.ConfigureHttpOCSP(System.String,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)">
+            <summary>
+            Configure OCSP which must conform to RFC 2560.
+            </summary>
+            <param name="ocspUrl">
+            OCSP url. It it's null it will be taken from the checked cert.
+            </param>
+            <param name="extraCertificates">
+            Represents an additional collection of certificates that can be searched.
+            if null,only use windows cert store.
+            </param>
+        </member>
+        <member name="M:Spire.Pdf.Security.PdfSignature.ConfigureCustomOCSP(Spire.Pdf.Security.PdfSignature.OCSPResponseGenerateHandler,System.Security.Cryptography.X509Certificates.X509Certificate2Collection)">
+            <summary>
+            Configure OCSP which must conform to RFC 2560.
+            </summary>
+            <param name="extraCertificates">
+            Represents an additional collection of certificates that can be searched
+            if null,only use windows cert store.
+            </param>
+            <param name="handler">the handler which generate OCSP response.</param>
+        </member>
+        <member name="P:Spire.Pdf.Security.PdfSignature.OnOCSPResponseGenerate">
+            <summary>
+            OCSP response generator.
+            </summary>
         </member>
         <member name="F:Spire.Pdf.Security.Oid.x509AuthorityInfoAccess">
             <summary>
@@ -26696,6 +27047,251 @@
             </summary>
             <param name="m_password">The given password</param>
             <returns>The boolean indicates the given password is correct or not</returns>
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.RTLLanguageHelper.ContainsRTLChar(System.String)">
+            <summary>
+            Returns true if the test consists of rtl chars
+            </summary>
+            <param name="text">Text</param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.RTLLanguageHelper.Transform(System.String)">
+            <summary>
+            Performs transformation of the string
+            </summary>
+            <param name="text">Text</param>
+            <returns></returns>
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsEn2An">
+            Digit shaping option: Replace European digits (U+0030...U+0039) by Arabic-Indic digits.
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsAn2En">
+            Digit shaping option: Replace Arabic-Indic digits by European digits (U+0030...U+0039).
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsEn2AnInitLr">
+            Digit shaping option:
+            Replace European digits (U+0030...U+0039) by Arabic-Indic digits
+            if the most recent strongly directional character
+            is an Arabic letter (its Bidi direction value is RIGHT_TO_LEFT_ARABIC).
+            The initial state at the start of the text is assumed to be not an Arabic,
+            letter, so European digits at the start of the text will not change.
+            Compare to DIGITS_ALEN2AN_INIT_AL.
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsEn2AnInitAl">
+            Digit shaping option:
+            Replace European digits (U+0030...U+0039) by Arabic-Indic digits
+            if the most recent strongly directional character
+            is an Arabic letter (its Bidi direction value is RIGHT_TO_LEFT_ARABIC).
+            The initial state at the start of the text is assumed to be an Arabic,
+            letter, so European digits at the start of the text will change.
+            Compare to DIGITS_ALEN2AN_INT_LR.
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsReserved">
+            Not a valid option value. 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsMask">
+            Bit mask for digit shaping options.
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitTypeAn">
+            Digit type option: Use Arabic-Indic digits (U+0660...U+0669).
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitTypeAnExtended">
+            Digit type option: Use Eastern (Extended) Arabic-Indic digits (U+06f0...U+06f9).
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitTypeMask">
+            Bit mask for digit type options.
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.L">
+            Left-to-right
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.LRE">
+            Left-to-Right Embedding 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.LRO">
+            Left-to-Right Override 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.R">
+            Right-to-Left 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.AL">
+            Right-to-Left Arabic 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.RLE">
+            Right-to-Left Embedding 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.RLO">
+            Right-to-Left Override 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.PDF">
+            Pop Directional Format 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.EN">
+            European Number 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.ES">
+            European Number Separator 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.ET">
+            European Number Terminator 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.AN">
+            Arabic Number 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.CS">
+            Common Number Separator 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.NSM">
+            Non-Spacing Mark 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.BN">
+            Boundary Neutral 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.B">
+            Paragraph Separator 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.S">
+            Segment Separator 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.WS">
+            Whitespace 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.ON">
+            Other Neutrals 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.TYPE_MIN">
+            Minimum bidi type value. 
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.TYPE_MAX">
+            Maximum bidi type value. 
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.#ctor(System.SByte[])">
+             Initialize using an array of direction types.  Types range from TYPE_MIN to TYPE_MAX inclusive
+             and represent the direction codes of the characters in the text.
+            
+             @param types the types array
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.#ctor(System.SByte[],System.SByte)">
+             Initialize using an array of direction types and an externally supplied paragraph embedding level.
+             The embedding level may be -1, 0, or 1.  -1 means to apply the default algorithm (rules P2 and P3),
+             0 is for LTR paragraphs, and 1 is for RTL paragraphs.
+            
+             @param types the types array
+             @param paragraphEmbeddingLevel the externally supplied paragraph embedding level.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.RunAlgorithm">
+            The algorithm.
+            Does not include line-based processing (Rules L1, L2).
+            These are applied later in the line-based phase of the algorithm.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ReinsertExplicitCodes(System.Int32)">
+            Reinsert levels information for explicit codes.
+            This is for ease of relating the level information
+            to the original input data.  Note that the levels
+            assigned to these codes are arbitrary, they're
+            chosen so as to avoid breaking level runs.
+            @param textLength the length of the data after compression
+            @return the length of the data (original length of
+            types array supplied to constructor)
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ProcessEmbeddings(System.SByte[],System.SByte)">
+             2) determining explicit levels
+             Rules X1 - X8
+            
+             The interaction of these rules makes handling them a bit complex.
+             This examines resultTypes but does not modify it.  It returns embedding and
+             override information in the result array.  The low 7 bits are the level, the high
+             bit is set if the level is an override, and clear if it is an embedding.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ResolveWeakTypes(System.Int32,System.Int32,System.SByte,System.SByte,System.SByte)">
+             3) resolving weak types
+             Rules W1-W7.
+            
+             Note that some weak types (EN, AN) remain after this processing is complete.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ResolveNeutralTypes(System.Int32,System.Int32,System.SByte,System.SByte,System.SByte)">
+            6) resolving neutral types
+            Rules N1-N2.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ResolveImplicitLevels(System.Int32,System.Int32,System.SByte,System.SByte,System.SByte)">
+            7) resolving implicit embedding levels
+            Rules I1, I2.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ComputeMultilineReordering(System.SByte[],System.Int32[])">
+            Return multiline reordering array for a given level array.
+            Reordering does not occur across a line break.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ComputeReordering(System.SByte[])">
+            Return reordering array for a given level array.  This reorders a single line.
+            The reordering is a visual to logical map.  For example,
+            the leftmost char is string.CharAt(order[0]).
+            Rule L2.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.GetBaseLevel">
+            Return the base level of the paragraph.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.IsWhitespace(System.SByte)">
+            Return true if the type is considered a whitespace type for the line break rules.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.TypeForLevel(System.Int32)">
+            Return the strong type (L or R) corresponding to the level.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.FindRunLimit(System.Int32,System.Int32,System.SByte[])">
+            Return the limit of the run starting at index that includes only resultTypes in validSet.
+            This checks the value at index, and will return index if that value is not in validSet.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.FindRunStart(System.Int32,System.SByte[])">
+            Return the start of the run including index that includes only resultTypes in validSet.
+            This assumes the value at index is valid, and does not check it.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.SetTypes(System.Int32,System.Int32,System.SByte)">
+            Set resultTypes from start up to (but not including) limit to newType.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.SetLevels(System.Int32,System.Int32,System.SByte)">
+            Set resultLevels from start up to (but not including) limit to newLevel.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ValidateTypes(System.SByte[])">
+            Throw exception if type array is invalid.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ValidateParagraphEmbeddingLevel(System.SByte)">
+            Throw exception if paragraph embedding level is invalid. Special allowance for -1 so that
+            default processing can still be performed when using this API.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ValidateLineBreaks(System.Int32[],System.Int32)">
+            Throw exception if line breaks array is invalid.
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.HindiText.IsSwaraLetter(System.Char)">
+             Checks if a character is vowel letter.
+            
+             @param ch
+                        the character that needs to be checked
+             @return true if the characters is a vowel letter
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.HindiText.IsSwaraMatra(System.Char)">
+             Checks if a character is vowel sign.
+            
+             @param ch
+                        the character that needs to be checked
+             @return true if the characters is a vowel sign
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.HindiText.IsVyanjana(System.Char)">
+             Checks if a character is consonant letter.
+            
+             @param ch
+                        the character that needs to be checked
+             @return true if the chracter is a consonant letter
+        </member>
+        <member name="M:Spire.Pdf.TextTransformation.HindiText.Swap(System.Text.StringBuilder,System.Int32,System.Int32)">
+             Swaps two characters in a StringBuilder object
+            
+             @param s
+                        the StringBuilder
+             @param i
+                        the index of one character
+             @param j
+                        the index of the other character
+        </member>
+        <member name="F:Spire.Pdf.TextTransformation.HindiText.langTable">
+            Constructor for the IndicLigaturizer for Devanagari.
         </member>
         <member name="T:Spire.Pdf.Exceptions.PdfConformanceException">
             <summary>
@@ -32414,26 +33010,26 @@
             <summary>
             Initializes a new instance of the  class.
             </summary>
-            <param name="file">The byte array with the file content.</param>
+            <param name="bytes">The byte array with the file content.</param>
         </member>
         <member name="M:Spire.Pdf.PdfDocument.LoadFromStream(System.IO.Stream)">
             <summary>
             Initializes a new instance of the  class.
             </summary>
-            <param name="file">The stream with the file.</param>
+            <param name="stream">The stream with the file.</param>
         </member>
         <member name="M:Spire.Pdf.PdfDocument.LoadFromBytes(System.Byte[],System.String)">
             <summary>
             Initializes a new instance of the  class.
             </summary>
-            <param name="file">The byte array with the file content.</param>
+            <param name="bytes">The byte array with the file content.</param>
             <param name="password">The password (user or owner) of the encrypted document.</param>
         </member>
         <member name="M:Spire.Pdf.PdfDocument.LoadFromStream(System.IO.Stream,System.String)">
             <summary>
             Initializes a new instance.
             </summary>
-            <param name="file">The stream with the file.</param>
+            <param name="stream">The stream with the file.</param>
             <param name="password">The password (user or owner) of the encrypted document.</param>
         </member>
         <member name="M:Spire.Pdf.PdfDocument.HasExtendedRight">
@@ -33470,6 +34066,96 @@
             <summary>
             The original stream object.
             </summary>
+        </member>
+        <member name="T:Spire.Pdf.Exporting.PdfToHtml.PdfToHtmlParameter">
+            <summary>
+            Pdf to html Set Parameter
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Exporting.PdfToHtml.PdfToHtmlParameter.m_SplitHtmlNumber">
+            <summary>
+            In 1000 The Split Page
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.Exporting.PdfToHtml.PdfToHtmlParameter.SplitHtmlNumber">
+            <summary>
+            In 1000 The Split Page,default 1000
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.Exporting.PdfToHtml.PdfToHtmlParameter.IsEmbedImage">
+            <summary>
+            wheather embedded image
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Exporting.PdfToHtml.HtmlExportOptions.m_SetPdfToHtmlParameter">
+            <summary>
+            Pdf to Html, Set Parameter
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Exporting.PdfToHtml.HtmlFileExport.WriteDocComment">
+            <summary>
+            Writes the doc Comment
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Exporting.PdfToHtml.HtmlFileExport.DocumentPageStart(System.String,System.String)">
+            <summary>
+            
+            </summary>
+            <param name="PageWidth"></param>
+            <param name="PageMarginTopHeight"></param>
+        </member>
+        <member name="M:Spire.Pdf.Exporting.PdfToHtml.HtmlFileExport.DocumentPageEnd">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Exporting.PdfToHtml.HtmlFileExport.JavaScript">
+            <summary>
+            
+            </summary>
+            <param name="js"></param>
+        </member>
+        <member name="P:Spire.Pdf.Exporting.PdfToHtml.Html.HtmlCssWriter.StyleId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.Exporting.PdfToHtml.Html.HtmlCssWriter.CssFileNumber">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.Exporting.PdfToHtml.Html.HtmlTextWriter.FilesFolder">
+            <summary>
+            Get file Folder
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.Exporting.PdfToHtml.Html.HtmlTextWriterHelper.DocComment(System.String)">
+            <summary>
+            write doc comment
+            </summary>
+            <param name="comment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Pdf.Exporting.PdfToHtml.Html.HtmlUtils.GetSaveFileRelativePath(System.String)">
+            <summary>
+            Save file  Relative Path
+            </summary>
+            <param name="filepath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Pdf.Exporting.PdfToHtml.Html.HtmlUtils.GetHtmlSaveFilesFolder(System.String)">
+            <summary>
+            Save file folder
+            </summary>
+            <param name="filepath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Pdf.Exporting.PdfToHtml.XhtmlFileExport.WriteDocComment">
+            <summary>
+            write doc comment
+            </summary>
+            <param name="comment"></param>
         </member>
         <member name="M:Spire.Pdf.Exporting.PageResourceLoader.DecodeTest(Spire.Pdf.PdfPageBase,System.String,System.String)">
             <summary>
@@ -34696,247 +35382,6 @@
         <member name="P:Spire.Pdf.Exporting.XPS.Schema.SpotLocationType.StartY">
             <remarks/>
         </member>
-        <member name="T:Spire.Pdf.Implementation.Exporting.PdfToHtml.PdfToHtmlParameter">
-            <summary>
-            Pdf to html Set Parameter
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Exporting.PdfToHtml.PdfToHtmlParameter.m_SplitHtmlNumber">
-            <summary>
-            In 1000 The Split Page
-            </summary>
-        </member>
-        <member name="P:Spire.Pdf.Implementation.Exporting.PdfToHtml.PdfToHtmlParameter.SplitHtmlNumber">
-            <summary>
-            In 1000 The Split Page,default 1000
-            </summary>
-        </member>
-        <member name="P:Spire.Pdf.Implementation.Exporting.PdfToHtml.PdfToHtmlParameter.IsEmbedImage">
-            <summary>
-            wheather embedded image
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Exporting.PdfToHtml.HtmlExportOptions.m_SetPdfToHtmlParameter">
-            <summary>
-            Pdf to Html, Set Parameter
-            </summary>
-        </member>
-        <member name="M:Spire.Pdf.Implementation.Exporting.PdfToHtml.HtmlFileExport.WriteDocComment">
-            <summary>
-            Writes the doc Comment
-            </summary>
-        </member>
-        <member name="M:Spire.Pdf.Implementation.Exporting.PdfToHtml.HtmlFileExport.DocumentPageStart(System.String,System.String)">
-            <summary>
-            
-            </summary>
-            <param name="PageWidth"></param>
-            <param name="PageMarginTopHeight"></param>
-        </member>
-        <member name="M:Spire.Pdf.Implementation.Exporting.PdfToHtml.HtmlFileExport.DocumentPageEnd">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="M:Spire.Pdf.Implementation.Exporting.PdfToHtml.HtmlFileExport.JavaScript">
-            <summary>
-            
-            </summary>
-            <param name="js"></param>
-        </member>
-        <member name="P:Spire.Pdf.Implementation.Exporting.PdfToHtml.Html.HtmlCssWriter.StyleId">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Spire.Pdf.Implementation.Exporting.PdfToHtml.Html.HtmlCssWriter.CssFileNumber">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:Spire.Pdf.Implementation.Exporting.PdfToHtml.Html.HtmlTextWriter.FilesFolder">
-            <summary>
-            Get file Folder
-            </summary>
-        </member>
-        <member name="M:Spire.Pdf.Implementation.Exporting.PdfToHtml.Html.HtmlTextWriterHelper.DocComment(System.String)">
-            <summary>
-            write doc comment
-            </summary>
-            <param name="comment"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Spire.Pdf.Implementation.Exporting.PdfToHtml.Html.HtmlUtils.GetSaveFileRelativePath(System.String)">
-            <summary>
-            Save file  Relative Path
-            </summary>
-            <param name="filepath"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Spire.Pdf.Implementation.Exporting.PdfToHtml.Html.HtmlUtils.GetHtmlSaveFilesFolder(System.String)">
-            <summary>
-            Save file folder
-            </summary>
-            <param name="filepath"></param>
-            <returns></returns>
-        </member>
-        <member name="M:Spire.Pdf.Implementation.Exporting.PdfToHtml.XhtmlFileExport.WriteDocComment">
-            <summary>
-            write doc comment
-            </summary>
-            <param name="comment"></param>
-        </member>
-        <member name="T:Spire.Pdf.Implementation.Print.PdfPaperSizes">
-            <summary>
-            Represents information about page size.
-            The PaperSize's width and height,unit:in hundredths of an inch.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.Letter">
-            <summary>
-            Letter format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.Note">
-            <summary>
-            Note format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.Legal">
-            <summary>
-            Legal format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A0">
-            <summary>
-            A0 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A1">
-            <summary>
-            A1 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A2">
-            <summary>
-            A2 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A3">
-            <summary>
-            A3 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A4">
-            <summary>
-            A4 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A5">
-            <summary>
-            A5 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A6">
-            <summary>
-            A6 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A7">
-            <summary>
-            A7 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A8">
-            <summary>
-            A8 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A9">
-            <summary>
-            A9 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.A10">
-            <summary>
-            A10 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.B0">
-            <summary>
-            B0 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.B1">
-            <summary>
-            B1 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.B2">
-            <summary>
-            B2 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.B3">
-            <summary>
-            B3 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.B4">
-            <summary>
-            B4 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.B5">
-            <summary>
-            B5 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.ArchE">
-            <summary>
-            ArchE format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.ArchD">
-            <summary>
-            ArchD format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.ArchC">
-            <summary>
-            ArchC format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.ArchB">
-            <summary>
-            ArchB format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.ArchA">
-            <summary>
-            ArchA format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.Flsa">
-            <summary>
-            The American Foolscap format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.HalfLetter">
-            <summary>
-            HalfLetter format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.Letter11x17">
-            <summary>
-            11x17 format.
-            </summary>
-        </member>
-        <member name="F:Spire.Pdf.Implementation.Print.PdfPaperSizes.Ledger">
-            <summary>
-            Ledger format.
-            </summary>
-        </member>
         <member name="P:Spire.Pdf.FontStructure.FontName">
             <summary>
             Holds the font name associated with the text element
@@ -35661,6 +36106,11 @@
             Set a value to enabled form field highLight
             </summary>
         </member>
+        <member name="F:Spire.Pdf.Fields.PdfForm.m_needRewriteFormField">
+            <summary>
+            pdfviewer fill,a form field needs to override ap 
+            </summary>
+        </member>
         <member name="M:Spire.Pdf.Fields.PdfForm.#ctor">
             <summary>
             Initializes a new instance of the  class.
@@ -35697,6 +36147,11 @@
         <member name="P:Spire.Pdf.Fields.PdfForm.EnabledHighLightFormField">
             <summary>
             Set a value to enabled form field highLight
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.Fields.PdfForm.NeedRewriteFormField">
+            <summary>
+            pdfviewer fill,a form field needs to override ap 
             </summary>
         </member>
         <member name="P:Spire.Pdf.Fields.PdfForm.Spire#Pdf#Interfaces#IPdfWrapper#Element">
@@ -36794,7 +37249,7 @@
         </member>
         <member name="P:Spire.Pdf.Widget.IPdfTextBoxField.BackColor">
             <summary>
-            Get or Set the back color of the field
+            Get or Set the background color of the field
             </summary>
             <value>A  object specifying the background color of field. </value>
         </member>
@@ -37613,6 +38068,12 @@
             </summary>
             <value>The got focus action.</value>
         </member>
+        <member name="P:Spire.Pdf.Widget.PdfStyledFieldWidget.BackColor">
+            <summary>
+            Get or Set the background color of the field
+            </summary>
+            <value>A  object specifying the background color of field. </value>
+        </member>
         <member name="P:Spire.Pdf.Widget.PdfStyledFieldWidget.LostFocus">
             <summary>
             Gets or sets the action to be performed when the annotation loses the 
@@ -37695,12 +38156,6 @@
             <summary>
             The password chrackter.
             </summary>
-        </member>
-        <member name="P:Spire.Pdf.Widget.PdfTextBoxFieldWidget.BackColor">
-            <summary>
-            Get or Set the back color of the field
-            </summary>
-            <value>A  object specifying the background color of field. </value>
         </member>
         <member name="P:Spire.Pdf.Widget.PdfTextBoxFieldWidget.ForeColor">
             <summary>
@@ -38058,6 +38513,13 @@
             <summary>
             Clean up Memory
             </summary>
+        </member>
+        <member name="M:Spire.Pdf.General.Paper.Drawing.Fonts.ExternalFontCache.LoadFontsSearchInfo(Spire.Pdf.General.Paper.Drawing.Fonts.FontSourceBaseCore[])">
+            <summary>
+            Loads fonts.
+            </summary>
+            <param name="fontSouce"></param>
+            <returns></returns>
         </member>
         <member name="T:Spire.Pdf.General.Paper.Drawing.Fonts.FontCache">
             <summary>
@@ -38481,6 +38943,12 @@
             Manually recalculates the state of the transform when the matrix
             changes too much to predict the effects on the state.
         </member>
+        <member name="M:Spire.Pdf.General.Paper.Drawing.Ps.PsBitmap.BlendTransparencyWithBackground(Spire.Pdf.General.Paper.Drawing.PsColor)">
+            <summary>
+            Blend transparency whith background color.
+            </summary>
+            <param name="backgroundColor">background color</param>
+        </member>
         <member name="M:Spire.Pdf.General.Paper.Drawing.Ps.PsSystem.GetMacOSFontFolders">
             <summary>
             Get MacOS font folders.
@@ -38636,6 +39104,65 @@
         <member name="M:Spire.Pdf.General.Paper.Font.Type42.Type42Builder.EncodeTableData(System.Byte[])">
             <summary>
             Encodes table data to ASCII hexadecimal string.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.General.Paper.Pcl.PclResource.WriteFonts(Spire.Pdf.General.Paper.Pcl.PclDocument)">
+            <summary>
+            Write font with PCL XL Font Formats.
+            </summary>
+            <param name="writer">PCL writer.</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Paper.Pcl.PclFont.#ctor(Spire.Pdf.General.Paper.Drawing.Fonts.TrueType.TTFont)">
+            <summary>
+            PCL font.
+            </summary>
+            <param name="font">TTFont</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Paper.Pcl.PclFont.WriteFont(Spire.Pdf.General.Paper.Pcl.PclDocument)">
+            <summary>
+            Write font with PCL XL Font Formats.
+            </summary>
+            <param name="writer">PCL writer.</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Paper.Pcl.PclFontBuilder.#ctor(Spire.Pdf.General.Paper.Pcl.PclDocument)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="writer">Pcl document writer.</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Paper.Pcl.PclFontBuilder.WriteFont(Spire.Pdf.General.Paper.Drawing.Fonts.TrueType.TTFontSubset)">
+            <summary>
+            Write font with PCL XL Font Formats.
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.General.Paper.Pcl.PclFontBuilder.WriteFont(Spire.Pdf.General.Paper.Drawing.Fonts.TrueType.TTFont)">
+            <summary>
+            Write font with PCL XL Font Formats.
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.General.Paper.Pcl.PclBuilderOptions.ScaleForPrecison">
+            <summary>
+            PCL only support point unit "Int16",but PsPath support point unit "Float".
+            1.When filling region is very small,overlap to line("Int16" to "Float").
+            If only fill(no stroke),PsPath disappear.
+            Bug_127/220/316/354/499,BaselineFile_8
+            2.Glyph position loss precison.
+            So,by scaling,advoid precison loss.
+            </summary>
+        </member>
+        <member name="T:Spire.Pdf.General.Paper.Pcl.Tags.SegmentIdentifier">
+            <summary>
+            Font segment identifier.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Paper.Pcl.Tags.SegmentIdentifier.GT">
+            <summary>
+            Global TrueType Data
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Paper.Pcl.Tags.SegmentIdentifier.NG">
+            <summary>
+            Null segment
             </summary>
         </member>
         <member name="T:Spire.Pdf.General.Paper.PostScript.PostScriptApsGlyphsIndicesReader">
@@ -38870,6 +39397,13 @@
             <param name="text">The input string.</param>
             <returns></returns>
         </member>
+        <member name="M:Spire.Pdf.General.Render.Font.PDFFontEncoding.GetCharacterID(System.Char)">
+            <summary>
+            Get the character id
+            </summary>
+            <param name="c">the char byte</param>
+            <returns>the character id</returns>
+        </member>
         <member name="T:Spire.Pdf.General.Render.Font.TrueTypeFont.GlyphOutline">
             <summary>
             Description of Glyph.
@@ -39027,19 +39561,65 @@
             <param name="x"></param>
             <param name="y"></param>
         </member>
+        <member name="P:Spire.Pdf.General.Render.Page.BorderPen">
+            <summary>
+            draw border pen
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.Page.Draw(System.Drawing.Graphics,System.Single,System.Single,System.Boolean,System.Int32,System.Boolean)">
+            <summary>
+            draw page content and annot
+            </summary>
+            <param name="graphic"></param>
+            <param name="vScrollValue"></param>
+            <param name="zoomFactor"></param>
+            <param name="printing"></param>
+            <param name="panelWidth"></param>
+            <param name="eastAsianFont"></param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.Page.Draw(System.Drawing.Graphics,System.Drawing.Rectangle,System.Boolean,System.Boolean)">
+            <summary>
+            draw page content and annot
+            </summary>
+            <param name="graphic"></param>
+            <param name="destRect"></param>
+            <param name="printing"></param>
+            <param name="eastAsianFont"></param>
+        </member>
         <member name="M:Spire.Pdf.General.Render.Page.CreatePageBuffer">
             <summary>
              Create Page iamge Buffer
             </summary>
             <returns></returns>
         </member>
-        <member name="M:Spire.Pdf.General.Render.Page.CreatePageBuffer(System.Boolean,System.Single,System.Boolean)">
+        <member name="M:Spire.Pdf.General.Render.Page.CreatePage(System.Boolean,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            Create Page iamge Buffer,it's eastAsianFont
+            create page image,draw content and annot
+            </summary>
+            <param name="isWriteWarning"></param>
+            <param name="liMaxScale"></param>
+            <param name="eastAsianFont"></param>
+            <param name="isDrawPageContent"></param>
+            <param name="isDrawPageAnnot"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.Page.CreatePageAnnotBuffer(System.Boolean,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create Page annot Buffer
             </summary>
             <param name="isWriteWarning">bool isWriteWarning</param>
             <param name="zoomFactor">float zoomFactor</param>
             <param name="eastAsianFont">bool eastAsianFont</param>
+            <param name="isDrawPageAnnot">bool isDrawPageAnnot</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.Page.CreatePageBuffer(System.Boolean,System.Single,System.Boolean,System.Boolean)">
+            <summary>
+            Create Page image Buffer,it's eastAsianFont
+            </summary>
+            <param name="isWriteWarning">bool isWriteWarning</param>
+            <param name="zoomFactor">float zoomFactor</param>
+            <param name="eastAsianFont">bool eastAsianFont</param>
+            <param name="isDrawPageAnnot">bool isDrawPageAnnot</param>
         </member>
         <member name="M:Spire.Pdf.General.Render.Page.CreatePageBuffer(System.Boolean,System.Single,System.Int32,System.Int32)">
             <summary>
@@ -39157,6 +39737,15 @@
             </summary>
             <param name="fontData"></param>
         </member>
+        <member name="M:Spire.Pdf.General.Render.PdfElement.PdfFontStructure.MeasureType0StringWidth(System.String,System.Single,System.Single)">
+            <summary>
+            Measure type 0 font string width
+            </summary>
+            <param name="encoding">the encodeing</param>
+            <param name="FontSize">the font size</param>
+            <param name="textScale">the text scale</param>
+            <returns>the string width</returns>
+        </member>
         <member name="M:Spire.Pdf.General.Render.PdfElement.PdfFontStructure.DrawType3FontFromGraphicsData(Spire.Pdf.General.Render.PdfToImageRenderer,Spire.Pdf.General.Render.TextElement,System.Drawing.Graphics)">
             <summary>
             Draw text of embed font to page
@@ -39261,6 +39850,15 @@
             </summary>
             <param name="resourceDictionary">containing all the resources of the document</param>
             <returns>dictionary of Pattern elements</returns>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfElement.PageResourceLoader.HandleTXMultiline(Spire.Pdf.Primitives.PdfDictionary,Spire.Pdf.Graphics.PdfTrueTypeFont,System.Drawing.RectangleF)">
+            <summary>
+            Handle the text annotation widget multiline
+            </summary>
+            <param name="annotElements">the anntation</param>
+            <param name="typefont">the true type font</param>
+            <param name="subRect">the rectangle</param>
+            <returns>a text rectangle</returns>
         </member>
         <member name="M:Spire.Pdf.General.Render.PdfElement.PageResourceLoader.GetOptValueFromOpt(Spire.Pdf.Interfaces.IPdfPrimitive)">
             <summary>
@@ -39397,6 +39995,21 @@
         <member name="F:Spire.Pdf.General.Render.PdfToImageRenderer.m_UserToDeviceSpaceTransform">
             <summary>
             mapping Transform from user space to device space 
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Render.PdfToImageRenderer.loPath">
+            <summary>
+            clip rectangleF for form field
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Render.PdfToImageRenderer.m_highLightFormFieldColor">
+            <summary>
+            highLight color for form field
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Render.PdfToImageRenderer.m_enabledHighLightFormField">
+            <summary>
+            whether enabled HighLight for FormField
             </summary>
         </member>
         <member name="F:Spire.Pdf.General.Render.PdfToImageRenderer.m_TjAfterIsTranslate">
@@ -39536,6 +40149,12 @@
             </summary>
             <param name="xobjectElement"></param>
         </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.CheckWhetherDrawHighLightFormField">
+            <summary>
+            whether enabled highLight for formField
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.DrawAndFillPathType3Font(System.Drawing.Drawing2D.FillMode,System.Drawing.Drawing2D.GraphicsPath,System.Boolean)">
             <summary>
             Draw Type3Font
@@ -39561,20 +40180,61 @@
             </summary>
             <param name="x,y,x1,y1,y,x1,y1"></param>
         </member>
-        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.FixedZeroOfGapsForDashPattern(System.Single[]@,System.Single@)">
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.ApplyLineDashPattern(System.Drawing.Pen)">
             <summary>
-            
+            apply the line dash pattern
             </summary>
-            <param name="dashPattern"></param>
-            <param name="dashOffset"></param>
+            <param name="pen">the pen</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.ZeroInFirstPos(System.Single[])">
+            <summary>
+            when the only one element in dash pattern is 0 the line should be unvisible .
+            </summary>
+            <param name="dashPattern">the dash pattern</param>
+            <returns>first element is zero return true or false</returns>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.GetDashPattern">
+            <summary>
+            Get the dash pattern
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.HandleZeroOfGapsForDashPattern(System.Single[]@,System.Single@)">
+            <summary>
+            Fixed zero of gaps for dash pattern,if the gap is zero,it will not be diaplayed in dash lines.
+            </summary>
+            <param name="dashPattern">the dash pattern</param>
+            <param name="dashOffset">the dash offset</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.HandleZeroCapInDashPattern(System.Single[]@,System.Single@)">
+            <summary>
+            Remove zero value of blank cap in dash pattern.
+            </summary>
+            <param name="dashPattern">the dash pattern</param>
+            <param name="dashOffset">the dashOffset</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.SetDashModeOfPen(System.Drawing.Pen,System.Single[],System.Single)">
+            <summary>
+            Set the property of pen
+            </summary>
+            <param name="pen">the pen</param>
+            <param name="dashPattern">the dash pattern</param>
+            <param name="dashOffset">the dash offset</param>
         </member>
         <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.FixedZeroOfDashesForDashPattern(System.Single[],System.Single,System.Drawing.Pen)">
             <summary>
-            
+            Fixed zero of dashes for dash pattern.if the dash is zero,defalut value is one device pixel.
             </summary>
-            <param name="dashPattern"></param>
-            <param name="dashOffset"></param>
-            <param name="pen"></param>
+            <param name="dashPattern">the dash pattern</param>
+            <param name="dashOffset">the dash offset</param>
+            <param name="pen">the pen</param>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.CovertPdfDashPatternToNetDashPattern(System.Single,System.Single[]@,System.Single)">
+            <summary>
+            Convert pdf dash pattern to .net dash pattern
+            </summary>
+            <param name="scaledPenWidth">the scaled pen width</param>
+            <param name="dashPattern">the dash pattern</param>
+            <param name="penWidth">the pen width</param>
         </member>
         <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.ApplyStrokingColor(System.String,System.Single[])">
             <summary>
@@ -39597,6 +40257,16 @@
             
             </summary>
             <returns></returns>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.DrawPageContent">
+            <summary>
+            draw page content
+            </summary>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.DrawPageAnnot">
+            <summary>
+            draw page annot
+            </summary>
         </member>
         <member name="P:Spire.Pdf.General.Render.PdfToImageRenderer.IsDisposeFont">
             <summary>
@@ -39622,6 +40292,12 @@
             <summary>
             NeedAppearances value 
             </summary>
+        </member>
+        <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.ParseElementInMK(Spire.Pdf.Primitives.PdfArray)">
+            <summary>
+            Parse the element in MK entry of annotation
+            </summary>
+            <param name="colorSpaceArr">The element in MK entry</param>
         </member>
         <member name="M:Spire.Pdf.General.Render.PdfToImageRenderer.AddInsetForAP(Spire.Pdf.Primitives.PdfDictionary,System.Drawing.RectangleF,System.String)">
             <summary>
@@ -39850,7 +40526,7 @@
             word spacing 
             </summary>
         </member>
-        <member name="M:Spire.Pdf.General.Render.TextElement.RenderText(System.Drawing.Graphics,Spire.Pdf.General.Render.PdfToImageRenderer,System.Boolean)">
+        <member name="M:Spire.Pdf.General.Render.TextElement.RenderText(System.Drawing.Graphics,Spire.Pdf.General.Render.PdfToImageRenderer,System.Boolean,System.Boolean)">
             <summary>
             Render text embed font or installed system font
             </summary>
@@ -39858,7 +40534,7 @@
             <param name="render"></param>
             <param name="IncreaseWidth"></param>
         </member>
-        <member name="M:Spire.Pdf.General.Render.TextElement.RenderTextWithNativeFont(System.Drawing.Graphics,Spire.Pdf.General.Render.PdfToImageRenderer,System.Boolean)">
+        <member name="M:Spire.Pdf.General.Render.TextElement.RenderTextWithNativeFont(System.Drawing.Graphics,Spire.Pdf.General.Render.PdfToImageRenderer,System.Boolean,System.Boolean)">
             <summary>
             Render text using installed system font.
             </summary>
@@ -40074,13 +40750,39 @@
              Gets the position of the searched text of this System.Drawing.PointF structure.
             </summary>
         </member>
+        <member name="P:Spire.Pdf.General.Find.PdfTextFind.Positions">
+            <summary>
+            Used by find text cross line
+            if the MatchText in more lines( >=2 ),the results can not contain by one Rectangle.
+            So we need a list to save data.
+            Gets the positions of the searched text of this System.Drawing.PointF structure.
+            </summary>
+        </member>
         <member name="P:Spire.Pdf.General.Find.PdfTextFind.Size">
             <summary>
+            if the MatchText in more lines( >=2 ),the results can not contain by one Rectangle.
+            So we need a list to save data.
              Gets the size of the searched text of this System.Drawring SizeF structure.
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.General.Find.PdfTextFind.Sizes">
+            <summary>
+            Used by find text cross line
+            if the MatchText in more lines( >=2 ),the results can not contain by one Rectangle.
+            So we need a list to save data.
+            Gets the sizes of the searched text of this System.Drawring SizeF structure.
             </summary>
         </member>
         <member name="P:Spire.Pdf.General.Find.PdfTextFind.Bounds">
             <summary>
+            Gets the bounds of the searched text of this System.Drawring RectangleF structure.
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.General.Find.PdfTextFind.Boundses">
+            <summary>
+            Used by find text cross line
+            if the MatchText in more lines( >=2 ),the results can not contain by one Rectangle.
+            So we need a list to save data.
             Gets the bounds of the searched text of this System.Drawring RectangleF structure.
             </summary>
         </member>
@@ -40116,6 +40818,32 @@
         <member name="T:Spire.Pdf.General.Find.PdfTextFindCollection">
             <summary>
             The class representing all the resuls of searching designated text from PDF page
+            </summary>
+        </member>
+        <member name="T:Spire.Pdf.General.Find.TextFindParameter">
+             <summary>
+            Setting find text Parameters
+             </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Find.TextFindParameter.None">
+            <summary>
+             Do not select any parameters.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Find.TextFindParameter.WholeWord">
+            <summary>
+            Full word matching.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Find.TextFindParameter.IgnoreCase">
+            <summary>
+            Ignore English character case.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.General.Find.TextFindParameter.CrossLine">
+            <summary>
+            Find text Cross line
+            The target text in one line or more(>=2) lines.
             </summary>
         </member>
         <member name="T:Spire.Pdf.General.PdfDestination">
@@ -49185,6 +49913,14 @@
             <param name="width">The width.</param>
             <param name="height">The height.</param>
         </member>
+        <member name="M:Spire.Pdf.Graphics.PdfTemplate.#ctor(System.Single,System.Single,System.Boolean)">
+            <summary>
+            Initializes a new instance of the  class.
+            </summary>
+            <param name="width">The width.</param>
+            <param name="height">The height.</param>
+            <param name="isPdfAppearance">Indicates if the template is used for PdfAppearance.</param>
+        </member>
         <member name="M:Spire.Pdf.Graphics.PdfTemplate.#ctor(System.Drawing.RectangleF)">
             <summary>
             Initializes a new instance of the  class.
@@ -49767,251 +50503,6 @@
             <summary>
             Base class for bitmap masking objects.
             </summary>
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.RTLLanguageHelper.ContainsRTLChar(System.String)">
-            <summary>
-            Returns true if the test consists of rtl chars
-            </summary>
-            <param name="text">Text</param>
-            <returns></returns>
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.RTLLanguageHelper.Transform(System.String)">
-            <summary>
-            Performs transformation of the string
-            </summary>
-            <param name="text">Text</param>
-            <returns></returns>
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsEn2An">
-            Digit shaping option: Replace European digits (U+0030...U+0039) by Arabic-Indic digits.
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsAn2En">
-            Digit shaping option: Replace Arabic-Indic digits by European digits (U+0030...U+0039).
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsEn2AnInitLr">
-            Digit shaping option:
-            Replace European digits (U+0030...U+0039) by Arabic-Indic digits
-            if the most recent strongly directional character
-            is an Arabic letter (its Bidi direction value is RIGHT_TO_LEFT_ARABIC).
-            The initial state at the start of the text is assumed to be not an Arabic,
-            letter, so European digits at the start of the text will not change.
-            Compare to DIGITS_ALEN2AN_INIT_AL.
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsEn2AnInitAl">
-            Digit shaping option:
-            Replace European digits (U+0030...U+0039) by Arabic-Indic digits
-            if the most recent strongly directional character
-            is an Arabic letter (its Bidi direction value is RIGHT_TO_LEFT_ARABIC).
-            The initial state at the start of the text is assumed to be an Arabic,
-            letter, so European digits at the start of the text will change.
-            Compare to DIGITS_ALEN2AN_INT_LR.
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsReserved">
-            Not a valid option value. 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitsMask">
-            Bit mask for digit shaping options.
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitTypeAn">
-            Digit type option: Use Arabic-Indic digits (U+0660...U+0669).
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitTypeAnExtended">
-            Digit type option: Use Eastern (Extended) Arabic-Indic digits (U+06f0...U+06f9).
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.ArabicShapingResolver.DigitTypeMask">
-            Bit mask for digit type options.
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.L">
-            Left-to-right
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.LRE">
-            Left-to-Right Embedding 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.LRO">
-            Left-to-Right Override 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.R">
-            Right-to-Left 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.AL">
-            Right-to-Left Arabic 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.RLE">
-            Right-to-Left Embedding 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.RLO">
-            Right-to-Left Override 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.PDF">
-            Pop Directional Format 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.EN">
-            European Number 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.ES">
-            European Number Separator 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.ET">
-            European Number Terminator 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.AN">
-            Arabic Number 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.CS">
-            Common Number Separator 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.NSM">
-            Non-Spacing Mark 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.BN">
-            Boundary Neutral 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.B">
-            Paragraph Separator 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.S">
-            Segment Separator 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.WS">
-            Whitespace 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.ON">
-            Other Neutrals 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.TYPE_MIN">
-            Minimum bidi type value. 
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.BidiOrder.TYPE_MAX">
-            Maximum bidi type value. 
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.#ctor(System.SByte[])">
-             Initialize using an array of direction types.  Types range from TYPE_MIN to TYPE_MAX inclusive
-             and represent the direction codes of the characters in the text.
-            
-             @param types the types array
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.#ctor(System.SByte[],System.SByte)">
-             Initialize using an array of direction types and an externally supplied paragraph embedding level.
-             The embedding level may be -1, 0, or 1.  -1 means to apply the default algorithm (rules P2 and P3),
-             0 is for LTR paragraphs, and 1 is for RTL paragraphs.
-            
-             @param types the types array
-             @param paragraphEmbeddingLevel the externally supplied paragraph embedding level.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.RunAlgorithm">
-            The algorithm.
-            Does not include line-based processing (Rules L1, L2).
-            These are applied later in the line-based phase of the algorithm.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ReinsertExplicitCodes(System.Int32)">
-            Reinsert levels information for explicit codes.
-            This is for ease of relating the level information
-            to the original input data.  Note that the levels
-            assigned to these codes are arbitrary, they're
-            chosen so as to avoid breaking level runs.
-            @param textLength the length of the data after compression
-            @return the length of the data (original length of
-            types array supplied to constructor)
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ProcessEmbeddings(System.SByte[],System.SByte)">
-             2) determining explicit levels
-             Rules X1 - X8
-            
-             The interaction of these rules makes handling them a bit complex.
-             This examines resultTypes but does not modify it.  It returns embedding and
-             override information in the result array.  The low 7 bits are the level, the high
-             bit is set if the level is an override, and clear if it is an embedding.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ResolveWeakTypes(System.Int32,System.Int32,System.SByte,System.SByte,System.SByte)">
-             3) resolving weak types
-             Rules W1-W7.
-            
-             Note that some weak types (EN, AN) remain after this processing is complete.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ResolveNeutralTypes(System.Int32,System.Int32,System.SByte,System.SByte,System.SByte)">
-            6) resolving neutral types
-            Rules N1-N2.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ResolveImplicitLevels(System.Int32,System.Int32,System.SByte,System.SByte,System.SByte)">
-            7) resolving implicit embedding levels
-            Rules I1, I2.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ComputeMultilineReordering(System.SByte[],System.Int32[])">
-            Return multiline reordering array for a given level array.
-            Reordering does not occur across a line break.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ComputeReordering(System.SByte[])">
-            Return reordering array for a given level array.  This reorders a single line.
-            The reordering is a visual to logical map.  For example,
-            the leftmost char is string.CharAt(order[0]).
-            Rule L2.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.GetBaseLevel">
-            Return the base level of the paragraph.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.IsWhitespace(System.SByte)">
-            Return true if the type is considered a whitespace type for the line break rules.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.TypeForLevel(System.Int32)">
-            Return the strong type (L or R) corresponding to the level.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.FindRunLimit(System.Int32,System.Int32,System.SByte[])">
-            Return the limit of the run starting at index that includes only resultTypes in validSet.
-            This checks the value at index, and will return index if that value is not in validSet.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.FindRunStart(System.Int32,System.SByte[])">
-            Return the start of the run including index that includes only resultTypes in validSet.
-            This assumes the value at index is valid, and does not check it.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.SetTypes(System.Int32,System.Int32,System.SByte)">
-            Set resultTypes from start up to (but not including) limit to newType.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.SetLevels(System.Int32,System.Int32,System.SByte)">
-            Set resultLevels from start up to (but not including) limit to newLevel.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ValidateTypes(System.SByte[])">
-            Throw exception if type array is invalid.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ValidateParagraphEmbeddingLevel(System.SByte)">
-            Throw exception if paragraph embedding level is invalid. Special allowance for -1 so that
-            default processing can still be performed when using this API.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.BidiOrder.ValidateLineBreaks(System.Int32[],System.Int32)">
-            Throw exception if line breaks array is invalid.
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.HindiText.IsSwaraLetter(System.Char)">
-             Checks if a character is vowel letter.
-            
-             @param ch
-                        the character that needs to be checked
-             @return true if the characters is a vowel letter
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.HindiText.IsSwaraMatra(System.Char)">
-             Checks if a character is vowel sign.
-            
-             @param ch
-                        the character that needs to be checked
-             @return true if the characters is a vowel sign
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.HindiText.IsVyanjana(System.Char)">
-             Checks if a character is consonant letter.
-            
-             @param ch
-                        the character that needs to be checked
-             @return true if the chracter is a consonant letter
-        </member>
-        <member name="M:Spire.Pdf.TextTransformation.HindiText.Swap(System.Text.StringBuilder,System.Int32,System.Int32)">
-             Swaps two characters in a StringBuilder object
-            
-             @param s
-                        the StringBuilder
-             @param i
-                        the index of one character
-             @param j
-                        the index of the other character
-        </member>
-        <member name="F:Spire.Pdf.TextTransformation.HindiText.langTable">
-            Constructor for the IndicLigaturizer for Devanagari.
         </member>
         <member name="T:Spire.Pdf.HtmlToPdf.HtmlToPdfLayoutParams">
             <summary>
@@ -50948,6 +51439,11 @@
             The position and size of the background 
             </summary>
         </member>
+        <member name="P:Spire.Pdf.PdfPageBase.PageLabel">
+            <summary>
+            Get the page label.
+            </summary>
+        </member>
         <member name="M:Spire.Pdf.PdfPageBase.GetClientSize">
             <summary>
             Returns a page size reduced by page margins and page template dimensions.
@@ -51009,6 +51505,7 @@
             <param name="ignoreCase"></param>
             <returns></returns>
         </member>
+        <!-- 对于成员“M:Spire.Pdf.PdfPageBase.FindText(System.String,Spire.Pdf.General.Find.TextFindParameter)”忽略有格式错误的 XML 注释 -->
         <member name="M:Spire.Pdf.PdfPageBase.FindAllText">
             <summary>
             Find all text and position.
@@ -51070,6 +51567,9 @@
             <param name="colorGreen"></param>
             <param name="colorBlue"></param>
         </member>
+        <!-- 对于成员“M:Spire.Pdf.PdfPageBase.SortDictionaryByKeys``1(System.Collections.Generic.Dictionary{System.Single,System.Collections.Generic.List{``0}})”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“M:Spire.Pdf.PdfPageBase.SortListByArray``1(System.Int32[],System.Collections.Generic.List{``0})”忽略有格式错误的 XML 注释 -->
+        <!-- 对于成员“M:Spire.Pdf.PdfPageBase.Sort(System.Collections.Generic.List{System.Single})”忽略有格式错误的 XML 注释 -->
         <member name="M:Spire.Pdf.PdfPageBase.GetFindTextFromXObject(System.String[],Spire.Pdf.Exporting.PdfPageResources,Spire.Pdf.Exporting.XObjectElement)">
             <summary>
             find text from XObject
@@ -51113,6 +51613,34 @@
             Extracts text from the given PDF Page.
             </summary>
             <returns>The Extracted Text.</returns>
+        </member>
+        <member name="M:Spire.Pdf.PdfPageBase.GetDescent(System.Single)">
+            <summary>
+            Get the descent of current font
+            </summary>
+            <returns>the descent</returns>
+        </member>
+        <member name="M:Spire.Pdf.PdfPageBase.GetSpaceCharacterDistance(System.String,System.Single,System.Single)">
+            <summary>
+            Get the space character distance
+            </summary>
+            <param name="text">the text</param>
+            <param name="textInnerDistance">the text inner distance</param>
+            <returns>the space character distance</returns>
+        </member>
+        <member name="M:Spire.Pdf.PdfPageBase.GetTotallWordDistance(System.String)">
+            <summary>
+            Get the totall word space 
+            </summary>
+            <param name="text">The text</param>
+            <returns>The totall word space</returns>
+        </member>
+        <member name="M:Spire.Pdf.PdfPageBase.GetTotallCharsDistance(System.String)">
+            <summary>
+            Get the totall character space 
+            </summary>
+            <param name="text">The text</param>
+            <returns>The totall character space</returns>
         </member>
         <member name="M:Spire.Pdf.PdfPageBase.ExtractTextWithComplexity">
             <summary>
@@ -51187,6 +51715,11 @@
         <member name="P:Spire.Pdf.PdfPageNumber.NumberStyle">
             <summary>
             Gets or sets the numbering style.
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.PdfPageNumber.FirstPageIndex">
+            <summary>
+            Gets or sets the first page's index in a labeling range.
             </summary>
         </member>
         <member name="P:Spire.Pdf.PdfPageNumber.Prefix">
@@ -51743,6 +52276,157 @@
         <member name="F:Spire.Pdf.Print.PdfSinglePageScalingMode.CustomScale">
             <summary>
             Custom scale.
+            </summary>
+        </member>
+        <member name="T:Spire.Pdf.Print.PdfPaperSizes">
+            <summary>
+            Represents information about page size.
+            The PaperSize's width and height,unit:in hundredths of an inch.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.Letter">
+            <summary>
+            Letter format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.Note">
+            <summary>
+            Note format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.Legal">
+            <summary>
+            Legal format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A0">
+            <summary>
+            A0 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A1">
+            <summary>
+            A1 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A2">
+            <summary>
+            A2 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A3">
+            <summary>
+            A3 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A4">
+            <summary>
+            A4 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A5">
+            <summary>
+            A5 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A6">
+            <summary>
+            A6 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A7">
+            <summary>
+            A7 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A8">
+            <summary>
+            A8 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A9">
+            <summary>
+            A9 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.A10">
+            <summary>
+            A10 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.B0">
+            <summary>
+            B0 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.B1">
+            <summary>
+            B1 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.B2">
+            <summary>
+            B2 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.B3">
+            <summary>
+            B3 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.B4">
+            <summary>
+            B4 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.B5">
+            <summary>
+            B5 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.ArchE">
+            <summary>
+            ArchE format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.ArchD">
+            <summary>
+            ArchD format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.ArchC">
+            <summary>
+            ArchC format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.ArchB">
+            <summary>
+            ArchB format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.ArchA">
+            <summary>
+            ArchA format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.Flsa">
+            <summary>
+            The American Foolscap format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.HalfLetter">
+            <summary>
+            HalfLetter format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.Letter11x17">
+            <summary>
+            11x17 format.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Print.PdfPaperSizes.Ledger">
+            <summary>
+            Ledger format.
             </summary>
         </member>
         <member name="T:Spire.Pdf.Print.PdfPrinter">
@@ -54670,6 +55354,11 @@
             Represents the content that can be written in a grid cell.
             </summary>
         </member>
+        <member name="P:Spire.Pdf.Grid.PdfGridCellContent.ImageLocation">
+            <summary>
+            Set the image's location in a grid cell.
+            </summary>
+        </member>
         <member name="T:Spire.Pdf.Grid.PdfGridCellContentList">
             <summary>
             It is a collection of PdfGridCellContent classes
@@ -55429,6 +56118,20 @@
             </summary>
             <value>The page in which item ended layout.</value>
         </member>
+        <member name="M:Spire.Pdf.Tables.LightTableLayouter.GetWidths(System.Single)">
+            <summary>
+            Gets the widths.
+            </summary>
+            <param name="totalWidth">The total width</param>
+            <returns>An array containing widths.</returns>
+        </member>
+        <member name="M:Spire.Pdf.Tables.LightTableLayouter.ZoomWidth(System.Single[]@,System.Single)">
+            <summary>
+            Zoom in or out the width.
+            </summary>
+            <param name="widths">The width</param>
+            <param name="factor">The zoom factor</param>
+        </member>
         <member name="T:Spire.Pdf.Tables.PdfTable">
             <summary>
             Represents fast table with few features.
@@ -55623,6 +56326,16 @@
             Represents parameters of PdfTable.
             </summary>
         </member>
+        <member name="F:Spire.Pdf.Tables.PdfTableStyle.m_isFixWidth">
+            <summary>
+            Specifies whehther the table populates the entire page
+            </summary>
+        </member>
+        <member name="P:Spire.Pdf.Tables.PdfTableStyle.IsFixWidth">
+            <summary>
+            get or set the value of fitWidth.
+            </summary>
+        </member>
         <member name="P:Spire.Pdf.Tables.PdfTableStyle.DefaultStyle">
             <summary>
             Gets or sets the default cell style.
@@ -55756,6 +56469,14 @@
             Adds the specified column.
             </summary>
             <param name="column">The column.</param>
+        </member>
+        <member name="M:Spire.Pdf.Tables.PdfColumnCollection.GetWidths(System.Int32,System.Int32)">
+            <summary>
+            Gets the widths of the columns.
+            </summary>
+            <param name="startColumn">The start column.</param>
+            <param name="endColumn">The end column.</param>
+            <returns>An array containing widths.</returns>
         </member>
         <member name="T:Spire.Pdf.Tables.PdfColumn">
             <summary>
@@ -56071,6 +56792,25 @@
         <member name="F:Spire.Pdf.Tables.PdfHeaderSource.Rows">
             <summary>
             The header is formed from rows.
+            </summary>
+        </member>
+        <member name="T:Spire.Pdf.Tables.TableWidthType">
+            <summary>
+            Specifies type for table width.
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Tables.TableWidthType.FitPageWidth">
+            <summary>
+            Use the fit page width 
+            each width of columns will zoom in or out 
+            using the ratio of totall width of the table to the width of page
+            </summary>
+        </member>
+        <member name="F:Spire.Pdf.Tables.TableWidthType.Customs">
+            <summary>
+            use the Coustom width 
+            takes the totall width of the set column as the width of the table,no zoom.
+            notes:if set this type but does not set the column width it will use default column width
             </summary>
         </member>
         <member name="T:Spire.Pdf.Tables.PdfTableDataSourceType">
