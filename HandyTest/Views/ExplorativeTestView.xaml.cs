@@ -166,20 +166,32 @@ namespace HandyTest.Views
 
         private void SummaryValidator(object sender, KeyEventArgs e)
         {
+            string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports";
+            if (!Directory.Exists(path))
+                Directory.CreateDirectory(path);
+            DirectoryInfo dirInfo = new DirectoryInfo(path);
+            FileInfo[] AllFiles = dirInfo.GetFiles("*.xml");
 
             summaryValidator.ItemsSource = null;
-            
+
             if (setSummary.Text.Length > 0)
             {
                 summaryValidator.ItemsSource = null;
                 summaryValidatorPopup.IsOpen = true;
 
-                var filteredIssues = issuesList.Where(issues => issues.Name.Contains(setSummary.Text));
+                var filteredIssues = issuesList.Where(issues => issues.Name.ToLower().Contains(setSummary.Text.ToLower()));
                 summaryValidator.ItemsSource = filteredIssues;
 
             }
             else
                 summaryValidatorPopup.IsOpen = false;
+            foreach (var o in AllFiles)
+            {
+                if (Path.GetFileNameWithoutExtension(o.Name).ToLower() == setSummary.Text.ToLower())
+                    createReportBtn.IsEnabled = false;
+                else
+                    createReportBtn.IsEnabled = true;
+            }
         }
 
         private void LoadIssuesFilter(object sender, RoutedEventArgs e)
@@ -229,7 +241,9 @@ namespace HandyTest.Views
 
                 if (!issuesList.Contains(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID)))
                     issuesList.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
+
             }
+
             //summaryValidator.ItemsSource = issuesList;
 
         }

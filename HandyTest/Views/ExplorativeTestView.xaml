@@ -51,6 +51,7 @@
             <Image Source="../Resources/Icons/icons8-wstecz-100.png" />
         </Button>
         <Button
+            Name="createReportBtn"
             Grid.Row="3"
             Grid.Column="1"
             Width="80"
