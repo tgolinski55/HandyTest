@@ -399,8 +399,6 @@ namespace HandyTest.Pages
                         MessageBox.Show("This file format is not supported", "Error");
                     break;
                 case System.Windows.Forms.DialogResult.Cancel:
-                default:
-                    txtToCheck.Text = null;
                     break;
             }
         }
@@ -419,8 +417,6 @@ namespace HandyTest.Pages
                         MessageBox.Show("This file format is not supported", "Error");
                     break;
                 case System.Windows.Forms.DialogResult.Cancel:
-                default:
-                    txtToCheck2.Text = null;
                     break;
             }
         }
