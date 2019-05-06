@@ -311,7 +311,7 @@
                     Binding="{Binding Name}"
                     CellStyle="{StaticResource MyDataGridCell}"
                     Header="Action"
-                    IsReadOnly="False">
+                    IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="NoWrap" />
@@ -327,7 +327,7 @@
                     Binding="{Binding Date}"
                     CellStyle="{StaticResource MyDataGridCell}"
                     Header="Time"
-                    IsReadOnly="False">
+                    IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="NoWrap" />
@@ -342,7 +342,7 @@
                     Binding="{Binding Image}"
                     CellStyle="{StaticResource MyDataGridCell}"
                     Header="Source"
-                    IsReadOnly="False">
+                    IsReadOnly="True">
                     <DataGridTextColumn.ElementStyle>
                         <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
                             <Setter Property="TextWrapping" Value="NoWrap" />

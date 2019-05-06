@@ -46,8 +46,8 @@ namespace HandyTest.Pages
             issuesLists.Clear();
             allIssuesDataGrid.ItemsSource = issuesLists;
             CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
-            
-            string path = pathToProjects.GetProjectsPath("ProjectsPath") +"/" + activeProject + "/Reports";
+
+            string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports";
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             DirectoryInfo dirInfo = new DirectoryInfo(path);
@@ -59,7 +59,7 @@ namespace HandyTest.Pages
                 int issueID = 0;
                 int.TryParse(LoadIssuesInfo.GetIssueInfo(activeProject, "ID", Path.GetFileNameWithoutExtension(o.Name)), out issueID);
                 //allIssuesDataGrid.ItemsSource = issuesLists;
-                
+
                 issuesLists.Add(new IssuesList(Path.GetFileNameWithoutExtension(o.Name), issueID));
                 //StatusIndicator(o.Name);
                 count++;
@@ -100,7 +100,9 @@ namespace HandyTest.Pages
 
         private void SelectedIssueChange(object sender, SelectionChangedEventArgs e)
         {
+
             var cellInfo = allIssuesDataGrid.SelectedCells[2];
+
             if (allIssuesDataGrid.SelectedIndex >= 0)
             {
 
@@ -116,6 +118,8 @@ namespace HandyTest.Pages
                 selectedIssueNumber = (issueNumber.Column.GetCellContent(issueNumber.Item) as TextBlock).Text;
                 issueInfoPanel.Header = "Issue Info: #" + selectedIssueNumber;
             }
+
+
 
         }
 
@@ -154,7 +158,7 @@ namespace HandyTest.Pages
         private void DeleteConfirm()
         {
 
-            string path = pathToProjects.GetProjectsPath("ProjectsPath") +"/" + activeProject + "/Reports/" + selectedIssue + ".xml";
+            string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + selectedIssue + ".xml";
             if (File.Exists(path))
                 File.Delete(path);
 
@@ -184,7 +188,7 @@ namespace HandyTest.Pages
 
         private void EditIssue()
         {
-            string pathToID = pathToProjects.GetProjectsPath("ProjectsPath") +"/" + activeProject + "/IssuesNumber.txt";
+            string pathToID = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/IssuesNumber.txt";
             string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + setSummary.Text + ".xml";
             var tempID = LoadIssuesInfo.GetIssueInfo(activeProject, "ID", selectedIssue);
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
@@ -358,7 +362,7 @@ namespace HandyTest.Pages
             allIssuesDataGrid.ItemsSource = filteredIssues;
             filteredTableCount.Text = filteredIssues.Count().ToString();
             allTableCount.Text = issuesLists.Count.ToString();
-                SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
+            SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
         }
 
     }
