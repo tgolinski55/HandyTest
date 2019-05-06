@@ -83,14 +83,14 @@ namespace HandyTest.Views
         private void SaveProjectConfig()
         {
             string pathToConfig = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/";
-            using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToConfig, "config.txt"), false))
+            using (StreamWriter outputFile = new StreamWriter(Path.Combine(pathToConfig, "IssuesNumber.txt"), false))
             {
                 outputFile.Write(issueID + 1);
             }
         }
         private int GetProjectConfig()
         {
-            string pathToConfig = Path.Combine(pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/", "config.txt");
+            string pathToConfig = Path.Combine(pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/", "IssuesNumber.txt");
 
             try
             {

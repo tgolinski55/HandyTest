@@ -80,6 +80,9 @@ namespace HandyTest
             InitializeComponent();
             PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
+
+            //this.Loaded += (sender, args) => this.ResizeMode = ResizeMode.CanResize;
+            //this.Loaded += (sender, args) => this.Topmost = false;
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -87,6 +90,7 @@ namespace HandyTest
             _listener = new LowLevelKeyboardListener();
             _listener.OnKeyPressed += _listener_OnKeyPressed;
             _listener.HookKeyboard();
+
 
         }
 

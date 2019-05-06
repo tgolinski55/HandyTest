@@ -70,7 +70,8 @@
                             Margin="5"
                             VerticalAlignment="Top"
                             controls:TextBoxHelper.Watermark="default"
-                            FontSize="14" />
+                            FontSize="14"
+                            IsReadOnly="True" />
                         <TextBox
                             Name="screenshootsPath"
                             Height="20"
@@ -79,7 +80,8 @@
                             Margin="5"
                             VerticalAlignment="Top"
                             controls:TextBoxHelper.Watermark="default"
-                            FontSize="14" />
+                            FontSize="14"
+                            IsReadOnly="True" />
 
                         <Image
                             Grid.Row="0"

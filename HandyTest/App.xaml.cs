@@ -64,6 +64,7 @@ namespace HandyTest
             }
             else
             {
+                MainWindow.WindowState = WindowState.Normal;
                 MainWindow.Show();
             }
         }

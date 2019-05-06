@@ -363,7 +363,7 @@
             Grid.ColumnSpan="2"
             Width="250"
             Height="150"
-            Margin="10"
+            Margin="20,10"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="White">

@@ -184,7 +184,7 @@ namespace HandyTest.Pages
 
         private void EditIssue()
         {
-            string pathToID = pathToProjects.GetProjectsPath("ProjectsPath") +"/" + activeProject + "/config.txt";
+            string pathToID = pathToProjects.GetProjectsPath("ProjectsPath") +"/" + activeProject + "/IssuesNumber.txt";
             string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + setSummary.Text + ".xml";
             var tempID = LoadIssuesInfo.GetIssueInfo(activeProject, "ID", selectedIssue);
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));

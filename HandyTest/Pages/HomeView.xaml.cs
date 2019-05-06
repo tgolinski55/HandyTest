@@ -74,8 +74,8 @@ namespace HandyTest.Pages
                 string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/";
                 string pathToProject = Path.Combine(path, newProjectName.Text);
                 Directory.CreateDirectory(pathToProject);
-                Directory.CreateDirectory(pathToProject + "/Manual Test");
-                File.Create(Path.Combine(pathToProject, "config.txt"));
+                //Directory.CreateDirectory(pathToProject + "/Manual Test");
+                File.Create(Path.Combine(pathToProject, "IssuesNumber.txt"));
                 Directory.CreateDirectory(pathToProject + "/Reports");
                 Close_PopUp(sender, e);
                 SaveActiveProject();
