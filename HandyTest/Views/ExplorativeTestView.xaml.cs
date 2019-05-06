@@ -10,6 +10,7 @@ using System.Windows.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
+using System.ComponentModel;
 
 namespace HandyTest.Views
 {
@@ -246,6 +247,11 @@ namespace HandyTest.Views
 
             //summaryValidator.ItemsSource = issuesList;
 
+        }
+        protected override void OnClosing(CancelEventArgs e)
+        {
+            e.Cancel = true;  // cancels the window close    
+            this.Hide();      // Programmatically hides the window
         }
     }
 }

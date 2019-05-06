@@ -358,7 +358,7 @@ namespace HandyTest.Pages
             else
                 filterCounter.Visibility = Visibility.Visible;
 
-            var filteredIssues = issuesLists.Where(issuesLists => issuesLists.Name.Contains(searchTextField.Text));
+            var filteredIssues = issuesLists.Where(issuesLists => issuesLists.Name.ToLower().Contains(searchTextField.Text.ToLower()));
             allIssuesDataGrid.ItemsSource = filteredIssues;
             filteredTableCount.Text = filteredIssues.Count().ToString();
             allTableCount.Text = issuesLists.Count.ToString();

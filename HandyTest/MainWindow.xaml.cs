@@ -264,9 +264,11 @@ namespace HandyTest
                         case VK_OEM_3:
                             logItems.Add(new LogItems("Key pressed: Oem3", DateTime.Now.ToLongTimeString(), path2));
                             
-                            if (!IsWindowOpen<Window>("ExplorativeTestView"))
+                            if (IsWindowOpen<Window>("expWindow"))
                             {
                                 //logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path2));
+                                //var num = Application.Current.Windows;
+                                //ExplorativeTestView explorativeTestView = new ExplorativeTestView();
                                 explorativeTestView.Show();
                                 explorativeTestView.activeProject = loadCurrentProject.GetCurrentProject();
                             }

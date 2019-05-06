@@ -23,9 +23,10 @@ namespace HandyTest.Pages
     public partial class HomeView : UserControl
     {
         public ObservableCollection<ProjectList> ProjectsList = new ObservableCollection<ProjectList>();
-        ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         ProjectPath pathToProjects = new ProjectPath();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
+
+        ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         BL.WindowSettings set = new BL.WindowSettings();
         public HomeView()
         {
@@ -162,7 +163,7 @@ namespace HandyTest.Pages
 
         public void SaveActiveProject()
         {
-            string path = Path.GetFullPath(pathToProjects.GetProjectsPath("ProjectsPath") + "/") ;
+            string path = Path.GetFullPath(pathToProjects.GetProjectsPath("ProjectsPath") + "/");
             try
             {
                 var indexOfSelectedItem = projectsListDataGrid.SelectedIndex.ToString();
@@ -283,8 +284,11 @@ namespace HandyTest.Pages
         private void OpenExplorativeTest(object sender, RoutedEventArgs e)
         {
 
-            if (!IsWindowOpen<Window>("ExplorativeTestView"))
+            if (IsWindowOpen<Window>("expWindow"))
             {
+                //var num = Application.Current.Windows;
+                //if (explorativeTestView.IsLoaded)
+                //ExplorativeTestView explorativeTestView = new ExplorativeTestView();
                 SetActiveProj();
                 explorativeTestView.Show();
             }
