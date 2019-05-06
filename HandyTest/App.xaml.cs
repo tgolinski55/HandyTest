@@ -60,11 +60,12 @@ namespace HandyTest
                 {
                     MainWindow.WindowState = WindowState.Normal;
                 }
-                MainWindow.Activate();
+                MainWindow.Show();
             }
             else
             {
-                MainWindow.WindowState = WindowState.Normal;
+                //MainWindow.WindowState = WindowState.Maximized;
+                MainWindow.ShowActivated = true;
                 MainWindow.Show();
             }
         }
