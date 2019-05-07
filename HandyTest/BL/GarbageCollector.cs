@@ -22,7 +22,7 @@ namespace HandyTest.BL
                 }
                 catch
                 {
-                    throw;
+                    
                 }
             }
         }
