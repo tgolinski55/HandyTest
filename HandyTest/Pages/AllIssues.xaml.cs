@@ -164,6 +164,26 @@ namespace HandyTest.Pages
 
 
         }
+        private string ValidateEmptyFields()
+        {
+            var msg = "";
+            if (setAuthor.Text == "")
+                msg += "Author is required";
+            if (setBuildVersion.Text == "")
+            {
+                if (msg != "")
+                    msg += Environment.NewLine;
+                msg += "Build version is required";
+            }
+            if (setSummary.Text == "")
+            {
+                if (msg != "")
+                    msg += Environment.NewLine;
+                msg += "Summary is required";
+            }
+
+            return msg;
+        }
         private void DeleteIssue(object sender, RoutedEventArgs e)
         {
             MessageBoxResult message = MessageBox.Show("Do you really wan't to delete " + selectedIssue + " test case?", "Information", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
@@ -212,9 +232,15 @@ namespace HandyTest.Pages
 
         private void SaveIssueChanges(object sender, RoutedEventArgs e)
         {
-            EditIssue();
-            issuesLists.Clear();
-            LoadAllIssues(sender, e);
+            if (ValidateEmptyFields() != "")
+                MessageBox.Show(ValidateEmptyFields(), "Missing key infromations", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
+            else
+            {
+
+                EditIssue();
+                issuesLists.Clear();
+                LoadAllIssues(sender, e);
+            }
         }
 
         public void CreateReportFile(object sender, RoutedEventArgs e)
