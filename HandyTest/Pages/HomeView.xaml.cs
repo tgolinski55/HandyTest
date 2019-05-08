@@ -222,8 +222,8 @@ namespace HandyTest.Pages
             createNewProjectPopUp.IsOpen = true;
             newProjectName.Text = "";
             newProjectDescription.Text = "";
-            wholeGrid.IsEnabled = false;
-            wholeGrid.Opacity = 0.7;
+            //wholeGrid.IsEnabled = false;
+           // wholeGrid.Opacity = 0.7;
         }
 
         void OpenManualTest(object sender, RoutedEventArgs e)
