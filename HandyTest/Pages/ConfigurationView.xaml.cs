@@ -28,6 +28,7 @@ namespace HandyTest.Pages
     public partial class ConfigurationView : System.Windows.Controls.UserControl
     {
         ProjectPath pathToProjects = new ProjectPath();
+
         public ConfigurationView()
         {
             InitializeComponent();
@@ -64,25 +65,50 @@ namespace HandyTest.Pages
             {
                 //DialogResult result = dialog.ShowDialog();
 
+                string path = pathToProjects.GetProjectsPath("ProjectsPath");
+                string defaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
                 if (DialogResult.OK == dialog.ShowDialog())
                 {
-                    projectsPath.Text = dialog.SelectedPath;
-                    SaveNewPaths();
+
+                    try
+                    {
+                        Directory.CreateDirectory(dialog.SelectedPath);
+                        projectsPath.Text = dialog.SelectedPath;
+                        SaveNewPaths();
+                    }
+                    catch
+                    {
+                        projectsPath.Text = defaultPath + "\\HandyTest\\Projects";
+                        SaveNewPaths();
+                    }
                 }
             }
-                
+
         }
 
         private void OpenSSPathDialog(object sender, RoutedEventArgs e)
         {
+
+            string path = pathToProjects.GetProjectsPath("ProjectsPath");
+            string defaultPath = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             using (var dialog = new FolderBrowserDialog())
             {
                 //DialogResult result = dialog.ShowDialog();
 
                 if (DialogResult.OK == dialog.ShowDialog())
                 {
-                    screenshootsPath.Text = dialog.SelectedPath;
-                    SaveNewPaths();
+
+                    try
+                    {
+                        Directory.CreateDirectory(dialog.SelectedPath);
+                        screenshootsPath.Text = dialog.SelectedPath;
+                        SaveNewPaths();
+                    }
+                    catch
+                    {
+                        screenshootsPath.Text = defaultPath + "\\HandyTest\\Projects";
+                        SaveNewPaths();
+                    }
                 }
             }
         }

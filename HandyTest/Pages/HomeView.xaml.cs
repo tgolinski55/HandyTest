@@ -99,6 +99,7 @@ namespace HandyTest.Pages
         private void ProjectsListDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
             string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/";
+
             if (!Directory.Exists(path))
                 Directory.CreateDirectory(path);
             var AllFiles = Directory.EnumerateDirectories(path).Select(Path.GetFileNameWithoutExtension);
