@@ -420,6 +420,7 @@
             Click="MakeActiveProjectBtn_Click"
             Content="{x:Static resx:Resource.button_MakeActive}"
             FontSize="14"
+            IsEnabled="{Binding ElementName=projectsListDataGrid, Path=SelectedItems.Count}"
             Style="{StaticResource FunctionalButtonStyle}" />
 
 
@@ -682,6 +683,7 @@
                                 Margin="5,10,5,5"
                                 Click="UpdateProjectsList"
                                 Content="{x:Static resx:Resource.popUP_Create}"
+                                IsEnabled="{Binding ElementName=newProjectName, Path=Text.Length}"
                                 Style="{StaticResource FunctionalButtonStyle}" />
                             <Button
                                 Grid.Row="3"

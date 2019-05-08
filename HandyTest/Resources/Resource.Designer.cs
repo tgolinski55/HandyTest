@@ -88,7 +88,7 @@ namespace HandyTest.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Activate.
+        ///   Looks up a localized string similar to Select.
         /// </summary>
         public static string button_MakeActive {
             get {

@@ -127,7 +127,7 @@
     <value>✕</value>
   </data>
   <data name="button_MakeActive" xml:space="preserve">
-    <value>Activate</value>
+    <value>Select</value>
   </data>
   <data name="imageButton_ViewIssues" xml:space="preserve">
     <value>All Issues</value>
