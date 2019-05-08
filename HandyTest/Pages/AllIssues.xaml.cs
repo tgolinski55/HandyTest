@@ -284,11 +284,11 @@ namespace HandyTest.Pages
                     text.CharacterFormat.FontSize = 12;
                     text.CharacterFormat.Bold = true;
                     Paragraph tableHeaderNameCell = tableHeader.Cells[1].AddParagraph();
-                    text = tableHeaderNameCell.AppendText("Name");
+                    text = tableHeaderNameCell.AppendText("Summary");
                     text.CharacterFormat.FontSize = 12;
                     text.CharacterFormat.Bold = true;
                     Paragraph tableHeaderStepsCell = tableHeader.Cells[2].AddParagraph();
-                    text = tableHeaderStepsCell.AppendText("Steps");
+                    text = tableHeaderStepsCell.AppendText("Description");
                     text.CharacterFormat.FontSize = 12;
                     text.CharacterFormat.Bold = true;
                     Paragraph tableHeaderStatusCell = tableHeader.Cells[3].AddParagraph();
