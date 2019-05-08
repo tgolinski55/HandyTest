@@ -193,6 +193,10 @@ namespace HandyTest.Pages
                 }
 
             }
+            if (generateTxtBlk.Text.Length >= 100000)
+                errorTextGen.Visibility = Visibility.Visible;
+            else
+                errorTextGen.Visibility = Visibility.Hidden;
         }
 
         private void ClearTxtBlk(object sender, RoutedEventArgs e)
@@ -212,6 +216,10 @@ namespace HandyTest.Pages
                 warningTextGen.Visibility = Visibility.Visible;
             else
                 warningTextGen.Visibility = Visibility.Hidden;
+            if (lengthValue.Value >= 100000)
+                errorTextGen.Visibility = Visibility.Visible;
+            else
+                errorTextGen.Visibility = Visibility.Hidden;
         }
 
         private void ErrorTextSize(object sender, SizeChangedEventArgs e)
