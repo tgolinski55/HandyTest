@@ -118,6 +118,11 @@ namespace HandyTest.Pages
                 selectedIssueNumber = (issueNumber.Column.GetCellContent(issueNumber.Item) as TextBlock).Text;
                 issueInfoPanel.Header = "Issue Info: #" + selectedIssueNumber;
             }
+            else
+            {
+                issueInfoPanel.IsEnabled = false;
+                issueInfoPanel.Opacity = 0.6;
+            }
 
 
 
@@ -161,7 +166,8 @@ namespace HandyTest.Pages
             string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + selectedIssue + ".xml";
             if (File.Exists(path))
                 File.Delete(path);
-
+            //if (allIssuesDataGrid.Items.Count == 0)
+            //    issueInfoPanel.IsEnabled = false;
 
         }
         private string ValidateEmptyFields()
@@ -186,7 +192,7 @@ namespace HandyTest.Pages
         }
         private void DeleteIssue(object sender, RoutedEventArgs e)
         {
-            MessageBoxResult message = MessageBox.Show("Do you really wan't to delete " + selectedIssue + " test case?", "Information", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+            MessageBoxResult message = MessageBox.Show("Are you sure you want to delete '" + selectedIssue + "' test case?" + Environment.NewLine + "Deleted issues cannot be restored.", "Information", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
 
             if (message == MessageBoxResult.OK)
             {

@@ -84,7 +84,7 @@ namespace HandyTest.Pages
             }
             else
             {
-                MessageBox.Show("Project with name " + newProjectName.Text + " already exists","Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                MessageBox.Show("Project with name '" + newProjectName.Text + "' already exists!","Error",MessageBoxButton.OK,MessageBoxImage.Error);
             }
             projectsListDataGrid.Items.Refresh();
 
@@ -265,7 +265,7 @@ namespace HandyTest.Pages
         {
             var selectedProjectInfo = projectsListDataGrid.SelectedCells[1];
             var selectedProjectName = (selectedProjectInfo.Column.GetCellContent(selectedProjectInfo.Item) as TextBlock).Text;
-            MessageBoxResult message = MessageBox.Show("Are you sure you want to delete " + selectedProjectName + " project?"+ Environment.NewLine+ "Deleted projects cannot be restored.", "Information", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
+            MessageBoxResult message = MessageBox.Show("Are you sure you want to delete '" + selectedProjectName + "' project?"+ Environment.NewLine+ "Deleted projects cannot be restored.", "Information", MessageBoxButton.OKCancel, MessageBoxImage.Asterisk);
             if (message == MessageBoxResult.OK)
             {
                 DeleteProject();
