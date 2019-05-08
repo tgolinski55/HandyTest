@@ -394,7 +394,8 @@
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Click="ReloadImage"
-                                Style="{StaticResource ImageButtonStyle}">
+                                Style="{StaticResource ImageButtonStyle}"
+                                ToolTip="Reset">
                                 <Image MaxHeight="25" Source="../Resources/Icons/icons8-replay-32.png" />
                             </Button>
                             <Button
@@ -405,7 +406,8 @@
                                 Background="Transparent"
                                 BorderThickness="0"
                                 Click="ResizeUpPreviw"
-                                Style="{StaticResource ImageButtonStyle}">
+                                Style="{StaticResource ImageButtonStyle}"
+                                ToolTip="Resize">
                                 <Image MaxHeight="25" Source="../Resources/Icons/icons8-enlarge-32_2.png" />
                             </Button>
                         </StackPanel>
