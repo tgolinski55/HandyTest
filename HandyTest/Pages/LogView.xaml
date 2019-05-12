@@ -363,7 +363,7 @@
             Grid.ColumnSpan="2"
             Width="250"
             Height="150"
-            Margin="20,10"
+            Margin="10,10"
             HorizontalAlignment="Right"
             VerticalAlignment="Bottom"
             Background="White">
@@ -416,7 +416,7 @@
                             Width="{Binding ElementName=previewDockPanel, Path=Width}"
                             Height="{Binding ElementName=previewDockPanel, Path=Height}"
                             VerticalAlignment="Stretch"
-                            ClipToBounds="True">
+                            ClipToBounds="True" Margin="0,2,-2,-1.6" Grid.RowSpan="2">
                             <utils:ZoomBorder x:Name="previewImageBorder">
                                 <Image
                                     Name="previewImage"
