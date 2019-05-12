@@ -133,7 +133,7 @@ namespace HandyTest
                 _listener.UnHookKeyboard();
                 _listener.HookKeyboard();
 
-                GC.Collect();
+                //GC.Collect();
             }
 
         }
@@ -226,7 +226,7 @@ namespace HandyTest
                 //MessageBox.Show("File is in use. Please select different one.", "Error");
             }
 
-            GC.Collect();
+            //GC.Collect();
         }
         private IntPtr HwndHook(IntPtr hwnd, int msg, IntPtr wParam, IntPtr lParam, ref bool handled)
         {
