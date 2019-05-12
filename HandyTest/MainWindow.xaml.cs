@@ -93,7 +93,7 @@ namespace HandyTest
             _listener = new LowLevelKeyboardListener();
             _listener.OnKeyPressed += _listener_OnKeyPressed;
             _listener.HookKeyboard();
-            GetTime();
+            //GetTime();
 
         }
 
