@@ -390,7 +390,7 @@ namespace HandyTest.Pages
         }
         private void CopyGeneratedResult(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetData(DataFormats.Text, (object)generatedResult.Content);
+            //Clipboard.SetData(DataFormats.Text, (object)generatedResult.Content);
         }
 
         private void SelectLeftFileFromSys(object sender, RoutedEventArgs e)
