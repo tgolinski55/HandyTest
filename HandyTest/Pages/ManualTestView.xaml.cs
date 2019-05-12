@@ -176,8 +176,13 @@ namespace HandyTest.Pages
 
             if (charsRbtn.IsChecked == true || numbersRbtn.IsChecked == true || specialCharsRbtn.IsChecked == true || lettersRbtn.IsChecked == true)
             {
+                if (lengthValue.Value == null) {
+                    MessageBox.Show(new ApplicationException().ToString());
+                    throw new ApplicationException();
+                    
+                }
 
-                if (lengthValue.Value != null && lengthValue.Value <= 100000)
+                if (lengthValue.Value!=null && lengthValue.Value <= 100000)
                 {
                     for (int i = 0; i < lengthValue.Value; i++)
                     {
