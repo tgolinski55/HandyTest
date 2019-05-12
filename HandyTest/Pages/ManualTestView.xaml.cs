@@ -263,8 +263,8 @@ namespace HandyTest.Pages
 
         private void ResetRightImage(object sender, RoutedEventArgs e)
         {
-            ZoomBorder zoomBorder = new ZoomBorder();
-            zoomBorder.Initialize(testImg1);
+            //ZoomBorder zoomBorder = new ZoomBorder();
+            //zoomBorder.Initialize(testImg1);
             //testImg1.Source = null;
         }
 
