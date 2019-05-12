@@ -198,7 +198,7 @@ namespace HandyTest.Views
             foreach (var o in AllFiles)
             {
                 if (Path.GetFileNameWithoutExtension(o.Name).ToLower() == setSummary.Text.ToLower())
-                    createReportBtn.IsEnabled = false;
+                    createReportBtn.IsEnabled = true;
                 else
                     createReportBtn.IsEnabled = true;
             }
