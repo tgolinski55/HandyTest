@@ -32,7 +32,7 @@ namespace HandyTest.Pages
             manualTestDataGrid.SelectedIndex = 0;
         }
 
-        
+
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new HomeView());
@@ -401,10 +401,18 @@ namespace HandyTest.Pages
             {
                 case System.Windows.Forms.DialogResult.OK:
                     var file = fileDialog.FileName;
-                    if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith(".docx") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
-                        txtToCheck.Text = File.ReadAllText(file);
-                    else
-                        MessageBox.Show("This file format is not supported", "Error");
+                    try
+                    {
+                        if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith(".docx") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
+                            txtToCheck.Text = File.ReadAllText(file);
+                        else
+                            throw new ApplicationException();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                        throw;
+                    }
                     break;
                 case System.Windows.Forms.DialogResult.Cancel:
                     break;
@@ -419,10 +427,18 @@ namespace HandyTest.Pages
             {
                 case System.Windows.Forms.DialogResult.OK:
                     var file = fileDialog.FileName;
-                    if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith(".docx") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
-                        txtToCheck2.Text = File.ReadAllText(file);
-                    else
-                        MessageBox.Show("This file format is not supported", "Error");
+                    try
+                    {
+                        if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith(".docx") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
+                            txtToCheck2.Text = File.ReadAllText(file);
+                        else
+                            throw new ApplicationException();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show(ex.ToString());
+                        throw;
+                    }
                     break;
                 case System.Windows.Forms.DialogResult.Cancel:
                     break;
