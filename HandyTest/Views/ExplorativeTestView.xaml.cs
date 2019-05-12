@@ -154,7 +154,7 @@ namespace HandyTest.Views
                         new XElement("Date", setreportDateFile.Text),
                         new XElement("Priority", setpriorityCombo.Text),
                         new XElement("Type", setreporttypeCombo.Text),
-                        new XElement("State", setstateCombo.Text),
+                        new XElement("State", "Won't Fix"),
                         new XElement("Description", settextBoxDescription.Text))
                         )
                 .Save(path + "Reports/" + setSummary.Text + ".xml");
