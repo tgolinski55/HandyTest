@@ -101,12 +101,14 @@ namespace HandyTest.Pages
                     try
                     {
                         Directory.CreateDirectory(dialog.SelectedPath);
-                        screenshootsPath.Text = dialog.SelectedPath;
+                        //screenshootsPath.Text = dialog.SelectedPath;
+
+                        screenshootsPath.Text = defaultPath + "\\HandyTest\\Screenshots";
                         SaveNewPaths();
                     }
                     catch
                     {
-                        screenshootsPath.Text = defaultPath + "\\HandyTest\\Projects";
+                        screenshootsPath.Text = defaultPath + "\\HandyTest\\Screenshots";
                         SaveNewPaths();
                     }
                 }
