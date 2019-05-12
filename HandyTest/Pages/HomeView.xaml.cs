@@ -92,7 +92,7 @@ namespace HandyTest.Pages
 
         public void ReloadDataGrid()
         {
-            SortDataGrid(projectsListDataGrid, 3, ListSortDirection.Descending);
+            SortDataGrid(projectsListDataGrid, 1, ListSortDirection.Ascending);
         }
 
 
