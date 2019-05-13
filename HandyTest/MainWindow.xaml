@@ -27,9 +27,9 @@
     TitleCaps="False"
     Topmost="False"
     WindowTitleBrush="#232526">
-    <!--<i:Interaction.Behaviors>
+    <i:Interaction.Behaviors>
         <Behaviours:BorderlessWindowBehavior />
-    </i:Interaction.Behaviors>-->
+    </i:Interaction.Behaviors>
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
             <Button
