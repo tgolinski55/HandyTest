@@ -167,8 +167,15 @@ namespace HandyTest.Pages
             string path = Path.GetFullPath(pathToProjects.GetProjectsPath("ProjectsPath") + "/");
             try
             {
+                var temp = projectsListDataGrid.SelectedIndex;
+                projectsListDataGrid.SelectedIndex = 0;
+                var selectedProject = projectsListDataGrid.SelectedCells[1];
+                activeProjectTxtBlock.Text = (selectedProject.Column.GetCellContent(selectedProject.Item) as TextBlock).Text;
                 var indexOfSelectedItem = projectsListDataGrid.SelectedIndex.ToString();
                 SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path + "ActiveProjectInfo.xml", indexOfSelectedItem);
+                projectsListDataGrid.SelectedIndex = temp;
+                selectedProject = projectsListDataGrid.SelectedCells[1];
+                activeProjectTxtBlock.Text = (selectedProject.Column.GetCellContent(selectedProject.Item) as TextBlock).Text;
             }
             catch (Exception ex)
             {
