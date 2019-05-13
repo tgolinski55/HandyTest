@@ -79,8 +79,9 @@ namespace HandyTest.Pages
                 File.Create(Path.Combine(pathToProject, "IssuesNumber.txt"));
                 Directory.CreateDirectory(pathToProject + "/Reports");
                 Close_PopUp(sender, e);
-                SaveActiveProject();
                 ReloadDataGrid();
+                projectsListDataGrid.Items.Refresh();
+                SaveActiveProject();
             }
             else
             {
@@ -167,15 +168,9 @@ namespace HandyTest.Pages
             string path = Path.GetFullPath(pathToProjects.GetProjectsPath("ProjectsPath") + "/");
             try
             {
-                var temp = projectsListDataGrid.SelectedIndex;
-                projectsListDataGrid.SelectedIndex = 0;
-                var selectedProject = projectsListDataGrid.SelectedCells[1];
-                activeProjectTxtBlock.Text = (selectedProject.Column.GetCellContent(selectedProject.Item) as TextBlock).Text;
+               
                 var indexOfSelectedItem = projectsListDataGrid.SelectedIndex.ToString();
-                SaveXml.SaveSelectedProject(activeProjectTxtBlock.Text, path + "ActiveProjectInfo.xml", indexOfSelectedItem);
-                projectsListDataGrid.SelectedIndex = temp;
-                selectedProject = projectsListDataGrid.SelectedCells[1];
-                activeProjectTxtBlock.Text = (selectedProject.Column.GetCellContent(selectedProject.Item) as TextBlock).Text;
+                SaveXml.SaveSelectedProject("", path + "ActiveProjectInfo.xml", indexOfSelectedItem);
             }
             catch (Exception ex)
             {
