@@ -11,6 +11,7 @@ using HandyTest.BL;
 using System.ComponentModel;
 using System.Xml;
 using System.IO;
+using System.Threading;
 
 namespace HandyTest
 {
@@ -22,18 +23,31 @@ namespace HandyTest
         private System.Windows.Forms.NotifyIcon _notifyIcon;
         private bool _isExit;
         ProjectPath pathToProjects = new ProjectPath();
+        private static Mutex _mutex = null;
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            MainWindow = new MainWindow();
-            MainWindow.Closing += MainWindow_Closing;
-            ShowMainWindow();
-            _notifyIcon = new System.Windows.Forms.NotifyIcon();
-            _notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
-            _notifyIcon.Icon = HandyTest.Properties.Resources.MyIcon;
-            _notifyIcon.Visible = true;
+            const string appName = "HandyTest";
 
-            CreateContextMenu();
+            _mutex = new Mutex(true, appName, out bool createdNew);
+
+            if (!createdNew)
+            {
+                //app is already running! Exiting the application  
+                Application.Current.Shutdown();
+            }
+            else
+            {
+                MainWindow = new MainWindow();
+                MainWindow.Closing += MainWindow_Closing;
+                ShowMainWindow();
+                _notifyIcon = new System.Windows.Forms.NotifyIcon();
+                _notifyIcon.DoubleClick += (s, args) => ShowMainWindow();
+                _notifyIcon.Icon = HandyTest.Properties.Resources.MyIcon;
+                _notifyIcon.Visible = true;
+
+                CreateContextMenu();
+            }
         }
 
         private void CreateContextMenu()
