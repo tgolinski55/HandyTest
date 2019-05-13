@@ -79,8 +79,15 @@ namespace HandyTest
             else
             {
                 //MainWindow.WindowState = WindowState.Maximized;
-                MainWindow.ShowActivated = true;
-                MainWindow.Show();
+                //MainWindow.ShowActivated = true;
+                try
+                {
+                    MainWindow.Show();
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
             }
         }
 
