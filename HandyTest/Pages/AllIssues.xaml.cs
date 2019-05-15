@@ -117,13 +117,8 @@ namespace HandyTest.Pages
 
                 selectedIssueNumber = (issueNumber.Column.GetCellContent(issueNumber.Item) as TextBlock).Text;
                 issueInfoPanel.Header = "Issue Info: #" + selectedIssueNumber;
-            }
-            else
-            {
-                issueInfoPanel.IsEnabled = false;
-                issueInfoPanel.Opacity = 0.6;
-            }
 
+            }
 
 
         }
