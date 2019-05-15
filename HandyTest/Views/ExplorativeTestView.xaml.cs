@@ -97,10 +97,6 @@ namespace HandyTest.Views
             {
                 //File.Create(pathToConfig);
                 //File.WriteAllText(pathToConfig, "1");
-                //using (StreamWriter outputFile = new StreamWriter(pathToConfig, false))
-                //{
-                //    outputFile.Write("0");
-                //}
             }
             try
             {
@@ -109,6 +105,8 @@ namespace HandyTest.Views
                     string addictiveIssueID = configFile.ReadLine();
                     int.TryParse(addictiveIssueID, out issueID);
                 }
+                if (issueID == 0)
+                    issueID = 1;
             }
             catch (Exception e)
             {
