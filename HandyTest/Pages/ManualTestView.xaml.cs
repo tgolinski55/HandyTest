@@ -401,7 +401,7 @@ namespace HandyTest.Pages
             {
                 case System.Windows.Forms.DialogResult.OK:
                     var file = fileDialog.FileName;
-                    if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith(".docx") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
+                    if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
                         txtToCheck.Text = File.ReadAllText(file);
                     else
                         MessageBox.Show("This file format is not supported", "Error");
@@ -419,7 +419,7 @@ namespace HandyTest.Pages
             {
                 case System.Windows.Forms.DialogResult.OK:
                     var file = fileDialog.FileName;
-                    if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith(".docx") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
+                    if (file.EndsWith(".txt") || file.EndsWith(".doc") || file.EndsWith("._docx") || file.EndsWith("._doc") || file.EndsWith(".FAQ") || file.EndsWith(".text") || file.EndsWith(".xml") || file.EndsWith(".xaml") || file.EndsWith(".odt") || file.EndsWith(".pdf"))
                         txtToCheck2.Text = File.ReadAllText(file);
                     else
                         MessageBox.Show("This file format is not supported", "Error");
