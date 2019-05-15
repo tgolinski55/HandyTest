@@ -32,7 +32,7 @@ namespace HandyTest.Pages
             manualTestDataGrid.SelectedIndex = 0;
         }
 
-        
+
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new HomeView());
@@ -174,23 +174,21 @@ namespace HandyTest.Pages
             }
             var shuffleTab = charsTab.OrderBy(a => Guid.NewGuid()).ToList();
 
-            if (charsRbtn.IsChecked == true || numbersRbtn.IsChecked == true || specialCharsRbtn.IsChecked == true || lettersRbtn.IsChecked == true)
+
+            if (lengthValue.Value != null && lengthValue.Value <= 100000)
             {
-
-                if (lengthValue.Value != null && lengthValue.Value <= 100000)
+                for (int i = 0; i < lengthValue.Value; i++)
                 {
-                    for (int i = 0; i < lengthValue.Value; i++)
-                    {
-                        int randomValue = randomizeCharTab.Next(shuffleTab.Count);
+                    int randomValue = randomizeCharTab.Next(shuffleTab.Count);
 
-                        if (generateTxtBlk.Text.Length < 100000)
-                        {
-                            if (charsRbtn.IsChecked == true && charsSample.Text == "" && (numbersRbtn.IsChecked == false && lettersRbtn.IsChecked == false && specialCharsRbtn.IsChecked == false))
-                                break;
-                            generateTxtBlk.Text += (string)shuffleTab[randomValue];
-                        }
+                    if (generateTxtBlk.Text.Length < 100000)
+                    {
+                        if (charsRbtn.IsChecked == true && charsSample.Text == "" && (numbersRbtn.IsChecked == false && lettersRbtn.IsChecked == false && specialCharsRbtn.IsChecked == false))
+                            break;
+                        generateTxtBlk.Text += (string)shuffleTab[randomValue];
                     }
                 }
+
 
             }
             if (generateTxtBlk.Text.Length >= 100000)
