@@ -36,9 +36,10 @@ namespace HandyTest.Pages
             var mainWindow = new HomeView();
             mainWindow.ReloadDataGrid();
         }
-
+        public string activeProject;
         private void LogItems_Loaded(object sender, RoutedEventArgs e)
         {
+            projectName.Text = activeProject;
             allLogsDataGrid.ItemsSource = MainWindow.logItems;
             //allLogsDataGrid.ItemsSource = logItems;
         }
