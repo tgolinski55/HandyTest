@@ -69,8 +69,9 @@ namespace HandyTest.Views
         }
         private void SetCurrentData()
         {
-            var currentData = DateTime.Today;
-            setreportDateFile.Text = currentData.ToShortDateString();
+            var currentData = DateTime.Today.ToString("MM-dd-2018");
+            //currentData = DateTime.Now.ToString("dd-MM-2018");
+            setreportDateFile.Text = currentData;
         }
 
         private void ChangeFocusIfTabIsPressed(object sender, KeyEventArgs e)
