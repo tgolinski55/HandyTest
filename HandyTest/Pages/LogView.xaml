@@ -393,7 +393,6 @@
                                 Panel.ZIndex="1"
                                 Background="Transparent"
                                 BorderThickness="0"
-                                Click="ReloadImage"
                                 Style="{StaticResource ImageButtonStyle}"
                                 ToolTip="Reset">
                                 <Image MaxHeight="25" Source="../Resources/Icons/icons8-replay-32.png" />
