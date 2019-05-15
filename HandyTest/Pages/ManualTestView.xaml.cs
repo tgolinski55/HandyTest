@@ -371,7 +371,7 @@ namespace HandyTest.Pages
 
         private void Generate(object sender, RoutedEventArgs e)
         {
-
+            Random random = new Random();
             if (selectGenerator.SelectedIndex == 0)
             {
                 PESELGen pESEL = new PESELGen();
@@ -380,7 +380,7 @@ namespace HandyTest.Pages
             else if (selectGenerator.SelectedIndex == 1)
             {
                 NIPGen nIPGen = new NIPGen();
-                generatedResult.Content = nIPGen.Generate();
+                generatedResult.Content = nIPGen.Generate()+random.Next(0,9);
             }
             else if (selectGenerator.SelectedIndex == 2)
             {
