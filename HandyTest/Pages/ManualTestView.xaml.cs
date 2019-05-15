@@ -371,11 +371,11 @@ namespace HandyTest.Pages
 
         private void Generate(object sender, RoutedEventArgs e)
         {
-
+            Random random = new Random();
             if (selectGenerator.SelectedIndex == 0)
             {
                 PESELGen pESEL = new PESELGen();
-                generatedResult.Content = pESEL.Generate();
+                generatedResult.Content = pESEL.Generate()+random.Next(0,9);
             }
             else if (selectGenerator.SelectedIndex == 1)
             {
