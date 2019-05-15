@@ -164,8 +164,8 @@ namespace HandyTest.Pages
         {
 
             string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + selectedIssue + ".xml";
-            if (File.Exists(path))
-                File.Delete(path);
+            //if (File.Exists(path))
+                //File.Delete(path);
             //if (allIssuesDataGrid.Items.Count == 0)
             //    issueInfoPanel.IsEnabled = false;
 
