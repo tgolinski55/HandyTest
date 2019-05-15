@@ -117,14 +117,6 @@ namespace HandyTest.Views
         private string ValidateEmptyFields()
         {
             var msg = "";
-            if (setAuthor.Text == "")
-                msg += "Author is required";
-            if (setBuildVersion.Text == "")
-            {
-                if (msg != "")
-                    msg += Environment.NewLine;
-                msg += "Build version is required";
-            }
             if (setSummary.Text == "")
             {
                 if (msg != "")
