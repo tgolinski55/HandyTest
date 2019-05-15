@@ -397,6 +397,7 @@
                 BorderBrush="#232526"
                 BorderThickness="1"
                 FontSize="14"
+                IsReadOnly="True"
                 TextChanged="FileChecker"
                 TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Visible" />
