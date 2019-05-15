@@ -91,7 +91,7 @@
                             HorizontalAlignment="Right"
                             Source="../Resources/Icons/icons8-help-32.png"
                             ToolBarTray.IsLocked="True"
-                            ToolTip="Default path is created in public documents" />
+                            ToolTip=" " />
                     </StackPanel>
                     <StackPanel>
                         <Button
