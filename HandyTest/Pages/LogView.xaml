@@ -287,6 +287,14 @@
             Style="{StaticResource TransparentStyle2}">
             <Image Source="../Resources/Icons/icons8-wstecz-100.png" />
         </Button>
+        <TextBlock
+            Grid.ColumnSpan="3"
+            Margin="40,0"
+            FontSize="22"
+            TextTrimming="CharacterEllipsis">
+            <Run Text="Project: " />
+            <Run Name="projectName" />
+        </TextBlock>
         <DataGrid
             Name="allLogsDataGrid"
             Grid.Row="1"

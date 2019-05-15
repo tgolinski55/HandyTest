@@ -11,6 +11,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Xml;
 using System.ComponentModel;
+using System.Windows.Media;
 
 namespace HandyTest.Views
 {
@@ -145,33 +146,41 @@ namespace HandyTest.Views
             else
             {
                 string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/";
-                GetProjectConfig();
-                createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
-                new XDocument(
-                    new XElement("root",
-                        new XElement("ID", issueID + 1),
-                        new XElement("Author", setAuthor.Text),
-                        new XElement("BuildVersion", setBuildVersion.Text),
-                        new XElement("Date", setreportDateFile.Text),
-                        new XElement("Priority", setpriorityCombo.Text),
-                        new XElement("Type", setreporttypeCombo.Text),
-                        new XElement("State", setstateCombo.Text),
-                        new XElement("Description", settextBoxDescription.Text))
-                        )
-                .Save(path + "Reports/" + setSummary.Text + ".xml");
-                this.Hide();
+                if (File.Exists(path + "Reports/" + setSummary.Text + ".xml"))
+                {
+                    MessageBox.Show("Issue with name: '" + setSummary.Text + "' already exists. Please select different name", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    GetProjectConfig();
+                    createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
+                    new XDocument(
+                        new XElement("root",
+                            new XElement("ID", issueID + 1),
+                            new XElement("Author", setAuthor.Text),
+                            new XElement("BuildVersion", setBuildVersion.Text),
+                            new XElement("Date", setreportDateFile.Text),
+                            new XElement("Priority", setpriorityCombo.Text),
+                            new XElement("Type", setreporttypeCombo.Text),
+                            new XElement("State", setstateCombo.Text),
+                            new XElement("Description", settextBoxDescription.Text))
+                            )
+                    .Save(path + "Reports/" + setSummary.Text + ".xml");
+                    this.Hide();
 
-                AllIssues.issuesLists.Add(new IssuesList(setSummary.Text, issueID + 1));
-                summaryValidatorPopup.IsOpen = false;
-                setAuthor.Clear();
-                setBuildVersion.Clear();
-                SetCurrentData();
-                setpriorityCombo.SelectedIndex = 2;
-                setreporttypeCombo.SelectedIndex = 1;
-                setstateCombo.SelectedIndex = 0;
-                setSummary.Clear();
-                settextBoxDescription.Clear();
-                SaveProjectConfig();
+
+                    AllIssues.issuesLists.Add(new IssuesList(setSummary.Text, issueID + 1));
+                    summaryValidatorPopup.IsOpen = false;
+                    setAuthor.Clear();
+                    setBuildVersion.Clear();
+                    SetCurrentData();
+                    setpriorityCombo.SelectedIndex = 2;
+                    setreporttypeCombo.SelectedIndex = 1;
+                    setstateCombo.SelectedIndex = 0;
+                    setSummary.Clear();
+                    settextBoxDescription.Clear();
+                    SaveProjectConfig();
+                }
             }
         }
 
