@@ -205,7 +205,7 @@ namespace HandyTest
                 else if (e.Button == System.Windows.Forms.MouseButtons.Right)
                 {
 
-                    logItems.Add(new LogItems("Right Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
+                    //logItems.Add(new LogItems("Right Mouse button was clicked", DateTime.Now.ToLongTimeString(), path2));
                 }
                 else if (e.Button == System.Windows.Forms.MouseButtons.Middle)
                 {
