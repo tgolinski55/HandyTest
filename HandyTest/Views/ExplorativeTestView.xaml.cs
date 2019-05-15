@@ -187,7 +187,7 @@ namespace HandyTest.Views
                 summaryValidator.ItemsSource = null;
                 summaryValidatorPopup.IsOpen = true;
 
-                var filteredIssues = issuesList.Where(issues => issues.Name.ToLower().Contains(setSummary.Text.ToLower()));
+                var filteredIssues = issuesList.Where(issues => issues.Name.Contains(setSummary.Text));
                 summaryValidator.ItemsSource = filteredIssues;
 
             }
