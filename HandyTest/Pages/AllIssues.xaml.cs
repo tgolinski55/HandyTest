@@ -66,7 +66,7 @@ namespace HandyTest.Pages
             }
 
             CollectionViewSource.GetDefaultView(allIssuesDataGrid.ItemsSource).Refresh();
-            SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
+            SortDataGrid(allIssuesDataGrid, 2, ListSortDirection.Ascending);
         }
         private void AddPriorityItems(object sender, RoutedEventArgs e)
         {
@@ -394,7 +394,7 @@ namespace HandyTest.Pages
             allIssuesDataGrid.ItemsSource = filteredIssues;
             filteredTableCount.Text = filteredIssues.Count().ToString();
             allTableCount.Text = issuesLists.Count.ToString();
-            SortDataGrid(allIssuesDataGrid, 1, ListSortDirection.Ascending);
+            SortDataGrid(allIssuesDataGrid, 2, ListSortDirection.Ascending);
         }
 
     }
