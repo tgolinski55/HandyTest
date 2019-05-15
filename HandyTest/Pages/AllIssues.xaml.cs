@@ -341,7 +341,7 @@ namespace HandyTest.Pages
 
                         TableRow description = table.Rows[counter];
                         Paragraph issueDesc = description.Cells[2].AddParagraph();
-                        issueDesc.AppendText(LoadIssuesInfo.GetIssueInfo(activeProject, "Description", item.Name));
+                        //issueDesc.AppendText(LoadIssuesInfo.GetIssueInfo(activeProject, "Description", item.Name));
 
                         //tab.ResetCells(2, 2);
                         counter++;
