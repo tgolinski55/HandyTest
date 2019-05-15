@@ -574,8 +574,7 @@
                 Height="Auto"
                 IsOpen="False"
                 Placement="Center"
-                PopupAnimation="Fade"
-                StaysOpen="False">
+                PopupAnimation="Fade">
                 <Border BorderBrush="#232526" BorderThickness="1">
 
                     <StackPanel
