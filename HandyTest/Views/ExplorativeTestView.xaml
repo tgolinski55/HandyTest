@@ -245,7 +245,6 @@
                     <Button
                         Width="30"
                         Height="30"
-                        Command="Cut"
                         IsEnabled="{Binding ElementName=textBoxDescription, Path=IsFocused}"
                         ToolTip="Cut..">
                         <Image Source="../Resources/Icons/icons8-nożyczki-100.png" />
@@ -253,7 +252,6 @@
                     <Button
                         Width="30"
                         Height="30"
-                        Command="Copy"
                         IsEnabled="{Binding ElementName=textBoxDescription, Path=IsFocused}"
                         ToolTip="Copy..">
                         <Image Source="../Resources/Icons/icons8-kopiuj-100.png" />
@@ -261,7 +259,6 @@
                     <Button
                         Width="30"
                         Height="30"
-                        Command="Paste"
                         IsEnabled="{Binding ElementName=textBoxDescription, Path=IsFocused}"
                         ToolTip="Paste..">
                         <StackPanel Orientation="Horizontal">
