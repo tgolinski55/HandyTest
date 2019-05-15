@@ -238,15 +238,10 @@ namespace HandyTest.Pages
 
         private void SaveIssueChanges(object sender, RoutedEventArgs e)
         {
-            if (ValidateEmptyFields() != "")
-                MessageBox.Show(ValidateEmptyFields(), "Missing key infromations", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
-            else
-            {
 
                 EditIssue();
                 issuesLists.Clear();
                 LoadAllIssues(sender, e);
-            }
         }
 
         public void CreateReportFile(object sender, RoutedEventArgs e)
