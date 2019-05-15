@@ -601,26 +601,7 @@
                                 Content="{x:Static resx:Resource.label_CreateProject}"
                                 FontSize="15"
                                 Foreground="WhiteSmoke" />-->
-                            <Button
-                                Grid.Column="1"
-                                Width="30"
-                                HorizontalAlignment="Right"
-                                Background="Transparent"
-                                Click="Close_PopUp"
-                                FontSize="10"
-                                Foreground="WhiteSmoke"
-                                Style="{StaticResource TransparentStyle}">
-                                <Button.Content>
-                                    <StackPanel>
-                                        <Label
-                                            Margin="0"
-                                            HorizontalAlignment="Center"
-                                            Content="{x:Static resx:Resource.button_functionalX}"
-                                            FontSize="15"
-                                            Foreground="WhiteSmoke" />
-                                    </StackPanel>
-                                </Button.Content>
-                            </Button>
+
 
                             <Label
                                 Grid.Row="0"
