@@ -222,7 +222,7 @@ namespace HandyTest
 
             catch
             {
-                throw;
+                //throw;
                 //MessageBox.Show("File is in use. Please select different one.", "Error");
             }
 
