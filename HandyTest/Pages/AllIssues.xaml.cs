@@ -29,6 +29,9 @@ namespace HandyTest.Pages
         ProjectPath pathToProjects = new ProjectPath();
         string selectedIssue;
         string selectedIssueNumber;
+        public string activeProject;
+
+        public string displayedName { get; set; }
         public AllIssues()
         {
             InitializeComponent();
@@ -39,9 +42,9 @@ namespace HandyTest.Pages
             var mainWindow = new HomeView();
             mainWindow.ReloadDataGrid();
         }
-        public string activeProject;
         private void LoadAllIssues(object sender, RoutedEventArgs e)
         {
+            projectName.Text = activeProject;
             allIssuesDataGrid.ItemsSource = null;
             issuesLists.Clear();
             allIssuesDataGrid.ItemsSource = issuesLists;

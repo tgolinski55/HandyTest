@@ -228,7 +228,9 @@ namespace HandyTest.Pages
 
         void OpenManualTest(object sender, RoutedEventArgs e)
         {
-            PageNavigator.Switch(new ManualTestView());
+            ManualTestView manualTestView = new ManualTestView();
+            manualTestView.activeProject = activeProjectTxtBlock.Text;
+            PageNavigator.Switch(manualTestView);
         }
 
         void OpenAllIssues(object sender, RoutedEventArgs e)
@@ -315,7 +317,9 @@ namespace HandyTest.Pages
 
         private void OpenLog(object sender, RoutedEventArgs e)
         {
-            PageNavigator.Switch(new LogView());
+            LogView log = new LogView();
+            log.activeProject = activeProjectTxtBlock.Text;
+            PageNavigator.Switch(log);
         }
 
         private void OpenSettings(object sender, RoutedEventArgs e)
