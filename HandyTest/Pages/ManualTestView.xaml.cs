@@ -161,6 +161,8 @@ namespace HandyTest.Pages
             {
                 foreach (var l in letter)
                     charsTab.Add(l);
+                foreach (var s in specialChar)
+                    charsTab.Add(s);
             }
             if (specialCharsRbtn.IsChecked == true)
             {
