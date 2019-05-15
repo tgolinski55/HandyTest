@@ -32,7 +32,7 @@ namespace HandyTest.Pages
             manualTestDataGrid.SelectedIndex = 0;
         }
 
-        
+
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new HomeView());
@@ -207,7 +207,8 @@ namespace HandyTest.Pages
 
         private void CopyToClipboard(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetText(generateTxtBlk.Text);
+            if (generateTxtBlk.Text.Length > 0)
+                Clipboard.SetText(generateTxtBlk.Text.Remove(generateTxtBlk.Text.Length - 1));
         }
 
         private void WarningTextSize(object sender, RoutedPropertyChangedEventArgs<double?> e)
@@ -380,7 +381,7 @@ namespace HandyTest.Pages
             else if (selectGenerator.SelectedIndex == 1)
             {
                 NIPGen nIPGen = new NIPGen();
-                generatedResult.Content = nIPGen.Generate()+random.Next(0,9);
+                generatedResult.Content = nIPGen.Generate() + random.Next(0, 9);
             }
             else if (selectGenerator.SelectedIndex == 2)
             {
@@ -390,7 +391,7 @@ namespace HandyTest.Pages
         }
         private void CopyGeneratedResult(object sender, RoutedEventArgs e)
         {
-            Clipboard.SetData(DataFormats.Text, (object)generatedResult.Content);
+            Clipboard.SetData(DataFormats.Text, generatedResult.Content);
         }
 
         private void SelectLeftFileFromSys(object sender, RoutedEventArgs e)
