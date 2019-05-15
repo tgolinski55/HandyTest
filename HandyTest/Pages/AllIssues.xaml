@@ -324,67 +324,77 @@
                 Text="{Binding CurrentNameFilter, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
                 TextAlignment="Left" />
         </StackPanel>
-        <DataGrid
-            Name="allIssuesDataGrid"
+        <ListView
             Grid.Row="1"
-            Margin="0,30,0,35"
-            Padding="0,5,5,5"
-            AutoGenerateColumns="False"
+            Margin="0,45,0,35"
+            Padding="0"
             Background="Transparent"
-            CanUserDeleteRows="False"
-            CanUserReorderColumns="False"
-            CanUserResizeColumns="False"
-            CanUserSortColumns="True"
-            GridLinesVisibility="Horizontal"
-            HeadersVisibility="Column"
-            IsTextSearchCaseSensitive="False"
-            IsTextSearchEnabled="True"
-            ItemsSource="{Binding issuesLists}"
-            Loaded="LoadAllIssues"
-            SelectionChanged="SelectedIssueChange"
-            SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTemplateColumn MaxWidth="6" CellStyle="{StaticResource selectionIndicator}">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <Label
-                                Width="4"
-                                HorizontalAlignment="Left"
-                                Background="#DF964C"
-                                Visibility="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, Converter={StaticResource BooleanToVisibilityConverter}}" />
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTextColumn
-                    Binding="{Binding Id}"
-                    CellStyle="{StaticResource MyDataGridCell}"
-                    IsReadOnly="True">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
-                            <Setter Property="TextWrapping" Value="NoWrap" />
-                            <Setter Property="Padding" Value="5,2" />
-                            <Setter Property="Margin" Value="0,0,0,0" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
-                <DataGridTextColumn
-                    Width="*"
-                    Binding="{Binding Name}"
-                    CellStyle="{StaticResource MyDataGridCell}"
-                    IsReadOnly="True">
-                    <DataGridTextColumn.ElementStyle>
-                        <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
-                            <Setter Property="TextWrapping" Value="NoWrap" />
-                            <Setter Property="TextTrimming" Value="CharacterEllipsis" />
-                            <Setter Property="Padding" Value="5,2" />
-                            <Setter Property="Margin" Value="5,0,0,0" />
-                        </Style>
-                    </DataGridTextColumn.ElementStyle>
-                </DataGridTextColumn>
+            BorderThickness="0"
+            Foreground="Transparent"
+            ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+            Style="{x:Null}">
+            <DataGrid
+                Name="allIssuesDataGrid"
+                Grid.Row="1"
+                Margin="-4,-10"
+                Padding="0"
+                AutoGenerateColumns="False"
+                Background="Transparent"
+                CanUserDeleteRows="False"
+                CanUserReorderColumns="False"
+                CanUserResizeColumns="False"
+                CanUserSortColumns="False"
+                GridLinesVisibility="Horizontal"
+                HeadersVisibility="Column"
+                IsTextSearchCaseSensitive="False"
+                IsTextSearchEnabled="True"
+                ItemsSource="{Binding issuesLists}"
+                Loaded="LoadAllIssues"
+                ScrollViewer.CanContentScroll="False"
+                SelectionChanged="SelectedIssueChange"
+                SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn MaxWidth="6" CellStyle="{StaticResource selectionIndicator}">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Label
+                                    Width="4"
+                                    HorizontalAlignment="Left"
+                                    Background="#DF964C"
+                                    Visibility="{Binding IsSelected, RelativeSource={RelativeSource FindAncestor, AncestorType=DataGridRow}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn
+                        Binding="{Binding Id}"
+                        CellStyle="{StaticResource MyDataGridCell}"
+                        IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="Padding" Value="5,2" />
+                                <Setter Property="Margin" Value="0,0,0,0" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
+                    <DataGridTextColumn
+                        Width="*"
+                        Binding="{Binding Name}"
+                        CellStyle="{StaticResource MyDataGridCell}"
+                        IsReadOnly="True">
+                        <DataGridTextColumn.ElementStyle>
+                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="{x:Type TextBlock}">
+                                <Setter Property="TextWrapping" Value="NoWrap" />
+                                <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+                                <Setter Property="Padding" Value="5,2" />
+                                <Setter Property="Margin" Value="5,0,0,0" />
+                            </Style>
+                        </DataGridTextColumn.ElementStyle>
+                    </DataGridTextColumn>
 
-            </DataGrid.Columns>
-        </DataGrid>
-
+                </DataGrid.Columns>
+            </DataGrid>
+        </ListView>
         <GroupBox
             Name="issueInfoPanel"
             Grid.Row="1"
