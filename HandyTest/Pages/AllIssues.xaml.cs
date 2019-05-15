@@ -225,7 +225,7 @@ namespace HandyTest.Pages
                     new XElement("BuildVersion", setBuildVersion.Text),
                     new XElement("Date", setreportDateFile.Text),
                     new XElement("Priority", setpriorityCombo.Text),
-                    new XElement("Type", setreporttypeCombo.Text),
+                    new XElement("Type", LoadIssuesInfo.GetIssueInfo(activeProject, "Type", selectedIssue)),
                     new XElement("State", setstateCombo.Text),
                     new XElement("Description", settextBoxDescription.Text))
                     )
