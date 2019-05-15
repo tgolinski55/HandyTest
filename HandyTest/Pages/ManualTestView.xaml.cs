@@ -32,7 +32,7 @@ namespace HandyTest.Pages
             manualTestDataGrid.SelectedIndex = 0;
         }
 
-        
+
         private void PreviousWindowBtn(object sender, RoutedEventArgs e)
         {
             PageNavigator.Switch(new HomeView());
@@ -179,6 +179,8 @@ namespace HandyTest.Pages
 
                 if (lengthValue.Value != null && lengthValue.Value <= 100000)
                 {
+                    if (lengthValue.Value >= 100000)
+                        Thread.Sleep(10000);
                     for (int i = 0; i < lengthValue.Value; i++)
                     {
                         int randomValue = randomizeCharTab.Next(shuffleTab.Count);
@@ -187,6 +189,7 @@ namespace HandyTest.Pages
                         {
                             if (charsRbtn.IsChecked == true && charsSample.Text == "" && (numbersRbtn.IsChecked == false && lettersRbtn.IsChecked == false && specialCharsRbtn.IsChecked == false))
                                 break;
+
                             generateTxtBlk.Text += (string)shuffleTab[randomValue];
                         }
                     }
@@ -375,7 +378,7 @@ namespace HandyTest.Pages
             if (selectGenerator.SelectedIndex == 0)
             {
                 PESELGen pESEL = new PESELGen();
-                generatedResult.Content = pESEL.Generate()+random.Next(0,9);
+                generatedResult.Content = pESEL.Generate() + random.Next(0, 9);
             }
             else if (selectGenerator.SelectedIndex == 1)
             {
