@@ -106,7 +106,7 @@ namespace HandyTest.Pages
                     }
                     catch
                     {
-                        screenshootsPath.Text = defaultPath + "\\HandyTest\\Projects";
+                        screenshootsPath.Text = defaultPath + "\\HandyTest\\Screenshots";
                         SaveNewPaths();
                     }
                 }

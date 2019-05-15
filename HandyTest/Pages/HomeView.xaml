@@ -508,7 +508,8 @@
                 FontStyle="Italic"
                 Foreground="Black"
                 TextAlignment="Center"
-                TextTrimming="CharacterEllipsis" />
+                TextTrimming="CharacterEllipsis"
+                Visibility="Hidden" />
 
             <Button
                 Grid.Row="1"
