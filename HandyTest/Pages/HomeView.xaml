@@ -417,7 +417,6 @@
             Height="25"
             Margin="10,0,10,15"
             HorizontalAlignment="Left"
-            Click="MakeActiveProjectBtn_Click"
             Content="{x:Static resx:Resource.button_MakeActive}"
             FontSize="14"
             IsEnabled="{Binding ElementName=projectsListDataGrid, Path=SelectedItems.Count}"
