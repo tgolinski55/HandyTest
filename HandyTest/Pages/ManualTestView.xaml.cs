@@ -342,7 +342,9 @@ namespace HandyTest.Pages
             }
             catch
             {
-                MessageBox.Show("This file format is not supported", "Error");
+                MessageBox.Show("Not supported image format!", "Error",MessageBoxButton.OK,MessageBoxImage.Error);
+                Application.Current.Shutdown();
+                throw new BadImageFormatException();
             }
         }
 
@@ -370,7 +372,9 @@ namespace HandyTest.Pages
             }
             catch
             {
-                MessageBox.Show("This file format is not supported", "Error");
+                MessageBox.Show("Not supported image format!", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                Application.Current.Shutdown();
+                throw new BadImageFormatException();
             }
         }
 
