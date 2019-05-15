@@ -32,7 +32,7 @@ namespace HandyTest.BL
                 int randomValue = randomizeCharTab.Next(shuffleTab.Count);
                 generatedMail += (string)shuffleTab[randomValue];
             }
-            return generatedMail + "@";
+            return generatedMail;
         }
 
         private string DomainPart()
