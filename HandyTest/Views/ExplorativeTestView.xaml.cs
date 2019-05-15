@@ -25,7 +25,7 @@ namespace HandyTest.Views
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         ProjectPath pathToProjects = new ProjectPath();
 
-        int issueID = 0;
+        int issueID = 1;
         public ExplorativeTestView()
         {
             InitializeComponent();
@@ -97,10 +97,10 @@ namespace HandyTest.Views
             {
                 //File.Create(pathToConfig);
                 //File.WriteAllText(pathToConfig, "1");
-                using (StreamWriter outputFile = new StreamWriter(pathToConfig, false))
-                {
-                    outputFile.Write("0");
-                }
+                //using (StreamWriter outputFile = new StreamWriter(pathToConfig, false))
+                //{
+                //    outputFile.Write("0");
+                //}
             }
             try
             {
