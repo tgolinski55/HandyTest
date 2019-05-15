@@ -73,7 +73,8 @@ namespace HandyTest.Pages
                     try
                     {
                         Directory.CreateDirectory(dialog.SelectedPath);
-                        projectsPath.Text = dialog.SelectedPath;
+                        //projectsPath.Text = dialog.SelectedPath;
+                        projectsPath.Text = defaultPath + "\\HandyTest\\Projects";
                         SaveNewPaths();
                     }
                     catch
@@ -106,7 +107,7 @@ namespace HandyTest.Pages
                     }
                     catch
                     {
-                        screenshootsPath.Text = defaultPath + "\\HandyTest\\Projects";
+                        screenshootsPath.Text = defaultPath + "\\HandyTest\\Screenshots";
                         SaveNewPaths();
                     }
                 }
