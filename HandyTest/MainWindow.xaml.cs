@@ -114,7 +114,7 @@ namespace HandyTest
                 HtmlDocument doc = web.Load(res);
                 HtmlNode timeNode = doc.DocumentNode.SelectSingleNode("//div[@class='time-control']");
                 string time = timeNode.InnerText;
-                string remainingTime = getBetween(time, "Remaining time: ", "\n");
+                string remainingTime = GetBetween(time, "Remaining time: ", "\n");
                 if (Convert.ToDateTime(remainingTime).Hour>0 && Convert.ToDateTime(remainingTime).Minute>0 && Convert.ToDateTime(remainingTime).Second>0)
                     return true;
                 else
@@ -128,7 +128,7 @@ namespace HandyTest
 
         }
 
-        public static string getBetween(string strSource, string strStart, string strEnd)
+        public static string GetBetween(string strSource, string strStart, string strEnd)
         {
             int Start, End;
             if (strSource.Contains(strStart) && strSource.Contains(strEnd))
