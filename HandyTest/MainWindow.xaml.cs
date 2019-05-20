@@ -40,6 +40,7 @@ namespace HandyTest
         public static ObservableCollection<ProjectList> ProjectsList { get; set; }
         public static ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
+        ValidateTask validateTask = new ValidateTask();
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         LogView LogView = new LogView();
@@ -80,54 +81,29 @@ namespace HandyTest
 
         public MainWindow()
         {
-            InitializeComponent();
-            PageNavigator.pageSwitcher = this;
-            PageNavigator.Switch(new HomeView());
+            if (!validateTask.ValidateLink())
+            {
+                InitializeComponent();
+                PageNavigator.pageSwitcher = this;
+                PageNavigator.Switch(new ActivatePage());
+            }
+            else
+            {
+                InitializeComponent();
+                PageNavigator.pageSwitcher = this;
+                PageNavigator.Switch(new HomeView());
+            }
 
-            //this.Loaded += (sender, args) => this.ResizeMode = ResizeMode.CanResize;
-            //this.Loaded += (sender, args) => this.Topmost = false;
         }
 
         private static readonly HttpClient client = new HttpClient();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
-            if (GetTime())
-            {
             _listener = new LowLevelKeyboardListener();
             _listener.OnKeyPressed += _listener_OnKeyPressed;
             _listener.HookKeyboard();
-            }
-            else
-            {
-                MessageBox.Show("Invalid link or task has exceeded!","Access denied");
-                Application.Current.Shutdown();
-            }
-        }
-
-        private bool GetTime()
-        {
-            string res = this.ShowModalInputExternal("Verification", "Enter valid link for given task");
-            try
-            {
-                HtmlWeb web = new HtmlWeb();
-                HtmlDocument doc = web.Load(res);
-                HtmlNode timeNode = doc.DocumentNode.SelectSingleNode("//div[@class='time-control']");
-                string time = timeNode.InnerText;
-                string remainingTime = GetBetween(time, "Remaining time: ", "\n");
-                if (Convert.ToDateTime(remainingTime).Hour>0 && Convert.ToDateTime(remainingTime).Minute>0 && Convert.ToDateTime(remainingTime).Second>0)
-                    return true;
-                else
-                    return false;
-            }
-            catch (Exception ex)
-            {
-                return false;
-                throw;
-            }
 
         }
-
         public static string GetBetween(string strSource, string strStart, string strEnd)
         {
             int Start, End;
@@ -204,7 +180,20 @@ namespace HandyTest
                 }
             });
             task.Start();
+            Task checkIfExpired = new Task(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(60000);
+                    if (validateTask.ValidateLink())
+                    {
+                        MessageBox.Show("Invalid link or task has expired!", "Access denied");
+                        Environment.Exit(0);
+                    }
 
+                }
+            });
+            checkIfExpired.Start();
 
             #region Hotkeys
             //KEYBOARD

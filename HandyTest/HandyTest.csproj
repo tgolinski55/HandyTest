@@ -157,6 +157,10 @@
     <Compile Include="BL\SaveXml.cs" />
     <Compile Include="BL\ScreenCapturer.cs" />
     <Compile Include="BL\TaxOfficeCodes.cs" />
+    <Compile Include="BL\ValidateTask.cs" />
+    <Compile Include="Pages\ActivatePage.xaml.cs">
+      <DependentUpon>ActivatePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Pages\AllIssues.xaml.cs">
       <DependentUpon>AllIssues.xaml</DependentUpon>
     </Compile>
@@ -193,6 +197,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Pages\ActivatePage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Pages\AllIssues.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
