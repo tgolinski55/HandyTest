@@ -136,15 +136,16 @@ namespace HandyTest
                         logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
                         screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
 
+                    }
+
+
+                    _listener.UnHookKeyboard();
+                    _listener.HookKeyboard();
+
+                    GC.Collect();
                 }
 
-
-                _listener.UnHookKeyboard();
-                _listener.HookKeyboard();
-
-                GC.Collect();
             }
-
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
