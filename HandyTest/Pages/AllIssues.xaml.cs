@@ -328,12 +328,12 @@ namespace HandyTest.Pages
                     text.CharacterFormat.FontSize = 12;
                     text.CharacterFormat.Bold = true;
 
-                    foreach (var item in issuesLists)
+                    var list = issuesLists.OrderBy(x => x.Id).ToList();
+                    foreach (var item in list)
                     {
                         TableRow issueIdRow = table.Rows[counter];
                         Paragraph issueId = issueIdRow.Cells[0].AddParagraph();
                         issueId.AppendText(item.Id.ToString());
-
 
                         TableRow dataRow = table.Rows[counter];
                         Paragraph issueName = dataRow.Cells[1].AddParagraph();
@@ -368,10 +368,6 @@ namespace HandyTest.Pages
 
                     summaryReport.UpdateTableOfContents();
                     #endregion
-
-
-                    var pathToReport = fileDialog.FileName;
-                    summaryReport.SaveToFile(pathToReport, FileFormat.Docx);
                 }
 
             }
