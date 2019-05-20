@@ -145,12 +145,7 @@ namespace HandyTest.Views
             else
             {
                 string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/";
-                if (File.Exists(path + "Reports/" + setSummary.Text + ".xml"))
-                {
-                    MessageBox.Show("Issue with name: '" + setSummary.Text + "' already exists. Please select different name", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                }
-                else
-                {
+                
                     GetProjectConfig();
                     createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
                     new XDocument(
@@ -179,7 +174,7 @@ namespace HandyTest.Views
                     setSummary.Clear();
                     settextBoxDescription.Clear();
                     SaveProjectConfig();
-                }
+                
             }
         }
 
