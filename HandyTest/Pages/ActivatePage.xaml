@@ -1,0 +1,61 @@
+﻿<UserControl
+    x:Class="HandyTest.Pages.ActivatePage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:HandyTest.Pages"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="450"
+    d:DesignWidth="800"
+    BorderBrush="#232526"
+    Style="{x:Null}"
+    mc:Ignorable="d">
+
+    <Grid Background="WhiteSmoke">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+        <GroupBox
+            Grid.RowSpan="2"
+            Margin="5"
+            BorderBrush="#D4791C"
+            BorderThickness="1"
+            FontSize="18"
+            Header="Validation"
+            Style="{x:Null}">
+            <StackPanel>
+                <Label
+                    Margin="50,100,50,20"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Top"
+                    Content="Enter valid link to given task"
+                    FontSize="18" />
+                <TextBox
+                    Name="linkTextBox"
+                    Width="500"
+                    VerticalContentAlignment="Center"
+                    AcceptsReturn="False"
+                    AcceptsTab="False"
+                    AllowDrop="True"
+                    FontSize="16"
+                    MaxLines="4"
+                    TextWrapping="Wrap" />
+                <StackPanel HorizontalAlignment="Center" Orientation="Horizontal">
+
+                    <Button
+                        HorizontalAlignment="Center"
+                        Background="Gray"
+                        Click="TerminateApp"
+                        Content="Quit"
+                        Style="{StaticResource FunctionalButtonStyle}" />
+                    <Button
+                        HorizontalAlignment="Center"
+                        Click="SetNewTaskLink"
+                        Content="Activate"
+                        Style="{StaticResource FunctionalButtonStyle}" />
+                </StackPanel>
+            </StackPanel>
+        </GroupBox>
+    </Grid>
+</UserControl>
