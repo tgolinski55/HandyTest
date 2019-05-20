@@ -183,8 +183,8 @@ namespace HandyTest
             {
                 while (true)
                 {
-                    Thread.Sleep(60000);
-                    if (validateTask.ValidateLink())
+                    Thread.Sleep(600000);
+                    if (!validateTask.ValidateLink())
                     {
                         MessageBox.Show("Invalid link or task has expired!", "Access denied");
                         Environment.Exit(0);
