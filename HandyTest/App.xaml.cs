@@ -27,17 +27,7 @@ namespace HandyTest
         protected override void OnStartup(StartupEventArgs e)
         {
             base.OnStartup(e);
-            const string appName = "HandyTest";
 
-            _mutex = new Mutex(true, appName, out bool createdNew);
-
-            if (!createdNew)
-            {
-                //app is already running! Exiting the application  
-                Application.Current.Shutdown();
-            }
-            else
-            {
                 MainWindow = new MainWindow();
                 MainWindow.Closing += MainWindow_Closing;
                 ShowMainWindow();
@@ -47,7 +37,7 @@ namespace HandyTest
                 _notifyIcon.Visible = true;
 
                 CreateContextMenu();
-            }
+            
         }
 
         private void CreateContextMenu()
