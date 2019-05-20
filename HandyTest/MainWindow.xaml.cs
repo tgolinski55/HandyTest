@@ -24,6 +24,8 @@ using System.Threading.Tasks;
 using System.Xml;
 using System.IO;
 using System.Net.Http;
+using MahApps.Metro.Controls.Dialogs;
+using HtmlAgilityPack;
 
 namespace HandyTest
 {
@@ -38,6 +40,7 @@ namespace HandyTest
         public static ObservableCollection<ProjectList> ProjectsList { get; set; }
         public static ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
+        ValidateTask validateTask = new ValidateTask();
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         LogView LogView = new LogView();
@@ -78,35 +81,43 @@ namespace HandyTest
 
         public MainWindow()
         {
-            InitializeComponent();
-            PageNavigator.pageSwitcher = this;
-            PageNavigator.Switch(new HomeView());
+            if (!validateTask.ValidateLink())
+            {
+                InitializeComponent();
+                PageNavigator.pageSwitcher = this;
+                PageNavigator.Switch(new ActivatePage());
+            }
+            else
+            {
+                InitializeComponent();
+                PageNavigator.pageSwitcher = this;
+                PageNavigator.Switch(new HomeView());
+            }
 
-            //this.Loaded += (sender, args) => this.ResizeMode = ResizeMode.CanResize;
-            //this.Loaded += (sender, args) => this.Topmost = false;
         }
 
         private static readonly HttpClient client = new HttpClient();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             _listener = new LowLevelKeyboardListener();
             _listener.OnKeyPressed += _listener_OnKeyPressed;
             _listener.HookKeyboard();
-            GetTime();
 
         }
-
-        private async void GetTime()
+        public static string GetBetween(string strSource, string strStart, string strEnd)
         {
-            await client.GetStringAsync("https://time.is/pl");
-            var test = client;
-            test = client;
-            HttpResponseMessage response = client.GetAsync("https://time.is/pl").Result;
-            var products = response.Content.ReadAsStringAsync().Result;
+            int Start, End;
+            if (strSource.Contains(strStart) && strSource.Contains(strEnd))
+            {
+                Start = strSource.IndexOf(strStart, 0) + strStart.Length;
+                End = strSource.IndexOf(strEnd, Start);
+                return strSource.Substring(Start, End - Start);
+            }
+            else
+            {
+                return "";
+            }
         }
-
-
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
@@ -125,7 +136,7 @@ namespace HandyTest
                         if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
                             Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
                         logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") +"/"+ path2, ImageFormat.Jpeg);
+                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
 
                     }
                 }
@@ -169,7 +180,20 @@ namespace HandyTest
             //    }
             //});
             //task.Start();
+            Task checkIfExpired = new Task(() =>
+            {
+                while (true)
+                {
+                    Thread.Sleep(60000);
+                    if (validateTask.ValidateLink())
+                    {
+                        MessageBox.Show("Invalid link or task has expired!", "Access denied");
+                        Environment.Exit(0);
+                    }
 
+                }
+            });
+            checkIfExpired.Start();
 
             #region Hotkeys
             //KEYBOARD
@@ -276,7 +300,7 @@ namespace HandyTest
                             break;
                         case VK_OEM_3:
                             logItems.Add(new LogItems("Key pressed: Oem3", DateTime.Now.ToLongTimeString(), path2));
-                            
+
                             if (IsWindowOpen<Window>("expWindow"))
                             {
                                 //logItems.Add(new LogItems("Key pressed: Subtract", DateTime.Now.ToLongTimeString(), path2));
