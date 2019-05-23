@@ -121,31 +121,29 @@ namespace HandyTest
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
-            if (!this.IsActive)
+            if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
             {
-                if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
-                {
-                    //Do not log letters
-                }
+                //Do not log letters
+            }
+            else
+            {
+                if (Keyboard.IsKeyDown(e.KeyPressed))
+                { }
                 else
                 {
-                    if (Keyboard.IsKeyDown(e.KeyPressed))
-                    { }
-                    else
-                    {
-                        if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
-                            Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
-                        logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
+                    if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
+                        Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
+                    logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
+                    screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
 
-                    }
                 }
-
-                _listener.UnHookKeyboard();
-                _listener.HookKeyboard();
-
-                GC.Collect();
             }
+
+            _listener.UnHookKeyboard();
+            _listener.HookKeyboard();
+
+            GC.Collect();
+
 
         }
 
