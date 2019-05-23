@@ -46,13 +46,24 @@ namespace HandyTest.Pages
         {
             try
             {
-                var formattedText = "http://quizzes.enformatic.eu/quiz/check_challenge_time/" + ValidateTask.GetBetween(text, "challenge/", "/");
-                return formattedText;
+                //var formattedText = "http://quizzes.enformatic.eu/quiz/check_challenge_time/" + ValidateTask.GetBetween(text, "challenge/", "/");
+                //return formattedText;
+                var stack = new Stack<char>();
+
+                foreach (var c in text.Reverse())
+                {
+                    if ((text[text.Length-1]=='/' && stack.Count>0 && c == '/')||(text[text.Length - 1] != '/' && c == '/'))
+                        break;
+                    stack.Push(c);
+                }
+
+                return "http://quizzes.enformatic.eu/quiz/check_challenge_time/"+ new string(stack.ToArray());
             }
             catch
             {
                 return "";
             }
+
         }
         public void ChangePage()
         {
