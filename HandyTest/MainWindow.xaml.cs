@@ -23,7 +23,6 @@ using DesktopWPFAppLowLevelKeyboardHook;
 using System.Threading.Tasks;
 using System.Xml;
 using System.IO;
-using System.Net.Http;
 
 namespace HandyTest
 {
@@ -86,26 +85,14 @@ namespace HandyTest
             //this.Loaded += (sender, args) => this.Topmost = false;
         }
 
-        private static readonly HttpClient client = new HttpClient();
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             _listener = new LowLevelKeyboardListener();
             _listener.OnKeyPressed += _listener_OnKeyPressed;
             _listener.HookKeyboard();
-            GetTime();
+
 
         }
-
-        private async void GetTime()
-        {
-            await client.GetStringAsync("https://time.is/pl");
-            var test = client;
-            test = client;
-            HttpResponseMessage response = client.GetAsync("https://time.is/pl").Result;
-            var products = response.Content.ReadAsStringAsync().Result;
-        }
-
 
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
