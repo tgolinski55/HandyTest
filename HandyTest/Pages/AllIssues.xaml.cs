@@ -368,6 +368,9 @@ namespace HandyTest.Pages
 
                     summaryReport.UpdateTableOfContents();
                     #endregion
+
+                    var pathToReport = fileDialog.FileName;
+                    summaryReport.SaveToFile(pathToReport, FileFormat.Docx);
                 }
 
             }
