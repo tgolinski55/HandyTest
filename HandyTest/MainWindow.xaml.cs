@@ -147,15 +147,15 @@ namespace HandyTest
             //_listener.HookKeyboard();
 
             //Clean all screenshoots every 10minutes
-            Task task = new Task(() =>
-            {
-                while (true)
-                {
-                    GarbageCollector.DeleteAllScreenshoots(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/");
-                    Thread.Sleep(600000);
-                }
-            });
-            task.Start();
+            //Task task = new Task(() =>
+            //{
+            //    while (true)
+            //    {
+            //        GarbageCollector.DeleteAllScreenshoots(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/");
+            //        Thread.Sleep(600000);
+            //    }
+            //});
+            //task.Start();
 
 
             #region Hotkeys

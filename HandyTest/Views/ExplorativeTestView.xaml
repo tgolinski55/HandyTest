@@ -273,8 +273,8 @@
                     <Label Content="Font size:" FontSize="14" />
                     <ComboBox Name="fontSizeCombo">
                         <ComboBoxItem Content="10" />
-                        <ComboBoxItem Content="12" IsSelected="True" />
-                        <ComboBoxItem Content="14" />
+                        <ComboBoxItem Content="12"  />
+                        <ComboBoxItem Content="14" IsSelected="True"/>
                         <ComboBoxItem Content="16" />
                     </ComboBox>
                 </ToolBar>
@@ -286,7 +286,6 @@
                 AcceptsReturn="True"
                 AcceptsTab="True"
                 FontSize="{Binding ElementName=fontSizeCombo, Path=SelectedItem.Content}"
-                SpellCheck.IsEnabled="True"
                 TextWrapping="Wrap"
                 VerticalScrollBarVisibility="Auto" />
         </DockPanel>

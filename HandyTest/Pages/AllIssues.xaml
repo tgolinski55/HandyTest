@@ -562,8 +562,7 @@
                                 controls:TextBoxHelper.Watermark="Description..."
                                 AcceptsReturn="True"
                                 AcceptsTab="True"
-                                FontSize="12"
-                                SpellCheck.IsEnabled="True"
+                                FontSize="14"
                                 TextWrapping="Wrap"
                                 VerticalScrollBarVisibility="Auto" />
                         </StackPanel>
