@@ -44,6 +44,7 @@ namespace HandyTest
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         LogView LogView = new LogView();
+        ActivatePage activatePage = new ActivatePage();
         ProjectPath pathToProjects = new ProjectPath();
         private IKeyboardMouseEvents m_GlobalHook;
         [DllImport("user32.dll")]
@@ -121,7 +122,7 @@ namespace HandyTest
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
-            if (!this.IsActive)
+            if (!this.IsActive && !activatePage.isValidating)
             {
                 if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
                 {
@@ -133,10 +134,13 @@ namespace HandyTest
                     { }
                     else
                     {
-                        if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
-                            Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
-                        logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
+                        if (!activatePage.isValidating)
+                        {
+                            if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
+                                Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
+                            logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
+                            screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
+                        }
 
                     }
                 }
@@ -219,7 +223,7 @@ namespace HandyTest
         {
 
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
-            if (!this.IsActive)
+            if (!this.IsActive && !activatePage.isValidating)
             {
 
                 if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -239,9 +243,12 @@ namespace HandyTest
             }
             try
             {
-                if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
-                    Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
-                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(Path.GetFullPath(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2), ImageFormat.Jpeg);
+                if (!activatePage.isValidating)
+                {
+                    if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
+                        Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
+                    screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(Path.GetFullPath(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2), ImageFormat.Jpeg);
+                }
             }
 
             catch
