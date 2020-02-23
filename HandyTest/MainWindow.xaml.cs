@@ -40,10 +40,12 @@ namespace HandyTest
         public static ObservableCollection<ProjectList> ProjectsList { get; set; }
         public static ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
+        PrepareDirectoryStructure prepareDirectory = new PrepareDirectoryStructure();
         ValidateTask validateTask = new ValidateTask();
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
         LogView LogView = new LogView();
+        ActivatePage activatePage = new ActivatePage();
         ProjectPath pathToProjects = new ProjectPath();
         private IKeyboardMouseEvents m_GlobalHook;
         [DllImport("user32.dll")]
@@ -81,6 +83,7 @@ namespace HandyTest
 
         public MainWindow()
         {
+            prepareDirectory.CreateSetupDirectories();
             if (!validateTask.ValidateLink())
             {
                 InitializeComponent();
@@ -89,6 +92,7 @@ namespace HandyTest
             }
             else
             {
+                activatePage.isValidating = false;
                 InitializeComponent();
                 PageNavigator.pageSwitcher = this;
                 PageNavigator.Switch(new HomeView());
@@ -137,7 +141,6 @@ namespace HandyTest
                             Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
                         logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
                         screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
-
                     }
                 }
 

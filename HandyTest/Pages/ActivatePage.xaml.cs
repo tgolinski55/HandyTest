@@ -22,9 +22,11 @@ namespace HandyTest.Pages
     /// </summary>
     public partial class ActivatePage : UserControl
     {
+        public bool isValidating = true;
         ValidateTask validateTask = new ValidateTask();
         public ActivatePage()
         {
+            isValidating = true;
             InitializeComponent();
         }
 
@@ -67,6 +69,7 @@ namespace HandyTest.Pages
         }
         public void ChangePage()
         {
+            isValidating = false;
             //PageNavigator.pageSwitcher = this;
             PageNavigator.Switch(new HomeView());
         }
