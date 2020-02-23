@@ -43,6 +43,7 @@ namespace HandyTest
         ValidateTask validateTask = new ValidateTask();
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
+        PrepareDirectoryStructure prepareDirectory = new PrepareDirectoryStructure();
         LogView LogView = new LogView();
         ProjectPath pathToProjects = new ProjectPath();
         private IKeyboardMouseEvents m_GlobalHook;
@@ -81,6 +82,7 @@ namespace HandyTest
 
         public MainWindow()
         {
+            prepareDirectory.CreateSetupDirectories();
             if (!validateTask.ValidateLink())
             {
                 InitializeComponent();

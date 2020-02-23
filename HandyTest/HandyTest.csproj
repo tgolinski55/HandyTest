@@ -138,6 +138,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="BL\PrepareDirectoryStructure.cs" />
     <Compile Include="BL\CreateReport.cs" />
     <Compile Include="BL\GarbageCollector.cs" />
     <Compile Include="BL\ImageList.cs" />
