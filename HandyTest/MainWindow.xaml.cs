@@ -40,6 +40,7 @@ namespace HandyTest
         public static ObservableCollection<ProjectList> ProjectsList { get; set; }
         public static ObservableCollection<LogItems> logItems = new ObservableCollection<LogItems>();
         private readonly BackgroundWorker worker = new BackgroundWorker();
+        PrepareDirectoryStructure prepareDirectory = new PrepareDirectoryStructure();
         ValidateTask validateTask = new ValidateTask();
         ExplorativeTestView explorativeTestView = new ExplorativeTestView();
         LoadCurrentProject loadCurrentProject = new LoadCurrentProject();
@@ -82,6 +83,7 @@ namespace HandyTest
 
         public MainWindow()
         {
+            prepareDirectory.CreateSetupDirectories();
             if (!validateTask.ValidateLink())
             {
                 InitializeComponent();
@@ -90,6 +92,7 @@ namespace HandyTest
             }
             else
             {
+                activatePage.isValidating = false;
                 InitializeComponent();
                 PageNavigator.pageSwitcher = this;
                 PageNavigator.Switch(new HomeView());
@@ -122,7 +125,7 @@ namespace HandyTest
         void _listener_OnKeyPressed(object sender, KeyPressedArgs e)
         {
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
-            if (!this.IsActive && !activatePage.isValidating)
+            if (!this.IsActive)
             {
                 if (e.KeyPressed >= Key.A && e.KeyPressed <= Key.Z)
                 {
@@ -134,14 +137,10 @@ namespace HandyTest
                     { }
                     else
                     {
-                        if (!activatePage.isValidating)
-                        {
-                            if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
-                                Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
-                            logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
-                            screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
-                        }
-
+                        if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
+                            Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
+                        logItems.Add(new LogItems("Key pressed: " + e.KeyPressed.ToString(), DateTime.Now.ToLongTimeString(), path2));
+                        screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2, ImageFormat.Jpeg);
                     }
                 }
 
@@ -223,7 +222,7 @@ namespace HandyTest
         {
 
             string path2 = "SS-" + DateTime.Now.ToString("ddMMHHmmss") + ".jpg";
-            if (!this.IsActive && !activatePage.isValidating)
+            if (!this.IsActive)
             {
 
                 if (e.Button == System.Windows.Forms.MouseButtons.Left)
@@ -243,12 +242,9 @@ namespace HandyTest
             }
             try
             {
-                if (!activatePage.isValidating)
-                {
-                    if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
-                        Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
-                    screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(Path.GetFullPath(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2), ImageFormat.Jpeg);
-                }
+                if (!Directory.Exists(pathToProjects.GetProjectsPath("ScreenshotsPath")))
+                    Directory.CreateDirectory(pathToProjects.GetProjectsPath("ScreenshotsPath"));
+                screenCapturer.Capture(enmScreenCaptureMode.Screen).Save(Path.GetFullPath(pathToProjects.GetProjectsPath("ScreenshotsPath") + "/" + path2), ImageFormat.Jpeg);
             }
 
             catch
