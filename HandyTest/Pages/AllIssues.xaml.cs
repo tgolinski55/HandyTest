@@ -217,6 +217,8 @@ namespace HandyTest.Pages
             string pathToID = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/IssuesNumber.txt";
             string path = pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + setSummary.Text + ".xml";
             var tempID = LoadIssuesInfo.GetIssueInfo(activeProject, "ID", selectedIssue);
+            if (selectedIssue != setSummary.Text)
+                File.Delete(pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + selectedIssue + ".xml");
             createReports.Add(new CreateReport(setAuthor.Text, setBuildVersion.Text, setreportDateFile.Text, setpriorityCombo.Text, setreporttypeCombo.Text, setstateCombo.Text));
             new XDocument(
                 new XElement("root",
@@ -230,8 +232,6 @@ namespace HandyTest.Pages
                     new XElement("Description", settextBoxDescription.Text))
                     )
             .Save(path);
-            if (selectedIssue != setSummary.Text)
-                File.Delete(pathToProjects.GetProjectsPath("ProjectsPath") + "/" + activeProject + "/Reports/" + selectedIssue + ".xml");
             searchTextField.Text = null;
             filterCounter.Visibility = Visibility.Hidden;
         }
@@ -242,7 +242,6 @@ namespace HandyTest.Pages
                 MessageBox.Show(ValidateEmptyFields(), "Missing key infromations", MessageBoxButton.OKCancel, MessageBoxImage.Stop);
             else
             {
-
                 EditIssue();
                 issuesLists.Clear();
                 LoadAllIssues(sender, e);
