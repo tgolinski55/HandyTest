@@ -42,6 +42,7 @@ namespace HandyTest.Pages
 
         private void ManualTestDataGrid_Loaded(object sender, RoutedEventArgs e)
         {
+            projectName.Text = activeProject;
             manualTestDataGrid.ItemsSource = ManualTestOpt;
             ManualTestOpt.Add(new ManualTestOptions("File checker"));
             ManualTestOpt.Add(new ManualTestOptions("Image checker"));
@@ -204,7 +205,7 @@ namespace HandyTest.Pages
             if (generateTxtBlk.Text.Length > 0)
                 generateTxtBlk.Text = "";
         }
-
+        public string activeProject;
         private void CopyToClipboard(object sender, RoutedEventArgs e)
         {
             Clipboard.SetText(generateTxtBlk.Text);
